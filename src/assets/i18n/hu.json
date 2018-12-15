@@ -1,0 +1,11 @@
+{
+  "App": {
+    "WindowTitle": "CEDAR FAIRData"
+  },
+  "Generic": {
+    "Loading": "Adatbetöltés..."
+  },
+  "error": {
+    "resourceNotPublic": "A hivatkozott erőforrás nem érhető el publikusan"
+  }
+}
