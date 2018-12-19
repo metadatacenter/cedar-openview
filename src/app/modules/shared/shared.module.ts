@@ -4,6 +4,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {TranslateModule} from "@ngx-translate/core";
 import {SpinnerComponent} from "./components/spinner/spinner.component";
+import {DashboardComponent} from "./pages/dashboard/dashboard.component";
+import {ArtifactHeaderComponent} from "./components/artifact-header/artifact-header.component";
 
 @NgModule({
   imports: [
@@ -14,7 +16,9 @@ import {SpinnerComponent} from "./components/spinner/spinner.component";
     TranslateModule
   ],
   declarations: [
-    SpinnerComponent
+    SpinnerComponent,
+    DashboardComponent,
+    ArtifactHeaderComponent
   ],
   exports: [
     CommonModule,
@@ -22,7 +26,8 @@ import {SpinnerComponent} from "./components/spinner/spinner.component";
     ReactiveFormsModule,
     RouterModule,
     TranslateModule,
-    SpinnerComponent
+    SpinnerComponent,
+    ArtifactHeaderComponent
   ]
 })
 export class SharedModule {

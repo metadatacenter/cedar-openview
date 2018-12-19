@@ -21,8 +21,8 @@ export class TemplateElementComponent extends CedarPageComponent {
 
   constructor(
     protected localSettings: LocalSettingsService,
-    public translateService: TranslateService,
-    public notify: SnotifyService,
+    protected translateService: TranslateService,
+    protected notify: SnotifyService,
     protected router: Router,
     protected route: ActivatedRoute,
     protected dataStore: DataStoreService,

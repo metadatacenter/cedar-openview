@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {DashboardComponent} from "./modules/shared/pages/dashboard/dashboard.component";
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    component: DashboardComponent,
     pathMatch: 'full'
   }
 ];

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://fairdata.metadatacenter.orgx/',
+  apiUrl: 'https://open.metadatacenter.orgx/',
+  cedarUrl: 'https://cedar.metadatacenter.orgx/',
   defaultLanguage: 'en',
   fallbackLanguage: 'en'
 };

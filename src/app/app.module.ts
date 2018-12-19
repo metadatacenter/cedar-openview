@@ -7,7 +7,6 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {SnotifyModule, SnotifyService, ToastDefaults} from "ng-snotify";
 import {SharedModule} from "./modules/shared";
-import {DashboardModule} from "./modules/dashboard/dashboard.module";
 import {ResourcesModule} from "./modules/resources/resources.module";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
@@ -26,7 +25,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     SnotifyModule,
     SharedModule,
-    DashboardModule,
     ResourcesModule,
     TranslateModule.forRoot({
       loader: {

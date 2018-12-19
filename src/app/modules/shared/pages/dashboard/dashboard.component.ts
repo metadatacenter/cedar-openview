@@ -1,11 +1,12 @@
-import {Component} from '@angular/core';
-import {DataStoreService} from "../../../../services/data-store.service";
-import {DataHandlerService} from "../../../../services/data-handler.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {CedarPageComponent} from "../../../shared/components/base/cedar-page-component.component";
+import {CedarPageComponent} from "../../components/base/cedar-page-component.component";
+import {Component} from "@angular/core";
+import {LocalSettingsService} from "../../../../services/local-settings.service";
 import {TranslateService} from "@ngx-translate/core";
 import {SnotifyService} from "ng-snotify";
-import {LocalSettingsService} from "../../../../services/local-settings.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {DataStoreService} from "../../../../services/data-store.service";
+import {DataHandlerService} from "../../../../services/data-handler.service";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-dashboard',
@@ -16,8 +17,8 @@ export class DashboardComponent extends CedarPageComponent {
 
   constructor(
     protected localSettings: LocalSettingsService,
-    public translateService: TranslateService,
-    public notify: SnotifyService,
+    protected translateService: TranslateService,
+    protected notify: SnotifyService,
     protected router: Router,
     protected route: ActivatedRoute,
     protected dataStore: DataStoreService,
@@ -27,7 +28,7 @@ export class DashboardComponent extends CedarPageComponent {
   }
 
   ngOnInit() {
-    this.initDataHandler();
+    window.location.href = environment.cedarUrl;
   }
 
 }

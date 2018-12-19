@@ -1,0 +1,33 @@
+<div class="card mb-2">
+  <div class="card-header bg-warning">
+    <div class="row align-items-center">
+      <div class="col mb-2 mb-md-0 text-center text-md-left">
+        <h2>{{artifact['schema:name']}}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+
+    <table class="table table-sm table-hover table-bordered">
+      <tbody>
+
+      <tr>
+        <td>{{'ArtifactHeader.Type' | translate}}:</td>
+        <td>{{artifact['@type']}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'ArtifactHeader.SchemaName' | translate}}:</td>
+        <td>{{artifact['schema:name']}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'ArtifactHeader.SchemaDescription' | translate}}:</td>
+        <td>{{artifact['schema:description']}}</td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
