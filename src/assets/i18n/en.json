@@ -1,5 +1,6 @@
 {
   "App": {
+    "NavTitle": "CEDAR Open Metadata",
     "WindowTitle": "CEDAR Open Metadata"
   },
   "Generic": {
@@ -7,5 +8,20 @@
   },
   "error": {
     "resourceNotPublic": "The requested resource is not publicly available"
+  },
+  "ArtifactHeader": {
+    "Type": "Type",
+    "SchemaName": "Name",
+    "SchemaDescription": "Description"
+  },
+  "type": {
+    "https://schema.metadatacenter.org/core/TemplateField": "Template Field",
+    "https://schema.metadatacenter.org/core/TemplateElement": "Template Element",
+    "https://schema.metadatacenter.org/core/Template": "Template",
+    "https://schema.metadatacenter.org/core/TemplateInstance": "Metadata"
+  },
+  "Generic" : {
+    "jsonSchema": "JSON Schema",
+    "jsonLD": "JSON-LD"
   }
 }

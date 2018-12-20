@@ -1,6 +1,4 @@
 <div *ngIf="templateField">
   <app-artifact-header [artifact]="templateField"></app-artifact-header>
-  <pre>
-  {{templateField | json}}
-    </pre>
+  <app-json-view [artifact]="templateField"></app-json-view>
 </div>

@@ -9,6 +9,7 @@ import {SnotifyModule, SnotifyService, ToastDefaults} from "ng-snotify";
 import {SharedModule} from "./modules/shared";
 import {ResourcesModule} from "./modules/resources/resources.module";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -26,6 +27,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SnotifyModule,
     SharedModule,
     ResourcesModule,
+    NgbModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

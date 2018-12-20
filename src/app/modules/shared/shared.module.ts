@@ -6,6 +6,8 @@ import {TranslateModule} from "@ngx-translate/core";
 import {SpinnerComponent} from "./components/spinner/spinner.component";
 import {DashboardComponent} from "./pages/dashboard/dashboard.component";
 import {ArtifactHeaderComponent} from "./components/artifact-header/artifact-header.component";
+import {NavbarComponent} from "./components/navbar/navbar.component";
+import {JsonViewComponent} from "./components/json-view/json-view.component";
 
 @NgModule({
   imports: [
@@ -18,7 +20,9 @@ import {ArtifactHeaderComponent} from "./components/artifact-header/artifact-hea
   declarations: [
     SpinnerComponent,
     DashboardComponent,
-    ArtifactHeaderComponent
+    ArtifactHeaderComponent,
+    NavbarComponent,
+    JsonViewComponent
   ],
   exports: [
     CommonModule,
@@ -27,7 +31,9 @@ import {ArtifactHeaderComponent} from "./components/artifact-header/artifact-hea
     RouterModule,
     TranslateModule,
     SpinnerComponent,
-    ArtifactHeaderComponent
+    ArtifactHeaderComponent,
+    NavbarComponent,
+    JsonViewComponent
   ]
 })
 export class SharedModule {

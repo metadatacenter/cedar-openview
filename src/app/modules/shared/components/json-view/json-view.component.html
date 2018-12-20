@@ -1,0 +1,17 @@
+<div class="card mb-2">
+
+  <div class="card-header header-box">
+    <div class="row align-items-center">
+      <div class="col mb-2 mb-md-0 text-center text-md-left">
+        <span *ngIf="artifact['@type']">{{'Generic.jsonSchema' | translate}}</span>
+        <span *ngIf="!artifact['@type']">{{'Generic.jsonLD' | translate}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body content-box">
+      <pre>
+  {{artifact | json}}
+    </pre>
+  </div>
+</div>

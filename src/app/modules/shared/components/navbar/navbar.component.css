@@ -1,0 +1,49 @@
+.navbar {
+  background-color: #193838;
+}
+
+img.app-logo {
+  display: inline;
+  width: 36px;
+  height: 36px;
+  margin: 0 20px 0 0;
+  background-size: cover;
+  background: #ffffff no-repeat center center;
+  border-radius: 99em;
+  -webkit-border-radius: 99em;
+  -moz-border-radius: 99em;
+  border: 2px solid #eeeeee;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+img.app-logo:hover {
+  border: 2px solid #d8d1bf;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3) inset;
+}
+
+.navbar-nav .nav-item .nav-link {
+  color: #ffffff;
+}
+
+.navbar-nav .nav-item.active .nav-link,
+.navbar-nav .nav-item:hover .nav-link {
+  color: #d8d1bf;
+  text-decoration: underline;
+}
+
+.navbar-brand {
+  color: #ffffff;
+}
+
+.navbar-brand:hover {
+  color: #ffffff;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
