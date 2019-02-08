@@ -3,13 +3,13 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
-import {SnotifyModule, SnotifyService, ToastDefaults} from "ng-snotify";
-import {SharedModule} from "./modules/shared";
-import {ResourcesModule} from "./modules/resources/resources.module";
-import {TranslateHttpLoader} from "@ngx-translate/http-loader";
-import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {SnotifyModule, SnotifyService, ToastDefaults} from 'ng-snotify';
+import {SharedModule} from './modules/shared';
+import {ResourcesModule} from './modules/resources/resources.module';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {

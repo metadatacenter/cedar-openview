@@ -15,10 +15,10 @@
     "SchemaDescription": "Leírás"
   },
   "type": {
-    "https://schema.metadatacenter.org/core/TemplateField": "Mező",
-    "https://schema.metadatacenter.org/core/TemplateElement": "Elem",
-    "https://schema.metadatacenter.org/core/Template": "Sablon",
-    "https://schema.metadatacenter.org/core/TemplateInstance": "Metaadat"
+    "https://schema.metadatacenter.org/core/TemplateField": "Metaadat mező",
+    "https://schema.metadatacenter.org/core/TemplateElement": "Metaadat elem",
+    "https://schema.metadatacenter.org/core/Template": "Metaadat sablon",
+    "TemplateInstance": "Metaadat példány"
   },
   "Generic" : {
     "jsonSchema": "JSON Schema",

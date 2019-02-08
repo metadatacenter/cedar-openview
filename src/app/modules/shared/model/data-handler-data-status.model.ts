@@ -1,5 +1,5 @@
-import {DataHandlerDataType} from "./data-handler-data-type.model";
-import {DataHandlerDataId} from "./data-handler-data-id.model";
+import {DataHandlerDataType} from './data-handler-data-type.model';
+import {DataHandlerDataId} from './data-handler-data-id.model';
 
 export class DataHandlerDataStatus {
 
@@ -29,10 +29,10 @@ export class DataHandlerDataStatus {
   }
 
   getKey(): string {
-    if (this.dataType == DataHandlerDataType.DATA_ID) {
+    if (this.dataType === DataHandlerDataType.DATA_ID) {
       return this.dataId;
-    } else if (this.dataType == DataHandlerDataType.DATA_ID_WITH_ID) {
-      return this.dataId + ":" + this.id;
+    } else if (this.dataType === DataHandlerDataType.DATA_ID_WITH_ID) {
+      return this.dataId + ':' + this.id;
     }
   }
 

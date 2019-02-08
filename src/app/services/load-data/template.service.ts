@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs/index";
-import {HttpClient} from "@angular/common/http";
-import {RestApiUrlService} from "../rest-api-url.service";
-import {Router} from "@angular/router";
-import {GenericMultiLoaderService} from "./generic-multi-loader";
-import {Template} from "../../shared/model/template.model";
-import {SnotifyService} from "ng-snotify";
-import {TranslateService} from "@ngx-translate/core";
+import {Observable} from 'rxjs/index';
+import {HttpClient} from '@angular/common/http';
+import {RestApiUrlService} from '../rest-api-url.service';
+import {Router} from '@angular/router';
+import {GenericMultiLoaderService} from './generic-multi-loader';
+import {Template} from '../../shared/model/template.model';
+import {SnotifyService} from 'ng-snotify';
+import {TranslateService} from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'

@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
-import {catchError, tap} from "rxjs/operators";
-import {Observable, of} from "rxjs/index";
-import {HttpClient} from "@angular/common/http";
-import {RestApiUrlService} from "../rest-api-url.service";
-import {Router} from "@angular/router";
-import {AbstractDataLoaderService} from "./abstract-data-loader.service";
-import {SnotifyService} from "ng-snotify";
-import {TranslateService} from "@ngx-translate/core";
+import {catchError, tap} from 'rxjs/operators';
+import {Observable, of} from 'rxjs/index';
+import {HttpClient} from '@angular/common/http';
+import {RestApiUrlService} from '../rest-api-url.service';
+import {Router} from '@angular/router';
+import {AbstractDataLoaderService} from './abstract-data-loader.service';
+import {SnotifyService} from 'ng-snotify';
+import {TranslateService} from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'

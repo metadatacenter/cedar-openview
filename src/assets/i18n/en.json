@@ -15,10 +15,10 @@
     "SchemaDescription": "Description"
   },
   "type": {
-    "https://schema.metadatacenter.org/core/TemplateField": "Template Field",
-    "https://schema.metadatacenter.org/core/TemplateElement": "Template Element",
-    "https://schema.metadatacenter.org/core/Template": "Template",
-    "https://schema.metadatacenter.org/core/TemplateInstance": "Metadata"
+    "https://schema.metadatacenter.org/core/TemplateField": "Metadata field",
+    "https://schema.metadatacenter.org/core/TemplateElement": "Metadata element",
+    "https://schema.metadatacenter.org/core/Template": "Metadata template",
+    "TemplateInstance": "Metadata instance"
   },
   "Generic" : {
     "jsonSchema": "JSON Schema",

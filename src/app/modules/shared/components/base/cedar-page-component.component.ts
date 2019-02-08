@@ -1,10 +1,10 @@
-import {TranslateService} from "@ngx-translate/core";
-import {SnotifyService} from "ng-snotify";
-import {CedarBase} from "./cedar-base.component";
-import {ActivatedRoute, Router} from "@angular/router";
-import {LocalSettingsService} from "../../../../services/local-settings.service";
-import {DataStoreService} from "../../../../services/data-store.service";
-import {DataHandlerService} from "../../../../services/data-handler.service";
+import {TranslateService} from '@ngx-translate/core';
+import {SnotifyService} from 'ng-snotify';
+import {CedarBase} from './cedar-base.component';
+import {ActivatedRoute, Router} from '@angular/router';
+import {LocalSettingsService} from '../../../../services/local-settings.service';
+import {DataStoreService} from '../../../../services/data-store.service';
+import {DataHandlerService} from '../../../../services/data-handler.service';
 
 export abstract class CedarPageComponent extends CedarBase {
 
@@ -21,7 +21,7 @@ export abstract class CedarPageComponent extends CedarBase {
   }
 
   protected initDataHandler(): DataHandlerService {
-    this.dataHandler.reset()
+    this.dataHandler.reset();
     this.dataHandler.setPreCallback(() => this.preDataIsLoaded());
     return this.dataHandler;
   }

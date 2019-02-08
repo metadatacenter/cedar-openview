@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import * as uuid from "uuid"
-import {LocalSettingsService} from "./local-settings.service";
-import {Template} from "../shared/model/template.model";
-import {TemplateField} from "../shared/model/template-field.model";
-import {TemplateElement} from "../shared/model/template-element.model";
-import {TemplateInstance} from "../shared/model/template-instance.model";
+import * as uuid from 'uuid';
+import {LocalSettingsService} from './local-settings.service';
+import {Template} from '../shared/model/template.model';
+import {TemplateField} from '../shared/model/template-field.model';
+import {TemplateElement} from '../shared/model/template-element.model';
+import {TemplateInstance} from '../shared/model/template-instance.model';
 
 @Injectable({
   providedIn: 'root'

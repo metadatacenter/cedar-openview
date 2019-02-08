@@ -1,13 +1,13 @@
 import {Component} from '@angular/core';
-import {DataStoreService} from "../../../../services/data-store.service";
-import {DataHandlerService} from "../../../../services/data-handler.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {CedarPageComponent} from "../../../shared/components/base/cedar-page-component.component";
-import {TranslateService} from "@ngx-translate/core";
-import {SnotifyService} from "ng-snotify";
-import {LocalSettingsService} from "../../../../services/local-settings.service";
-import {DataHandlerDataId} from "../../../shared/model/data-handler-data-id.model";
-import {Template} from "../../../../shared/model/template.model";
+import {DataStoreService} from '../../../../services/data-store.service';
+import {DataHandlerService} from '../../../../services/data-handler.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {CedarPageComponent} from '../../../shared/components/base/cedar-page-component.component';
+import {TranslateService} from '@ngx-translate/core';
+import {SnotifyService} from 'ng-snotify';
+import {LocalSettingsService} from '../../../../services/local-settings.service';
+import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.model';
+import {Template} from '../../../../shared/model/template.model';
 
 @Component({
   selector: 'app-template',

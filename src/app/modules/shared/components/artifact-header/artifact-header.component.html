@@ -17,6 +17,11 @@
         <td>{{'type.' + artifact['@type'] | translate}}</td>
       </tr>
 
+      <tr *ngIf="artifact['schema:isBasedOn']">
+        <td>{{'ArtifactHeader.Type' | translate}}:</td>
+        <td>{{'type.TemplateInstance' | translate}}</td>
+      </tr>
+
       <tr>
         <td>{{'ArtifactHeader.SchemaName' | translate}}:</td>
         <td>{{artifact['schema:name']}}</td>

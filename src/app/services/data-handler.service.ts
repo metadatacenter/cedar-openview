@@ -1,17 +1,17 @@
 import {Injectable} from '@angular/core';
-import {DataHandlerDataStatus} from "../modules/shared/model/data-handler-data-status.model";
-import {DataStoreService} from "./data-store.service";
-import {TranslateService} from "@ngx-translate/core";
-import {DataHandlerDataId} from "../modules/shared/model/data-handler-data-id.model";
-import {SpinnerService} from "./spinner.service";
-import {TemplateService} from "./load-data/template.service";
-import {Template} from "../shared/model/template.model";
-import {TemplateElement} from "../shared/model/template-element.model";
-import {TemplateFieldService} from "./load-data/template-field.service";
-import {TemplateElementService} from "./load-data/template-element.service";
-import {TemplateInstance} from "../shared/model/template-instance.model";
-import {TemplateInstanceService} from "./load-data/template-instance.service";
-import {TemplateField} from "../shared/model/template-field.model";
+import {DataHandlerDataStatus} from '../modules/shared/model/data-handler-data-status.model';
+import {DataStoreService} from './data-store.service';
+import {TranslateService} from '@ngx-translate/core';
+import {DataHandlerDataId} from '../modules/shared/model/data-handler-data-id.model';
+import {SpinnerService} from './spinner.service';
+import {TemplateService} from './load-data/template.service';
+import {Template} from '../shared/model/template.model';
+import {TemplateElement} from '../shared/model/template-element.model';
+import {TemplateFieldService} from './load-data/template-field.service';
+import {TemplateElementService} from './load-data/template-element.service';
+import {TemplateInstance} from '../shared/model/template-instance.model';
+import {TemplateInstanceService} from './load-data/template-instance.service';
+import {TemplateField} from '../shared/model/template-field.model';
 
 @Injectable({
   providedIn: 'root'
@@ -47,15 +47,15 @@ export class DataHandlerService {
   }
 
   require(dataId: DataHandlerDataId): DataHandlerService {
-    let status: DataHandlerDataStatus = DataHandlerDataStatus.forDataId(dataId);
-    console.log("DataHandler.require:" + status.getKey());
+    const status: DataHandlerDataStatus = DataHandlerDataStatus.forDataId(dataId);
+    console.log('DataHandler.require:' + status.getKey());
     this.dataIdMap.set(status.getKey(), status);
     return this;
   }
 
   requireId(dataId: DataHandlerDataId, id: string): DataHandlerService {
-    let status: DataHandlerDataStatus = DataHandlerDataStatus.forDataIdAndId(dataId, id);
-    console.log("DataHandler.requireId:" + status.getKey());
+    const status: DataHandlerDataStatus = DataHandlerDataStatus.forDataIdAndId(dataId, id);
+    console.log('DataHandler.requireId:' + status.getKey());
     this.dataIdMap.set(status.getKey(), status);
     return this;
   }
@@ -131,9 +131,9 @@ export class DataHandlerService {
   }
 
   private checkCompletion() {
-    let allLoaded: boolean = true;
+    let allLoaded = true;
     this.dataIdMap.forEach((dataStatus: DataHandlerDataStatus) => {
-      if (dataStatus.loaded == false && dataStatus.canceled == false) {
+      if (dataStatus.loaded === false && dataStatus.canceled === false) {
         allLoaded = false;
       }
     });
@@ -146,7 +146,7 @@ export class DataHandlerService {
         this.callback();
       }
       this.dataAvailable = true;
-      console.log("All data was loaded.");
+      console.log('All data was loaded.');
     }
   }
 

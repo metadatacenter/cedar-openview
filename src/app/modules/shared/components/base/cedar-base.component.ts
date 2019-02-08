@@ -1,11 +1,11 @@
 import {OnInit} from '@angular/core';
-import {TranslateService} from "@ngx-translate/core";
-import {SnotifyService} from "ng-snotify";
-import {DatePipe} from "@angular/common";
-import {ActivatedRoute, NavigationExtras, Router, UrlTree} from "@angular/router";
-import {LocalSettingsService} from "../../../../services/local-settings.service";
-import {DataStoreService} from "../../../../services/data-store.service";
-import {DataHandlerService} from "../../../../services/data-handler.service";
+import {TranslateService} from '@ngx-translate/core';
+import {SnotifyService} from 'ng-snotify';
+import {DatePipe} from '@angular/common';
+import {ActivatedRoute, NavigationExtras, Router, UrlTree} from '@angular/router';
+import {LocalSettingsService} from '../../../../services/local-settings.service';
+import {DataStoreService} from '../../../../services/data-store.service';
+import {DataHandlerService} from '../../../../services/data-handler.service';
 
 export abstract class CedarBase implements OnInit {
 
@@ -40,8 +40,8 @@ export abstract class CedarBase implements OnInit {
   abstract ngOnInit(): void;
 
   public notifyError(errorKey: string) {
-    if (errorKey == undefined) {
-      errorKey = "generic.error";
+    if (errorKey === undefined) {
+      errorKey = 'generic.error';
     }
     this.notify.error(
       this.translateService.instant(errorKey),
@@ -61,8 +61,8 @@ export abstract class CedarBase implements OnInit {
 
   protected scrollToTop(): void {
     setTimeout(() => {
-      let id = '#top';
-      let x = document.querySelector(id);
+      const id = '#top';
+      const x = document.querySelector(id);
       if (x) {
         x.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
       }
@@ -72,9 +72,9 @@ export abstract class CedarBase implements OnInit {
   protected scrollToFragmentId() {
     this.route.fragment.subscribe(fragment => {
       setTimeout(() => {
-        const element = document.querySelector("#" + fragment);
+        const element = document.querySelector('#' + fragment);
         if (element) {
-          //element.scrollIntoView();
+          // element.scrollIntoView();
           element.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
         }
       });
@@ -82,9 +82,9 @@ export abstract class CedarBase implements OnInit {
   }
 
   protected scrollToId(elementId: string) {
-    const element = document.querySelector("#" + elementId);
+    const element = document.querySelector('#' + elementId);
     if (element) {
-      //element.scrollIntoView();
+      // element.scrollIntoView();
       element.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
     }
   }
@@ -93,31 +93,31 @@ export abstract class CedarBase implements OnInit {
     if (date == null) {
       return '';
     }
-    return this.datePipe.transform(date, this.translateService.instant("Format.LongDate"));
+    return this.datePipe.transform(date, this.translateService.instant('Format.LongDate'));
   }
 
   public formatLongDateNoSeconds(date: Date) {
     if (date == null) {
       return '';
     }
-    return this.datePipe.transform(date, this.translateService.instant("Format.LongDateNoSeconds"));
+    return this.datePipe.transform(date, this.translateService.instant('Format.LongDateNoSeconds'));
   }
 
   public formatShortDate(date: Date) {
     if (date == null) {
       return '';
     }
-    return this.datePipe.transform(date, this.translateService.instant("Format.ShortDate"));
+    return this.datePipe.transform(date, this.translateService.instant('Format.ShortDate'));
   }
 
   protected navigateByUrlDone(url: string | UrlTree, extras?: NavigationExtras): void {
-    console.log("NavigateByUrl:" + url);
+    console.log('NavigateByUrl:' + url);
     this.router.navigateByUrl(url, extras).then(_ => {
     });
   }
 
   protected navigateByUrlThen(url: string | UrlTree, extras?: NavigationExtras): Promise<boolean> {
-    console.log("NavigateByUrlThen:" + url);
+    console.log('NavigateByUrlThen:' + url);
     return this.router.navigateByUrl(url, extras);
   }
 

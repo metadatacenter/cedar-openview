@@ -1,9 +1,9 @@
 import {Observable, of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {Router} from "@angular/router";
-import {SnotifyService} from "ng-snotify";
-import {TranslateService} from "@ngx-translate/core";
-import {RestApiUrlService} from "../rest-api-url.service";
+import {Router} from '@angular/router';
+import {SnotifyService} from 'ng-snotify';
+import {TranslateService} from '@ngx-translate/core';
+import {RestApiUrlService} from '../rest-api-url.service';
 
 export abstract class AbstractDataLoaderService {
 
@@ -22,8 +22,8 @@ export abstract class AbstractDataLoaderService {
       console.error(error);
 
       if (error.error.hasOwnProperty('errorKey')) {
-        let ek = error.error.errorKey;
-        if (ek == 'resourceNotPublic') {
+        const ek = error.error.errorKey;
+        if (ek === 'resourceNotPublic') {
           this.notifyError(ek);
         }
       }
@@ -39,10 +39,10 @@ export abstract class AbstractDataLoaderService {
   }
 
   public notifyError(errorKey: string) {
-    if (errorKey == undefined) {
-      errorKey = "generic.error";
+    if (errorKey === undefined) {
+      errorKey = 'generic.error';
     } else {
-      errorKey = "error." + errorKey;
+      errorKey = 'error.' + errorKey;
     }
     this.notify.error(
       this.translateService.instant(errorKey),

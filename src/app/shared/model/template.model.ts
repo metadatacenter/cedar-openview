@@ -1,4 +1,4 @@
-import {CedarArtifact} from "./cedar-artifact.model";
+import {CedarArtifact} from './cedar-artifact.model';
 
-export class Template extends CedarArtifact{
+export class Template extends CedarArtifact {
 }

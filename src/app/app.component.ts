@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {environment} from "../environments/environment";
-import {LangChangeEvent, TranslateService} from "@ngx-translate/core";
-import {Title} from "@angular/platform-browser";
-import {LocalSettingsService} from "./services/local-settings.service";
+import {environment} from '../environments/environment';
+import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
+import {Title} from '@angular/platform-browser';
+import {LocalSettingsService} from './services/local-settings.service';
 
 @Component({
   selector: 'app-root',
