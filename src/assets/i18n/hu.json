@@ -12,7 +12,9 @@
   "ArtifactHeader": {
     "Type": "Típus",
     "SchemaName": "Név",
-    "SchemaDescription": "Leírás"
+    "SchemaDescription": "Leírás",
+    "CEDAR": "CEDAR",
+    "Link": "<a href='{{link}}'>Nyisd meg CEDAR-ban</a> (Bejelentkezés szükséges)"
   },
   "type": {
     "https://schema.metadatacenter.org/core/TemplateField": "Metaadat mező",
@@ -23,5 +25,9 @@
   "Generic" : {
     "jsonSchema": "JSON Schema",
     "jsonLD": "JSON-LD"
+  },
+  "loadError": {
+    "401": "Sajnáljuk, de az adott adatot a tulajdonosa nem tette nyitottá!<br/><a href='{{link}}'>Nyisd meg CEDAR-ban</a> (Bejelentkezés szükséges)",
+    "404": "Sajnáljuk, de az adott adatot nem található a rendszerünkben!"
   }
 }
