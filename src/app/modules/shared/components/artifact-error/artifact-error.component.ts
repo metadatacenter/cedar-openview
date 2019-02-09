@@ -5,17 +5,16 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {LocalSettingsService} from '../../../../services/local-settings.service';
-import {CedarArtifact} from '../../../../shared/model/cedar-artifact.model';
 import {CedarBase} from '../base/cedar-base.component';
 
 @Component({
-  selector: 'app-artifact-header',
-  templateUrl: './artifact-header.component.html',
-  styleUrls: ['./artifact-header.component.css']
+  selector: 'app-artifact-error',
+  templateUrl: './artifact-error.component.html',
+  styleUrls: ['./artifact-error.component.css']
 })
-export class ArtifactHeaderComponent extends CedarBase {
+export class ArtifactErrorComponent extends CedarBase {
 
-  @Input() artifact: CedarArtifact;
+  @Input() status: number;
   @Input() cedarLink: string;
 
   params: Object;

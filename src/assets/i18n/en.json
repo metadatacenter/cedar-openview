@@ -12,7 +12,9 @@
   "ArtifactHeader": {
     "Type": "Type",
     "SchemaName": "Name",
-    "SchemaDescription": "Description"
+    "SchemaDescription": "Description",
+    "CEDAR": "CEDAR",
+    "Link": "<a href='{{link}}'>Try to view artifact in CEDAR</a> (Login required)"
   },
   "type": {
     "https://schema.metadatacenter.org/core/TemplateField": "Metadata field",
@@ -20,8 +22,12 @@
     "https://schema.metadatacenter.org/core/Template": "Metadata template",
     "TemplateInstance": "Metadata instance"
   },
-  "Generic" : {
+  "Generic": {
     "jsonSchema": "JSON Schema",
     "jsonLD": "JSON-LD"
+  },
+  "loadError": {
+    "401": "We are sorry, but this artifact has not been made public by its owner.<br/><a href='{{link}}'>Try to view artifact in CEDAR</a> (Login required)",
+    "404": "We are sorry, but we have no artifact with this id."
   }
 }

@@ -23,7 +23,7 @@ export class TemplateInstanceService extends GenericMultiLoaderService<TemplateI
     super(http, restApiUrl, router, notify, translateService);
   }
 
-  getTemplateInstance(templateInstanceId: string): Observable<TemplateInstance> {
-    return this.getData(templateInstanceId, this.restApiUrl.templateInstance(templateInstanceId));
+  getTemplateInstance(templateInstanceId: string, errorCallback: Function): Observable<TemplateInstance> {
+    return this.getData(templateInstanceId, this.restApiUrl.templateInstance(templateInstanceId), errorCallback);
   }
 }

@@ -8,6 +8,8 @@ import {SnotifyService} from 'ng-snotify';
 import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.model';
 import {TemplateField} from '../../../../shared/model/template-field.model';
+import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-template-field',
@@ -18,6 +20,8 @@ export class TemplateFieldComponent extends CedarPageComponent {
 
   templateFieldId: string = null;
   templateField: TemplateField = null;
+  artifactStatus: number = null;
+  cedarLink: string = null;
 
   constructor(
     protected localSettings: LocalSettingsService,
@@ -35,13 +39,17 @@ export class TemplateFieldComponent extends CedarPageComponent {
     this.initDataHandler();
 
     this.templateFieldId = this.route.snapshot.paramMap.get('templateFieldId');
+    this.cedarLink = environment.cedarUrl + 'fields/edit/' + this.templateFieldId;
     this.dataHandler
       .requireId(DataHandlerDataId.TEMPLATE_FIELD, this.templateFieldId)
-      .load(() => this.dataLoadedCallback());
+      .load(() => this.dataLoadedCallback(), (error, dataStatus) => this.dataErrorCallback(error, dataStatus));
   }
 
   private dataLoadedCallback() {
     this.templateField = this.dataStore.getTemplateField(this.templateFieldId);
   }
 
+  private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
+    this.artifactStatus = error.status;
+  }
 }

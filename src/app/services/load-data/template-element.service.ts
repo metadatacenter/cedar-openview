@@ -23,7 +23,7 @@ export class TemplateElementService extends GenericMultiLoaderService<TemplateEl
     super(http, restApiUrl, router, notify, translateService);
   }
 
-  getTemplateElement(templateElementId: string): Observable<TemplateElement> {
-    return this.getData(templateElementId, this.restApiUrl.templateElement(templateElementId));
+  getTemplateElement(templateElementId: string, errorCallback: Function): Observable<TemplateElement> {
+    return this.getData(templateElementId, this.restApiUrl.templateElement(templateElementId), errorCallback);
   }
 }

@@ -20,7 +20,8 @@ export class DataHandlerService {
 
   private dataIdMap: Map<string, DataHandlerDataStatus>;
   private dataAvailable: boolean;
-  private callback: Function;
+  private successCallback: Function;
+  private errorCallback: Function;
   private preCallback: Function;
 
   constructor(
@@ -34,7 +35,8 @@ export class DataHandlerService {
   ) {
     this.dataIdMap = new Map<string, DataHandlerDataStatus>();
     this.dataAvailable = false;
-    this.callback = null;
+    this.successCallback = null;
+    this.errorCallback = null;
     this.preCallback = null;
   }
 
@@ -42,7 +44,8 @@ export class DataHandlerService {
     this.spinner.hide();
     this.dataIdMap.clear();
     this.dataAvailable = false;
-    this.callback = null;
+    this.successCallback = null;
+    this.errorCallback = null;
     return this;
   }
 
@@ -60,10 +63,11 @@ export class DataHandlerService {
     return this;
   }
 
-  load(callback?: Function) {
+  load(successCallback?: Function, errorCallback?: Function) {
     this.spinner.show();
     this.dataAvailable = false;
-    this.callback = callback;
+    this.successCallback = successCallback;
+    this.errorCallback = errorCallback;
     this.dataIdMap.forEach((dataStatus: DataHandlerDataStatus) => {
       this.loadData(dataStatus);
       if (dataStatus.canceled) {
@@ -93,8 +97,16 @@ export class DataHandlerService {
     }
   }
 
+  private handleLoadError(error: any, dataStatus: DataHandlerDataStatus) {
+    if (this.errorCallback != null) {
+      this.errorCallback(error, dataStatus);
+    }
+  }
+
   private loadTemplateField(dataStatus: DataHandlerDataStatus) {
-    this.templateFieldService.getTemplateField(dataStatus.id)
+    this.templateFieldService.getTemplateField(dataStatus.id, (error) => {
+      this.handleLoadError(error, dataStatus);
+    })
       .subscribe(templateField => {
         this.dataStore.setTemplateField(dataStatus.id, Object.assign(new TemplateField(), templateField));
         this.dataWasLoaded(dataStatus);
@@ -102,7 +114,9 @@ export class DataHandlerService {
   }
 
   private loadTemplateElement(dataStatus: DataHandlerDataStatus) {
-    this.templateElementService.getTemplateElement(dataStatus.id)
+    this.templateElementService.getTemplateElement(dataStatus.id, (error) => {
+      this.handleLoadError(error, dataStatus);
+    })
       .subscribe(templateElement => {
         this.dataStore.setTemplateElement(dataStatus.id, Object.assign(new TemplateElement(), templateElement));
         this.dataWasLoaded(dataStatus);
@@ -110,7 +124,9 @@ export class DataHandlerService {
   }
 
   private loadTemplate(dataStatus: DataHandlerDataStatus) {
-    this.templateService.getTemplate(dataStatus.id)
+    this.templateService.getTemplate(dataStatus.id, (error) => {
+      this.handleLoadError(error, dataStatus);
+    })
       .subscribe(template => {
         this.dataStore.setTemplate(dataStatus.id, Object.assign(new Template(), template));
         this.dataWasLoaded(dataStatus);
@@ -118,7 +134,9 @@ export class DataHandlerService {
   }
 
   private loadTemplateInstance(dataStatus: DataHandlerDataStatus) {
-    this.templateInstanceService.getTemplateInstance(dataStatus.id)
+    this.templateInstanceService.getTemplateInstance(dataStatus.id, (error) => {
+      this.handleLoadError(error, dataStatus);
+    })
       .subscribe(templateInstance => {
         this.dataStore.setTemplateInstance(dataStatus.id, Object.assign(new TemplateInstance(), templateInstance));
         this.dataWasLoaded(dataStatus);
@@ -142,8 +160,8 @@ export class DataHandlerService {
       if (this.preCallback != null) {
         this.preCallback();
       }
-      if (this.callback != null) {
-        this.callback();
+      if (this.successCallback != null) {
+        this.successCallback();
       }
       this.dataAvailable = true;
       console.log('All data was loaded.');

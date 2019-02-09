@@ -26,7 +26,7 @@ export class GenericSingleLoaderService<T> extends AbstractDataLoaderService {
   protected data: T;
   protected observable: Observable<T>;
 
-  getData(url: string): Observable<T> {
+  getData(url: string, errorCallback: Function): Observable<T> {
     if (this.data) {
       return of(this.data);
     } else if (this.observable) {
@@ -38,7 +38,7 @@ export class GenericSingleLoaderService<T> extends AbstractDataLoaderService {
             this.data = data;
             return this.log('fetched data');
           }),
-          catchError(this.handleError('getData', null))
+          catchError(this.handleError('getData', errorCallback, null))
         );
       return this.observable;
     }

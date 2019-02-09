@@ -1,4 +1,8 @@
-<div *ngIf="templateInstance">
-  <app-artifact-header [artifact]="templateInstance"></app-artifact-header>
+<div *ngIf="templateInstance && !artifactStatus">
+  <app-artifact-header [artifact]="templateInstance" [cedarLink]="cedarLink"></app-artifact-header>
   <app-json-view [artifact]="templateInstance"></app-json-view>
+</div>
+
+<div *ngIf="artifactStatus">
+  <app-artifact-error [status]="artifactStatus" [cedarLink]="cedarLink"></app-artifact-error>
 </div>

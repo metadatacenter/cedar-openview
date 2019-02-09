@@ -8,6 +8,8 @@ import {SnotifyService} from 'ng-snotify';
 import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.model';
 import {Template} from '../../../../shared/model/template.model';
+import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-template',
@@ -18,6 +20,8 @@ export class TemplateComponent extends CedarPageComponent {
 
   templateId: string = null;
   template: Template = null;
+  artifactStatus: number = null;
+  cedarLink: string = null;
 
   constructor(
     protected localSettings: LocalSettingsService,
@@ -35,13 +39,17 @@ export class TemplateComponent extends CedarPageComponent {
     this.initDataHandler();
 
     this.templateId = this.route.snapshot.paramMap.get('templateId');
+    this.cedarLink = environment.cedarUrl + 'templates/edit/' + this.templateId;
     this.dataHandler
       .requireId(DataHandlerDataId.TEMPLATE, this.templateId)
-      .load(() => this.dataLoadedCallback());
+      .load(() => this.dataLoadedCallback(), (error, dataStatus) => this.dataErrorCallback(error, dataStatus));
   }
 
   private dataLoadedCallback() {
     this.template = this.dataStore.getTemplate(this.templateId);
   }
 
+  private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
+    this.artifactStatus = error.status;
+  }
 }

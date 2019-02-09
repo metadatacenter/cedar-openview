@@ -26,7 +26,7 @@ export class GenericMultiLoaderService<T> extends AbstractDataLoaderService {
   protected data: Map<string, T> = new Map<string, T>();
   protected observable: Map<string, Observable<T>> = new Map<string, Observable<T>>();
 
-  getData(id: string, url: string): Observable<T> {
+  getData(id: string, url: string, errorCallback: Function): Observable<T> {
     if (this.data[id]) {
       return of(this.data[id]);
     } else if (this.observable[id]) {
@@ -38,7 +38,7 @@ export class GenericMultiLoaderService<T> extends AbstractDataLoaderService {
             this.data[id] = data;
             return this.log('fetched data');
           }),
-          catchError(this.handleError('getData', null))
+          catchError(this.handleError('getData', errorCallback, null))
         );
       return this.observable[id];
     }

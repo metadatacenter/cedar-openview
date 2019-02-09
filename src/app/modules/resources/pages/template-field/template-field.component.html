@@ -1,4 +1,8 @@
-<div *ngIf="templateField">
-  <app-artifact-header [artifact]="templateField"></app-artifact-header>
+<div *ngIf="templateField && !artifactStatus">
+  <app-artifact-header [artifact]="templateField" [cedarLink]="cedarLink"></app-artifact-header>
   <app-json-view [artifact]="templateField"></app-json-view>
+</div>
+
+<div *ngIf="artifactStatus">
+  <app-artifact-error [status]="artifactStatus" [cedarLink]="cedarLink"></app-artifact-error>
 </div>
