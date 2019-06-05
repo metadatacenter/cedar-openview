@@ -10,6 +10,11 @@ import {SharedModule} from './modules/shared';
 import {ResourcesModule} from './modules/resources/resources.module';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DemoMaterialModule} from './modules/material-module';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {ReactiveFormsModule} from '@angular/forms';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -22,12 +27,18 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule,
+    NgbModule,
     SnotifyModule,
     SharedModule,
     ResourcesModule,
-    NgbModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    DemoMaterialModule,
+    HttpClientModule,
+    FlexLayoutModule,
+    FontAwesomeModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

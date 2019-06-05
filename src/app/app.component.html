@@ -1,6 +1,80 @@
-<app-navbar></app-navbar>
 <ng-snotify></ng-snotify>
 <app-spinner></app-spinner>
-<div class="container">
-  <router-outlet></router-outlet>
+
+<!-- Slide Menu-->
+<aside class="side-menu__container" [ngClass]="{'side-menu__container-active': showMenu}" (click)="toggleMenu()">
+  <nav class="slide-menu" [ngClass]="{'slide-menu-active': showMenu}" (click)="$event.stopImmediatePropagation();">
+    <section class="menu-header">
+      <span></span>
+    </section>
+    <section class="menu-body">
+      <div class="menu__container">
+        <!--        <mat-toolbar>-->
+        <!--          <mat-toolbar-row>-->
+        <!--            <button style="text-align:left;width:100%" mat-button routerLink="">{{'App.Home' | translate}}</button>-->
+        <!--          </mat-toolbar-row>-->
+        <!--        </mat-toolbar>-->
+      </div>
+    </section>
+    <section class="menu-footer">
+    </section>
+  </nav>
+</aside>
+
+<div class="root__container">
+  <header class="main__header">
+    <div class="left__section">
+      <div id="Menu_Burger_Icon" class="hamburger__icon" (click)="toggleMenu()">
+        <fa-icon [icon]="faBars"></fa-icon>
+      </div>
+    </div>
+
+    <div>
+    <span class="logo__icon"><span class="fa-stack"><fa-icon class="fa-stack-2x" [icon]="faSquare"></fa-icon><fa-icon
+      class="fa-stack-1x" [icon]="faLockOpen"></fa-icon></span></span>
+      <span class="logo__text">{{'App.Title' | translate}}</span>
+    </div>
+
+    <div></div>
+
+    <mat-form-field class="language-selector">
+      <mat-label>{{'App.Language' | translate}}</mat-label>
+      <mat-select matNativeControl required [(value)]="languages.selected"
+        (valueChange)="setLanguage(languages.selected)">
+        <mat-option *ngFor="let language of languages.options" [value]="language.value">
+          {{language.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!--    <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+    <!--      <ul class="navbar-nav mr-auto">-->
+
+    <!--        <li class="nav-item dropdown">-->
+    <!--          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLanguage" role="button" data-toggle="dropdown"-->
+    <!--            aria-haspopup="true" aria-expanded="false">-->
+    <!--            {{getCurrentLanguageCode()}}-->
+    <!--          </a>-->
+    <!--          <div class="dropdown-menu" aria-labelledby="navbarDropdownLanguage">-->
+    <!--            <a class="dropdown-item" href="#" (click)="switchLanguage($event, 'hu')">hu</a>-->
+    <!--            <a class="dropdown-item" href="#" (click)="switchLanguage($event, 'en')">en</a>-->
+    <!--          </div>-->
+    <!--        </li>-->
+    <!--      </ul>-->
+    <!--    </div>-->
+
+
+  </header>
+
+  <main class="main__container">
+    <div class="main-container__bg"></div>
+
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="main__footer">
+    <small class="copyright__text"></small>
+  </footer>
+
+
 </div>

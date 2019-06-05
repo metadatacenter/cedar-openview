@@ -1,7 +1,12 @@
 <div *ngIf="templateInstance && !artifactStatus">
-  <app-artifact-header [artifact]="templateInstance" [cedarLink]="cedarLink"></app-artifact-header>
-  <app-json-view [artifact]="templateInstance"></app-json-view>
+<!--  <app-artifact-header [artifact]="templateInstance" [cedarLink]="cedarLink"></app-artifact-header>-->
+<!--  <app-json-view [artifact]="templateInstance"></app-json-view>-->
+
+  <app-metadata-form  *ngIf="form" [form]="form" [instance]="templateInstance" [template]="template"  [disabled]="viewOnly" (autocomplete)="onAutocomplete($event)" (changed)="onChanged($event)"
+    [autocompleteResults]="allPosts"></app-metadata-form>
 </div>
+
+
 
 <div *ngIf="artifactStatus">
   <app-artifact-error [status]="artifactStatus" [cedarLink]="cedarLink"></app-artifact-error>
