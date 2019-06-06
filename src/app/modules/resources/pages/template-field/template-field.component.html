@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <app-metadata-form *ngIf="form" [form]="form" [instance]="instance" [template]="templateField"
+      <app-metadata-form *ngIf="form" type="field" [form]="form" [instance]="instance" [template]="templateField"
         [disabled]="viewOnly"
         (autocomplete)="onAutocomplete($event)" (changed)="onChanged($event)"
         [autocompleteResults]="allPosts"></app-metadata-form>

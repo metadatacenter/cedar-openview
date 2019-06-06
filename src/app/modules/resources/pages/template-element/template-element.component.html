@@ -31,7 +31,7 @@
         </div>
       </div>
 
-      <app-metadata-form *ngIf="form" [form]="form" [instance]="instance" [template]="templateElement" [disabled]="viewOnly"
+      <app-metadata-form *ngIf="form" type="element" [form]="form" [instance]="instance" [template]="templateElement" [disabled]="viewOnly"
         (autocomplete)="onAutocomplete($event)" (changed)="onChanged($event)"
         [autocompleteResults]="allPosts"></app-metadata-form>
 

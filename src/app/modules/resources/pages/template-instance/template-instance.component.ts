@@ -10,15 +10,18 @@ import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.mode
 import {TemplateInstance} from '../../../../shared/model/template-instance.model';
 import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
 import {environment} from '../../../../../environments/environment';
-import {FormGroup} from '@angular/forms';
+import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {AutocompleteService} from '../../../../services/autocomplete.service';
 import {forkJoin} from 'rxjs';
+import {InstanceService} from '../../../cedar-metadata-form/services/instance.service';
+import {TemplateService} from '../../../cedar-metadata-form/services/template.service';
+import {TemplateSchema} from '../../../cedar-metadata-form/models/template-schema.model';
 
 @Component({
   selector: 'app-template-instance',
   templateUrl: './template-instance.component.html',
-  styleUrls: ['./template-instance.component.css']
+  styleUrls: ['./template-instance.component.less']
 })
 export class TemplateInstanceComponent extends CedarPageComponent implements OnInit{
 
@@ -28,9 +31,11 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
   cedarLink: string = null;
 
   template: any = null;
+  templateId: string = null;
   form: FormGroup;
   viewOnly = false;
   allPosts;
+  showForm = false;
 
   constructor(
     protected localSettings: LocalSettingsService,
@@ -55,11 +60,30 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
     this.cedarLink = environment.cedarUrl + 'instances/edit/' + this.templateInstanceId;
     this.dataHandler
       .requireId(DataHandlerDataId.TEMPLATE_INSTANCE, this.templateInstanceId)
-      .load(() => this.dataLoadedCallback(), (error, dataStatus) => this.dataErrorCallback(error, dataStatus));
+      .load(() => this.instanceLoadedCallback(this.templateInstanceId), (error, dataStatus) => this.dataErrorCallback(error, dataStatus));
   }
 
-  private dataLoadedCallback() {
+
+  private instanceLoadedCallback(instanceId) {
     this.templateInstance = this.dataStore.getTemplateInstance(this.templateInstanceId);
+    this.templateId = TemplateService.isBasedOn(this.templateInstance);
+
+    // load the template it is based on
+    this.dataHandler
+      .requireId(DataHandlerDataId.TEMPLATE, this.templateId)
+      .load(() => this.templateLoadedCallback(this.templateId), (error, dataStatus) => this.dataErrorCallback(error, dataStatus));
+  }
+
+  private templateLoadedCallback(templateId) {
+    this.template = this.dataStore.getTemplate(templateId);
+
+    // if this is a default instance, save the template info
+    if (!TemplateService.isBasedOn(this.templateInstance)) {
+      const schema = TemplateService.schemaOf(this.template) as TemplateSchema;
+      InstanceService.setBasedOn(this.templateInstance, TemplateService.getId(schema));
+      InstanceService.setName(this.templateInstance, TemplateService.getName(schema));
+      InstanceService.setHelp(this.templateInstance, TemplateService.getHelp(schema));
+    }
   }
 
   private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
@@ -69,12 +93,110 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
   protected onAutocomplete(event) {
     if (event['search']) {
       forkJoin(this.autocompleteService.getPosts(event['search'], event.constraints)).subscribe(posts => {
+        console.log('posts', posts);
         this.allPosts = [];
         for (let i = 0; i < posts.length; i++) {
           this.allPosts = this.allPosts.concat(posts[i]['collection']);
         }
+        console.log('allPosts', this.allPosts);
       });
     }
+  }
+
+  // toggle edit/view button
+  toggleDisabled() {
+    this.viewOnly = !this.viewOnly;
+  }
+
+  // copy stuff in tabs to browser's clipboard
+  copyToClipboard(elementId: string, buttonId: string) {
+
+    function copyToClip(str) {
+      function listener(e) {
+        e.clipboardData.setData('text/html', str);
+        e.clipboardData.setData('text/plain', str);
+        e.preventDefault();
+      }
+
+      document.addEventListener('copy', listener);
+      document.execCommand('copy');
+      document.removeEventListener('copy', listener);
+    }
+
+    const elm = document.getElementById(elementId);
+    const data = elm ? elm.innerHTML : null;
+    if (data) {
+
+      const selBox = document.createElement('textarea');
+      selBox.style.position = 'fixed';
+      selBox.style.left = '0';
+      selBox.style.top = '0';
+      selBox.style.opacity = '0';
+      selBox.value = data;
+      document.body.appendChild(selBox);
+      selBox.focus();
+      selBox.select();
+      copyToClip(data);
+      document.body.removeChild(selBox);
+
+      const btn = document.getElementById(buttonId);
+      if (btn) {
+        btn.innerHTML = 'Copied';
+        setTimeout(() => {
+          const btn = document.getElementById(buttonId);
+          if (btn) {
+            btn.innerHTML = 'Copy';
+          }
+        }, 10000);
+      }
+    }
+  }
+
+  onSubmit() {
+    if (this.form.valid) {
+      console.log('form submitted');
+    } else {
+      this.validateAllFormFields(this.form);
+    }
+  }
+
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({onlySelf: true});
+      } else if (control instanceof FormArray) {
+        control.controls.forEach(cntl => {
+          cntl.markAsTouched({onlySelf: true});
+        });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      }
+    });
+  }
+
+  selectedTabChange(event) {
+
+    if (event.index === 0) {
+      setTimeout(() => {
+        console.log('redraw form');
+        this.showForm = true;
+      }, 0);
+
+    } else {
+      this.showForm = false;
+    }
+  }
+
+  // form changed, update tab contents and submit button status
+  protected onChanged(event) {
+    const e = event;
+    // setTimeout(() => {
+    //   this.payload = e.payload;
+    //   this.jsonLD = e.jsonLD;
+    //   this.rdf = e.rdf;
+    //   this.formValid = e.formValid;
+    // }, 0);
   }
 
 }

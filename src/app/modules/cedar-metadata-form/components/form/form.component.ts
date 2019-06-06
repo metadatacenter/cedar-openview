@@ -13,7 +13,12 @@ import {InstanceService} from '../../services/instance.service';
 import {
   faSquare,
   faTag,
-  faBars
+  faBars,
+  faList,
+  faPoll,
+  faBox,
+  faBoxes,
+  faProjectDiagram
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -29,6 +34,7 @@ export class FormComponent implements OnChanges {
   @Input() form: FormGroup;
   @Input() instance: any;
   @Input() template: any;
+  @Input() type: string;
   @Input() disabled: boolean;
   @Input() autocompleteResults: any;
   @Output() changed = new EventEmitter<any>();
@@ -49,6 +55,11 @@ export class FormComponent implements OnChanges {
   faTag = faTag;
   faSquare = faSquare;
   faBars = faBars;
+  faList = faList;
+  faPoll = faPoll;
+  faBox = faBox;
+  faBoxes = faBoxes;
+  faProjectDiagram =  faProjectDiagram
 
   constructor( database: TemplateParserService) {
     this.pageEvent = {'previousPageIndex': 0, 'pageIndex': 0, 'pageSize': 1, 'length': 0};
@@ -65,13 +76,31 @@ export class FormComponent implements OnChanges {
     this.initialize();
   }
 
+  getIconType() {
+    let result = faPoll;
+    switch (this.type) {
+      case 'template':
+        result = faPoll;
+        break;
+      case 'element':
+        result = faProjectDiagram;
+        break;
+      case 'field':
+        result = faBox;
+        break;
+      case 'instance':
+        result = faTag;
+        break;
+    }
+    return result;
+  }
+
   onAutocomplete(event) {
     this.autocomplete.emit(event);
   }
 
   // keep up-to-date on changes in the form
   onChanges(): void {
-    console.log('onChanges', this.form);
     if (this.form) {
       this.formChanges = this.form.valueChanges.subscribe(val => {
         setTimeout(() => {
@@ -90,7 +119,6 @@ export class FormComponent implements OnChanges {
 
 
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
-    console.log('ngOnChanges', changes);
 
     if (changes['autocompleteResults'] && changes['autocompleteResults']['currentValue'] &&   changes['autocompleteResults']['currentValue'].length > 0) {
       this.autocompleteResults = changes['autocompleteResults']['currentValue'] ;
@@ -116,7 +144,6 @@ export class FormComponent implements OnChanges {
   private _getChildren = (node: TreeNode) => node.children;
 
   initialize() {
-    console.log('initialize');
 
     if (this.instance && this.template) {
       this.pageEvent.length = TemplateService.getPageCount(this.template);
@@ -223,9 +250,7 @@ export class FormComponent implements OnChanges {
     }
   }
 
-  getIconType() {
-    return faTag;
-  }
+
 
   getHref() {
     let destination = window.location.href;

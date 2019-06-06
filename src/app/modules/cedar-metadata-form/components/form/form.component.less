@@ -1,7 +1,5 @@
 @import "../../colors.less";
 
-@cedar-instance: #61A0C5;
-
 .cedar-form {
   margin: 10px 0;
 
@@ -33,6 +31,7 @@ button.mat-icon-button.node-add, button.mat-icon-button.node-remove, button.mat-
   }
 }
 
+
 label.element-label {
   margin: 0;
   font-weight: bolder;
@@ -49,6 +48,22 @@ label.element-label {
   vertical-align: text-top;
 }
 
+.logo__icon {
+  padding:0 10px;
+  &.template {
+    color:@cedar-template;
+  }
+  &.element {
+    color:@cedar-element;
+  }
+  &.field {
+    color:@cedar-field;
+  }
+  &.instance {
+    color:@cedar-instance;
+  }
+}
+
 .fa-stack-1x,
 .fa-stack-2x {
   position: absolute;
@@ -63,7 +78,16 @@ label.element-label {
 
 .fa-stack-2x {
   font-size: 1.0em;
-  color: @cedar-instance;
+  color:@cedar-template;
+  .element {
+    color: @cedar-element;
+  }
+  .instance {
+    color: @cedar-instance;
+  }
+  .field {
+    color: @cedar-field;
+  }
 }
 
 
@@ -77,25 +101,7 @@ label.element-label {
   }
 }
 
-button.mat-icon-button.node-add, button.mat-icon-button.node-remove, button.mat-icon-button.help-text-button {
-  padding: 0;
-  min-width: 0;
-  width: 2em;
-  height: 2em;
-  flex-shrink: 0;
-  width: 2em;
-  vertical-align: middle;
-  border-radius: 50%;
-  mat-icon {
-    height:1em;
-    width:1em;
-    font-size:1em;
-    line-height: 1em;
-    padding-top:.5em;
-    vertical-align: top;
-    color: rgba(0, 0, 0, .54)
-  }
-}
+
 
 label.element-label {
   margin: 0;

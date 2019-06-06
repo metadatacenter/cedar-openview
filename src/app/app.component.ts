@@ -7,7 +7,7 @@ import {
   faSquare,
   faTag,
   faBars,
-  faLockOpen
+  faUnlock
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -21,7 +21,8 @@ export class AppComponent {
   faTag = faTag;
   faSquare = faSquare;
   faBars = faBars;
-  faLockOpen = faLockOpen;
+  faUnlock = faUnlock;
+
 
   languages = {
     selected: 'en',
