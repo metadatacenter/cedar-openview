@@ -146,6 +146,7 @@ button:focus {
   margin-right: 0.2rem;
   overflow: hidden;
   margin-left: 0.2rem;
+
   .mat-toolbar-row {
     height: 40px;
   }
@@ -173,23 +174,19 @@ button:focus {
 /*Header*/
 .main__header {
   width: 100%;
-  display: grid;
-  grid-template-columns: 5em 20em 1fr 120px;
-  grid-column-gap: 10px;
-  grid-template-rows: 1fr;
+  display: flex;
+  justify-content: space-between;
+
 
   box-shadow: 0 0 2rem rgba(95, 160, 179, 0.2);
-  height: 4rem;
+
   margin: 0;
+  padding: 0;
   align-items: center;
   transition: background-color 500ms linear;
   animation: fadein 1s ease-in-out 0ms 1;
 }
 
-.main__header-dark {
-  background-color: #2B244D;
-  color: white;
-}
 
 .toggle-button__container {
   cursor: pointer;
@@ -246,12 +243,30 @@ button:focus {
   //max-width: 5rem;
 }
 
+.cedar__logo {
+  width: 30px;
+  padding: 0 20px;
+}
+
+.cedar-open-metadata {
+  color: #b2b2b2;
+  font-weight: normal;
+  white-space: nowrap;
+  padding-right: 20px;
+}
+
 .title__section {
   //text-transform: uppercase;
   //display: grid;
   //grid-template-rows: 1fr;
   //grid-template-columns: 1fr 1fr;
   //max-width: 5rem;
+}
+
+.artifact-title {
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .date__text {
@@ -265,7 +280,7 @@ button:focus {
 .hamburger__icon {
   position: relative;
   z-index: 35;
-  font-size:1.5em;
+  font-size: 1.5em;
   padding: 0.5em 2em;
   margin-right: 1em;
   cursor: pointer;
@@ -283,6 +298,28 @@ button:focus {
 .hamburger__icon__fill-dark {
   fill: #ffff;
 }
+
+button.mat-icon-button.node-add, button.mat-icon-button.node-remove, button.mat-icon-button.help-text-button {
+  padding: 0;
+  min-width: 0;
+  width: 2em;
+  height: 2em;
+  flex-shrink: 0;
+  width: 2em;
+  vertical-align: middle;
+  border-radius: 50%;
+
+  mat-icon {
+    height: 1em;
+    width: 1em;
+    font-size: 1em;
+    line-height: 1em;
+    padding-top: .5em;
+    vertical-align: top;
+    color: rgba(0, 0, 0, .54)
+  }
+}
+
 
 /*
 ================
@@ -340,9 +377,9 @@ button:focus {
   position: relative;
   z-index: 35;
   height: 3.0em;
-  font-size:2em;
+  font-size: 2em;
   margin: 0 0.2em;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .logo__text {
@@ -350,10 +387,10 @@ button:focus {
   z-index: 35;
   font-size: 2.0em;
   line-height: 2.0em;
-  padding-top:0;
-  margin-top:0;
-  font-family: 'crimson text','HelveticaNeue','Helvetica Neue','Helvetica-Neue',Helvetica,Arial,sans-serif;
-  cursor:pointer;
+  padding-top: 0;
+  margin-top: 0;
+  font-family: 'crimson text', 'HelveticaNeue', 'Helvetica Neue', 'Helvetica-Neue', Helvetica, Arial, sans-serif;
+  cursor: pointer;
 }
 
 .fa-stack {
@@ -378,8 +415,10 @@ button:focus {
 }
 .fa-stack-2x {
   font-size: 1.0em;
-  color:@cedar-primary;
+  color: @cedar-primary;
 }
+
+
 
 
 

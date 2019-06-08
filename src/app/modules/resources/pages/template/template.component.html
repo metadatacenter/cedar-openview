@@ -1,55 +1,33 @@
 <div *ngIf="template && !artifactStatus" class="instance__container ">
-  <!--  <app-artifact-header [artifact]="template" [cedarLink]="cedarLink"></app-artifact-header>-->
-  <!--  <app-json-view [artifact]="template"></app-json-view>-->
 
-  <mat-tab-group (selectedTabChange)="selectedTabChange($event)">
+  <app-metadata-form *ngIf="form" type="template" [form]="form" [instance]="instance" [template]="template"
+    [disabled]="viewOnly"
+    (autocomplete)="onAutocomplete($event)" (changed)="onChanged($event)"
+    [autocompleteResults]="allPosts"></app-metadata-form>
 
-    <mat-tab label="{{'App.Form' | translate}}">
+  <div style="text-align:right;padding:0 24px 16px">
+    <button mat-raised-button color="primary" [disabled]="viewOnly" (click)="onSubmit()">{{'App.Save' | translate}}
+    </button>
+  </div>
 
-      <div class="tab-header">
-        <div class="mode-toggle__container">
-          <span *ngIf="viewOnly" class="mode-toggle__text">{{'App.View' | translate}}</span>
-          <span *ngIf="!viewOnly" class="mode-toggle__text">{{'App.Edit' | translate}}</span>
-          <label class="toggle-button__container">
-            <input (click)="toggleDisabled()" type="checkbox" class="mode-toggle__input"/>
-            <span [ngClass]="{'mode-toggle__bg-checked': viewOnly}" class="mode-toggle__bg"></span>
-            <span [ngClass]="{'mode-toggle__circle-checked': viewOnly}" class="mode-toggle__circle"></span>
-          </label>
-        </div>
-      </div>
+  <div *ngIf="instance">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            JSON-LD
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-      <app-metadata-form *ngIf="form" type="template" [form]="form" [instance]="instance" [template]="template" [disabled]="viewOnly"
-        (autocomplete)="onAutocomplete($event)" (changed)="onChanged($event)"
-        [autocompleteResults]="allPosts"></app-metadata-form>
-
-      <div>
-        <button mat-raised-button color="primary" [disabled]="viewOnly" (click)="onSubmit()">{{'App.Save' | translate}}
-        </button>
-      </div>
-
-    </mat-tab>
-    <mat-tab label="{{'App.JSONLD' | translate}}">
-      <div *ngIf="instance">
-        <div class="tab-header">
+        <div style="text-align:right">
           <button id="jsonLDCopy" mat-raised-button color="accent" (click)="copyToClipboard('jsonLD', 'jsonLDCopy')">
             {{'App.Copy' | translate}}
           </button>
         </div>
         <pre><span id="jsonLD">{{ instance | json}}</span></pre>
-      </div>
-    </mat-tab>
-
-    <mat-tab label="{{'App.RDF' | translate}}">
-      <div>
-        <div class="tab-header">
-          <button id="rdfCopy" mat-raised-button color="accent" (click)="copyToClipboard('rdf', 'rdfCopy')">
-            {{'App.Copy' | translate}}
-          </button>
-        </div>
-        <pre><div id="rdf">{{rdf}}</div></pre>
-      </div>
-    </mat-tab>
-  </mat-tab-group>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
 </div>
 
 <div *ngIf="artifactStatus">

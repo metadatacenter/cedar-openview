@@ -23,51 +23,27 @@
 
 <div class="root__container">
   <header class="main__header">
-    <div class="left__section">
-      <div id="Menu_Burger_Icon" class="hamburger__icon" (click)="toggleMenu()">
-        <fa-icon [icon]="faBars"></fa-icon>
-      </div>
-    </div>
 
-    <div>
-    <span class="logo__icon"><span class="fa-stack"><fa-icon class="fa-stack-2x" [icon]="faSquare"></fa-icon><fa-icon
-      class="fa-stack-1x" [icon]="faUnlock"></fa-icon></span></span>
-      <span class="logo__text">{{'App.Title' | translate}}</span>
-    </div>
+    <img class="cedar__logo" src="assets/img/CEDAR_logo_tree.png">
 
-    <div></div>
+    <h2 class="artifact-title"> {{artifactTitle}}
+      <button mat-icon-button class="help-text-button" *ngIf="artifactDescription"
+        [matTooltip]="artifactDescription">
+        <mat-icon>help_outline</mat-icon>
+      </button>
 
-    <mat-form-field class="language-selector">
-      <mat-label>{{'App.Language' | translate}}</mat-label>
-      <mat-select matNativeControl required [(value)]="languages.selected"
-        (valueChange)="setLanguage(languages.selected)">
-        <mat-option *ngFor="let language of languages.options" [value]="language.value">
-          {{language.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+      <button (click)="getHref()" mat-icon-button class="help-text-button"
+        matTooltip="login to CEDAR">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </h2>
 
-    <!--    <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-    <!--      <ul class="navbar-nav mr-auto">-->
-
-    <!--        <li class="nav-item dropdown">-->
-    <!--          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLanguage" role="button" data-toggle="dropdown"-->
-    <!--            aria-haspopup="true" aria-expanded="false">-->
-    <!--            {{getCurrentLanguageCode()}}-->
-    <!--          </a>-->
-    <!--          <div class="dropdown-menu" aria-labelledby="navbarDropdownLanguage">-->
-    <!--            <a class="dropdown-item" href="#" (click)="switchLanguage($event, 'hu')">hu</a>-->
-    <!--            <a class="dropdown-item" href="#" (click)="switchLanguage($event, 'en')">en</a>-->
-    <!--          </div>-->
-    <!--        </li>-->
-    <!--      </ul>-->
-    <!--    </div>-->
-
-
+    <h3 class="cedar-open-metadata" >CEDAR Open Metadata</h3>
   </header>
 
   <main class="main__container">
-    <div class="main-container__bg"></div>
+    <div class="main-container__bg">
+    </div>
 
     <router-outlet></router-outlet>
   </main>

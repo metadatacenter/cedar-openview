@@ -10,6 +10,7 @@ import {TemplateService} from '../../services/template.service';
 import {TreeNode} from '../../models/tree-node.model';
 import {InputTypeService} from '../../services/input-type.service';
 import {InstanceService} from '../../services/instance.service';
+import {UiService} from '../../../../services/ui.service';
 import {
   faSquare,
   faTag,
@@ -59,9 +60,9 @@ export class FormComponent implements OnChanges {
   faPoll = faPoll;
   faBox = faBox;
   faBoxes = faBoxes;
-  faProjectDiagram =  faProjectDiagram
+  faProjectDiagram =  faProjectDiagram;
 
-  constructor( database: TemplateParserService) {
+  constructor( database: TemplateParserService, private uiService: UiService) {
     this.pageEvent = {'previousPageIndex': 0, 'pageIndex': 0, 'pageSize': 1, 'length': 0};
     this.database = database;
     this.dataSource = new MatTreeNestedDataSource();
@@ -151,6 +152,8 @@ export class FormComponent implements OnChanges {
       // this.form = new FormGroup({});
       this.title = InstanceService.getTitle(this.instance) || TemplateService.getTitle(this.template);
       this.description = InstanceService.getDescription(this.instance) || TemplateService.getDescription(this.template);
+      this.uiService.setTitleAndDescription(this.title, this.description);
+
       this.database.initialize(this.form, this.instance, this.template, this.pageEvent.pageIndex);
 
 
@@ -251,16 +254,6 @@ export class FormComponent implements OnChanges {
   }
 
 
-
-  getHref() {
-    let destination = window.location.href;
-    destination = window.location.href.replace('open-metadata', 'cedar');
-    destination =  destination.replace('/templates/', '/templates/edit/');
-    destination =  destination.replace('/instances/', '/instances/edit/');
-    destination =  destination.replace('/template-elements/', '/elements/edit/');
-    destination =  destination.replace('/fields/', '/fields/edit/');
-    window.open(destination, '_blank');
-  }
 
 
 }

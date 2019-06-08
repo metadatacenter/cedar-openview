@@ -1,20 +1,5 @@
 <script src="https://www.youtube.com/iframe_api"></script>
 
-
-<h2>
-  {{title}}
-  <span class="logo__icon" [ngClass]="type"><fa-icon [icon]="getIconType()" ></fa-icon></span>
-
-  <button mat-icon-button class="help-text-button" *ngIf="description" [matTooltip]="description">
-    <mat-icon>help_outline</mat-icon>
-  </button>
-
-  <button (click)="getHref()" mat-icon-button class="help-text-button" matTooltip="open with CEDAR">
-    <mat-icon>exit_to_app</mat-icon>
-  </button>
-</h2>
-
-
 <form [formGroup]="form" *ngIf="form" class="cedar-form">
 
   <div *ngIf="pageEvent.length > 1">

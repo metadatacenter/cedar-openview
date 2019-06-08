@@ -3,6 +3,8 @@ import {environment} from '../environments/environment';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {Title} from '@angular/platform-browser';
 import {LocalSettingsService} from './services/local-settings.service';
+import {UiService} from './services/ui.service';
+
 import {
   faSquare,
   faTag,
@@ -18,6 +20,8 @@ import {
 export class AppComponent {
 
   showMenu = false;
+  artifactTitle = 'artifactTitle';
+  artifactDescription = 'artifactDescription';
   faTag = faTag;
   faSquare = faSquare;
   faBars = faBars;
@@ -32,6 +36,7 @@ export class AppComponent {
   constructor(
     private localSettings: LocalSettingsService,
     private translateService: TranslateService,
+    private uiService: UiService,
     titleService: Title
   ) {
     // this language will be used as a fallback when a translation isn't found in the current language
@@ -49,7 +54,35 @@ export class AppComponent {
         titleService.setTitle(res);
       });
     });
+
+    uiService.hasTitle.subscribe(
+      value => {
+        setTimeout(() => {
+          this.artifactTitle = value;
+        }, 0);
+      }
+    );
+
+    uiService.hasDescription.subscribe(
+      value => {
+        setTimeout(() => {
+        this.artifactDescription = value;
+        }, 0);
+      }
+    );
   }
+
+
+  getHref() {
+    let destination = window.location.href;
+    destination = window.location.href.replace('open-metadata', 'cedar');
+    destination =  destination.replace('/instances/', '/instances/edit/');
+    destination =  destination.replace('/template-elements/', '/elements/edit/');
+    destination =  destination.replace('/fields/', '/fields/edit/');
+    destination =  destination.replace('/templates/', '/instances/create/');
+    window.open(destination, '_blank');
+  }
+
 
   toggleMenu() {
     this.showMenu = !this.showMenu;
