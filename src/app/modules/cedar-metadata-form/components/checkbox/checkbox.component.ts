@@ -19,7 +19,8 @@ export class CheckboxComponent implements OnInit {
 
   ngOnInit() {
     // initialize the value
-    this.formGroup.get('values').setValue(this.getValue(this.node.options, this.node.model[this.node.key], this.node.valueLocation));
+    const val = this.getValue(this.node.options, this.node.model[this.node.key], this.node.valueLocation);
+    this.formGroup.get('values').setValue(val);
 
     // watch for changes
     this.formGroup.get('values').valueChanges.subscribe(value => {
@@ -51,15 +52,8 @@ export class CheckboxComponent implements OnInit {
   getValue(literals, model, valueLocation) {
     const result = [];
     const map = this.getLiteralMap(literals);
-    if (model) {
-      for (let i = 0; i < model.length; i++) {
-        result.push(map.indexOf(model[i][valueLocation]) > -1);
-      }
-    } else {
-      map.forEach(function () {
-        result.push(false);
-      });
-    }
+    map.forEach(() => result.push(false));
+    model.forEach((item) => result[map.indexOf(item[valueLocation])] = (map.indexOf(item[valueLocation]) > -1));
     return result;
   }
 

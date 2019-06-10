@@ -168,10 +168,6 @@ export class TemplateParserService {
   fieldNode(schema: TemplateSchema, model: Metadata, propertyLabel: string, inputType: InputType, minItems, maxItems, key: string, modelValue: MetadataSnip, formGroup: FormGroup, parent: TreeNode): TreeNode {
     const nodeType = TemplateService.getNodeType(inputType);
     const nodeSubtype = TemplateService.getNodeSubtype(inputType);
-    console.log('fieldNode', model, key,  modelValue);
-
-
-
     return {
       'key': key,
       'name': TemplateService.getTitle(schema, propertyLabel),
@@ -215,8 +211,6 @@ export class TemplateParserService {
   elementNode(schema: TemplateSchema, model: Metadata, label: string, minItems, maxItems, i, key, level, modelValue, formGroup: FormGroup, parent: TreeNode, page: number): TreeNode {
     const nodeType = TemplateService.getNodeType(InputType.element);
     const nodeSubtype = TemplateService.getNodeSubtype(InputType.element);
-    console.log('elementNode', key, model);
-
     const node = {
       'key': key,
       'name': TemplateService.getTitle(schema),
@@ -270,9 +264,6 @@ export class TemplateParserService {
         const modelValue = model[key];
 
         if (TemplateService.isElement(schema)) {
-          console.log('is element');
-
-
           const itemCount = modelValue.length ? modelValue.length : 1;
 
           for (let i = 0; i < itemCount; i++) {
@@ -281,14 +272,10 @@ export class TemplateParserService {
           }
 
         } else if (TemplateService.isStaticField(schema)) {
-          console.log('is static field');
-
           const node = TemplateParserService.staticNode(schema, model, type, minItems, maxItems, key, modelValue, formGroup, parentNode);
           accumulator = accumulator.concat(node);
 
         } else if (TemplateService.isField(schema)) {
-          console.log('is field');
-
           if (InputTypeService.isAttributeValue(type)) {
             const items = InstanceService.buildAttributeValue(model, key);
             const node = TemplateParserService.attributeValueNode(schema, model, key, items, formGroup, parentNode);

@@ -184,8 +184,7 @@ export class TemplateService {
 
   static initValue(schema: TemplateSchema, key: string, type: InputType, minItems: number, maxItems: number) {
     let result;
-    if (type == InputType.element) {
-      console.log('initValue element', key, minItems);
+    if (type === InputType.element) {
       if (!this.isUndefined(minItems)) {
         result = [{'@context': {}, '@id': schema['@id']}];
       } else {

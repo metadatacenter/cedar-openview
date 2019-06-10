@@ -38,7 +38,6 @@ export class ControlledComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('changes', changes);
     if (changes['autocompleteResults']) {
       if (this.group && this.search) {
 
