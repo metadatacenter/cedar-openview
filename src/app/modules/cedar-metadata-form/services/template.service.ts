@@ -17,6 +17,23 @@ export class TemplateService {
     return value === null || value === undefined;
   }
 
+
+  static isElement(schema: TemplateSchema) {
+    return (schema['@type'] === 'https://schema.metadatacenter.org/core/TemplateElement');
+  }
+
+  static isTemplate(schema: TemplateSchema) {
+    return (schema['@type'] === 'https://schema.metadatacenter.org/core/Template');
+  }
+
+  static isField(schema: TemplateSchema) {
+    return (schema['@type'] === 'https://schema.metadatacenter.org/core/TemplateField');
+  }
+
+  static isStaticField(schema: TemplateSchema) {
+    return (schema['@type'] === 'https://schema.metadatacenter.org/core/StaticTemplateField');
+  }
+
   static schemaOf(node): TemplateSchema {
     return (node && node.type === 'array' && node.items) ? node.items : node;
   }
@@ -112,14 +129,6 @@ export class TemplateService {
 
   static getDescription(schema: any) {
     return schema['schema:description'];
-  }
-
-  static isElement(schema: TemplateSchema) {
-    return (schema['@type'] === 'https://schema.metadatacenter.org/core/TemplateElement');
-  }
-
-  static isTemplate(schema: TemplateSchema) {
-    return (schema['@type'] === 'https://schema.metadatacenter.org/core/Template');
   }
 
   static getNodeType(inputType: InputType): InputType {
@@ -262,28 +271,39 @@ export class TemplateService {
     return (ct || ctv || link) ? '@id' : '@value';
   }
 
-  static isField(schema: TemplateSchema) {
-    return (schema['@type'] === 'https://schema.metadatacenter.org/core/TemplateField');
-  }
-
-  static isStaticField(schema: TemplateSchema) {
-    return (schema['@type'] === 'https://schema.metadatacenter.org/core/StaticTemplateField');
-  }
-
   static getOrder(schema: TemplateSchema) {
-    return schema['_ui']['order'];
+    if (this.isField(schema)) {
+      return [schema['schema:name']];
+    } else {
+      return schema['_ui']['order'];
+    }
   }
 
   static getProperties(schema: TemplateSchema) {
-    return schema['properties'];
+    if (this.isField(schema)) {
+      const prop = {};
+      prop[schema['schema:name']] = schema;
+      return prop;
+      return schema;
+    } else {
+      return schema['properties'];
+    }
   }
 
   static getLabels(schema: TemplateSchema) {
-    return schema['_ui']['propertyLabels'];
+    if (this.isField(schema)) {
+      return [schema['schema:name']];
+    } else {
+      return schema['_ui']['propertyLabels'];
+    }
   }
 
   static getDescriptions(schema: TemplateSchema) {
-    return schema['_ui']['propertyDescriptions'];
+    if (this.isField(schema)) {
+      return [schema['schema:description']];
+    } else {
+      return schema['_ui']['propertyDescriptions'];
+    }
   }
 
   static getPageCount(schema: TemplateSchema) {

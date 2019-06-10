@@ -27,7 +27,7 @@ export class UiService {
     destination = window.location.href.replace('open-metadata', 'cedar');
     destination =  destination.replace('/instances/', '/instances/edit/');
     destination =  destination.replace('/template-elements/', '/elements/edit/');
-    destination =  destination.replace('/fields/', '/fields/edit/');
+    destination =  destination.replace('/template-fields/', '/fields/edit/');
     destination =  destination.replace('/templates/', '/instances/create/');
     window.open(destination, '_blank');
   }
