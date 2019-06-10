@@ -13,7 +13,8 @@
     "JSONLD": "JSON-LD",
     "RDF": "RDF",
     "Save": "Save",
-    "Value": "Value"
+    "Value": "Value",
+    "Validate": "Validate"
   },
   "Generic": {
     "Loading": "Loading...",

@@ -17,6 +17,7 @@ import {forkJoin} from 'rxjs';
 import {InstanceService} from '../../../cedar-metadata-form/services/instance.service';
 import {TemplateService} from '../../../cedar-metadata-form/services/template.service';
 import {TemplateSchema} from '../../../cedar-metadata-form/models/template-schema.model';
+import {UiService} from '../../../../services/ui.service';
 
 @Component({
   selector: 'app-template-element',
@@ -45,7 +46,8 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
     protected dataStore: DataStoreService,
     protected dataHandler: DataHandlerService,
     private http: HttpClient,
-    private autocompleteService: AutocompleteService
+    private autocompleteService: AutocompleteService,
+    private uiService: UiService
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
   }
@@ -93,49 +95,11 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
     this.viewOnly = !this.viewOnly;
   }
 
-  // copy stuff in tabs to browser's clipboard
+  // copy content to browser's clipboard
   copyToClipboard(elementId: string, buttonId: string) {
-
-    function copyToClip(str) {
-      function listener(e) {
-        e.clipboardData.setData('text/html', str);
-        e.clipboardData.setData('text/plain', str);
-        e.preventDefault();
-      }
-
-      document.addEventListener('copy', listener);
-      document.execCommand('copy');
-      document.removeEventListener('copy', listener);
-    }
-
-    const elm = document.getElementById(elementId);
-    const data = elm ? elm.innerHTML : null;
-    if (data) {
-
-      const selBox = document.createElement('textarea');
-      selBox.style.position = 'fixed';
-      selBox.style.left = '0';
-      selBox.style.top = '0';
-      selBox.style.opacity = '0';
-      selBox.value = data;
-      document.body.appendChild(selBox);
-      selBox.focus();
-      selBox.select();
-      copyToClip(data);
-      document.body.removeChild(selBox);
-
-      const btn = document.getElementById(buttonId);
-      if (btn) {
-        btn.innerHTML = 'Copied';
-        setTimeout(() => {
-          const btn = document.getElementById(buttonId);
-          if (btn) {
-            btn.innerHTML = 'Copy';
-          }
-        }, 10000);
-      }
-    }
+    this.uiService.copyToClipboard(elementId, buttonId);
   }
+
 
   onSubmit() {
     if (this.form.valid) {

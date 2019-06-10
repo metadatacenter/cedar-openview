@@ -11,16 +11,7 @@ import {TreeNode} from '../../models/tree-node.model';
 import {InputTypeService} from '../../services/input-type.service';
 import {InstanceService} from '../../services/instance.service';
 import {UiService} from '../../../../services/ui.service';
-import {
-  faSquare,
-  faTag,
-  faBars,
-  faList,
-  faPoll,
-  faBox,
-  faBoxes,
-  faProjectDiagram
-} from '@fortawesome/free-solid-svg-icons';
+import {faBars, faBox, faBoxes, faList, faPoll, faProjectDiagram, faSquare, faTag} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-metadata-form',
@@ -46,7 +37,6 @@ export class FormComponent implements OnChanges {
   description: string;
   dataSource: MatTreeNestedDataSource<TreeNode>;
   treeControl: NestedTreeControl<TreeNode>;
-  database: TemplateParserService;
   response: any = {payload: null, jsonLD: null, rdf: null, formValid: false};
   pageEvent: PageEvent;
   copy = 'Copy';
@@ -60,11 +50,10 @@ export class FormComponent implements OnChanges {
   faPoll = faPoll;
   faBox = faBox;
   faBoxes = faBoxes;
-  faProjectDiagram =  faProjectDiagram;
+  faProjectDiagram = faProjectDiagram;
 
-  constructor( database: TemplateParserService, private uiService: UiService) {
+  constructor(private database: TemplateParserService, private uiService: UiService) {
     this.pageEvent = {'previousPageIndex': 0, 'pageIndex': 0, 'pageSize': 1, 'length': 0};
-    this.database = database;
     this.dataSource = new MatTreeNestedDataSource();
     this.treeControl = new NestedTreeControl<TreeNode>(this._getChildren);
   }
@@ -108,11 +97,6 @@ export class FormComponent implements OnChanges {
           this.response.payload = val;
           this.response.jsonLD = this.database.instanceModel;
           this.response.formValid = this.form.valid;
-          const that = this;
-          // jsonld.toRDF(this.response.jsonLD, {format: 'application/nquads'}, function (err, nquads) {
-          //   that.response.rdf = err ? err : nquads;
-          //   that.changed.emit(that.response);
-          // });
         }, 0);
       });
     }
@@ -121,9 +105,10 @@ export class FormComponent implements OnChanges {
 
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
 
-    if (changes['autocompleteResults'] && changes['autocompleteResults']['currentValue'] &&   changes['autocompleteResults']['currentValue'].length > 0) {
-      this.autocompleteResults = changes['autocompleteResults']['currentValue'] ;
-   } else {
+    if (changes['autocompleteResults'] && changes['autocompleteResults']['currentValue'] &&
+      changes['autocompleteResults']['currentValue'].length > 0) {
+      this.autocompleteResults = changes['autocompleteResults']['currentValue'];
+    } else {
       const log: string[] = [];
       for (const propName in changes) {
         const changedProp = changes[propName];
@@ -181,7 +166,6 @@ export class FormComponent implements OnChanges {
   isDisabled() {
     return this.disabled;
   }
-
 
 
   // add new element to form
@@ -252,8 +236,6 @@ export class FormComponent implements OnChanges {
 
     }
   }
-
-
 
 
 }

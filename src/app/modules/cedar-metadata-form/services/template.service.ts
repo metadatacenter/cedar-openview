@@ -193,24 +193,24 @@ export class TemplateService {
     } else {
       const location = this.getValueLocation(schema, this.getNodeType(type), this.getNodeSubtype(type));
 
-      if (location == '@value') {
+      if (location === '@value') {
         if (!this.isUndefined(minItems)) {
           result = [];
           for (let i = 0; i < minItems; i++) {
             const item = {'@value': null};
-            if (type == InputType.date) {
+            if (type === InputType.date) {
               item['@type'] = 'xsd:date';
             }
             result.push(item);
           }
         } else {
           result = {'@value': null};
-          if (type == InputType.date) {
+          if (type === InputType.date) {
             result['@type'] = 'xsd:date';
           }
         }
       } else {
-        if (type == InputType.controlled) {
+        if (type === InputType.controlled) {
           if (!this.isUndefined(minItems)) {
             result = [];
           } else {

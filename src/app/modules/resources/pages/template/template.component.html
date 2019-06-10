@@ -5,8 +5,8 @@
     (autocomplete)="onAutocomplete($event)" (changed)="onChanged($event)"
     [autocompleteResults]="allPosts"></app-metadata-form>
 
-  <div style="text-align:right;padding:0 24px 16px">
-    <button mat-raised-button color="primary" [disabled]="viewOnly" (click)="onSubmit()">{{'App.Save' | translate}}
+  <div class="save-button" >
+    <button mat-raised-button color="primary" [disabled]="viewOnly" (click)="onSubmit()">{{'App.Validate' | translate}}
     </button>
   </div>
 

@@ -31,6 +31,48 @@ export class UiService {
     destination =  destination.replace('/templates/', '/instances/create/');
     window.open(destination, '_blank');
   }
+
+  // copy stuff in tabs to browser's clipboard
+  copyToClipboard(elementId: string, buttonId: string) {
+
+    function copyToClip(str) {
+      function listener(e) {
+        e.clipboardData.setData('text/html', str);
+        e.clipboardData.setData('text/plain', str);
+        e.preventDefault();
+      }
+
+      document.addEventListener('copy', listener);
+      document.execCommand('copy');
+      document.removeEventListener('copy', listener);
+    }
+
+    const elm = document.getElementById(elementId);
+    const data = elm ? elm.innerHTML : null;
+    if (data) {
+
+      const selBox = document.createElement('textarea');
+      selBox.style.position = 'fixed';
+      selBox.style.left = '0';
+      selBox.style.top = '0';
+      selBox.style.opacity = '0';
+      selBox.value = data;
+      document.body.appendChild(selBox);
+      selBox.focus();
+      selBox.select();
+      copyToClip(data);
+      document.body.removeChild(selBox);
+
+      const btn = document.getElementById(buttonId);
+      if (btn) {
+        btn.innerHTML = 'Copied';
+        setTimeout(() => {
+          btn.innerHTML = 'Copy';
+        }, 10000);
+      }
+    }
+  }
+
 }
 
 

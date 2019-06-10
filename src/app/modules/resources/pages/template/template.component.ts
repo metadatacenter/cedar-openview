@@ -17,6 +17,7 @@ import {forkJoin} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {AutocompleteService} from '../../../../services/autocomplete.service';
 import {environment} from '../../../../../environments/environment';
+import {UiService} from '../../../../services/ui.service';
 
 
 
@@ -36,7 +37,6 @@ export class TemplateComponent  extends CedarPageComponent implements OnInit {
   form: FormGroup;
   viewOnly = false;
   allPosts;
-  showForm = false;
 
   constructor(
     protected localSettings: LocalSettingsService,
@@ -47,7 +47,8 @@ export class TemplateComponent  extends CedarPageComponent implements OnInit {
     protected dataStore: DataStoreService,
     protected dataHandler: DataHandlerService,
     private http: HttpClient,
-    private autocompleteService: AutocompleteService
+    private autocompleteService: AutocompleteService,
+    private uiService: UiService
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
   }
@@ -84,7 +85,6 @@ export class TemplateComponent  extends CedarPageComponent implements OnInit {
         for (let i = 0; i < posts.length; i++) {
           this.allPosts = this.allPosts.concat(posts[i]['collection']);
         }
-        console.log('allPosts', this.allPosts);
       });
     }
   }
@@ -94,59 +94,12 @@ export class TemplateComponent  extends CedarPageComponent implements OnInit {
     this.viewOnly = !this.viewOnly;
   }
 
-  // copy stuff in tabs to browser's clipboard
+  // copy content to browser's clipboard
   copyToClipboard(elementId: string, buttonId: string) {
-
-    function copyToClip(str) {
-      function listener(e) {
-        e.clipboardData.setData('text/html', str);
-        e.clipboardData.setData('text/plain', str);
-        e.preventDefault();
-      }
-
-      document.addEventListener('copy', listener);
-      document.execCommand('copy');
-      document.removeEventListener('copy', listener);
-    }
-
-    const elm = document.getElementById(elementId);
-    const data = elm ? elm.innerHTML : null;
-    if (data) {
-
-      const selBox = document.createElement('textarea');
-      selBox.style.position = 'fixed';
-      selBox.style.left = '0';
-      selBox.style.top = '0';
-      selBox.style.opacity = '0';
-      selBox.value = data;
-      document.body.appendChild(selBox);
-      selBox.focus();
-      selBox.select();
-      copyToClip(data);
-      document.body.removeChild(selBox);
-
-      const btn = document.getElementById(buttonId);
-      if (btn) {
-        btn.innerHTML = 'Copied';
-        setTimeout(() => {
-          const btn = document.getElementById(buttonId);
-          if (btn) {
-            btn.innerHTML = 'Copy';
-          }
-        }, 10000);
-      }
-    }
+    this.uiService.copyToClipboard(elementId, buttonId);
   }
 
-  onSubmit() {
-    if (this.form.valid) {
-      console.log('form submitted');
-    } else {
-      this.validateAllFormFields(this.form);
-    }
-  }
-
-  validateAllFormFields(formGroup: FormGroup) {
+  private validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.get(field);
       if (control instanceof FormControl) {
@@ -161,27 +114,13 @@ export class TemplateComponent  extends CedarPageComponent implements OnInit {
     });
   }
 
-  selectedTabChange(event) {
-
-    if (event.index === 0) {
-      setTimeout(() => {
-        console.log('redraw form');
-        this.showForm = true;
-      }, 0);
-
-    } else {
-      this.showForm = false;
+  onSubmit() {
+    if (!this.form.valid) {
+      this.validateAllFormFields(this.form);
     }
   }
 
   // form changed, update tab contents and submit button status
   protected onChanged(event) {
-    const e = event;
-    // setTimeout(() => {
-    //   this.payload = e.payload;
-    //   this.jsonLD = e.jsonLD;
-    //   this.rdf = e.rdf;
-    //   this.formValid = e.formValid;
-    // }, 0);
   }
 }

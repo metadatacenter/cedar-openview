@@ -2,7 +2,19 @@
   "App": {
     "Title": "CEDAR",
     "NavTitle": "CEDAR Open Metadata",
-    "WindowTitle": "CEDAR Open Metadata"
+    "WindowTitle": "CEDAR Open Metadata",
+    "SelectPage": "Select Page",
+    "Home": "Home",
+    "Language": "Language",
+    "View": "View",
+    "Edit": "Edit",
+    "Form": "Form",
+    "Copy": "Copy",
+    "JSONLD": "JSON-LD",
+    "RDF": "RDF",
+    "Save": "Save",
+    "Value": "Value",
+    "Validate": "Validate"
   },
   "Generic": {
     "Loading": "Adatbetöltés...",

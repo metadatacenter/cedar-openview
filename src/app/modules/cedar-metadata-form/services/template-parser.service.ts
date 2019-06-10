@@ -106,7 +106,8 @@ export class TemplateParserService {
     return result;
   }
 
-  static staticNode(schema: TemplateSchema, model: Metadata, inputType: InputType, minItems, maxItems, key: string, modelValue: MetadataSnip, formGroup: FormGroup, parent: TreeNode): TreeNode {
+  static staticNode(schema: TemplateSchema, model: Metadata, inputType: InputType,
+                    minItems, maxItems, key: string, modelValue: MetadataSnip, formGroup: FormGroup, parent: TreeNode): TreeNode {
     const nodeType = TemplateService.getNodeType(inputType);
     const nodeSubtype = TemplateService.getNodeSubtype(inputType);
     return {
@@ -128,7 +129,8 @@ export class TemplateParserService {
     };
   }
 
-  static attributeValueNode(schema: TemplateSchema, model: any, key: string, modelValue: any, formGroup: FormGroup, parent: TreeNode): TreeNode {
+  static attributeValueNode(schema: TemplateSchema, model: any, key: string, modelValue: any,
+                            formGroup: FormGroup, parent: TreeNode): TreeNode {
     const nodeType = TemplateParserService.getNodeType(schema, InputType.attributeValue);
     const nodeSubtype = TemplateParserService.getNodeSubtype(InputType.attributeValue);
     return {
@@ -165,7 +167,8 @@ export class TemplateParserService {
     this.dataChange.next(this.buildTree(this.templateSchema, this.instanceModel, 0, this.formGroup, null, page));
   }
 
-  fieldNode(schema: TemplateSchema, model: Metadata, propertyLabel: string, inputType: InputType, minItems, maxItems, key: string, modelValue: MetadataSnip, formGroup: FormGroup, parent: TreeNode): TreeNode {
+  fieldNode(schema: TemplateSchema, model: Metadata, propertyLabel: string, inputType: InputType,
+            minItems, maxItems, key: string, modelValue: MetadataSnip, formGroup: FormGroup, parent: TreeNode): TreeNode {
     const nodeType = TemplateService.getNodeType(inputType);
     const nodeSubtype = TemplateService.getNodeSubtype(inputType);
     return {
@@ -208,7 +211,8 @@ export class TemplateParserService {
     }
   }
 
-  elementNode(schema: TemplateSchema, model: Metadata, label: string, minItems, maxItems, i, key, level, modelValue, formGroup: FormGroup, parent: TreeNode, page: number): TreeNode {
+  elementNode(schema: TemplateSchema, model: Metadata, label: string, minItems, maxItems, i,
+              key, level, modelValue, formGroup: FormGroup, parent: TreeNode, page: number): TreeNode {
     const nodeType = TemplateService.getNodeType(InputType.element);
     const nodeSubtype = TemplateService.getNodeSubtype(InputType.element);
     const node = {
@@ -227,14 +231,16 @@ export class TemplateParserService {
     };
     formGroup.addControl(key + i, node.formGroup);
     if (schema.properties) {
-      node['children'] = this.buildTree(schema, this.getFirst(modelValue, i), level + 1, node.formGroup, node, page);
+      node['children'] = this.buildTree(schema, this.getFirst(modelValue, i), level + 1,
+        node.formGroup, node, page);
     }
 
     return node;
   }
 
   // build the tree of FileNodes
-  buildTree(parentSchema: TemplateSchema, model: Metadata, level: number, formGroup: FormGroup, parentNode: TreeNode, page: number): TreeNode[] {
+  buildTree(parentSchema: TemplateSchema, model: Metadata, level: number, formGroup: FormGroup,
+            parentNode: TreeNode, page: number): TreeNode[] {
     const order = TemplateService.getOrderofPage(parentSchema, page);
     const properties = TemplateService.getProperties(parentSchema);
     const labels = TemplateService.getLabels(parentSchema);
@@ -249,7 +255,7 @@ export class TemplateParserService {
         const type = TemplateService.getInputType(schema);
         const label = labels[key];
 
-        if (!model.hasOwnProperty(key) ) {
+        if (!model.hasOwnProperty(key)) {
 
           model['@context'][key] = schema['@id'];
 
