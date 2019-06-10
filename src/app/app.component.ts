@@ -72,20 +72,8 @@ export class AppComponent {
     );
   }
 
-
-  getHref() {
-    let destination = window.location.href;
-    destination = window.location.href.replace('open-metadata', 'cedar');
-    destination =  destination.replace('/instances/', '/instances/edit/');
-    destination =  destination.replace('/template-elements/', '/elements/edit/');
-    destination =  destination.replace('/fields/', '/fields/edit/');
-    destination =  destination.replace('/templates/', '/instances/create/');
-    window.open(destination, '_blank');
-  }
-
-
-  toggleMenu() {
-    this.showMenu = !this.showMenu;
+  openInCedar() {
+    this.uiService.openInCedar();
   }
 
   getCurrentLanguageCode() {
