@@ -11,14 +11,13 @@ import {Template} from '../../../../shared/model/template.model';
 import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
 import {TemplateSchema} from '../../../cedar-metadata-form/models/template-schema.model';
 import {InstanceService} from '../../../cedar-metadata-form/services/instance.service';
-import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {FormGroup} from '@angular/forms';
 import {TemplateService} from '../../../cedar-metadata-form/services/template.service';
 import {forkJoin} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {AutocompleteService} from '../../../../services/autocomplete.service';
 import {environment} from '../../../../../environments/environment';
 import {UiService} from '../../../../services/ui.service';
-
 
 
 @Component({
@@ -80,7 +79,6 @@ export class TemplateComponent  extends CedarPageComponent implements OnInit {
   protected onAutocomplete(event) {
     if (event['search']) {
       forkJoin(this.autocompleteService.getPosts(event['search'], event.constraints)).subscribe(posts => {
-        console.log('posts', posts);
         this.allPosts = [];
         for (let i = 0; i < posts.length; i++) {
           this.allPosts = this.allPosts.concat(posts[i]['collection']);
@@ -99,24 +97,9 @@ export class TemplateComponent  extends CedarPageComponent implements OnInit {
     this.uiService.copyToClipboard(elementId, buttonId);
   }
 
-  private validateAllFormFields(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.markAsTouched({onlySelf: true});
-      } else if (control instanceof FormArray) {
-        control.controls.forEach(cntl => {
-          cntl.markAsTouched({onlySelf: true});
-        });
-      } else if (control instanceof FormGroup) {
-        this.validateAllFormFields(control);
-      }
-    });
-  }
-
   onSubmit() {
     if (!this.form.valid) {
-      this.validateAllFormFields(this.form);
+      this.uiService.validateAllFormFields(this.form);
     }
   }
 

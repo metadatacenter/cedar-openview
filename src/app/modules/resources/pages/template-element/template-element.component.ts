@@ -10,7 +10,7 @@ import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.mode
 import {TemplateElement} from '../../../../shared/model/template-element.model';
 import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
 import {environment} from '../../../../../environments/environment';
-import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {FormGroup} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {AutocompleteService} from '../../../../services/autocomplete.service';
 import {forkJoin} from 'rxjs';
@@ -35,7 +35,6 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
   form: FormGroup;
   viewOnly = false;
   allPosts;
-  showForm = false;
 
   constructor(
     protected localSettings: LocalSettingsService,
@@ -80,12 +79,10 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
   protected onAutocomplete(event) {
     if (event['search']) {
       forkJoin(this.autocompleteService.getPosts(event['search'], event.constraints)).subscribe(posts => {
-        console.log('posts', posts);
         this.allPosts = [];
         for (let i = 0; i < posts.length; i++) {
           this.allPosts = this.allPosts.concat(posts[i]['collection']);
         }
-        console.log('allPosts', this.allPosts);
       });
     }
   }
@@ -102,49 +99,12 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
 
 
   onSubmit() {
-    if (this.form.valid) {
-      console.log('form submitted');
-    } else {
-      this.validateAllFormFields(this.form);
-    }
-  }
-
-  validateAllFormFields(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.markAsTouched({onlySelf: true});
-      } else if (control instanceof FormArray) {
-        control.controls.forEach(cntl => {
-          cntl.markAsTouched({onlySelf: true});
-        });
-      } else if (control instanceof FormGroup) {
-        this.validateAllFormFields(control);
-      }
-    });
-  }
-
-  selectedTabChange(event) {
-
-    if (event.index === 0) {
-      setTimeout(() => {
-        console.log('redraw form');
-        this.showForm = true;
-      }, 0);
-
-    } else {
-      this.showForm = false;
+    if (!this.form.valid) {
+      this.uiService.validateAllFormFields(this.form);
     }
   }
 
   // form changed, update tab contents and submit button status
   protected onChanged(event) {
-    const e = event;
-    // setTimeout(() => {
-    //   this.payload = e.payload;
-    //   this.jsonLD = e.jsonLD;
-    //   this.rdf = e.rdf;
-    //   this.formValid = e.formValid;
-    // }, 0);
   }
 }
