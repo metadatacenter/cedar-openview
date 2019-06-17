@@ -1,6 +1,36 @@
-<div *ngIf="templateInstance && !artifactStatus">
-  <app-artifact-header [artifact]="templateInstance" [cedarLink]="cedarLink"></app-artifact-header>
-  <app-json-view [artifact]="templateInstance"></app-json-view>
+
+
+
+<div *ngIf="templateInstance && !artifactStatus" class="instance__container ">
+
+      <app-metadata-form *ngIf="form"  type="instance" [form]="form" [instance]="templateInstance" [template]="template"
+        [disabled]="viewOnly"
+        (autocomplete)="onAutocomplete($event)" (changed)="onChanged($event)"
+        [autocompleteResults]="allPosts"></app-metadata-form>
+
+  <div class="save-button">
+    <button mat-raised-button color="primary" [disabled]="viewOnly" (click)="onSubmit()">{{'App.Validate' | translate}}
+    </button>
+  </div>
+
+  <div *ngIf="templateInstance">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            JSON-LD
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div style="text-align:right">
+          <button id="jsonLDCopy" mat-raised-button color="accent" (click)="copyToClipboard('jsonLD', 'jsonLDCopy')">
+            {{'App.Copy' | translate}}
+          </button>
+        </div>
+        <pre><span id="jsonLD">{{ templateInstance | json}}</span></pre>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
 </div>
 
 <div *ngIf="artifactStatus">

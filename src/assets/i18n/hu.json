@@ -1,10 +1,25 @@
 {
   "App": {
+    "Title": "CEDAR",
     "NavTitle": "CEDAR Open Metadata",
-    "WindowTitle": "CEDAR Open Metadata"
+    "WindowTitle": "CEDAR Open Metadata",
+    "SelectPage": "Select Page",
+    "Home": "Home",
+    "Language": "Language",
+    "View": "View",
+    "Edit": "Edit",
+    "Form": "Form",
+    "Copy": "Copy",
+    "JSONLD": "JSON-LD",
+    "RDF": "RDF",
+    "Save": "Save",
+    "Value": "Value",
+    "Validate": "Validate"
   },
   "Generic": {
-    "Loading": "Adatbetöltés..."
+    "Loading": "Adatbetöltés...",
+    "jsonSchema": "JSON Schema",
+    "jsonLD": "JSON-LD"
   },
   "error": {
     "resourceNotPublic": "A hivatkozott erőforrás nem érhető el publikusan"
@@ -21,10 +36,6 @@
     "https://schema.metadatacenter.org/core/TemplateElement": "Metaadat elem",
     "https://schema.metadatacenter.org/core/Template": "Metaadat sablon",
     "TemplateInstance": "Metaadat példány"
-  },
-  "Generic" : {
-    "jsonSchema": "JSON Schema",
-    "jsonLD": "JSON-LD"
   },
   "loadError": {
     "401": "Sajnáljuk, de az adott adatot a tulajdonosa nem tette nyitottá!<br/><a href='{{link}}'>Nyisd meg CEDAR-ban</a> (Bejelentkezés szükséges)",

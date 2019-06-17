@@ -1,23 +1,8 @@
 .loading-spinner {
-  position: fixed;
+  position: absolute;
+  left:50%;
+  top:50%;
   z-index: 9010;
-}
-
-.spinner-overlay {
-  background-color: rgba(200, 200, 200, 0.6);
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  z-index: 9000;
-}
-
-.spinner-button {
-  position: fixed;
-  bottom: 20px;
-  z-index: 9020;
 }
 
 .loader {
