@@ -4,7 +4,7 @@
   "publishConfig": {
     "registry": "https://nexus.bmir.stanford.edu/repository/npm-cedar/"
   },
-  "description": "Metadata editor with Angular 7",
+  "description": "Embeddable Metadata Editor written using Angular 7",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
