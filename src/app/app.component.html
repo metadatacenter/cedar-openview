@@ -1,0 +1,56 @@
+<ng-snotify></ng-snotify>
+<app-spinner></app-spinner>
+
+<!-- Slide Menu-->
+<aside class="side-menu__container" [ngClass]="{'side-menu__container-active': showMenu}" (click)="toggleMenu()">
+  <nav class="slide-menu" [ngClass]="{'slide-menu-active': showMenu}" (click)="$event.stopImmediatePropagation();">
+    <section class="menu-header">
+      <span></span>
+    </section>
+    <section class="menu-body">
+      <div class="menu__container">
+        <!--        <mat-toolbar>-->
+        <!--          <mat-toolbar-row>-->
+        <!--            <button style="text-align:left;width:100%" mat-button routerLink="">{{'App.Home' | translate}}</button>-->
+        <!--          </mat-toolbar-row>-->
+        <!--        </mat-toolbar>-->
+      </div>
+    </section>
+    <section class="menu-footer">
+    </section>
+  </nav>
+</aside>
+
+<div class="root__container">
+  <header class="main__header">
+
+    <img class="cedar__logo" src="assets/img/CEDAR_logo_tree.png">
+
+    <h2 class="artifact-title"> {{artifactTitle}}
+      <button mat-icon-button class="help-text-button" *ngIf="artifactDescription"
+        [matTooltip]="artifactDescription">
+        <mat-icon>help_outline</mat-icon>
+      </button>
+
+      <button *ngIf="artifactTitle" (click)="openInCedar()" mat-icon-button class="help-text-button"
+        matTooltip="login to CEDAR">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </h2>
+
+    <h3 class="cedar-open-metadata" >CEDAR Open Metadata</h3>
+  </header>
+
+  <main class="main__container">
+    <div class="main-container__bg">
+    </div>
+
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="main__footer">
+    <small class="copyright__text"></small>
+  </footer>
+
+
+</div>

@@ -1,0 +1,43 @@
+<div class="card mb-2">
+  <div class="card-header header-box">
+    <div class="row align-items-center">
+      <div class="col mb-2 mb-md-0 text-center text-md-left">
+        {{artifact['schema:name']}}
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body content-box">
+
+    <table class="table table-sm table-hover table-bordered">
+      <tbody>
+
+      <tr *ngIf="artifact['@type']">
+        <td>{{'ArtifactHeader.Type' | translate}}:</td>
+        <td>{{'type.' + artifact['@type'] | translate}}</td>
+      </tr>
+
+      <tr *ngIf="artifact['schema:isBasedOn']">
+        <td>{{'ArtifactHeader.Type' | translate}}:</td>
+        <td>{{'type.TemplateInstance' | translate}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'ArtifactHeader.SchemaName' | translate}}:</td>
+        <td>{{artifact['schema:name']}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'ArtifactHeader.SchemaDescription' | translate}}:</td>
+        <td>{{artifact['schema:description']}}</td>
+      </tr>
+
+      <tr>
+        <td>{{'ArtifactHeader.CEDAR' | translate}}:</td>
+        <td><div [innerHtml]="'ArtifactHeader.Link' | translate:params"></div></td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
