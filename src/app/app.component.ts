@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {environment} from '../environments/environment';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {Title} from '@angular/platform-browser';
@@ -17,7 +17,7 @@ import {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   showMenu = false;
   artifactTitle = 'artifactTitle';
@@ -26,6 +26,7 @@ export class AppComponent {
   faSquare = faSquare;
   faBars = faBars;
   faUnlock = faUnlock;
+  loadAPI: Promise<any>;
 
 
   languages = {
@@ -72,6 +73,25 @@ export class AppComponent {
     );
   }
 
+  // public loadScript() {
+  //   console.log('preparing to load...');
+  //   const node = document.createElement('script');
+  //   console.log('node', node);
+  //
+  //   node.src = environment.cedarFormUrl +  'cedar-form/cedar-form-0.0.1.js';
+  //   node.type = 'text/javascript';
+  //   node.async = true;
+  //   node.charset = 'utf-8';
+  //   // document.getElementsByTagName('head')[0].appendChild(node);
+  // }
+
+  ngOnInit(): void {
+    // this.loadAPI = new Promise((resolve) => {
+    //   console.log('resolving promise...');
+    //   this.loadScript();
+    // });
+  }
+
   openInCedar() {
     this.uiService.openInCedar();
   }
@@ -90,4 +110,6 @@ export class AppComponent {
     this.translateService.use(language);
     this.localSettings.setLanguage(language);
   }
+
+
 }

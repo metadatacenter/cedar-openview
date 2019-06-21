@@ -7,6 +7,25 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- This div is needed when targeting ES5.
+It will add the adapter to browsers that support customElements, which require ES6 classes -->
+  <div id="ce-es5-shim">
+    <script type="text/javascript">
+      if (!window.customElements) {
+        var ceShimContainer = document.querySelector('#ce-es5-shim');
+        ceShimContainer.parentElement.removeChild(ceShimContainer);
+      }
+    </script>
+    <script type="text/javascript"
+      src="node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+  </div>
+
+  <!-- load the webcomponents loader, which injects the necessary polyfill bundle -->
+  <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+
+  <!-- load the component -->
+  <script src="https://component.metadatacenter.orgx/cedar-form/cedar-form-0.0.1.js" type="text/javascript"></script>
 </head>
 <body>
 <app-root></app-root>

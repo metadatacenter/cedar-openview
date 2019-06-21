@@ -1,5 +1,4 @@
-@import "~src/colors.less";
-
+@import '~src/theme.scss';
 
 .instance__container {
   margin: 50px auto;
@@ -62,7 +61,7 @@
 .mode-toggle__circle {
   height: 1.30rem;
   width: 1.30rem;
-  background-color: @cedar-primary;
+  background-color: mat-color($my-app-primary);
   position: absolute;
   top: -0.2rem;
   border-radius: 50%;
@@ -72,7 +71,7 @@
 }
 
 .mode-toggle__circle-checked {
-  background-color: @cedar-secondary;
+  background-color: mat-color($my-app-accent);
   left: 1.75rem;
 }
 

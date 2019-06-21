@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../shared';
 import {ResourcesRoutingModule} from './resources-routing.module';
@@ -7,7 +7,7 @@ import {TemplateElementComponent} from './pages/template-element/template-elemen
 import {TemplateFieldComponent} from './pages/template-field/template-field.component';
 import {TemplateInstanceComponent} from './pages/template-instance/template-instance.component';
 import {CedarMetadataFormModule} from '../cedar-metadata-form/cedar-metadata-form.module';
-import {DemoMaterialModule} from '../material-module';
+import {MaterialModule} from '../material-module';
 
 
 
@@ -18,12 +18,13 @@ import {DemoMaterialModule} from '../material-module';
     TemplateComponent,
     TemplateInstanceComponent
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   imports: [
     ReactiveFormsModule,
     SharedModule,
     ResourcesRoutingModule,
     CedarMetadataFormModule,
-    DemoMaterialModule
+    MaterialModule
   ],
   exports: [],
   providers: [],

@@ -9,7 +9,7 @@ import {ArtifactHeaderComponent} from './components/artifact-header/artifact-hea
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {JsonViewComponent} from './components/json-view/json-view.component';
 import {ArtifactErrorComponent} from './components/artifact-error/artifact-error.component';
-import {DemoMaterialModule} from '../../modules/material-module';
+import {MaterialModule} from '../../modules/material-module';
 
 @NgModule({
   imports: [
@@ -18,7 +18,7 @@ import {DemoMaterialModule} from '../../modules/material-module';
     ReactiveFormsModule,
     RouterModule,
     TranslateModule,
-    DemoMaterialModule
+    MaterialModule
   ],
   declarations: [
     SpinnerComponent,

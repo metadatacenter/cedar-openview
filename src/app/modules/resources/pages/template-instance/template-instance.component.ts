@@ -22,7 +22,7 @@ import {UiService} from '../../../../services/ui.service';
 @Component({
   selector: 'app-template-instance',
   templateUrl: './template-instance.component.html',
-  styleUrls: ['./template-instance.component.less']
+  styleUrls: ['./template-instance.component.scss']
 })
 export class TemplateInstanceComponent extends CedarPageComponent implements OnInit {
 
@@ -33,9 +33,9 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
 
   template: any = null;
   templateId: string = null;
-  form: FormGroup;
-  viewOnly = false;
+  mode = 'view';
   allPosts;
+
 
   constructor(
     protected localSettings: LocalSettingsService,
@@ -53,7 +53,6 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
   }
 
   ngOnInit() {
-    this.form = new FormGroup({});
     this.allPosts = [];
     this.initDataHandler();
 
@@ -63,7 +62,6 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
       .requireId(DataHandlerDataId.TEMPLATE_INSTANCE, this.templateInstanceId)
       .load(() => this.instanceLoadedCallback(this.templateInstanceId), (error, dataStatus) => this.dataErrorCallback(error, dataStatus));
   }
-
 
   private instanceLoadedCallback(instanceId) {
     this.templateInstance = this.dataStore.getTemplateInstance(this.templateInstanceId);
@@ -102,24 +100,17 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
     }
   }
 
-  // toggle edit/view button
-  toggleDisabled() {
-    this.viewOnly = !this.viewOnly;
-  }
-
   // copy content to browser's clipboard
   copyToClipboard(elementId: string, buttonId: string) {
     this.uiService.copyToClipboard(elementId, buttonId);
   }
 
-  onSubmit() {
-    if (!this.form.valid) {
-      this.uiService.validateAllFormFields(this.form);
-    }
-  }
-
   // form changed, update tab contents and submit button status
-  protected onChanged(event) {
+  onFormChange(event) {
+    if (event && event.detail) {
+      this.uiService.setTitleAndDescription(event.detail.title, event.detail.description);
+      this.uiService.setValidity(event.detail.validity);
+    }
   }
 
 }

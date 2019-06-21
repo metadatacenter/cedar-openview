@@ -22,7 +22,7 @@ import {UiService} from '../../../../services/ui.service';
 @Component({
   selector: 'app-template-field',
   templateUrl: './template-field.component.html',
-  styleUrls: ['./template-field.component.less']
+  styleUrls: ['./template-field.component.scss']
 })
 export class TemplateFieldComponent extends CedarPageComponent implements OnInit {
 
@@ -33,7 +33,7 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
 
   instance: any = null;
   form: FormGroup;
-  viewOnly = false;
+  mode = 'view';
   allPosts;
 
   constructor(
@@ -88,23 +88,17 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
     }
   }
 
-  // toggle edit/view button
-  toggleDisabled() {
-    this.viewOnly = !this.viewOnly;
-  }
-
   // copy content to browser's clipboard
   copyToClipboard(elementId: string, buttonId: string) {
     this.uiService.copyToClipboard(elementId, buttonId);
   }
 
-  onSubmit() {
-    if (!this.form.valid) {
-      this.uiService.validateAllFormFields(this.form);
+  // form changed, update tab contents and submit button status
+  onFormChange(event) {
+    if (event && event.detail) {
+      this.uiService.setTitleAndDescription(event.detail.title, event.detail.description);
+      this.uiService.setValidity(event.detail.validity);
     }
   }
-
-  // form changed, update tab contents and submit button status
-  protected onChanged(event) {
-  }
 }
+

@@ -5,7 +5,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgxYoutubePlayerModule} from 'ngx-youtube-player';
 
 import {SharedModule} from '../../modules/shared/shared.module';
-import {DemoMaterialModule} from '../material-module';
+import {MaterialModule} from '../material-module';
 import {FormComponent} from './components/form/form.component';
 import {QuestionComponent} from './components/question/question.component';
 import {ControlledComponent} from './components/controlled/controlled.component';
@@ -35,7 +35,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
     ReactiveFormsModule,
     CommonModule,
     NgbModule,
-    DemoMaterialModule,
+    MaterialModule,
     SharedModule,
     NgxYoutubePlayerModule.forRoot(),
     FontAwesomeModule

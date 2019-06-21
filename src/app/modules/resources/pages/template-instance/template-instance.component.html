@@ -1,17 +1,18 @@
-
-
-
 <div *ngIf="templateInstance && !artifactStatus" class="instance__container ">
 
-      <app-metadata-form *ngIf="form"  type="instance" [form]="form" [instance]="templateInstance" [template]="template"
-        [disabled]="viewOnly"
-        (autocomplete)="onAutocomplete($event)" (changed)="onChanged($event)"
-        [autocompleteResults]="allPosts"></app-metadata-form>
+<!--      <app-metadata-form *ngIf="form"  type="instance" [form]="form" [instance]="templateInstance" [template]="template"-->
+<!--        [disabled]="viewOnly"-->
+<!--        (autocomplete)="onAutocomplete($event)" (changed)="onChanged($event)"-->
+<!--        [autocompleteResults]="allPosts"></app-metadata-form>-->
 
-  <div class="save-button">
-    <button mat-raised-button color="primary" [disabled]="viewOnly" (click)="onSubmit()">{{'App.Validate' | translate}}
-    </button>
-  </div>
+  <cedar-form
+    type="element"
+    [instance]="templateInstance"
+    [template]="template"
+    [mode]="mode"
+    (autocomplete)="onAutocomplete($event)"
+    (formChange)="onFormChange($event)"
+    [autocompleteResults]="allPosts"></cedar-form>
 
   <div *ngIf="templateInstance">
     <mat-accordion>
@@ -23,7 +24,7 @@
         </mat-expansion-panel-header>
 
         <div style="text-align:right">
-          <button id="jsonLDCopy" mat-raised-button color="accent" (click)="copyToClipboard('jsonLD', 'jsonLDCopy')">
+          <button id="jsonLDCopy" mat-raised-button color="primary" (click)="copyToClipboard('jsonLD', 'jsonLDCopy')">
             {{'App.Copy' | translate}}
           </button>
         </div>

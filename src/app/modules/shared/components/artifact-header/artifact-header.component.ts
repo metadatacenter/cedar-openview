@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -13,7 +13,7 @@ import {CedarBase} from '../base/cedar-base.component';
   templateUrl: './artifact-header.component.html',
   styleUrls: ['./artifact-header.component.css']
 })
-export class ArtifactHeaderComponent extends CedarBase {
+export class ArtifactHeaderComponent extends CedarBase implements OnInit {
 
   @Input() artifact: CedarArtifact;
   @Input() cedarLink: string;

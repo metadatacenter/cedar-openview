@@ -2,7 +2,7 @@
 <app-spinner></app-spinner>
 
 <!-- Slide Menu-->
-<aside class="side-menu__container" [ngClass]="{'side-menu__container-active': showMenu}" (click)="toggleMenu()">
+<aside class="side-menu__container" [ngClass]="{'side-menu__container-active': showMenu}">
   <nav class="slide-menu" [ngClass]="{'slide-menu-active': showMenu}" (click)="$event.stopImmediatePropagation();">
     <section class="menu-header">
       <span></span>
@@ -38,7 +38,7 @@
       </button>
     </h2>
 
-    <h3 class="cedar-open-metadata" >CEDAR Open Metadata</h3>
+    <h3 class="cedar-open-metadata">CEDAR Open Metadata</h3>
   </header>
 
   <main class="main__container">
