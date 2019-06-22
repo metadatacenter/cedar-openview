@@ -10,7 +10,6 @@ import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.mode
 import {TemplateElement} from '../../../../shared/model/template-element.model';
 import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
 import {environment} from '../../../../../environments/environment';
-import {FormGroup} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {AutocompleteService} from '../../../../services/autocomplete.service';
 import {forkJoin} from 'rxjs';
@@ -22,7 +21,7 @@ import {UiService} from '../../../../services/ui.service';
 @Component({
   selector: 'app-template-element',
   templateUrl: './template-element.component.html',
-  styleUrls: ['./template-element.component.less']
+  styleUrls: ['./template-element.component.scss']
 })
 export class TemplateElementComponent extends CedarPageComponent implements OnInit {
 
@@ -30,10 +29,8 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
   templateElement: TemplateElement = null;
   artifactStatus: number = null;
   cedarLink: string = null;
-
   instance: any = null;
-  form: FormGroup;
-  viewOnly = false;
+  mode = 'view';
   allPosts;
 
   constructor(
@@ -52,7 +49,6 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
   }
 
   ngOnInit() {
-    this.form = new FormGroup({});
     this.allPosts = [];
     this.initDataHandler();
 
@@ -87,24 +83,16 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
     }
   }
 
-  // toggle edit/view button
-  toggleDisabled() {
-    this.viewOnly = !this.viewOnly;
-  }
-
   // copy content to browser's clipboard
   copyToClipboard(elementId: string, buttonId: string) {
     this.uiService.copyToClipboard(elementId, buttonId);
   }
 
-
-  onSubmit() {
-    if (!this.form.valid) {
-      this.uiService.validateAllFormFields(this.form);
-    }
-  }
-
   // form changed, update tab contents and submit button status
-  protected onChanged(event) {
+  onFormChange(event) {
+    if (event && event.detail) {
+      this.uiService.setTitleAndDescription(event.detail.title, event.detail.description);
+      this.uiService.setValidity(event.detail.validity);
+    }
   }
 }

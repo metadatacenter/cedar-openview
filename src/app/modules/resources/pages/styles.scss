@@ -1,30 +1,16 @@
-@import "~src/colors.less";
-
+@import '~src/theme.scss';
 
 .instance__container {
   margin: 50px auto;
   overflow: auto;
-  max-width: 80%;
+  max-width: 95%;
 
-  @media only screen and (max-width: 300px) {
-    max-width: 100%;
-    padding: 0 10px;
-  }
-
-  @media only screen and (min-width: 301px) and (max-width: 600px) {
-    max-width: calc(100% - 4em);
-  }
-
-  @media only screen and (min-width: 601px) and (max-width: 700px) {
-    max-width: 580px;
-  }
-
-  @media only screen and (min-width: 701px) and (max-width: 1000px) {
-    max-width: calc(80% - 4em);
+  @media only screen and (min-width: 301px) and (max-width: 1000px) {
+    max-width: 90%;
   }
 
   @media only screen and (min-width: 1001px)  {
-    max-width: calc(1000px - 4em);
+    max-width: 80%;
   }
 }
 
@@ -62,7 +48,7 @@
 .mode-toggle__circle {
   height: 1.30rem;
   width: 1.30rem;
-  background-color: @cedar-primary;
+  background-color: mat-color($my-app-primary);
   position: absolute;
   top: -0.2rem;
   border-radius: 50%;
@@ -72,7 +58,7 @@
 }
 
 .mode-toggle__circle-checked {
-  background-color: @cedar-secondary;
+  background-color: mat-color($my-app-accent);
   left: 1.75rem;
 }
 

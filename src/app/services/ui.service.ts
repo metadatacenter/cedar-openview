@@ -8,6 +8,7 @@ import {FormArray, FormControl, FormGroup} from '@angular/forms';
 })
 export class UiService {
 
+  public valid: boolean;
   public title: string;
   public description: string;
   public hasTitle: BehaviorSubject<string> = new BehaviorSubject('');
@@ -17,10 +18,18 @@ export class UiService {
   }
 
   public setTitleAndDescription(title: string, description: string) {
-    this.title = title;
-    this.hasTitle.next(this.title);
-    this.description = description;
-    this.hasDescription.next(this.description);
+    if (title !== this.title) {
+      this.title = title;
+      this.hasTitle.next(this.title);
+    }
+    if (description !== this.description) {
+      this.description = description;
+      this.hasDescription.next(this.description);
+    }
+  }
+
+  public setValidity(valid: boolean) {
+    this.valid = valid;
   }
 
   openInCedar() {
@@ -74,20 +83,6 @@ export class UiService {
     }
   }
 
-  validateAllFormFields(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.markAsTouched({onlySelf: true});
-      } else if (control instanceof FormArray) {
-        control.controls.forEach(cntl => {
-          cntl.markAsTouched({onlySelf: true});
-        });
-      } else if (control instanceof FormGroup) {
-        this.validateAllFormFields(control);
-      }
-    });
-  }
 
 }
 
