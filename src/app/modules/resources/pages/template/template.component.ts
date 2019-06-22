@@ -29,7 +29,7 @@ export class TemplateComponent  extends CedarPageComponent implements OnInit {
   templateId: string = null;
   template: Template = null;
   artifactStatus: number = null;
-  cedarLink: string = null;       
+  cedarLink: string = null;
 
   instance: any = null;
   mode = 'view';
