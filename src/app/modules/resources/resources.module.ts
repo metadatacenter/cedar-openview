@@ -6,7 +6,6 @@ import {TemplateComponent} from './pages/template/template.component';
 import {TemplateElementComponent} from './pages/template-element/template-element.component';
 import {TemplateFieldComponent} from './pages/template-field/template-field.component';
 import {TemplateInstanceComponent} from './pages/template-instance/template-instance.component';
-import {CedarMetadataFormModule} from '../cedar-metadata-form/cedar-metadata-form.module';
 import {MaterialModule} from '../material-module';
 
 
@@ -23,7 +22,6 @@ import {MaterialModule} from '../material-module';
     ReactiveFormsModule,
     SharedModule,
     ResourcesRoutingModule,
-    CedarMetadataFormModule,
     MaterialModule
   ],
   exports: [],

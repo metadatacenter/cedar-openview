@@ -10,14 +10,11 @@ import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.mode
 import {TemplateField} from '../../../../shared/model/template-field.model';
 import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
 import {environment} from '../../../../../environments/environment';
-import {FormGroup} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {AutocompleteService} from '../../../../services/autocomplete.service';
 import {forkJoin} from 'rxjs';
-import {InstanceService} from '../../../cedar-metadata-form/services/instance.service';
-import {TemplateService} from '../../../cedar-metadata-form/services/template.service';
-import {TemplateSchema} from '../../../cedar-metadata-form/models/template-schema.model';
 import {UiService} from '../../../../services/ui.service';
+import {TemplateService} from '../../../../services/template.service';
 
 @Component({
   selector: 'app-template-field',
@@ -32,7 +29,6 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
   cedarLink: string = null;
 
   instance: any = null;
-  form: FormGroup;
   mode = 'view';
   allPosts;
 
@@ -52,7 +48,6 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
   }
 
   ngOnInit() {
-    this.form = new FormGroup({});
     this.allPosts = [];
     this.initDataHandler();
 
@@ -65,12 +60,7 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
 
   private dataLoadedCallback() {
     this.templateField = this.dataStore.getTemplateField(this.templateFieldId);
-    this.instance = InstanceService.initInstance();
-    const schema = TemplateService.schemaOf(this.templateField) as TemplateSchema;
-
-    InstanceService.setBasedOn(this.instance, TemplateService.getId(schema));
-    InstanceService.setName(this.instance, TemplateService.getName(schema));
-    InstanceService.setHelp(this.instance, TemplateService.getHelp(schema));
+    this.instance = TemplateService.initInstance(this.templateField);
   }
 
   private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {

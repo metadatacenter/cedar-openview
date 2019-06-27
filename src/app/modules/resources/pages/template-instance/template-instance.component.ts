@@ -10,14 +10,12 @@ import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.mode
 import {TemplateInstance} from '../../../../shared/model/template-instance.model';
 import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
 import {environment} from '../../../../../environments/environment';
-import {FormGroup} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {AutocompleteService} from '../../../../services/autocomplete.service';
 import {forkJoin} from 'rxjs';
-import {InstanceService} from '../../../cedar-metadata-form/services/instance.service';
-import {TemplateService} from '../../../cedar-metadata-form/services/template.service';
-import {TemplateSchema} from '../../../cedar-metadata-form/models/template-schema.model';
 import {UiService} from '../../../../services/ui.service';
+import {TemplateService} from '../../../../services/template.service';
+
 
 @Component({
   selector: 'app-template-instance',
@@ -78,10 +76,10 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
 
     // if this is a default instance, save the template info
     if (!TemplateService.isBasedOn(this.templateInstance)) {
-      const schema = TemplateService.schemaOf(this.template) as TemplateSchema;
-      InstanceService.setBasedOn(this.templateInstance, TemplateService.getId(schema));
-      InstanceService.setName(this.templateInstance, TemplateService.getName(schema));
-      InstanceService.setHelp(this.templateInstance, TemplateService.getHelp(schema));
+      const schema = TemplateService.schemaOf(this.template)
+      TemplateService.setBasedOn(this.templateInstance, TemplateService.getId(schema));
+      TemplateService.setName(this.templateInstance, TemplateService.getName(schema));
+      TemplateService.setHelp(this.templateInstance, TemplateService.getHelp(schema));
     }
   }
 
