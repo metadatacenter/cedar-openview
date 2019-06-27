@@ -13,10 +13,8 @@ import {environment} from '../../../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {AutocompleteService} from '../../../../services/autocomplete.service';
 import {forkJoin} from 'rxjs';
-import {InstanceService} from '../../../cedar-metadata-form/services/instance.service';
-import {TemplateService} from '../../../cedar-metadata-form/services/template.service';
-import {TemplateSchema} from '../../../cedar-metadata-form/models/template-schema.model';
 import {UiService} from '../../../../services/ui.service';
+import {TemplateService} from '../../../../services/template.service';
 
 @Component({
   selector: 'app-template-element',
@@ -61,11 +59,7 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
 
   private dataLoadedCallback() {
     this.templateElement = this.dataStore.getTemplateElement(this.templateElementId);
-    this.instance = InstanceService.initInstance();
-    const schema = TemplateService.schemaOf(this.templateElement) as TemplateSchema;
-    InstanceService.setBasedOn(this.instance, TemplateService.getId(schema));
-    InstanceService.setName(this.instance, TemplateService.getName(schema));
-    InstanceService.setHelp(this.instance, TemplateService.getHelp(schema));
+    this.instance = TemplateService.initInstance(this.templateElement);
   }
 
   private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {

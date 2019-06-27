@@ -9,14 +9,13 @@ import {LocalSettingsService} from '../../../../services/local-settings.service'
 import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.model';
 import {Template} from '../../../../shared/model/template.model';
 import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
-import {TemplateSchema} from '../../../cedar-metadata-form/models/template-schema.model';
-import {InstanceService} from '../../../cedar-metadata-form/services/instance.service';
-import {TemplateService} from '../../../cedar-metadata-form/services/template.service';
 import {forkJoin} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {AutocompleteService} from '../../../../services/autocomplete.service';
 import {environment} from '../../../../../environments/environment';
 import {UiService} from '../../../../services/ui.service';
+import {TemplateService} from '../../../../services/template.service';
+
 
 
 @Component({
@@ -62,11 +61,11 @@ export class TemplateComponent  extends CedarPageComponent implements OnInit {
 
   private dataLoadedCallback() {
     this.template = this.dataStore.getTemplate(this.templateId);
-    this.instance = InstanceService.initInstance();
-    const schema = TemplateService.schemaOf(this.template) as TemplateSchema;
-    InstanceService.setBasedOn(this.instance, TemplateService.getId(schema));
-    InstanceService.setName(this.instance, TemplateService.getName(schema));
-    InstanceService.setHelp(this.instance, TemplateService.getHelp(schema));
+    this.instance = TemplateService.initInstance(this.template);
+    // const schema = TemplateService.schemaOf(this.template);
+    // TemplateService.setBasedOn(this.instance, TemplateService.getId(schema));
+    // TemplateService.setName(this.instance, TemplateService.getName(schema));
+    // TemplateService.setHelp(this.instance, TemplateService.getHelp(schema));
   }
 
   private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
