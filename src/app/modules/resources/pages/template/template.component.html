@@ -1,12 +1,6 @@
 <div *ngIf="template && !artifactStatus" class="instance__container ">
 
-<!--  <app-metadata-form *ngIf="form" type="template" [form]="form" [instance]="instance" [template]="template"-->
-<!--    [disabled]="viewOnly"-->
-<!--    (autocomplete)="onAutocomplete($event)" (changed)="onChanged($event)"-->
-<!--    [autocompleteResults]="allPosts"></app-metadata-form>-->
-
   <cedar-form
-    type="template"
     [mode]="mode"
     [instance]="instance"
     [template]="template"
