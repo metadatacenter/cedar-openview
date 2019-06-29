@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/index';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {TranslateService} from '@ngx-translate/core';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class UiService {
   public hasTitle: BehaviorSubject<string> = new BehaviorSubject('');
   public hasDescription: BehaviorSubject<string> = new BehaviorSubject('');
 
-  constructor() {
+  constructor(private translateService: TranslateService) {
   }
 
   public setTitleAndDescription(title: string, description: string) {
@@ -75,9 +76,9 @@ export class UiService {
 
       const btn = document.getElementById(buttonId);
       if (btn) {
-        btn.innerHTML = 'Copied';
+        btn.innerHTML = this.translateService.instant('App.Copied');
         setTimeout(() => {
-          btn.innerHTML = 'Copy';
+          btn.innerHTML = this.translateService.instant('App.Copy');
         }, 10000);
       }
     }
