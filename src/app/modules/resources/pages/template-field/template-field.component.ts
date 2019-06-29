@@ -24,13 +24,14 @@ import {TemplateService} from '../../../../services/template.service';
 export class TemplateFieldComponent extends CedarPageComponent implements OnInit {
 
   templateFieldId: string = null;
-  templateField: TemplateField = null;
+  template: TemplateField = null;
   artifactStatus: number = null;
   cedarLink: string = null;
 
   instance: any = null;
   mode = 'view';
   allPosts;
+  rdf: any;
 
   constructor(
     protected localSettings: LocalSettingsService,
@@ -59,8 +60,8 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
   }
 
   private dataLoadedCallback() {
-    this.templateField = this.dataStore.getTemplateField(this.templateFieldId);
-    this.instance = TemplateService.initInstance(this.templateField);
+    this.template = this.dataStore.getTemplateField(this.templateFieldId);
+    this.instance = TemplateService.initInstance(this.template);
   }
 
   private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {

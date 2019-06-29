@@ -1,25 +1,25 @@
 {
   "App": {
     "Title": "CEDAR",
-    "NavTitle": "CEDAR Open",
-    "WindowTitle": "CEDAR Open",
+    "NavTitle": "CEDAR OpenView",
+    "WindowTitle": "CEDAR OpenView",
     "SelectPage": "Select Page",
     "Home": "Home",
     "Language": "Language",
     "View": "View",
     "Edit": "Edit",
     "Form": "Form",
-    "Copy": "Copy",
-    "JSONLD": "JSON-LD",
-    "RDF": "RDF",
+    "Copy": "Copy to Clipcoard",
+    "Copied": "Copied",
     "Save": "Save",
     "Value": "Value",
     "Validate": "Validate"
   },
   "Generic": {
     "Loading": "Adatbetöltés...",
-    "jsonSchema": "JSON Schema",
-    "jsonLD": "JSON-LD"
+    "jsonSchema": "Template JSON Schema",
+    "jsonLD": "Instance JSON-LD",
+    "rdf": "Instance RDF"
   },
   "error": {
     "resourceNotPublic": "A hivatkozott erőforrás nem érhető el publikusan"

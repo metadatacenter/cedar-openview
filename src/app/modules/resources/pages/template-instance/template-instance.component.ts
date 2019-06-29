@@ -25,7 +25,7 @@ import {TemplateService} from '../../../../services/template.service';
 export class TemplateInstanceComponent extends CedarPageComponent implements OnInit {
 
   templateInstanceId: string = null;
-  templateInstance: TemplateInstance = null;
+  instance: TemplateInstance = null;
   artifactStatus: number = null;
   cedarLink: string = null;
 
@@ -33,7 +33,7 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
   templateId: string = null;
   mode = 'view';
   allPosts;
-
+  rdf: any;
 
   constructor(
     protected localSettings: LocalSettingsService,
@@ -62,8 +62,8 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
   }
 
   private instanceLoadedCallback(instanceId) {
-    this.templateInstance = this.dataStore.getTemplateInstance(this.templateInstanceId);
-    this.templateId = TemplateService.isBasedOn(this.templateInstance);
+    this.instance = this.dataStore.getTemplateInstance(this.templateInstanceId);
+    this.templateId = TemplateService.isBasedOn(this.instance);
 
     // load the template it is based on
     this.dataHandler
@@ -75,11 +75,11 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
     this.template = this.dataStore.getTemplate(templateId);
 
     // if this is a default instance, save the template info
-    if (!TemplateService.isBasedOn(this.templateInstance)) {
-      const schema = TemplateService.schemaOf(this.template)
-      TemplateService.setBasedOn(this.templateInstance, TemplateService.getId(schema));
-      TemplateService.setName(this.templateInstance, TemplateService.getName(schema));
-      TemplateService.setHelp(this.templateInstance, TemplateService.getHelp(schema));
+    if (!TemplateService.isBasedOn(this.instance)) {
+      const schema = TemplateService.schemaOf(this.template);
+      TemplateService.setBasedOn(this.instance, TemplateService.getId(schema));
+      TemplateService.setName(this.instance, TemplateService.getName(schema));
+      TemplateService.setHelp(this.instance, TemplateService.getHelp(schema));
     }
   }
 

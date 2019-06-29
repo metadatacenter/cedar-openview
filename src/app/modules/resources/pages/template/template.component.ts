@@ -33,6 +33,7 @@ export class TemplateComponent  extends CedarPageComponent implements OnInit {
   instance: any = null;
   mode = 'view';
   allPosts;
+  rdf: any;
 
   constructor(
     protected localSettings: LocalSettingsService,
