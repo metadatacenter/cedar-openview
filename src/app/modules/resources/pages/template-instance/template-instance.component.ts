@@ -10,32 +10,30 @@ import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.mode
 import {TemplateInstance} from '../../../../shared/model/template-instance.model';
 import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
 import {environment} from '../../../../../environments/environment';
-import {FormGroup} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {AutocompleteService} from '../../../../services/autocomplete.service';
 import {forkJoin} from 'rxjs';
-import {InstanceService} from '../../../cedar-metadata-form/services/instance.service';
-import {TemplateService} from '../../../cedar-metadata-form/services/template.service';
-import {TemplateSchema} from '../../../cedar-metadata-form/models/template-schema.model';
 import {UiService} from '../../../../services/ui.service';
+import {TemplateService} from '../../../../services/template.service';
+
 
 @Component({
   selector: 'app-template-instance',
   templateUrl: './template-instance.component.html',
-  styleUrls: ['./template-instance.component.less']
+  styleUrls: ['./template-instance.component.scss']
 })
 export class TemplateInstanceComponent extends CedarPageComponent implements OnInit {
 
   templateInstanceId: string = null;
-  templateInstance: TemplateInstance = null;
+  instance: TemplateInstance = null;
   artifactStatus: number = null;
   cedarLink: string = null;
 
   template: any = null;
   templateId: string = null;
-  form: FormGroup;
-  viewOnly = false;
+  mode = 'view';
   allPosts;
+  rdf: any;
 
   constructor(
     protected localSettings: LocalSettingsService,
@@ -53,7 +51,6 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
   }
 
   ngOnInit() {
-    this.form = new FormGroup({});
     this.allPosts = [];
     this.initDataHandler();
 
@@ -64,10 +61,9 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
       .load(() => this.instanceLoadedCallback(this.templateInstanceId), (error, dataStatus) => this.dataErrorCallback(error, dataStatus));
   }
 
-
   private instanceLoadedCallback(instanceId) {
-    this.templateInstance = this.dataStore.getTemplateInstance(this.templateInstanceId);
-    this.templateId = TemplateService.isBasedOn(this.templateInstance);
+    this.instance = this.dataStore.getTemplateInstance(this.templateInstanceId);
+    this.templateId = TemplateService.isBasedOn(this.instance);
 
     // load the template it is based on
     this.dataHandler
@@ -79,11 +75,11 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
     this.template = this.dataStore.getTemplate(templateId);
 
     // if this is a default instance, save the template info
-    if (!TemplateService.isBasedOn(this.templateInstance)) {
-      const schema = TemplateService.schemaOf(this.template) as TemplateSchema;
-      InstanceService.setBasedOn(this.templateInstance, TemplateService.getId(schema));
-      InstanceService.setName(this.templateInstance, TemplateService.getName(schema));
-      InstanceService.setHelp(this.templateInstance, TemplateService.getHelp(schema));
+    if (!TemplateService.isBasedOn(this.instance)) {
+      const schema = TemplateService.schemaOf(this.template);
+      TemplateService.setBasedOn(this.instance, TemplateService.getId(schema));
+      TemplateService.setName(this.instance, TemplateService.getName(schema));
+      TemplateService.setHelp(this.instance, TemplateService.getHelp(schema));
     }
   }
 
@@ -102,24 +98,17 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
     }
   }
 
-  // toggle edit/view button
-  toggleDisabled() {
-    this.viewOnly = !this.viewOnly;
-  }
-
   // copy content to browser's clipboard
   copyToClipboard(elementId: string, buttonId: string) {
     this.uiService.copyToClipboard(elementId, buttonId);
   }
 
-  onSubmit() {
-    if (!this.form.valid) {
-      this.uiService.validateAllFormFields(this.form);
-    }
-  }
-
   // form changed, update tab contents and submit button status
-  protected onChanged(event) {
+  onFormChange(event) {
+    if (event && event.detail) {
+      this.uiService.setTitleAndDescription(event.detail.title, event.detail.description);
+      this.uiService.setValidity(event.detail.validity);
+    }
   }
 
 }

@@ -1,21 +1,19 @@
-<div *ngIf="templateField && !artifactStatus" class="instance__container ">
+<div *ngIf="template && !artifactStatus" class="instance__container ">
 
-  <app-metadata-form *ngIf="form" type="field" [form]="form" [instance]="instance" [template]="templateField"
-    [disabled]="viewOnly"
-    (autocomplete)="onAutocomplete($event)" (changed)="onChanged($event)"
-    [autocompleteResults]="allPosts"></app-metadata-form>
+  <cedar-form
+    [instance]="instance"
+    [template]="template"
+    [mode]="mode"
+    (autocomplete)="onAutocomplete($event)"
+    (formChange)=" onFormChange($event)"
+    [autocompleteResults]="allPosts"></cedar-form>
 
-  <div class="save-button">
-    <button mat-raised-button color="primary" [disabled]="viewOnly" (click)="onSubmit()">{{'App.Validate' | translate}}
-    </button>
-  </div>
-
-  <div *ngIf="instance">
+  <div *ngIf="instance" class="accordion-container">
     <mat-accordion>
-      <mat-expansion-panel>
+      <mat-expansion-panel class="expansion-container">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            JSON-LD
+            {{'Generic.jsonLD' | translate}}
           </mat-panel-title>
         </mat-expansion-panel-header>
 
@@ -26,6 +24,38 @@
         </div>
         <pre><span id="jsonLD">{{ instance | json}}</span></pre>
       </mat-expansion-panel>
+
+<!--      <mat-expansion-panel class="expansion-container">-->
+<!--        <mat-expansion-panel-header>-->
+<!--          <mat-panel-title>-->
+<!--            {{'Generic.rdf' | translate}}-->
+<!--          </mat-panel-title>-->
+<!--        </mat-expansion-panel-header>-->
+
+<!--        <div style="text-align:right">-->
+<!--          <button id="RDFCopy" mat-raised-button color="accent" (click)="copyToClipboard('RDF', 'RDFCopy')">-->
+<!--            {{'App.Copy' | translate}}-->
+<!--          </button>-->
+<!--        </div>-->
+<!--        <pre><span id="RDF">{{rdf}}</span></pre>-->
+<!--      </mat-expansion-panel>-->
+
+      <mat-expansion-panel class="expansion-container">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{'Generic.jsonSchema' | translate}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div style="text-align:right">
+          <button id="jsonSchemaCopy" mat-raised-button color="accent"
+            (click)="copyToClipboard('jsonSchema', 'jsonSchemaCopy')">
+            {{'App.Copy' | translate}}
+          </button>
+        </div>
+        <pre><span id="jsonSchema">{{ template | json}}</span></pre>
+      </mat-expansion-panel>
+
     </mat-accordion>
   </div>
 </div>

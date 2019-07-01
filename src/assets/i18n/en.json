@@ -1,25 +1,25 @@
 {
   "App": {
     "Title": "CEDAR",
-    "NavTitle": "CEDAR Open Metadata",
-    "WindowTitle": "CEDAR Open Metadata",
+    "NavTitle": "CEDAR OpenView",
+    "WindowTitle": "CEDAR OpenView",
     "SelectPage": "Select Page",
     "Home": "Home",
     "Language": "Language",
     "View": "View",
     "Edit": "Edit",
     "Form": "Form",
-    "Copy": "Copy",
-    "JSONLD": "JSON-LD",
-    "RDF": "RDF",
+    "Copy": "Copy to Clipboard",
+    "Copied": "Copied",
     "Save": "Save",
     "Value": "Value",
     "Validate": "Validate"
   },
   "Generic": {
     "Loading": "Loading...",
-    "jsonSchema": "JSON Schema",
-    "jsonLD": "JSON-LD"
+    "jsonSchema": "Template JSON Schema",
+    "jsonLD": "Instance JSON-LD",
+    "rdf": "Instance RDF"
   },
   "error": {
     "resourceNotPublic": "The requested resource is not publicly available"

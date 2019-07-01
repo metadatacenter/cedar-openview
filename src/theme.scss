@@ -1,0 +1,215 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$cedar-tree-green: (
+  50 : #ebeeef,
+  100 : #ccd5d8,
+  200 : #aababe,
+  300 : #889ea3,
+  400 : #6f8990,
+  500 : #55747c,
+  600 : #4e6c74,
+  700 : #446169,
+  800 : #3b575f,
+  900 : #2a444c,
+  A100 : #97e5ff,
+  A200 : #64d8ff,
+  A400 : #31ccff,
+  A700 : #18c5ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$cedar-green: (
+  50 : #e4edf0,
+  100 : #bcd3d9,
+  200 : #90b6bf,
+  300 : #6399a5,
+  400 : #418392,
+  500 : #206d7f,
+  600 : #1c6577,
+  700 : #185a6c,
+  800 : #135062,
+  900 : #0b3e4f,
+  A100 : #85dcff,
+  A200 : #52cdff,
+  A400 : #1fbfff,
+  A700 : #06b7ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$cedar-blue: (
+  50 : #e6e8f1,
+  100 : #c0c6dc,
+  200 : #96a0c5,
+  300 : #6c7aae,
+  400 : #4d5e9c,
+  500 : #2d418b,
+  600 : #283b83,
+  700 : #223278,
+  800 : #1c2a6e,
+  900 : #111c5b,
+  A100 : #92a1ff,
+  A200 : #5f74ff,
+  A400 : #2c48ff,
+  A700 : #1332ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$cedar-orange: (
+  50 : #f9f0e6,
+  100 : #f0d8c1,
+  200 : #e6bf97,
+  300 : #dca56d,
+  400 : #d5914e,
+  500 : #cd7e2f,
+  600 : #c8762a,
+  700 : #c16b23,
+  800 : #ba611d,
+  900 : #ae4e12,
+  A100 : #ffeadf,
+  A200 : #ffc9ac,
+  A400 : #ffa779,
+  A700 : #ff965f,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$cedar-gold: (
+  50 : #f9f3e6,
+  100 : #f0e2c1,
+  200 : #e6ce97,
+  300 : #dcba6d,
+  400 : #d5ac4e,
+  500 : #cd9d2f,
+  600 : #c8952a,
+  700 : #c18b23,
+  800 : #ba811d,
+  900 : #ae6f12,
+  A100 : #fff1df,
+  A200 : #ffdbac,
+  A400 : #ffc479,
+  A700 : #ffb95f,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$cedar-red: (
+  50 : #f8e6e8,
+  100 : #eec0c5,
+  200 : #e3979e,
+  300 : #d76d77,
+  400 : #cf4d59,
+  500 : #c62e3c,
+  600 : #c02936,
+  700 : #b9232e,
+  800 : #b11d27,
+  900 : #a4121a,
+  A100 : #ffd5d7,
+  A200 : #ffa2a6,
+  A400 : #ff6f75,
+  A700 : #ff565d,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$my-app-primary: mat-palette($cedar-green, 500, 900, A100);
+$my-app-secondary: mat-palette($cedar-blue, 500, 900, A100);
+$my-app-tertiary: mat-palette($cedar-gold, 200, 900, A100);
+$my-app-accent:  mat-palette($cedar-orange, 200, 900, A100);
+$my-app-warn:    mat-palette($cedar-red, 500, 900, A100);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+@include angular-material-theme($my-app-theme);
+
+.alternate-theme {
+  $alternate-primary: mat-palette($cedar-blue, 500, 900, A100);
+  $alternate-accent:  mat-palette($cedar-orange, 200, 900, A100);
+  $alternate-theme: mat-light-theme($alternate-primary, $alternate-accent, $my-app-warn);
+  @include angular-material-theme($alternate-theme);
+}

@@ -42,5 +42,4 @@ export class ArtifactErrorComponent extends CedarBase implements OnInit {
   openInCedar() {
     this.uiService.openInCedar();
   }
-
 }

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/index';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {TranslateService} from '@ngx-translate/core';
 
 
 @Injectable({
@@ -8,19 +9,28 @@ import {FormArray, FormControl, FormGroup} from '@angular/forms';
 })
 export class UiService {
 
+  public valid: boolean;
   public title: string;
   public description: string;
   public hasTitle: BehaviorSubject<string> = new BehaviorSubject('');
   public hasDescription: BehaviorSubject<string> = new BehaviorSubject('');
 
-  constructor() {
+  constructor(private translateService: TranslateService) {
   }
 
   public setTitleAndDescription(title: string, description: string) {
-    this.title = title;
-    this.hasTitle.next(this.title);
-    this.description = description;
-    this.hasDescription.next(this.description);
+    if (title !== this.title) {
+      this.title = title;
+      this.hasTitle.next(this.title);
+    }
+    if (description !== this.description) {
+      this.description = description;
+      this.hasDescription.next(this.description);
+    }
+  }
+
+  public setValidity(valid: boolean) {
+    this.valid = valid;
   }
 
   openInCedar() {
@@ -66,28 +76,14 @@ export class UiService {
 
       const btn = document.getElementById(buttonId);
       if (btn) {
-        btn.innerHTML = 'Copied';
+        btn.innerHTML = this.translateService.instant('App.Copied');
         setTimeout(() => {
-          btn.innerHTML = 'Copy';
+          btn.innerHTML = this.translateService.instant('App.Copy');
         }, 10000);
       }
     }
   }
 
-  validateAllFormFields(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.markAsTouched({onlySelf: true});
-      } else if (control instanceof FormArray) {
-        control.controls.forEach(cntl => {
-          cntl.markAsTouched({onlySelf: true});
-        });
-      } else if (control instanceof FormGroup) {
-        this.validateAllFormFields(control);
-      }
-    });
-  }
 
 }
 

@@ -1,5 +1,4 @@
-@import "~src/colors.less";
-
+@import '~src/theme.scss';
 
 .instance__container {
   margin: 50px auto;
@@ -23,16 +22,31 @@
     max-width: calc(80% - 4em);
   }
 
-  @media only screen and (min-width: 1001px)  {
+  @media only screen and (min-width: 1001px) {
     max-width: calc(1000px - 4em);
   }
 }
+
+
 
 .tab-header {
   padding: 10px 10px 0 10px;
   display: flex;
   justify-content: flex-end;
 }
+
+.expansion-container {
+  border: 1px solid #eee;
+}
+
+.accordion-container {
+  margin-top: 50px
+}
+
+.copy-to-clipboard {
+  text-align: right;
+}
+
 
 .instance__container-dark {
   color: #fff;
@@ -62,7 +76,7 @@
 .mode-toggle__circle {
   height: 1.30rem;
   width: 1.30rem;
-  background-color: @cedar-primary;
+  background-color: mat-color($my-app-primary);
   position: absolute;
   top: -0.2rem;
   border-radius: 50%;
@@ -72,7 +86,7 @@
 }
 
 .mode-toggle__circle-checked {
-  background-color: @cedar-secondary;
+  background-color: mat-color($my-app-accent);
   left: 1.75rem;
 }
 
@@ -114,3 +128,5 @@ pre {
   text-align: right;
   padding: 0 24px 16px
 }
+
+

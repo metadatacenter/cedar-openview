@@ -9,21 +9,19 @@ import {LocalSettingsService} from '../../../../services/local-settings.service'
 import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.model';
 import {Template} from '../../../../shared/model/template.model';
 import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
-import {TemplateSchema} from '../../../cedar-metadata-form/models/template-schema.model';
-import {InstanceService} from '../../../cedar-metadata-form/services/instance.service';
-import {FormGroup} from '@angular/forms';
-import {TemplateService} from '../../../cedar-metadata-form/services/template.service';
 import {forkJoin} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {AutocompleteService} from '../../../../services/autocomplete.service';
 import {environment} from '../../../../../environments/environment';
 import {UiService} from '../../../../services/ui.service';
+import {TemplateService} from '../../../../services/template.service';
+
 
 
 @Component({
   selector: 'app-template',
   templateUrl: './template.component.html',
-  styleUrls: ['./template.component.less']
+  styleUrls: ['./template.component.scss']
 })
 export class TemplateComponent  extends CedarPageComponent implements OnInit {
 
@@ -33,9 +31,9 @@ export class TemplateComponent  extends CedarPageComponent implements OnInit {
   cedarLink: string = null;
 
   instance: any = null;
-  form: FormGroup;
-  viewOnly = false;
+  mode = 'view';
   allPosts;
+  rdf: any;
 
   constructor(
     protected localSettings: LocalSettingsService,
@@ -53,7 +51,6 @@ export class TemplateComponent  extends CedarPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.form = new FormGroup({});
     this.allPosts = [];
     this.initDataHandler();
     this.templateId = this.route.snapshot.paramMap.get('templateId');
@@ -65,20 +62,20 @@ export class TemplateComponent  extends CedarPageComponent implements OnInit {
 
   private dataLoadedCallback() {
     this.template = this.dataStore.getTemplate(this.templateId);
-    this.instance = InstanceService.initInstance();
-    const schema = TemplateService.schemaOf(this.template) as TemplateSchema;
-    InstanceService.setBasedOn(this.instance, TemplateService.getId(schema));
-    InstanceService.setName(this.instance, TemplateService.getName(schema));
-    InstanceService.setHelp(this.instance, TemplateService.getHelp(schema));
+    this.instance = TemplateService.initInstance(this.template);
+    // const schema = TemplateService.schemaOf(this.template);
+    // TemplateService.setBasedOn(this.instance, TemplateService.getId(schema));
+    // TemplateService.setName(this.instance, TemplateService.getName(schema));
+    // TemplateService.setHelp(this.instance, TemplateService.getHelp(schema));
   }
 
   private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
     this.artifactStatus = error.status;
   }
 
-  protected onAutocomplete(event) {
-    if (event['search']) {
-      forkJoin(this.autocompleteService.getPosts(event['search'], event.constraints)).subscribe(posts => {
+  onAutocomplete(event) {
+    if (event.detail && event.detail.search) {
+      forkJoin(this.autocompleteService.getPosts(event.detail.search, event.detail.constraints)).subscribe(posts => {
         this.allPosts = [];
         for (let i = 0; i < posts.length; i++) {
           this.allPosts = this.allPosts.concat(posts[i]['collection']);
@@ -87,23 +84,18 @@ export class TemplateComponent  extends CedarPageComponent implements OnInit {
     }
   }
 
-  // toggle edit/view button
-  toggleDisabled() {
-    this.viewOnly = !this.viewOnly;
-  }
-
   // copy content to browser's clipboard
   copyToClipboard(elementId: string, buttonId: string) {
     this.uiService.copyToClipboard(elementId, buttonId);
   }
 
-  onSubmit() {
-    if (!this.form.valid) {
-      this.uiService.validateAllFormFields(this.form);
+  // form changed, update tab contents and submit button status
+  onFormChange(event) {
+    if (event && event.detail) {
+      this.uiService.setTitleAndDescription(event.detail.title, event.detail.description);
+      this.uiService.setValidity(event.detail.validity);
     }
   }
-
-  // form changed, update tab contents and submit button status
-  protected onChanged(event) {
-  }
 }
+
+

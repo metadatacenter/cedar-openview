@@ -9,11 +9,6 @@
     </section>
     <section class="menu-body">
       <div class="menu__container">
-        <!--        <mat-toolbar>-->
-        <!--          <mat-toolbar-row>-->
-        <!--            <button style="text-align:left;width:100%" mat-button routerLink="">{{'App.Home' | translate}}</button>-->
-        <!--          </mat-toolbar-row>-->
-        <!--        </mat-toolbar>-->
       </div>
     </section>
     <section class="menu-footer">
@@ -26,19 +21,13 @@
 
     <img class="cedar__logo" src="assets/img/CEDAR_logo_tree.png">
 
-    <h2 class="artifact-title"> {{artifactTitle}}
-      <button mat-icon-button class="help-text-button" *ngIf="artifactDescription"
-        [matTooltip]="artifactDescription">
-        <mat-icon>help_outline</mat-icon>
-      </button>
-
-      <button *ngIf="artifactTitle" (click)="openInCedar()" mat-icon-button class="help-text-button"
+    <h1 class="app-title">{{'App.NavTitle'|translate}}
+      <button (click)="openInCedar()" mat-icon-button class="help-text-button"
         matTooltip="login to CEDAR">
         <mat-icon>exit_to_app</mat-icon>
       </button>
-    </h2>
+    </h1>
 
-    <h3 class="cedar-open-metadata" >CEDAR Open Metadata</h3>
   </header>
 
   <main class="main__container">
