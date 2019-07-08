@@ -368,11 +368,54 @@ button.mat-icon-button.node-add, button.mat-icon-button.node-remove, button.mat-
 ================
 */
 .main__footer {
-  background: transparent;
-  position: absolute;
-  bottom: 1rem;
-  left: 1.5rem;
-  z-index: 100;
+  width: 100%;
+  box-shadow: 0 0 2rem rgba(99, 153, 165, 0.2);
+
+  .flex {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+.paragraph__section {
+  padding: 3em;
+  max-width: 40%;
+}
+
+.form__section {
+  position: relative;
+  padding: 3em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .disclaimer {
+    color: rgba(0, 0, 0, 0.54);
+    padding:10px;
+    font-size:.8em;
+  }
+
+  .subscribe {
+    display: flex;
+    justify-content: center;
+    width: 25em;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
+    box-sizing: content-box;
+    border-radius: 4px;
+    vertical-align: middle;
+
+    input, input:active {
+      width: 14em;
+      border-width: 0px;
+      padding: 20px;
+      margin: 4px;
+    }
+  }
 }
 
 .copyright__text {
