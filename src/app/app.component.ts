@@ -11,6 +11,7 @@ import {
   faBars,
   faUnlock
 } from '@fortawesome/free-solid-svg-icons';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ import {
 })
 export class AppComponent implements OnInit {
 
+  model: any;
   showMenu = false;
   artifactTitle = 'artifactTitle';
   artifactDescription = 'artifactDescription';
@@ -71,6 +73,9 @@ export class AppComponent implements OnInit {
         }, 0);
       }
     );
+
+    this.model = {email: ''};
+
   }
 
   // public loadScript() {
@@ -111,5 +116,14 @@ export class AppComponent implements OnInit {
     this.localSettings.setLanguage(language);
   }
 
+  subscribe() {
+    if (this.model.email.length) {
+      window.open('mailto:' + 'cedar-users-join@lists.stanford.edu' + '?email=' + this.model.email, '_self');
+      this.model.email = '';
+    }
+  }
 
+  goto(url: string) {
+    window.location.href = url;
+  }
 }

@@ -1,65 +1,21 @@
-<div *ngIf="instance && !artifactStatus" class="instance__container ">
-
-  <cedar-form
-    [instance]="instance"
-    [template]="template"
-    [mode]="mode"
-    (autocomplete)="onAutocomplete($event)"
-    (formChange)="onFormChange($event)"
-    [autocompleteResults]="allPosts"></cedar-form>
-
-  <div *ngIf="instance" class="accordion-container">
-    <mat-accordion>
-      <mat-expansion-panel class="expansion-container">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{'Generic.jsonLD' | translate}}
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <div class="copy-to-clipboard">
-          <button id="jsonLDCopy" mat-raised-button color="accent" (click)="copyToClipboard('jsonLD', 'jsonLDCopy')">
-            {{'App.Copy' | translate}}
-          </button>
-        </div>
-        <pre><span id="jsonLD">{{ instance | json}}</span></pre>
-      </mat-expansion-panel>
-
-<!--      <mat-expansion-panel class="expansion-container">-->
-<!--        <mat-expansion-panel-header>-->
-<!--          <mat-panel-title>-->
-<!--            {{'Generic.rdf' | translate}}-->
-<!--          </mat-panel-title>-->
-<!--        </mat-expansion-panel-header>-->
-
-<!--        <div class="copy-to-clipboard">-->
-<!--          <button id="RDFCopy" mat-raised-button color="accent" (click)="copyToClipboard('RDF', 'RDFCopy')">-->
-<!--            {{'App.Copy' | translate}}-->
-<!--          </button>-->
-<!--        </div>-->
-<!--        <pre><span id="RDF">{{rdf}}</span></pre>-->
-<!--      </mat-expansion-panel>-->
-
-      <mat-expansion-panel class="expansion-container">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{'Generic.jsonSchema' | translate}}
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <div class="copy-to-clipboard">
-          <button id="jsonSchemaCopy" mat-raised-button color="accent"
-            (click)="copyToClipboard('jsonSchema', 'jsonSchemaCopy')">
-            {{'App.Copy' | translate}}
-          </button>
-        </div>
-        <pre><span id="jsonSchema">{{ template | json}}</span></pre>
-      </mat-expansion-panel>
-
-    </mat-accordion>
-  </div>
-</div>
-
-<div *ngIf="artifactStatus">
+<div *ngIf="artifactStatus;else valid_content">
   <app-artifact-error [status]="artifactStatus" [cedarLink]="cedarLink"></app-artifact-error>
 </div>
+
+<ng-template #valid_content>
+  <div *ngIf="instance && template">
+
+    <div class="instance__container ">
+      <cedar-form
+        [instance]="instance"
+        [template]="template"
+        [mode]="mode"
+        (autocomplete)="onAutocomplete($event)"
+        (formChange)="onFormChange($event)"
+        [autocompleteResults]="allPosts"></cedar-form>
+    </div>
+
+    <app-form-results [instance]="instance" [template]="template" [rdf]="rdf"></app-form-results>
+    <app-legend></app-legend>
+  </div>
+</ng-template>

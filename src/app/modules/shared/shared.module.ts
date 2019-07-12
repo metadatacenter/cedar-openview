@@ -11,6 +11,8 @@ import {JsonViewComponent} from './components/json-view/json-view.component';
 import {ArtifactErrorComponent} from './components/artifact-error/artifact-error.component';
 import {MaterialModule} from '../../modules/material-module';
 import {LegendComponent} from './components/legend/legend.component';
+import {FormResultsComponent} from './components/form-results/form-results.component';
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
@@ -31,7 +33,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ArtifactErrorComponent,
     NavbarComponent,
     JsonViewComponent,
-    LegendComponent
+    LegendComponent,
+    FormResultsComponent
   ],
   exports: [
     CommonModule,
@@ -44,7 +47,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ArtifactErrorComponent,
     NavbarComponent,
     JsonViewComponent,
-    LegendComponent
+    LegendComponent,
+    FormResultsComponent
   ]
 })
 export class SharedModule {

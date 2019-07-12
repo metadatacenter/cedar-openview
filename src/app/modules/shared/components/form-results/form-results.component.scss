@@ -1,0 +1,131 @@
+@import '~src/theme.scss';
+
+.results-background {
+  background: mat-color($my-app-secondary);
+  opacity: 0.8;
+  background-image: url('~src/assets/img/dots-for-dark-background.png');
+  background-repeat: repeat;
+
+}
+
+
+.results__container {
+  margin: 0 auto;
+  overflow: visible;
+  max-width: 80%;
+  padding: 50px 0;
+
+
+  @media only screen and (max-width: 300px) {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  @media only screen and (min-width: 301px) and (max-width: 600px) {
+    max-width: calc(100% - 4em);
+  }
+
+  @media only screen and (min-width: 601px) and (max-width: 700px) {
+    max-width: 580px;
+  }
+
+  @media only screen and (min-width: 701px) and (max-width: 1000px) {
+    max-width: calc(80% - 4em);
+  }
+
+  @media only screen and (min-width: 1001px) {
+    max-width: calc(1000px - 4em);
+  }
+}
+
+
+.expansion-container {
+  border: 1px solid #eee;
+}
+
+.copy-to-clipboard {
+  text-align: right;
+}
+
+.tab-header {
+  padding: 10px 10px 0 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.toggle-button__container {
+  cursor: pointer;
+  position: relative;
+  margin: 0 0.5rem;
+}
+
+.mode-toggle__input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.mode-toggle__bg {
+  height: 1rem;
+  width: 2rem;
+  border-radius: 0.5rem;
+  background-color: #b0b0b0;
+  display: inline-block;
+  transition: background-color 300ms linear;
+}
+
+.mode-toggle__circle {
+  height: 1.30rem;
+  width: 1.30rem;
+  background-color: mat-color($my-app-primary);
+  position: absolute;
+  top: -0.2rem;
+  border-radius: 50%;
+  box-shadow: 0 0 0 rgba(0, 0, 255, 0.5);
+  transition: left 300ms linear;
+  left: 0.1rem;
+}
+
+.mode-toggle__circle-checked {
+  background-color: mat-color($my-app-accent);
+  left: 1.75rem;
+}
+
+.mode-toggle__bg-checked {
+  background-color: #b0b0b0;
+}
+
+.mode-toggle__text {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+
+.example-tree-invisible {
+  display: none;
+}
+
+.example-tree ul,
+.example-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+pre {
+  font-size: 1em;
+  min-height: 2em;
+  overflow: auto;
+  padding: 0 1em;
+  display: inline-block;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+.save-button {
+  text-align: right;
+  padding: 0 24px 16px
+}
+

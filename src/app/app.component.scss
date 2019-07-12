@@ -19,6 +19,7 @@ button:focus {
   grid-template-columns: auto;
   grid-template-rows: 50px auto;
   position: relative;
+  overflow: scroll;
 }
 
 /*
@@ -28,10 +29,13 @@ button:focus {
 */
 
 .app-title {
-  color: mat-color($my-app-primary);
+  color: mat-color($my-app-logo);
   font-weight: lighter;
   font-family: CrimsonText,  serif;
   font-size: 2em;
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .language-selector {
@@ -113,8 +117,8 @@ button:focus {
   color: white;
   //box-shadow: 0 0 2rem rgba(95, 160, 179, 0.2);
   box-shadow: 0 0 2rem rgba(99,153,165, 0.2);
-
 }
+
 
 .greeting__text {
   grid-area: greeting;
@@ -187,12 +191,14 @@ button:focus {
   //box-shadow: 0 0 2rem rgba(95, 160, 179, 0.2);
   box-shadow: 0 0 2rem rgba(99,153,165, 0.2);
   margin: 0;
-  padding: 0;
+  padding:0;
   align-items: center;
   transition: background-color 500ms linear;
   animation: fadein 1s ease-in-out 0ms 1;
+  .button-container {
+    padding-right:10px;
+  }
 }
-
 
 .toggle-button__container {
   cursor: pointer;
@@ -250,7 +256,7 @@ button:focus {
 }
 
 .cedar__logo {
-  width: 30px;
+  width: 50px;
   padding: 0 30px;
 }
 
@@ -275,11 +281,7 @@ button:focus {
   text-overflow: ellipsis;
 }
 
-.app-title {
-  width: 100%;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
+
 
 .date__text {
   text-transform: uppercase;
@@ -341,7 +343,9 @@ button.mat-icon-button.node-add, button.mat-icon-button.node-remove, button.mat-
 */
 
 .main__container {
-
+  //background: url(../assets/img/small-tree.png ) top left repeat;
+  //background-size: 200px;
+  //background-position: top;
 }
 
 .main-container__bg {
@@ -368,8 +372,9 @@ button.mat-icon-button.node-add, button.mat-icon-button.node-remove, button.mat-
 ================
 */
 .main__footer {
+  padding:20px 0;
   width: 100%;
-  box-shadow: 0 0 2rem rgba(99, 153, 165, 0.2);
+
 
   .flex {
     display: flex;
@@ -378,9 +383,22 @@ button.mat-icon-button.node-add, button.mat-icon-button.node-remove, button.mat-
   }
 }
 
+.footer-title {
+  color: mat-color($my-app-logo);
+  font-weight: lighter;
+  font-family: CrimsonText,  serif;
+  font-size: 34px;
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .paragraph__section {
-  padding: 3em;
+  padding: 1em;
   max-width: 40%;
+  font-size:1.2em;
+  line-height:1.4em;
+  font-weight:lighter;
 }
 
 .form__section {
@@ -414,6 +432,9 @@ button.mat-icon-button.node-add, button.mat-icon-button.node-remove, button.mat-
       border-width: 0px;
       padding: 20px;
       margin: 4px;
+    }
+    button {
+      margin: 5px;
     }
   }
 }
