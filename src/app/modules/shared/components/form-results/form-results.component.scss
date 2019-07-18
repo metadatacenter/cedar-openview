@@ -2,19 +2,16 @@
 
 .results-background {
   background: mat-color($my-app-secondary);
-  opacity: 0.8;
-  background-image: url('~src/assets/img/dots-for-dark-background.png');
-  background-repeat: repeat;
-
 }
 
+.expansion-container {
+  border: 1px solid #eee;
+}
 
-.results__container {
-  margin: 0 auto;
-  overflow: visible;
+.accordion-container {
+  margin: 50px auto 0 auto;
   max-width: 80%;
   padding: 50px 0;
-
 
   @media only screen and (max-width: 300px) {
     max-width: 100%;
@@ -38,9 +35,11 @@
   }
 }
 
-
 .expansion-container {
   border: 1px solid #eee;
+  background:#fff;
+  opacity:0.9;
+  overflow-x:hidden;
 }
 
 .copy-to-clipboard {
