@@ -1,14 +1,18 @@
 .error-card {
   max-width: 400px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
 }
 
 .overlay {
-  height:calc(100vh - 50px);
+  min-height:500px;
   width:100vw;
-  background-color:#eee;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow:hidden;
 }
 
 .avatar-image {

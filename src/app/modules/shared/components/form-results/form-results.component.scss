@@ -1,9 +1,17 @@
 @import '~src/theme.scss';
 
-.instance__container {
-  margin: 50px auto;
-  overflow: auto;
+.results-background {
+  background: mat-color($my-app-secondary);
+}
+
+.expansion-container {
+  border: 1px solid #eee;
+}
+
+.accordion-container {
+  margin: 50px auto 0 auto;
   max-width: 80%;
+  padding: 50px 0;
 
   @media only screen and (max-width: 300px) {
     max-width: 100%;
@@ -27,25 +35,22 @@
   }
 }
 
+.expansion-container {
+  border: 1px solid #eee;
+  background:#fff;
+  opacity:0.9;
+  overflow-x:hidden;
+}
 
+.copy-to-clipboard {
+  text-align: right;
+}
 
 .tab-header {
   padding: 10px 10px 0 10px;
   display: flex;
   justify-content: flex-end;
 }
-
-
-
-.copy-to-clipboard {
-  text-align: right;
-}
-
-
-.instance__container-dark {
-  color: #fff;
-}
-
 
 .toggle-button__container {
   cursor: pointer;
@@ -122,5 +127,4 @@ pre {
   text-align: right;
   padding: 0 24px 16px
 }
-
 
