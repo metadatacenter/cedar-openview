@@ -15,8 +15,7 @@ import {AutocompleteService} from '../../../../services/autocomplete.service';
 import {environment} from '../../../../../environments/environment';
 import {UiService} from '../../../../services/ui.service';
 import {TemplateService} from '../../../../services/template.service';
-
-
+import * as jsonld from 'jsonld';
 
 @Component({
   selector: 'app-template',
@@ -94,6 +93,12 @@ export class TemplateComponent  extends CedarPageComponent implements OnInit {
     if (event && event.detail) {
       this.uiService.setTitleAndDescription(event.detail.title, event.detail.description);
       this.uiService.setValidity(event.detail.validity);
+      setTimeout(() => {
+        const that = this;
+        jsonld.toRDF(this.instance, {format: 'application/nquads'}, function (err, nquads) {
+          that.rdf = err ? err : nquads;
+        });
+      }, 0);
     }
   }
 }
