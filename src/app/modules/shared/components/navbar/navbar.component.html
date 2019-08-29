@@ -1,25 +1,22 @@
-<nav class="navbar p-2 navbar-expand-lg navbar-light" id="top">
-  <img src="../../../../../assets/img/logo/cedar-logo-square.png" class="app-logo">
-  <div class="navbar-brand noselect" placement="bottom">{{'App.NavTitle'|translate}}</div>
+<header class="main__header">
+  <img class="cedar__logo" src="assets/img/small-tree.png">
+  <h2 class="app-title">{{'App.NavTitle'|translate}}
+    <button (click)="openInCedar()" mat-icon-button class="help-text-button"
+            matTooltip="Login to CEDAR">
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </h2>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Show/hide navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLanguage" role="button" data-toggle="dropdown"
-           aria-haspopup="true" aria-expanded="false">
-          {{getCurrentLanguageCode()}}
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownLanguage">
-          <a class="dropdown-item" href="#" (click)="switchLanguage($event, 'hu')">hu</a>
-          <a class="dropdown-item" href="#" (click)="switchLanguage($event, 'en')">en</a>
-        </div>
-      </li>
-    </ul>
+  <div class="button-container">
+    <button (click)="goto('https://cedar.metadatacenter.org')" mat-button>
+      CEDAR
+    </button>
   </div>
-</nav>
+
+  <div class="button-container">
+    <button (click)="goto('http://metadatacenter.org')" mat-button>
+      metadatacenter.org
+    </button>
+  </div>
+
+</header>

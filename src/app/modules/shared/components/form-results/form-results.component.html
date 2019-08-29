@@ -1,7 +1,8 @@
 <div  class="results-background">
     <div *ngIf="instance" class="accordion-container">
       <mat-accordion>
-        <mat-expansion-panel class="expansion-container">
+
+        <mat-expansion-panel class="expansion-container" *ngIf="isTemplateInstance(template, instance)">
           <mat-expansion-panel-header>
             <mat-panel-title>
               {{'Generic.jsonLD' | translate}}
@@ -15,7 +16,8 @@
           </div>
           <pre><span id="jsonLD">{{ instance | json}}</span></pre>
         </mat-expansion-panel>
-        <mat-expansion-panel class="expansion-container" *ngIf="rdf">
+
+        <mat-expansion-panel class="expansion-container" *ngIf="isTemplateInstance(template, instance)">
           <mat-expansion-panel-header>
             <mat-panel-title>
               {{'Generic.rdf' | translate}}
@@ -29,10 +31,14 @@
           </div>
           <pre><span id="RDF">{{rdf}}</span></pre>
         </mat-expansion-panel>
+
         <mat-expansion-panel class="expansion-container">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{'Generic.jsonSchema' | translate}}
+              <span *ngIf="isTemplateField(template)">{{'Generic.fieldJsonSchema' | translate}}</span>
+              <span *ngIf="isTemplateElement(template)">{{'Generic.elementJsonSchema' | translate}}</span>
+              <span *ngIf="isTemplate(template, instance)">{{'Generic.templateJsonSchema' | translate}}</span>
+              <span *ngIf="isTemplateInstance(template, instance)">{{'Generic.templateJsonSchema'  | translate}}</span>
             </mat-panel-title>
           </mat-expansion-panel-header>
 
@@ -44,6 +50,7 @@
           </div>
           <pre><span id="jsonSchema">{{ template | json}}</span></pre>
         </mat-expansion-panel>
+
       </mat-accordion>
     </div>
 </div>

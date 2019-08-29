@@ -5,13 +5,7 @@ import {Title} from '@angular/platform-browser';
 import {LocalSettingsService} from './services/local-settings.service';
 import {UiService} from './services/ui.service';
 
-import {
-  faSquare,
-  faTag,
-  faBars,
-  faUnlock
-} from '@fortawesome/free-solid-svg-icons';
-import {FormGroup} from '@angular/forms';
+import {faBars, faSquare, faTag, faUnlock} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +14,6 @@ import {FormGroup} from '@angular/forms';
 })
 export class AppComponent implements OnInit {
 
-  model: any;
   showMenu = false;
   artifactTitle = 'artifactTitle';
   artifactDescription = 'artifactDescription';
@@ -30,10 +23,9 @@ export class AppComponent implements OnInit {
   faUnlock = faUnlock;
   loadAPI: Promise<any>;
 
-
   languages = {
     selected: 'en',
-    options: [{ value: 'en', viewValue: 'en' }, { value: 'hu', viewValue: 'hu' }]
+    options: [{value: 'en', viewValue: 'en'}, {value: 'hu', viewValue: 'hu'}]
   };
 
   constructor(
@@ -69,36 +61,14 @@ export class AppComponent implements OnInit {
     uiService.hasDescription.subscribe(
       value => {
         setTimeout(() => {
-        this.artifactDescription = value;
+          this.artifactDescription = value;
         }, 0);
       }
     );
 
-    this.model = {email: ''};
-
   }
-
-  // public loadScript() {
-  //   console.log('preparing to load...');
-  //   const node = document.createElement('script');
-  //   console.log('node', node);
-  //
-  //   node.src = environment.cedarFormUrl +  'cedar-form/cedar-form-0.0.1.js';
-  //   node.type = 'text/javascript';
-  //   node.async = true;
-  //   node.charset = 'utf-8';
-  //   // document.getElementsByTagName('head')[0].appendChild(node);
-  // }
 
   ngOnInit(): void {
-    // this.loadAPI = new Promise((resolve) => {
-    //   console.log('resolving promise...');
-    //   this.loadScript();
-    // });
-  }
-
-  openInCedar() {
-    this.uiService.openInCedar();
   }
 
   getCurrentLanguageCode() {
@@ -114,16 +84,5 @@ export class AppComponent implements OnInit {
   setLanguage(language: string) {
     this.translateService.use(language);
     this.localSettings.setLanguage(language);
-  }
-
-  subscribe() {
-    if (this.model.email.length) {
-      window.open('mailto:' + 'cedar-users-join@lists.stanford.edu' + '?email=' + this.model.email, '_self');
-      this.model.email = '';
-    }
-  }
-
-  goto(url: string) {
-    window.location.href = url;
   }
 }

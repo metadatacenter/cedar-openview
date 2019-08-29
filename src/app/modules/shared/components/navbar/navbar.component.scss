@@ -1,0 +1,34 @@
+@import '~src/theme.scss';
+
+.main__header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 4rem;
+  //box-shadow: 0 0 2rem rgba(95, 160, 179, 0.2);
+  box-shadow: 0 0 2rem rgba(99, 153, 165, 0.2);
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  transition: background-color 500ms linear;
+  animation: fadein 1s ease-in-out 0ms 1;
+
+  .button-container {
+    padding-right: 10px;
+  }
+}
+
+.cedar__logo {
+  width: 50px;
+  padding: 0 30px;
+}
+
+.app-title {
+  color: mat-color($my-app-logo);
+  font-weight: lighter;
+  font-family: CrimsonText, serif;
+  font-size: 2em;
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

@@ -1,4 +1,4 @@
-<div *ngIf="template && !artifactStatus" class="instance__container " >
+<div *ngIf="template && !artifactStatus" class="instance__container ">
   <cedar-form
     [mode]="mode"
     [instance]="instance"
@@ -9,11 +9,8 @@
 </div>
 
 
-
-
-
-
-<app-form-results *ngIf="template && !artifactStatus" [instance]="instance" [template]="template" [rdf]="rdf"></app-form-results>
+<app-form-results *ngIf="template && !artifactStatus" [instance]="instance" [template]="template"
+                  [rdf]="rdf"></app-form-results>
 <app-legend *ngIf="template && !artifactStatus"></app-legend>
 
 <div *ngIf="artifactStatus">

@@ -15,14 +15,14 @@ export class DataHandlerDataStatus {
   }
 
   public static forDataId(dataId: DataHandlerDataId): DataHandlerDataStatus {
-    let r: DataHandlerDataStatus = new DataHandlerDataStatus();
+    const r: DataHandlerDataStatus = new DataHandlerDataStatus();
     r.dataType = DataHandlerDataType.DATA_ID;
     r.dataId = dataId;
     return r;
   }
 
   public static forDataIdAndId(dataId: DataHandlerDataId, id: string): DataHandlerDataStatus {
-    let r: DataHandlerDataStatus = DataHandlerDataStatus.forDataId(dataId);
+    const r: DataHandlerDataStatus = DataHandlerDataStatus.forDataId(dataId);
     r.dataType = DataHandlerDataType.DATA_ID_WITH_ID;
     r.id = id;
     return r;

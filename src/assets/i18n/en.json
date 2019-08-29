@@ -17,7 +17,9 @@
   },
   "Generic": {
     "Loading": "Loading...",
-    "jsonSchema": "Template JSON Schema",
+    "fieldJsonSchema": "Template Field JSON Schema",
+    "elementJsonSchema": "Template Element JSON Schema",
+    "templateJsonSchema": "Template JSON Schema",
     "jsonLD": "Instance JSON-LD",
     "rdf": "Instance RDF"
   },

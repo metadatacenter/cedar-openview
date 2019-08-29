@@ -9,7 +9,7 @@ import {UiService} from '../../../../services/ui.service';
   providers: []
 })
 
-export class FormResultsComponent  {
+export class FormResultsComponent {
 
   @Input() instance: any;
   @Input() template: any;
@@ -23,4 +23,29 @@ export class FormResultsComponent  {
     this.uiService.copyToClipboard(elementId, buttonId);
   }
 
+  isTemplateField(field: any) {
+    return field != null &&
+      field.hasOwnProperty('@type') &&
+      field['@type'] === 'https://schema.metadatacenter.org/core/TemplateField';
+  }
+
+  isTemplateElement(element: any) {
+    return element != null &&
+      element.hasOwnProperty('@type') &&
+      element['@type'] === 'https://schema.metadatacenter.org/core/TemplateElement';
+  }
+
+  isTemplate(template: any, instance: any) {
+    return template != null &&
+      template.hasOwnProperty('@type') &&
+      template['@type'] === 'https://schema.metadatacenter.org/core/Template' &&
+      (instance == null || instance['@id'] == null || instance['@id'].length === 0);
+  }
+
+  isTemplateInstance(template: any, instance: any) {
+    return template != null &&
+      template.hasOwnProperty('@type') &&
+      template['@type'] === 'https://schema.metadatacenter.org/core/Template' &&
+      (instance != null && instance['@id'] != null && instance['@id'].length > 0);
+  }
 }

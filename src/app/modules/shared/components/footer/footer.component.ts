@@ -9,11 +9,11 @@ import {CedarBase} from '../base/cedar-base.component';
 import {UiService} from '../../../../services/ui.service';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  selector: 'app-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.scss']
 })
-export class NavbarComponent extends CedarBase implements OnInit {
+export class FooterComponent extends CedarBase implements OnInit {
 
   constructor(
     protected localSettings: LocalSettingsService,
@@ -29,24 +29,6 @@ export class NavbarComponent extends CedarBase implements OnInit {
   }
 
   ngOnInit() {
-  }
-
-  getCurrentLanguageCode() {
-    return this.translateService.currentLang;
-  }
-
-  switchLanguage($event, language: string) {
-    $event.preventDefault();
-    this.translateService.use(language);
-    this.localSettings.setLanguage(language);
-  }
-
-  openInCedar() {
-    this.uiService.openInCedar();
-  }
-
-  goto(url: string) {
-    window.location.href = url;
   }
 
 }
