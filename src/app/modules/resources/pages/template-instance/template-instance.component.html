@@ -1,3 +1,7 @@
+<div *ngIf="instance && !artifactStatus">
+  <app-artifact-header [artifact]="instance"></app-artifact-header>
+</div>
+
 <div *ngIf="artifactStatus;else valid_content">
   <app-artifact-error [status]="artifactStatus" [cedarLink]="cedarLink"></app-artifact-error>
 </div>
@@ -16,6 +20,7 @@
     </div>
 
     <app-form-results [instance]="instance" [template]="template" [rdf]="rdf"></app-form-results>
+
     <app-legend></app-legend>
   </div>
 </ng-template>

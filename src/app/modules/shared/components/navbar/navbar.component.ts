@@ -45,8 +45,8 @@ export class NavbarComponent extends CedarBase implements OnInit {
     this.uiService.openInCedar();
   }
 
-  goto(url: string) {
-    window.location.href = url;
+  openInNewWindow(url: string) {
+    window.open(url, '_blank');
   }
 
 }

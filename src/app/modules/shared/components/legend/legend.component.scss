@@ -35,13 +35,13 @@
   padding: 5px;
   box-sizing: content-box;
   display: flex;
-  justify-content:space-between;
-  margin: 40px 0;
+  justify-content: space-between;
+  margin: 10px 0 40px 0;
   border-radius: 4px;
 
-  display:flex;
+  display: flex;
   flex-wrap: wrap;
-  background:#fff;
+  background: #fff;
 
 
   div {
@@ -50,11 +50,23 @@
     padding: 5px;
     line-height: 2em;
     font-size: 1em;
+
     fa-icon {
-      padding:5px 0;
+      padding: 5px 0;
     }
+
     .asterisk {
       color: mat-color($my-app-warn);
     }
   }
+}
+
+.legend-title {
+  color: mat-color($my-app-logo);
+  font-weight: lighter;
+  font-family: CrimsonText, serif;
+  font-size: 34px;
+  width: 100%;
+  white-space: nowrap;
+  margin-bottom: 0px
 }

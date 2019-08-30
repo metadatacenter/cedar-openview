@@ -11,7 +11,7 @@ import {CedarBase} from '../base/cedar-base.component';
 @Component({
   selector: 'app-artifact-header',
   templateUrl: './artifact-header.component.html',
-  styleUrls: ['./artifact-header.component.css']
+  styleUrls: ['./artifact-header.component.scss']
 })
 export class ArtifactHeaderComponent extends CedarBase implements OnInit {
 
