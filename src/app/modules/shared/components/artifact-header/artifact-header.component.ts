@@ -18,6 +18,7 @@ export class ArtifactHeaderComponent extends CedarBase implements OnInit {
 
   @Input() artifact: CedarArtifact;
   @Input() cedarLink: string;
+  private isHidden: boolean;
 
   params: Object;
 
@@ -32,14 +33,24 @@ export class ArtifactHeaderComponent extends CedarBase implements OnInit {
     protected uiService: UiService
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
+    this.isHidden = true;
   }
 
   ngOnInit() {
     this.params = {};
     this.params['link'] = this.cedarLink;
+    this.uiService.registerArtifactHeaderComponent(this);
   }
 
   openInCedar() {
     this.uiService.openInCedar();
+  }
+
+  doOpen() {
+    this.isHidden = false;
+  }
+
+  doClose() {
+    this.isHidden = true;
   }
 }

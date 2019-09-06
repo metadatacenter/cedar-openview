@@ -9,7 +9,7 @@
     [template]="template"
     [mode]="mode"
     (autocomplete)="onAutocomplete($event)"
-    (formChange)=" onFormChange($event)"
+    (formChange)=" onFormChange($event, template)"
     [autocompleteResults]="allPosts"></cedar-form>
 </div>
 

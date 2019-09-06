@@ -1,9 +1,12 @@
 @import '~src/theme.scss';
 
 .main__header {
-  display: flex;
-  justify-content: space-between;
-  height: 4rem;
+  @media screen and (max-width: 800px) {
+    height: 120px;
+  }
+  @media screen and (min-width: 800px) {
+    height: 40px;
+  }
   //box-shadow: 0 0 2rem rgba(95, 160, 179, 0.2);
   box-shadow: 0 0 2rem rgba(99, 153, 165, 0.2);
   margin: 0;
@@ -12,14 +15,56 @@
   transition: background-color 500ms linear;
   animation: fadein 1s ease-in-out 0ms 1;
 
-  .button-container {
-    padding-right: 10px;
+  .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
   }
-}
 
-.cedar__logo {
-  width: 50px;
-  padding: 0 30px;
+  .column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+  }
+
+  .cedar__logo {
+    border: 0px solid red;
+
+    img {
+      width: 250px;
+      height: 40px;
+    }
+  }
+
+  .artifact-title {
+    border: 0px solid red;
+    height: 40px;
+    margin:auto;
+    font-size: 16px;
+    .artifact-title-paragraph {
+      margin:auto;
+    }
+  }
+
+  .button-container {
+    border: 0px solid red;
+    width: 300px;
+    height: 40px;
+  }
+
+  @media screen and (min-width: 800px) {
+    .cedar__logo {
+      flex: 0 0 auto;
+    }
+    .artifact-title {
+      flex: 1 1 auto;
+    }
+    .button-container {
+      flex: 0 0 auto;
+    }
+  }
+
 }
 
 .app-title {

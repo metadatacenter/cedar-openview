@@ -113,7 +113,7 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
   // form changed, update tab contents and submit button status
   onFormChange(event) {
     if (event && event.detail) {
-      this.uiService.setTitleAndDescription(event.detail.title, event.detail.description);
+      this.uiService.setTitleAndDescription(event.detail.title, event.detail.description, 'TemplateInstance');
       this.uiService.setValidity(event.detail.validity);
       setTimeout(() => {
         const that = this;

@@ -103,3 +103,11 @@ img.bmir-logo {
   margin-bottom: 20px;
   width: 20%;
 }
+
+a {
+  color: mat-color($my-app-logo);
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}

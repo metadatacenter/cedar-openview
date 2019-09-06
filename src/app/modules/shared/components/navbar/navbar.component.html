@@ -1,13 +1,24 @@
 <header class="main__header">
-  <img class="cedar__logo" src="assets/img/small-tree.png">
-  <h2 class="app-title">{{'App.NavTitle'|translate}}
-  </h2>
-
-  <div class="button-container">
-    <button (click)="openInNewWindow('http://metadatacenter.org')" mat-button mat-button
-            matTooltip="Read more about CEDAR">
-      metadatacenter.org
-    </button>
+  <div class="row">
+    <div class="cedar__logo column">
+      <img src="assets/img/logo/cedar-open-view-logo.png">
+    </div>
+    <div class="artifact-title column">
+      <mat-expansion-panel class="expansion-container" (opened)="expansionOpened()" (closed)="expansionClosed()" >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <p class="artifact-title-paragraph">
+            {{uiService.title}} - {{'type.' + uiService.type | translate}}
+            </p>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+    </div>
+    <div class="button-container column">
+      <button (click)="openInNewWindow('http://metadatacenter.org')" mat-button mat-button
+              matTooltip="Read more about CEDAR">
+        metadatacenter.org
+      </button>
+    </div>
   </div>
-
 </header>

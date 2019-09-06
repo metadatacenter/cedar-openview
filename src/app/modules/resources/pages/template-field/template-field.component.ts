@@ -86,9 +86,9 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
   }
 
   // form changed, update tab contents and submit button status
-  onFormChange(event) {
+  onFormChange(event, field) {
     if (event && event.detail) {
-      this.uiService.setTitleAndDescription(event.detail.title, event.detail.description);
+      this.uiService.setTitleAndDescription(event.detail.title, event.detail.description, field['@type']);
       this.uiService.setValidity(event.detail.validity);
       setTimeout(() => {
         const that = this;
