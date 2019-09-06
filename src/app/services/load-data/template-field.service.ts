@@ -23,7 +23,7 @@ export class TemplateFieldService extends GenericMultiLoaderService<TemplateFiel
     super(http, restApiUrl, router, notify, translateService);
   }
 
-  getTemplateField(templateFieldId: string, errorCallback: Function): Observable<TemplateField> {
-    return this.getData(templateFieldId, this.restApiUrl.templateField(templateFieldId), errorCallback);
+  getTemplateField(templateFieldId: string): Observable<TemplateField> {
+    return this.getData(templateFieldId, this.restApiUrl.templateField(templateFieldId));
   }
 }

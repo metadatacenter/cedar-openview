@@ -17,9 +17,11 @@
   },
   "Generic": {
     "Loading": "Adatbetöltés...",
-    "jsonSchema": "Template JSON Schema",
-    "jsonLD": "Instance JSON-LD",
-    "rdf": "Instance RDF"
+    "fieldJsonSchema": "Template Field JSON Schema",
+    "elementJsonSchema": "Template Element JSON Schema",
+    "templateJsonSchema": "Template JSON Schema",
+    "jsonLD": "Metadata JSON-LD",
+    "rdf": "Metadata RDF"
   },
   "error": {
     "resourceNotPublic": "A hivatkozott erőforrás nem érhető el publikusan"

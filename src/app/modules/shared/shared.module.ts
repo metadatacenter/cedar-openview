@@ -15,6 +15,7 @@ import {FormResultsComponent} from './components/form-results/form-results.compo
 
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FooterComponent} from './components/footer/footer.component';
+import {ViewHeaderComponent} from './components/view-header/view-header.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import {FooterComponent} from './components/footer/footer.component';
     ArtifactHeaderComponent,
     ArtifactErrorComponent,
     NavbarComponent,
+    ViewHeaderComponent,
     FooterComponent,
     JsonViewComponent,
     LegendComponent,
@@ -48,6 +50,7 @@ import {FooterComponent} from './components/footer/footer.component';
     ArtifactHeaderComponent,
     ArtifactErrorComponent,
     NavbarComponent,
+    ViewHeaderComponent,
     FooterComponent,
     JsonViewComponent,
     LegendComponent,

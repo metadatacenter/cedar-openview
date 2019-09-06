@@ -35,11 +35,12 @@ export class UiService {
 
   openInCedar() {
     let destination = window.location.href;
-    destination = window.location.href.replace('open-metadata', 'cedar');
-    destination =  destination.replace('/instances/', '/instances/edit/');
+    destination = window.location.href.replace('openview', 'cedar');
+    destination =  destination.replace('/templates/', '/templates/edit/');
     destination =  destination.replace('/template-elements/', '/elements/edit/');
     destination =  destination.replace('/template-fields/', '/fields/edit/');
-    destination =  destination.replace('/templates/', '/instances/create/');
+    destination =  destination.replace('/template-instances/', '/instances/edit/');
+    console.log(destination);
     window.open(destination, '_blank');
   }
 

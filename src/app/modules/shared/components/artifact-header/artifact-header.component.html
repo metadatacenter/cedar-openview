@@ -1,33 +1,64 @@
-<div class="overlay">
-  <mat-card class="error-card">
-    <mat-card-header>
-      <mat-card-title>
-        <table class="table table-sm table-hover table-bordered">
-          <tbody>
+<div class="wide-container">
 
-          <tr *ngIf="artifact['@type']">
-            <td>{{'ArtifactHeader.Type' | translate}}:</td>
-            <td>{{'type.' + artifact['@type'] | translate}}</td>
-          </tr>
+  <div class="metadata__container">
+    <h1 class="metadata-title">Metadata</h1>
 
-          <tr *ngIf="artifact['schema:isBasedOn']">
-            <td>{{'ArtifactHeader.Type' | translate}}:</td>
-            <td>{{'type.TemplateInstance' | translate}}</td>
-          </tr>
 
-          <tr>
-            <td>{{'ArtifactHeader.SchemaName' | translate}}:</td>
-            <td>{{artifact['schema:name']}}</td>
-          </tr>
+    <div class="metadata">
+      <table class="">
+        <tbody>
 
-          <tr>
-            <td>{{'ArtifactHeader.SchemaDescription' | translate}}:</td>
-            <td>{{artifact['schema:description']}}</td>
-          </tr>
+        <tr *ngIf="!artifact['schema:isBasedOn']">
+          <td>{{'ArtifactHeader.Type' | translate}}:</td>
+          <td>{{'type.' + artifact['@type'] | translate}}</td>
+        </tr>
 
-          </tbody>
-        </table>
-      </mat-card-title>
-    </mat-card-header>
-  </mat-card>
+        <tr *ngIf="artifact['schema:isBasedOn']">
+          <td>{{'ArtifactHeader.Type' | translate}}:</td>
+          <td>{{'type.TemplateInstance' | translate}}</td>
+        </tr>
+
+        <tr>
+          <td>{{'ArtifactHeader.SchemaName' | translate}}:</td>
+          <td>{{artifact['schema:name']}}</td>
+        </tr>
+
+        <tr>
+          <td>{{'ArtifactHeader.SchemaDescription' | translate}}:</td>
+          <td>{{artifact['schema:description']}}</td>
+        </tr>
+
+        <tr>
+          <td>{{'ArtifactHeader.CreatedOn' | translate}}:</td>
+          <td>{{artifact['pav:createdOn']}}</td>
+        </tr>
+
+        <tr>
+          <td>{{'ArtifactHeader.LastUpdatedOn' | translate}}:</td>
+          <td>{{artifact['pav:lastUpdatedOn']}}</td>
+        </tr>
+
+        <tr>
+          <td>{{'ArtifactHeader.Version' | translate}}:</td>
+          <td>{{artifact['pav:version']}}</td>
+        </tr>
+
+        <tr>
+          <td>{{'ArtifactHeader.PublicationStatus' | translate}}:</td>
+          <td>{{'biboStatus.' + artifact['bibo:status'] | translate}}</td>
+        </tr>
+
+        <tr>
+          <td>{{'ArtifactHeader.CEDAR' | translate}}:</td>
+          <td><a href="javascript://" class="cedarLink"
+                 (click)="openInCedar()">{{'ArtifactHeader.Link' | translate}}</a></td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
 </div>
+

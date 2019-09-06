@@ -28,6 +28,7 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
   templateInstanceId: string = null;
   instance: TemplateInstance = null;
   artifactStatus: number = null;
+  templateStatus: number = null;
   cedarLink: string = null;
 
   template: any = null;
@@ -59,7 +60,8 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
     this.cedarLink = environment.cedarUrl + 'instances/edit/' + this.templateInstanceId;
     this.dataHandler
       .requireId(DataHandlerDataId.TEMPLATE_INSTANCE, this.templateInstanceId)
-      .load(() => this.instanceLoadedCallback(this.templateInstanceId), (error, dataStatus) => this.dataErrorCallback(error, dataStatus));
+      .load(() => this.instanceLoadedCallback(this.templateInstanceId),
+        (error, dataStatus) => this.instanceErrorCallback(error, dataStatus));
   }
 
   private instanceLoadedCallback(instanceId) {
@@ -69,7 +71,7 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
     // load the template it is based on
     this.dataHandler
       .requireId(DataHandlerDataId.TEMPLATE, this.templateId)
-      .load(() => this.templateLoadedCallback(this.templateId), (error, dataStatus) => this.dataErrorCallback(error, dataStatus));
+      .load(() => this.templateLoadedCallback(this.templateId), (error, dataStatus) => this.templateErrorCallback(error, dataStatus));
   }
 
   private templateLoadedCallback(templateId) {
@@ -84,8 +86,12 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
     }
   }
 
-  private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
+  private instanceErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
     this.artifactStatus = error.status;
+  }
+
+  private templateErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
+    this.templateStatus = error.status;
   }
 
   protected onAutocomplete(event) {

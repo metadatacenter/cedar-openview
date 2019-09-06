@@ -310,6 +310,7 @@ $my-app-logo:  mat-palette($metadata-center-blue, 900, 900, A100);
 $my-app-accent:  mat-palette($metadata-center-green, 500, 900, A100);
 $my-app-warn:    mat-palette($cedar-red, 500, 900, A100);
 $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+$my-app-light-title:  mat-palette($metadata-center-blue, 50, 50, A100);
 @include angular-material-theme($my-app-theme);
 
 .alternate-theme {

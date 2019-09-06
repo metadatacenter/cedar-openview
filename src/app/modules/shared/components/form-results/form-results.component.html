@@ -1,57 +1,58 @@
-<div  class="results-background">
-    <div *ngIf="instance" class="accordion-container">
-      <mat-accordion>
+<div class="results-background">
+  <div *ngIf="instance" class="accordion-container">
+    <h1 class="advanced-title">Advanced View</h1>
+    <mat-accordion>
 
-        <mat-expansion-panel class="expansion-container" *ngIf="isTemplateInstance(template, instance)">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              {{'Generic.jsonLD' | translate}}
-            </mat-panel-title>
-          </mat-expansion-panel-header>
+      <mat-expansion-panel class="expansion-container" *ngIf="isTemplateInstance(template, instance)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{'Generic.jsonLD' | translate}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-          <div class="copy-to-clipboard">
-            <button id="jsonLDCopy" mat-raised-button color="accent" (click)="copyToClipboard('jsonLD', 'jsonLDCopy')">
-              {{'App.Copy' | translate}}
-            </button>
-          </div>
-          <pre><span id="jsonLD">{{ instance | json}}</span></pre>
-        </mat-expansion-panel>
+        <div class="copy-to-clipboard">
+          <button id="jsonLDCopy" mat-raised-button color="accent" (click)="copyToClipboard('jsonLD', 'jsonLDCopy')">
+            {{'App.Copy' | translate}}
+          </button>
+        </div>
+        <pre><span id="jsonLD">{{ instance | json}}</span></pre>
+      </mat-expansion-panel>
 
-        <mat-expansion-panel class="expansion-container" *ngIf="isTemplateInstance(template, instance)">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              {{'Generic.rdf' | translate}}
-            </mat-panel-title>
-          </mat-expansion-panel-header>
+      <mat-expansion-panel class="expansion-container" *ngIf="isTemplateInstance(template, instance)">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{'Generic.rdf' | translate}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-          <div class="copy-to-clipboard">
-            <button id="RDFCopy" mat-raised-button color="accent" (click)="copyToClipboard('RDF', 'RDFCopy')">
-              {{'App.Copy' | translate}}
-            </button>
-          </div>
-          <pre><span id="RDF">{{rdf}}</span></pre>
-        </mat-expansion-panel>
+        <div class="copy-to-clipboard">
+          <button id="RDFCopy" mat-raised-button color="accent" (click)="copyToClipboard('RDF', 'RDFCopy')">
+            {{'App.Copy' | translate}}
+          </button>
+        </div>
+        <pre><span id="RDF">{{rdf}}</span></pre>
+      </mat-expansion-panel>
 
-        <mat-expansion-panel class="expansion-container">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <span *ngIf="isTemplateField(template)">{{'Generic.fieldJsonSchema' | translate}}</span>
-              <span *ngIf="isTemplateElement(template)">{{'Generic.elementJsonSchema' | translate}}</span>
-              <span *ngIf="isTemplate(template, instance)">{{'Generic.templateJsonSchema' | translate}}</span>
-              <span *ngIf="isTemplateInstance(template, instance)">{{'Generic.templateJsonSchema'  | translate}}</span>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
+      <mat-expansion-panel class="expansion-container">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <span *ngIf="isTemplateField(template)">{{'Generic.fieldJsonSchema' | translate}}</span>
+            <span *ngIf="isTemplateElement(template)">{{'Generic.elementJsonSchema' | translate}}</span>
+            <span *ngIf="isTemplate(template, instance)">{{'Generic.templateJsonSchema' | translate}}</span>
+            <span *ngIf="isTemplateInstance(template, instance)">{{'Generic.templateJsonSchema'  | translate}}</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-          <div class="copy-to-clipboard">
-            <button id="jsonSchemaCopy" mat-raised-button color="accent"
-              (click)="copyToClipboard('jsonSchema', 'jsonSchemaCopy')">
-              {{'App.Copy' | translate}}
-            </button>
-          </div>
-          <pre><span id="jsonSchema">{{ template | json}}</span></pre>
-        </mat-expansion-panel>
+        <div class="copy-to-clipboard">
+          <button id="jsonSchemaCopy" mat-raised-button color="accent"
+                  (click)="copyToClipboard('jsonSchema', 'jsonSchemaCopy')">
+            {{'App.Copy' | translate}}
+          </button>
+        </div>
+        <pre><span id="jsonSchema">{{ template | json}}</span></pre>
+      </mat-expansion-panel>
 
-      </mat-accordion>
-    </div>
+    </mat-accordion>
+  </div>
 </div>
 

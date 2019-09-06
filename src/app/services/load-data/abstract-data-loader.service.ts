@@ -36,7 +36,7 @@ export abstract class AbstractDataLoaderService {
   }
 
   protected log(message: string) {
-    console.log(this.constructor.name + `: ${message}`);
+    // console.log(this.constructor.name + `: ${message}`);
   }
 
   public notifyError(errorKey: string) {

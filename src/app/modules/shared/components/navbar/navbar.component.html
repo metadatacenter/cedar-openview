@@ -1,17 +1,7 @@
 <header class="main__header">
   <img class="cedar__logo" src="assets/img/small-tree.png">
   <h2 class="app-title">{{'App.NavTitle'|translate}}
-    <button (click)="openInCedar()" mat-icon-button class="help-text-button"
-            matTooltip="Open this artifact in CEDAR">
-      <mat-icon>exit_to_app</mat-icon>
-    </button>
   </h2>
-
-  <div class="button-container">
-    <button (click)="openInCedar()" mat-button matTooltip="Open this artifact in CEDAR">
-      CEDAR
-    </button>
-  </div>
 
   <div class="button-container">
     <button (click)="openInNewWindow('http://metadatacenter.org')" mat-button mat-button

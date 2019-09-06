@@ -1,25 +1,19 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {DataStoreService} from '../../../../services/data-store.service';
 import {TranslateService} from '@ngx-translate/core';
+import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {SnotifyService} from 'ng-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
-import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
-import {LocalSettingsService} from '../../../../services/local-settings.service';
-import {CedarArtifact} from '../../../../shared/model/cedar-artifact.model';
 import {CedarBase} from '../base/cedar-base.component';
 import {UiService} from '../../../../services/ui.service';
 
 @Component({
-  selector: 'app-artifact-header',
-  templateUrl: './artifact-header.component.html',
-  styleUrls: ['./artifact-header.component.scss']
+  selector: 'app-view-header',
+  templateUrl: './view-header.component.html',
+  styleUrls: ['./view-header.component.scss']
 })
-export class ArtifactHeaderComponent extends CedarBase implements OnInit {
-
-  @Input() artifact: CedarArtifact;
-  @Input() cedarLink: string;
-
-  params: Object;
+export class ViewHeaderComponent extends CedarBase implements OnInit {
 
   constructor(
     protected localSettings: LocalSettingsService,
@@ -29,17 +23,12 @@ export class ArtifactHeaderComponent extends CedarBase implements OnInit {
     protected route: ActivatedRoute,
     protected dataStore: DataStoreService,
     protected dataHandler: DataHandlerService,
-    protected uiService: UiService
+    protected uiService: UiService,
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
   }
 
   ngOnInit() {
-    this.params = {};
-    this.params['link'] = this.cedarLink;
   }
 
-  openInCedar() {
-    this.uiService.openInCedar();
-  }
 }

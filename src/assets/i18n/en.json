@@ -20,8 +20,8 @@
     "fieldJsonSchema": "Template Field JSON Schema",
     "elementJsonSchema": "Template Element JSON Schema",
     "templateJsonSchema": "Template JSON Schema",
-    "jsonLD": "Instance JSON-LD",
-    "rdf": "Instance RDF"
+    "jsonLD": "Metadata JSON-LD",
+    "rdf": "Metadata RDF"
   },
   "error": {
     "resourceNotPublic": "The requested resource is not publicly available"
@@ -30,14 +30,22 @@
     "Type": "Type",
     "SchemaName": "Name",
     "SchemaDescription": "Description",
+    "CreatedOn": "Created on",
+    "LastUpdatedOn": "Last Updated on",
+    "Version": "Version",
+    "PublicationStatus": "Publication Status",
     "CEDAR": "CEDAR",
-    "Link": "<a href='{{link}}'>Try to view artifact in CEDAR</a> (Login required)"
+    "Link": "Try to view artifact in CEDAR (Login required)"
   },
   "type": {
-    "https://schema.metadatacenter.org/core/TemplateField": "Metadata field",
-    "https://schema.metadatacenter.org/core/TemplateElement": "Metadata element",
-    "https://schema.metadatacenter.org/core/Template": "Metadata template",
-    "TemplateInstance": "Metadata instance"
+    "https://schema.metadatacenter.org/core/TemplateField": "Metadata field (Read-Only)",
+    "https://schema.metadatacenter.org/core/TemplateElement": "Metadata element (Read-Only)",
+    "https://schema.metadatacenter.org/core/Template": "Metadata template (Read-Only)",
+    "TemplateInstance": "Metadata instance (Read-Only)"
+  },
+  "biboStatus": {
+    "bibo:draft": "Draft",
+    "bibo:published": "Published"
   },
   "loadError": {
     "401": "We are sorry, but this artifact has not been made public by its owner.<br/><a href='{{link}}'>Try to view artifact in CEDAR</a> (Login required)",
