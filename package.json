@@ -1,5 +1,5 @@
 {
-  "name": "cedar-open-metadata",
+  "name": "cedar-openview",
   "version": "2.4.1-SNAPSHOT",
   "publishConfig": {
     "registry": "https://nexus.bmir.stanford.edu/repository/npm-cedar/"

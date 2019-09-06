@@ -18,7 +18,7 @@ export class ArtifactHeaderComponent extends CedarBase implements OnInit {
 
   @Input() artifact: CedarArtifact;
   @Input() cedarLink: string;
-  private isHidden: boolean;
+  isHidden: boolean;
 
   params: Object;
 

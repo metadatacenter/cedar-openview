@@ -23,7 +23,7 @@ export class NavbarComponent extends CedarBase implements OnInit {
     protected route: ActivatedRoute,
     protected dataStore: DataStoreService,
     protected dataHandler: DataHandlerService,
-    protected uiService: UiService,
+    public uiService: UiService,
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
   }

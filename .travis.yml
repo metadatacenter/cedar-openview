@@ -2,7 +2,7 @@ sudo: required
 dist: trusty
 addons:
   hosts:
-  - open-metadata.metadatacenter.orgx
+  - openview.metadatacenter.orgx
   apt:
     sources:
     - google-chrome
