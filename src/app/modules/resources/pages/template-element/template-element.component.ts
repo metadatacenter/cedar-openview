@@ -86,9 +86,9 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
   }
 
   // form changed, update tab contents and submit button status
-  onFormChange(event) {
+  onFormChange(event, element) {
     if (event && event.detail) {
-      this.uiService.setTitleAndDescription(event.detail.title, event.detail.description);
+      this.uiService.setTitleAndDescription(event.detail.title, event.detail.description, element['@type']);
       this.uiService.setValidity(event.detail.validity);
       setTimeout(() => {
         const that = this;

@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'cedar-open-metadata'`, () => {
+  it(`should have as title 'cedar-openview'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('cedar-open-metadata');
+    expect(app.title).toEqual('cedar-openview');
   });
 
   it('should render title in a h1 tag', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to cedar-open-metadata!');
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to cedar-openview!');
   });
 });

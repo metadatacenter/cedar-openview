@@ -17,6 +17,7 @@ import {CedarBase} from '../base/cedar-base.component';
 export class ArtifactErrorComponent extends CedarBase implements OnInit {
 
   @Input() status: number;
+  @Input() instanceTemplateError: boolean;
   @Input() cedarLink: string;
 
   params: Object;

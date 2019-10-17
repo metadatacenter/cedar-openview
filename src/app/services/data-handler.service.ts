@@ -99,46 +99,51 @@ export class DataHandlerService {
     if (this.errorCallback != null) {
       this.errorCallback(error, dataStatus);
     }
+    this.spinner.hide();
   }
 
   private loadTemplateField(dataStatus: DataHandlerDataStatus) {
-    this.templateFieldService.getTemplateField(dataStatus.id, (error) => {
-      this.handleLoadError(error, dataStatus);
-    })
+    this.templateFieldService.getTemplateField(dataStatus.id)
       .subscribe(templateField => {
-        this.dataStore.setTemplateField(dataStatus.id, Object.assign(new TemplateField(), templateField));
-        this.dataWasLoaded(dataStatus);
-      });
+          this.dataStore.setTemplateField(dataStatus.id, Object.assign(new TemplateField(), templateField));
+          this.dataWasLoaded(dataStatus);
+        },
+        (error) => {
+          this.handleLoadError(error, dataStatus);
+        });
   }
 
   private loadTemplateElement(dataStatus: DataHandlerDataStatus) {
-    this.templateElementService.getTemplateElement(dataStatus.id, (error) => {
-      this.handleLoadError(error, dataStatus);
-    })
+    this.templateElementService.getTemplateElement(dataStatus.id)
       .subscribe(templateElement => {
-        this.dataStore.setTemplateElement(dataStatus.id, Object.assign(new TemplateElement(), templateElement));
-        this.dataWasLoaded(dataStatus);
-      });
+          this.dataStore.setTemplateElement(dataStatus.id, Object.assign(new TemplateElement(), templateElement));
+          this.dataWasLoaded(dataStatus);
+        },
+        (error) => {
+          this.handleLoadError(error, dataStatus);
+        });
   }
 
   private loadTemplate(dataStatus: DataHandlerDataStatus) {
-    this.templateService.getTemplate(dataStatus.id, (error) => {
-      this.handleLoadError(error, dataStatus);
-    })
+    this.templateService.getTemplate(dataStatus.id)
       .subscribe(template => {
-        this.dataStore.setTemplate(dataStatus.id, Object.assign(new Template(), template));
-        this.dataWasLoaded(dataStatus);
-      });
+          this.dataStore.setTemplate(dataStatus.id, Object.assign(new Template(), template));
+          this.dataWasLoaded(dataStatus);
+        },
+        (error) => {
+          this.handleLoadError(error, dataStatus);
+        });
   }
 
   private loadTemplateInstance(dataStatus: DataHandlerDataStatus) {
-    this.templateInstanceService.getTemplateInstance(dataStatus.id, (error) => {
-      this.handleLoadError(error, dataStatus);
-    })
+    this.templateInstanceService.getTemplateInstance(dataStatus.id)
       .subscribe(templateInstance => {
-        this.dataStore.setTemplateInstance(dataStatus.id, Object.assign(new TemplateInstance(), templateInstance));
-        this.dataWasLoaded(dataStatus);
-      });
+          this.dataStore.setTemplateInstance(dataStatus.id, Object.assign(new TemplateInstance(), templateInstance));
+          this.dataWasLoaded(dataStatus);
+        },
+        error => {
+          this.handleLoadError(error, dataStatus);
+        });
   }
 
   private dataWasLoaded(dataStatus: DataHandlerDataStatus) {

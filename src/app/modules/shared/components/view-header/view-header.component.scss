@@ -1,6 +1,6 @@
 @import '~src/theme.scss';
 
-.legend__container {
+.title__container {
   margin: 0 auto;
   overflow: auto;
   max-width: 80%;
@@ -27,41 +27,7 @@
   }
 }
 
-.legend {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
-  padding: 5px;
-  box-sizing: content-box;
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0 40px 0;
-  border-radius: 4px;
-
-  display: flex;
-  flex-wrap: wrap;
-  background: #fff;
-
-
-  div {
-    white-space: nowrap;
-    color: rgba(0, 0, 0, 0.38);
-    padding: 5px;
-    line-height: 2em;
-    font-size: 1em;
-
-    fa-icon {
-      padding: 5px 0;
-    }
-
-    .asterisk {
-      color: mat-color($my-app-warn);
-    }
-  }
-}
-
-.legend-title {
+.title {
   color: mat-color($my-app-logo);
   font-weight: lighter;
   font-family: CrimsonText, serif;
@@ -72,5 +38,4 @@
 }
 
 .wide-container{
-  background:#f8f8f8;
 }

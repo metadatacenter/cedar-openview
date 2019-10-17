@@ -9,11 +9,11 @@ import {CedarBase} from '../base/cedar-base.component';
 import {UiService} from '../../../../services/ui.service';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  selector: 'app-view-header',
+  templateUrl: './view-header.component.html',
+  styleUrls: ['./view-header.component.scss']
 })
-export class NavbarComponent extends CedarBase implements OnInit {
+export class ViewHeaderComponent extends CedarBase implements OnInit {
 
   constructor(
     protected localSettings: LocalSettingsService,
@@ -23,7 +23,7 @@ export class NavbarComponent extends CedarBase implements OnInit {
     protected route: ActivatedRoute,
     protected dataStore: DataStoreService,
     protected dataHandler: DataHandlerService,
-    public uiService: UiService,
+    protected uiService: UiService,
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
   }
@@ -31,29 +31,4 @@ export class NavbarComponent extends CedarBase implements OnInit {
   ngOnInit() {
   }
 
-  getCurrentLanguageCode() {
-    return this.translateService.currentLang;
-  }
-
-  switchLanguage($event, language: string) {
-    $event.preventDefault();
-    this.translateService.use(language);
-    this.localSettings.setLanguage(language);
-  }
-
-  openInCedar() {
-    this.uiService.openInCedar();
-  }
-
-  openInNewWindow(url: string) {
-    window.open(url, '_blank');
-  }
-
-  expansionOpened() {
-    this.uiService.openArtifactHeader();
-  }
-
-  expansionClosed() {
-    this.uiService.closeArtifactHeader();
-  }
 }

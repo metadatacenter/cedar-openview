@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {catchError, tap} from 'rxjs/operators';
+import {tap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs/index';
 import {HttpClient} from '@angular/common/http';
 import {RestApiUrlService} from '../rest-api-url.service';
@@ -26,7 +26,7 @@ export class GenericMultiLoaderService<T> extends AbstractDataLoaderService {
   protected data: Map<string, T> = new Map<string, T>();
   protected observable: Map<string, Observable<T>> = new Map<string, Observable<T>>();
 
-  getData(id: string, url: string, errorCallback: Function): Observable<T> {
+  getData(id: string, url: string): Observable<T> {
     if (this.data[id]) {
       return of(this.data[id]);
     } else if (this.observable[id]) {
@@ -37,8 +37,7 @@ export class GenericMultiLoaderService<T> extends AbstractDataLoaderService {
           tap(data => {
             this.data[id] = data;
             return this.log('fetched data');
-          }),
-          catchError(this.handleError('getData', errorCallback, null))
+          })
         );
       return this.observable[id];
     }

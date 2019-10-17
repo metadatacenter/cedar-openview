@@ -2,7 +2,7 @@ sudo: required
 dist: trusty
 addons:
   hosts:
-  - open-metadata.metadatacenter.orgx
+  - openview.metadatacenter.orgx
   apt:
     sources:
     - google-chrome
@@ -27,7 +27,7 @@ install:
 - npm install
 env:
   global:
-  - CEDAR_VERSION="2.4.0"
+  - CEDAR_VERSION="2.4.1"
 cache:
   directories:
   - node_modules

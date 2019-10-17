@@ -1,21 +1,32 @@
-<div *ngIf="artifactStatus;else valid_content">
+<div *ngIf="instance && !artifactStatus && !templateStatus">
+  <app-artifact-header [artifact]="instance"></app-artifact-header>
+</div>
+
+<div *ngIf="artifactStatus">
   <app-artifact-error [status]="artifactStatus" [cedarLink]="cedarLink"></app-artifact-error>
 </div>
 
-<ng-template #valid_content>
-  <div *ngIf="instance && template">
+<div *ngIf="templateStatus">
+  <app-artifact-error [status]="templateStatus" instanceTemplateError="true"
+                      [cedarLink]="cedarLink"></app-artifact-error>
+</div>
 
-    <div class="instance__container ">
-      <cedar-form
-        [instance]="instance"
-        [template]="template"
-        [mode]="mode"
-        (autocomplete)="onAutocomplete($event)"
-        (formChange)="onFormChange($event)"
-        [autocompleteResults]="allPosts"></cedar-form>
-    </div>
+<div *ngIf="instance && template">
 
-    <app-form-results [instance]="instance" [template]="template" [rdf]="rdf"></app-form-results>
-    <app-legend></app-legend>
+  <div class="instance__container ">
+    <app-view-header></app-view-header>
+    <cedar-form
+      [instance]="instance"
+      [template]="template"
+      [mode]="mode"
+      (autocomplete)="onAutocomplete($event)"
+      (formChange)="onFormChange($event)"
+      [autocompleteResults]="allPosts"></cedar-form>
   </div>
-</ng-template>
+
+  <app-legend *ngIf="instance && !artifactStatus"></app-legend>
+
+  <app-form-results [instance]="instance" [template]="template" [rdf]="rdf"></app-form-results>
+
+</div>
+

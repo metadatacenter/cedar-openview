@@ -1,6 +1,6 @@
 @import '~src/theme.scss';
 
-.legend__container {
+.metadata__container {
   margin: 0 auto;
   overflow: auto;
   max-width: 80%;
@@ -27,7 +27,35 @@
   }
 }
 
-.legend {
+.overlay {
+  min-height: 400px;
+  //width:100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.cedarLink {
+  color: #555555;
+}
+
+.metadata-title {
+  color: mat-color($my-app-logo);
+  font-weight: lighter;
+  font-family: CrimsonText, serif;
+  font-size: 34px;
+  width: 100%;
+  white-space: nowrap;
+  margin-bottom: 0px
+}
+
+.wide-container {
+  background: #f8f8f8;
+}
+
+
+.metadata {
   border: 1px solid rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
@@ -42,7 +70,6 @@
   display: flex;
   flex-wrap: wrap;
   background: #fff;
-
 
   div {
     white-space: nowrap;
@@ -59,18 +86,11 @@
       color: mat-color($my-app-warn);
     }
   }
-}
-
-.legend-title {
-  color: mat-color($my-app-logo);
-  font-weight: lighter;
-  font-family: CrimsonText, serif;
-  font-size: 34px;
-  width: 100%;
-  white-space: nowrap;
-  margin-bottom: 0px
-}
-
-.wide-container{
-  background:#f8f8f8;
+  td {
+    font-size: 14px;
+    padding:5px;
+  }
+  td.label {
+    padding-right:20px;
+  }
 }

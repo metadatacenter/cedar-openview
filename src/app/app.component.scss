@@ -14,7 +14,7 @@ button:focus {
 
 .root__container {
   width: 100vw;
-  height: 100vh;
+  //height: 100vh;
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: 50px auto;
@@ -27,16 +27,6 @@ button:focus {
     Header
 ================
 */
-
-.app-title {
-  color: mat-color($my-app-logo);
-  font-weight: lighter;
-  font-family: CrimsonText,  serif;
-  font-size: 2em;
-  width: 100%;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
 
 .language-selector {
   padding: 0 10px;
@@ -183,23 +173,6 @@ button:focus {
 }
 
 /*Header*/
-.main__header {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  height: 4rem;
-  //box-shadow: 0 0 2rem rgba(95, 160, 179, 0.2);
-  box-shadow: 0 0 2rem rgba(99,153,165, 0.2);
-  margin: 0;
-  padding:0;
-  align-items: center;
-  transition: background-color 500ms linear;
-  animation: fadein 1s ease-in-out 0ms 1;
-  .button-container {
-    padding-right:10px;
-  }
-}
-
 .toggle-button__container {
   cursor: pointer;
   position: relative;
@@ -255,12 +228,8 @@ button:focus {
   //max-width: 5rem;
 }
 
-.cedar__logo {
-  width: 50px;
-  padding: 0 30px;
-}
 
-.cedar-open-metadata {
+.cedar-openview {
   color: #b2b2b2;
   font-weight: normal;
   white-space: nowrap;
@@ -314,28 +283,6 @@ button:focus {
   fill: #ffff;
 }
 
-button.mat-icon-button.node-add, button.mat-icon-button.node-remove, button.mat-icon-button.help-text-button {
-  padding: 0;
-  min-width: 0;
-  width: 2em;
-  height: 2em;
-  flex-shrink: 0;
-  width: 2em;
-  vertical-align: middle;
-  border-radius: 50%;
-
-  mat-icon {
-    height: 1em;
-    width: 1em;
-    font-size: 1em;
-    line-height: 1em;
-    padding-top: .5em;
-    vertical-align: top;
-    color: rgba(0, 0, 0, .54)
-  }
-}
-
-
 /*
 ================
     Body
@@ -364,84 +311,6 @@ button.mat-icon-button.node-add, button.mat-icon-button.node-remove, button.mat-
   opacity: 1;
   background: linear-gradient(to bottom, #B290FF, #2E1D65);
   transition: opacity 300ms linear;
-}
-
-/*
-================-
-    Footer
-================
-*/
-.main__footer {
-  padding:20px 0;
-  width: 100%;
-
-
-  .flex {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-}
-
-.footer-title {
-  color: mat-color($my-app-logo);
-  font-weight: lighter;
-  font-family: CrimsonText,  serif;
-  font-size: 34px;
-  width: 100%;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.paragraph__section {
-  padding: 1em;
-  max-width: 40%;
-  font-size:1.2em;
-  line-height:1.4em;
-  font-weight:lighter;
-}
-
-.form__section {
-  position: relative;
-  padding: 3em;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  .disclaimer {
-    color: rgba(0, 0, 0, 0.54);
-    padding:10px;
-    font-size:.8em;
-  }
-
-  .subscribe {
-    display: flex;
-    justify-content: center;
-    width: 25em;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
-    box-sizing: content-box;
-    border-radius: 4px;
-    vertical-align: middle;
-
-    input, input:active {
-      width: 14em;
-      border-width: 0px;
-      padding: 20px;
-      margin: 4px;
-    }
-    button {
-      margin: 5px;
-    }
-  }
-}
-
-.copyright__text {
-  letter-spacing: 0.1rem;
-  color: white;
 }
 
 @media only screen and (max-width: 300px) {
