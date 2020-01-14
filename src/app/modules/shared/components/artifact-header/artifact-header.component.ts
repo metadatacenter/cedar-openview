@@ -53,4 +53,12 @@ export class ArtifactHeaderComponent extends CedarBase implements OnInit {
   doClose() {
     this.isHidden = true;
   }
+
+  artifactIsTemplate() {
+    return this.artifact['@type'] === 'https://schema.metadatacenter.org/core/Template';
+  }
+
+  populateInCedar() {
+    this.uiService.populateInCedar();
+  }
 }

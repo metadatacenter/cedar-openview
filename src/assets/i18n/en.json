@@ -35,7 +35,8 @@
     "Version": "Version",
     "PublicationStatus": "Publication Status",
     "CEDAR": "CEDAR",
-    "Link": "Try to view artifact in CEDAR (Login required)"
+    "LinkToArtifact": "Try to view artifact in CEDAR (Login required)",
+    "LinkToPopulate": "Fill out artifact in CEDAR (Login required)"
   },
   "type": {
     "https://schema.metadatacenter.org/core/TemplateField": "Metadata field (Read-Only)",

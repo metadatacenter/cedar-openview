@@ -48,6 +48,14 @@ export class UiService {
     window.open(destination, '_blank');
   }
 
+  populateInCedar() {
+    let destination = window.location.href;
+    destination = window.location.href.replace('openview', 'cedar');
+    destination = destination.replace('/templates/', '/instances/create/');
+    console.log(destination);
+    window.open(destination, '_blank');
+  }
+
   // copy stuff in tabs to browser's clipboard
   copyToClipboard(elementId: string, buttonId: string) {
 

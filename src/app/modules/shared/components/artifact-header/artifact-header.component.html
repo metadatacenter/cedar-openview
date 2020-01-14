@@ -51,7 +51,13 @@
         <tr>
           <td class="label">{{'ArtifactHeader.CEDAR' | translate}}:</td>
           <td><a href="javascript://" class="cedarLink"
-                 (click)="openInCedar()">{{'ArtifactHeader.Link' | translate}}</a></td>
+                 (click)="openInCedar()">{{'ArtifactHeader.LinkToArtifact' | translate}}</a></td>
+        </tr>
+
+        <tr *ngIf="artifactIsTemplate()">
+          <td class="label">{{'ArtifactHeader.CEDAR' | translate}}:</td>
+          <td><a href="javascript://" class="cedarPopulateLink"
+                 (click)="populateInCedar()">{{'ArtifactHeader.LinkToPopulate' | translate}}</a></td>
         </tr>
 
         </tbody>
