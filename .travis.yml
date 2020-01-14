@@ -27,7 +27,7 @@ install:
 - npm install
 env:
   global:
-  - CEDAR_VERSION="2.4.4-SNAPSHOT"
+  - CEDAR_VERSION="2.4.4"
 cache:
   directories:
   - node_modules
