@@ -1,10 +1,10 @@
 {
   "name": "cedar-openview",
-  "version": "2.4.8",
+  "version": "2.4.9",
   "publishConfig": {
     "registry": "https://nexus.bmir.stanford.edu/repository/npm-cedar/"
   },
-  "description": "Embeddable Metadata Editor written using Angular 7",
+  "description": "OpenView written using Angular 7",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
