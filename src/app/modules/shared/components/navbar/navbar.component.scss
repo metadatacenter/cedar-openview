@@ -48,7 +48,7 @@
   }
 
   .button-container {
-    border: 0px solid red;
+    border: 0px solid #ff0000;
     width: 300px;
     height: 40px;
   }
@@ -75,4 +75,8 @@
   width: 100%;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.mat-expansion-panel-header.mat-expanded {
+  height: 48px!important;
 }

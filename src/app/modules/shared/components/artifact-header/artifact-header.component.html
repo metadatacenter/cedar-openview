@@ -38,6 +38,8 @@
           <td>{{artifact['pav:lastUpdatedOn']}}</td>
         </tr>
 
+        <ng-container *ngIf="!artifact['schema:isBasedOn']">
+
         <tr>
           <td class="label">{{'ArtifactHeader.Version' | translate}}:</td>
           <td>{{artifact['pav:version']}}</td>
@@ -47,6 +49,8 @@
           <td class="label">{{'ArtifactHeader.PublicationStatus' | translate}}:</td>
           <td>{{'biboStatus.' + artifact['bibo:status'] | translate}}</td>
         </tr>
+
+        </ng-container>
 
         <tr>
           <td class="label">{{'ArtifactHeader.CEDAR' | translate}}:</td>
