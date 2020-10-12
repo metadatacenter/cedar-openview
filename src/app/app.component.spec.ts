@@ -34,7 +34,10 @@ describe('AppComponent', () => {
       ],
       providers: [
         SnotifyService,
-        {provide: 'SnotifyToastConfig', useValue: ToastDefaults},
+        {
+          provide: 'SnotifyToastConfig',
+          useValue: ToastDefaults
+        }
       ]
     }).compileComponents();
   }));
