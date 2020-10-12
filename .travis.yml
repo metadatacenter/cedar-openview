@@ -24,7 +24,7 @@ install:
 before_script:
   - npm install -g @angular/cli
 script:
-  - ng test
+  - ng test --watch=false
 env:
   global:
     - CEDAR_VERSION="2.5.17-SNAPSHOT"
