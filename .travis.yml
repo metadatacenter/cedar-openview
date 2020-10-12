@@ -3,14 +3,10 @@ dist: trusty
 addons:
   hosts:
   - openview.metadatacenter.orgx
-  apt:
-    sources:
-    - google-chrome
-    packages:
-    - google-chrome-stable
+  chrome: stable
 language: node_js
 node_js:
-- '6'
+- '12'
 branches:
   only:
   - develop
