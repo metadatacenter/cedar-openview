@@ -12,10 +12,10 @@ import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-sta
 import {forkJoin} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {AutocompleteService} from '../../../../services/autocomplete.service';
-import {environment} from '../../../../../environments/environment';
 import {UiService} from '../../../../services/ui.service';
 import {TemplateService} from '../../../../services/template.service';
 import * as jsonld from 'jsonld';
+import {AppConfigService} from '../../../../services/app-config.service';
 
 @Component({
   selector: 'app-template',
@@ -44,7 +44,8 @@ export class TemplateComponent  extends CedarPageComponent implements OnInit {
     protected dataHandler: DataHandlerService,
     private http: HttpClient,
     private autocompleteService: AutocompleteService,
-    private uiService: UiService
+    private uiService: UiService,
+    private configService: AppConfigService
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
   }
@@ -53,7 +54,7 @@ export class TemplateComponent  extends CedarPageComponent implements OnInit {
     this.allPosts = [];
     this.initDataHandler();
     this.templateId = this.route.snapshot.paramMap.get('templateId');
-    this.cedarLink = environment.cedarUrl + 'templates/edit/' + this.templateId;
+    this.cedarLink = this.configService.appConfig.cedarUrl + 'templates/edit/' + this.templateId;
     this.dataHandler
       .requireId(DataHandlerDataId.TEMPLATE, this.templateId)
       .load(() => this.dataLoadedCallback(), (error, dataStatus) => this.dataErrorCallback(error, dataStatus));
@@ -91,7 +92,7 @@ export class TemplateComponent  extends CedarPageComponent implements OnInit {
   // form changed, update tab contents and submit button status
   onFormChange(event, template) {
     if (event && event.detail) {
-      console.log(event.detail);
+      //console.log(event.detail);
       this.uiService.setTitleAndDescription(event.detail.title, event.detail.description, template['@type']);
       this.uiService.setValidity(event.detail.validity);
       setTimeout(() => {

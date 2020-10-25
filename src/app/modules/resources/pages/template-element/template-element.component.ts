@@ -9,13 +9,13 @@ import {LocalSettingsService} from '../../../../services/local-settings.service'
 import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.model';
 import {TemplateElement} from '../../../../shared/model/template-element.model';
 import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
-import {environment} from '../../../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {AutocompleteService} from '../../../../services/autocomplete.service';
 import {forkJoin} from 'rxjs';
 import {UiService} from '../../../../services/ui.service';
 import {TemplateService} from '../../../../services/template.service';
 import * as jsonld from 'jsonld';
+import {AppConfigService} from '../../../../services/app-config.service';
 
 
 @Component({
@@ -44,7 +44,8 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
     protected dataHandler: DataHandlerService,
     private http: HttpClient,
     private autocompleteService: AutocompleteService,
-    private uiService: UiService
+    private uiService: UiService,
+    private configService: AppConfigService
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
   }
@@ -54,7 +55,7 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
     this.initDataHandler();
 
     this.templateElementId = this.route.snapshot.paramMap.get('templateElementId');
-    this.cedarLink = environment.cedarUrl + 'elements/edit/' + this.templateElementId;
+    this.cedarLink = this.configService.appConfig.cedarUrl + 'elements/edit/' + this.templateElementId;
     this.dataHandler
       .requireId(DataHandlerDataId.TEMPLATE_ELEMENT, this.templateElementId)
       .load(() => this.dataLoadedCallback(), (error, dataStatus) => this.dataErrorCallback(error, dataStatus));
