@@ -17,6 +17,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {ReactiveFormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AppConfigService} from './services/app-config.service';
+import {AutocompleteUrlService} from './services/autocomplete-url.service';
 
 
 // AoT requires an exported function for factories
@@ -69,7 +70,8 @@ const appInitializerFn = (appConfig: AppConfigService) => {
       useFactory: appInitializerFn,
       multi: true,
       deps: [AppConfigService]
-    }
+    },
+    AutocompleteUrlService
   ],
   bootstrap: [AppComponent]
 })

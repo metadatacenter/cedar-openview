@@ -3,15 +3,15 @@ import {AppConfigService} from './app-config.service';
 
 export class AutocompleteUrlService {
 
-  constructor(
-    private configService: AppConfigService
-  ) {
+  private configService: AppConfigService = null;
+  private terminologyService = null;
+  private controlledService = null;
+
+  init(configService: AppConfigService) {
+    this.configService = configService;
     this.terminologyService = this.configService.appConfig.terminologyUrl;
     this.controlledService = this.configService.appConfig.terminologyUrl + 'bioportal';
   }
-
-  private terminologyService;
-  private controlledService;
 
   paging(page, size, defaultPage, defaultSize, pageString, sizeString) {
     const p = page > 0 ? page : defaultPage;
