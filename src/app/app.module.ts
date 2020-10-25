@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule} from '@angular/core';
+import {APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 
 
 import {AppRoutingModule} from './app-routing.module';
@@ -16,6 +16,7 @@ import {MaterialModule} from './modules/material-module';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {ReactiveFormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {AppConfigService} from './services/app-config.service';
 
 
 // AoT requires an exported function for factories
@@ -23,11 +24,17 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
+const appInitializerFn = (appConfig: AppConfigService) => {
+  return () => {
+    return appConfig.loadAppConfig();
+  };
+};
+
 @NgModule({
   declarations: [
     AppComponent
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
@@ -52,7 +59,17 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     SnotifyService,
-    {provide: 'SnotifyToastConfig', useValue: ToastDefaults},
+    {
+      provide: 'SnotifyToastConfig',
+      useValue: ToastDefaults
+    },
+    AppConfigService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializerFn,
+      multi: true,
+      deps: [AppConfigService]
+    }
   ],
   bootstrap: [AppComponent]
 })

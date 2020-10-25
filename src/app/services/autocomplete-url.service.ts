@@ -1,31 +1,38 @@
-import {environment} from '../../environments/environment';
+import {AppConfigService} from './app-config.service';
 
 
 export class AutocompleteUrlService {
 
-  static terminologyService = environment.terminologyUrl;
-  static controlledService = environment.terminologyUrl + 'bioportal';
+  constructor(
+    private configService: AppConfigService
+  ) {
+    this.terminologyService = this.configService.appConfig.terminologyUrl;
+    this.controlledService = this.configService.appConfig.terminologyUrl + 'bioportal';
+  }
 
-  static paging(page, size, defaultPage, defaultSize, pageString, sizeString) {
+  private terminologyService;
+  private controlledService;
+
+  paging(page, size, defaultPage, defaultSize, pageString, sizeString) {
     const p = page > 0 ? page : defaultPage;
     const s = size > 0 ? size : defaultSize;
     return pageString + '=' + p + '&' + sizeString + '=' + s;
   }
 
-  static terminology() {
+  terminology() {
     return this.terminologyService;
   }
 
-  static controlledTerm() {
+  controlledTerm() {
     return this.controlledService;
   }
 
-  static getValuesInValueSet(vsCollection, vsId, page?: string, size?: string) {
+  getValuesInValueSet(vsCollection, vsId, page?: string, size?: string) {
     return this.controlledTerm() + '/vs-collections/' + vsCollection + '/value-sets/' + encodeURIComponent(vsId)
       + '/values?' + this.paging(page, size, 1, 50, 'page', 'pageSize');
   }
 
-  static autocompleteOntology(query: string, acronym: string, page?: number, size?: number) {
+  autocompleteOntology(query: string, acronym: string, page?: number, size?: number) {
     let url = this.controlledTerm();
     if (query === '*') {
       url += '/ontologies/' + acronym + '/classes?' + this.paging(page, size, 1, 500, 'page', 'page_size');
@@ -36,7 +43,7 @@ export class AutocompleteUrlService {
     return url;
   }
 
-  static autocompleteOntologySubtree(query, acronym, subtree_root_id, max_depth?: number, page?: number, size?: number) {
+  autocompleteOntologySubtree(query, acronym, subtree_root_id, max_depth?: number, page?: number, size?: number) {
     let url = this.controlledTerm();
 
     if (query === '*') {

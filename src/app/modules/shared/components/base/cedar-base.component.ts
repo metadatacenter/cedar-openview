@@ -111,13 +111,13 @@ export abstract class CedarBase implements OnInit {
   }
 
   protected navigateByUrlDone(url: string | UrlTree, extras?: NavigationExtras): void {
-    console.log('NavigateByUrl:' + url);
+    //console.log('NavigateByUrl:' + url);
     this.router.navigateByUrl(url, extras).then(_ => {
     });
   }
 
   protected navigateByUrlThen(url: string | UrlTree, extras?: NavigationExtras): Promise<boolean> {
-    console.log('NavigateByUrlThen:' + url);
+    //console.log('NavigateByUrlThen:' + url);
     return this.router.navigateByUrl(url, extras);
   }
 

@@ -9,13 +9,13 @@ import {LocalSettingsService} from '../../../../services/local-settings.service'
 import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.model';
 import {TemplateField} from '../../../../shared/model/template-field.model';
 import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
-import {environment} from '../../../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {AutocompleteService} from '../../../../services/autocomplete.service';
 import {forkJoin} from 'rxjs';
 import {UiService} from '../../../../services/ui.service';
 import {TemplateService} from '../../../../services/template.service';
 import * as jsonld from 'jsonld';
+import {AppConfigService} from '../../../../services/app-config.service';
 
 @Component({
   selector: 'app-template-field',
@@ -44,7 +44,8 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
     protected dataHandler: DataHandlerService,
     private http: HttpClient,
     private autocompleteService: AutocompleteService,
-    private uiService: UiService
+    private uiService: UiService,
+    private configService: AppConfigService
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
   }
@@ -54,7 +55,7 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
     this.initDataHandler();
 
     this.templateFieldId = this.route.snapshot.paramMap.get('templateFieldId');
-    this.cedarLink = environment.cedarUrl + 'fields/edit/' + this.templateFieldId;
+    this.cedarLink = this.configService.appConfig.cedarUrl + 'fields/edit/' + this.templateFieldId;
     this.dataHandler
       .requireId(DataHandlerDataId.TEMPLATE_FIELD, this.templateFieldId)
       .load(() => this.dataLoadedCallback(), (error, dataStatus) => this.dataErrorCallback(error, dataStatus));

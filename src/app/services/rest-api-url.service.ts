@@ -1,14 +1,16 @@
 import {Injectable} from '@angular/core';
-import {environment} from '../../environments/environment';
+import {AppConfigService} from './app-config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestApiUrlService {
 
-  API_URL: string = environment.apiUrl;
+  API_URL: string = this.configService.appConfig.apiUrl;
 
-  constructor() {
+  constructor(
+    private configService: AppConfigService
+  ) {
   }
 
   private base() {
@@ -46,6 +48,5 @@ export class RestApiUrlService {
   templateInstance(id: string) {
     return `${this.templateInstances()}/${encodeURIComponent(id)}`;
   }
-
 
 }
