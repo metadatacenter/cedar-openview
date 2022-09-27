@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {SnotifyService} from 'ng-snotify';
+import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';

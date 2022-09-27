@@ -2,7 +2,7 @@ import {CedarPageComponent} from '../../components/base/cedar-page-component.com
 import {Component, OnInit} from '@angular/core';
 import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {TranslateService} from '@ngx-translate/core';
-import {SnotifyService} from 'ng-snotify';
+import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';

@@ -1,7 +1,7 @@
 import {async, TestBed} from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {AppComponent} from './app.component';
-import {SnotifyModule, SnotifyService, ToastDefaults} from 'ng-snotify';
+import {SnotifyModule, SnotifyService, ToastDefaults} from 'ng-alt-snotify';
 import {SpinnerComponent} from './modules/shared/components/spinner/spinner.component';
 import {NavbarComponent} from './modules/shared/components/navbar/navbar.component';
 import {FooterComponent} from './modules/shared/components/footer/footer.component';

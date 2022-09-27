@@ -1,7 +1,7 @@
 import {Observable, of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {SnotifyService} from 'ng-snotify';
+import {SnotifyService} from 'ng-alt-snotify';
 import {TranslateService} from '@ngx-translate/core';
 import {RestApiUrlService} from '../rest-api-url.service';
 

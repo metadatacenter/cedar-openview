@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs/index';
-import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {BehaviorSubject} from 'rxjs';
 import {TranslateService} from '@ngx-translate/core';
 import {ArtifactHeaderComponent} from '../modules/shared/components/artifact-header/artifact-header.component';
 
