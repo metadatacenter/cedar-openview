@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {RestApiUrlService} from '../rest-api-url.service';
 import {Router} from '@angular/router';
 import {AbstractDataLoaderService} from './abstract-data-loader.service';
-import {SnotifyService} from 'ng-snotify';
+import {SnotifyService} from 'ng-alt-snotify';
 import {TranslateService} from '@ngx-translate/core';
 
 @Injectable({

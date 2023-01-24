@@ -11,7 +11,7 @@ import {TemplateInstance} from '../shared/model/template-instance.model';
 })
 export class DataStoreService {
 
-  private static cedarClientSessionId: string = uuid();
+  private static cedarClientSessionId = 'abcd-efgh-1234';//uuid();
 
   private readonly templateFieldMap: Map<string, TemplateField>;
   private readonly templateElementMap: Map<string, TemplateElement>;

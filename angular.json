@@ -32,7 +32,7 @@
               }
             ],
             "styles": [
-              "node_modules/ng-snotify/styles/material.css",
+              "node_modules/ng-alt-snotify/styles/material.scss",
               "src/styles.scss",
               "src/theme.scss"
             ],
@@ -197,5 +197,8 @@
       }
     }
   },
-  "defaultProject": "cedar-openview"
+  "defaultProject": "cedar-openview",
+  "cli": {
+    "analytics": false
+  }
 }

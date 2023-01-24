@@ -1,5 +1,5 @@
 import {TranslateService} from '@ngx-translate/core';
-import {SnotifyService} from 'ng-snotify';
+import {SnotifyService} from 'ng-alt-snotify';
 import {CedarBase} from './cedar-base.component';
 import {ActivatedRoute, Router} from '@angular/router';
 import {LocalSettingsService} from '../../../../services/local-settings.service';

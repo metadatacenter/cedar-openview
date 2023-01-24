@@ -5,7 +5,7 @@ import {RestApiUrlService} from '../rest-api-url.service';
 import {Router} from '@angular/router';
 import {GenericMultiLoaderService} from './generic-multi-loader';
 import {TemplateInstance} from '../../shared/model/template-instance.model';
-import {SnotifyService} from 'ng-snotify';
+import {SnotifyService} from 'ng-alt-snotify';
 import {TranslateService} from '@ngx-translate/core';
 
 @Injectable({

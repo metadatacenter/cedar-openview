@@ -1,12 +1,15 @@
-import {OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {SnotifyService} from 'ng-snotify';
+import {SnotifyService} from 'ng-alt-snotify';
 import {DatePipe} from '@angular/common';
 import {ActivatedRoute, NavigationExtras, Router, UrlTree} from '@angular/router';
 import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 
+@Component({
+  template: ''
+})
 export abstract class CedarBase implements OnInit {
 
   protected localSettings: LocalSettingsService;
