@@ -22,7 +22,7 @@ export class FolderContentComponent extends CedarPageComponent implements OnInit
 
   folderId: string = null;
   folderContents: FolderContent = null;
-  artifactStatus: number = null;
+  folderStatus: number = null;
   cedarLink: string = null;
 
   mode = 'view';
@@ -45,6 +45,9 @@ export class FolderContentComponent extends CedarPageComponent implements OnInit
   ngOnInit() {
     this.initDataHandler();
     this.folderId = this.route.snapshot.paramMap.get('folderId');
+    this.cedarLink = this.configService.appConfig.cedarUrl + 'dashboard?folderId=' + encodeURIComponent(this.folderId);
+    console.log(this.folderId);
+    console.log(this.cedarLink);
     this.dataHandler
       .requireId(DataHandlerDataId.FOLDER_CONTENTS, this.folderId)
       .load(() => this.dataLoadedCallback(), (error, dataStatus) => this.dataErrorCallback(error, dataStatus));
@@ -55,7 +58,7 @@ export class FolderContentComponent extends CedarPageComponent implements OnInit
   }
 
   private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
-    this.artifactStatus = error.status;
+    this.folderStatus = error.status;
   }
 
   public openFolder(folderId: string): void {
