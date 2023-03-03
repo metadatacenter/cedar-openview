@@ -33,6 +33,10 @@ export class RestApiUrlService {
     return `${this.base()}template-instances`;
   }
 
+  private folderContents() {
+    return `${this.base()}folders`;
+  }
+
   templateField(id: string) {
     return `${this.templateFields()}/${encodeURIComponent(id)}`;
   }
@@ -47,6 +51,10 @@ export class RestApiUrlService {
 
   templateInstance(id: string) {
     return `${this.templateInstances()}/${encodeURIComponent(id)}`;
+  }
+
+  folderContent(id: string) {
+    return `${this.folderContents()}/${encodeURIComponent(id)}`;
   }
 
 }

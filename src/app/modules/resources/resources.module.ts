@@ -7,6 +7,7 @@ import {TemplateElementComponent} from './pages/template-element/template-elemen
 import {TemplateFieldComponent} from './pages/template-field/template-field.component';
 import {TemplateInstanceComponent} from './pages/template-instance/template-instance.component';
 import {MaterialModule} from '../material-module';
+import {FolderContentComponent} from './pages/folder-content/folder-content.component';
 
 
 
@@ -15,7 +16,8 @@ import {MaterialModule} from '../material-module';
     TemplateFieldComponent,
     TemplateElementComponent,
     TemplateComponent,
-    TemplateInstanceComponent
+    TemplateInstanceComponent,
+    FolderContentComponent
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   imports: [

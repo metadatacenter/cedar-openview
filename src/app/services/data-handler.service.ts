@@ -12,6 +12,8 @@ import {TemplateElementService} from './load-data/template-element.service';
 import {TemplateInstance} from '../shared/model/template-instance.model';
 import {TemplateInstanceService} from './load-data/template-instance.service';
 import {TemplateField} from '../shared/model/template-field.model';
+import {FolderContent} from '../shared/model/folder-content.model';
+import {FolderContentService} from './load-data/folder-content.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +33,8 @@ export class DataHandlerService {
     private templateFieldService: TemplateFieldService,
     private templateElementService: TemplateElementService,
     private templateService: TemplateService,
-    private templateInstanceService: TemplateInstanceService
+    private templateInstanceService: TemplateInstanceService,
+    private folderContentService: FolderContentService
   ) {
     this.dataIdMap = new Map<string, DataHandlerDataStatus>();
     this.dataAvailable = false;
@@ -92,6 +95,9 @@ export class DataHandlerService {
       case DataHandlerDataId.TEMPLATE_INSTANCE:
         this.loadTemplateInstance(dataStatus);
         break;
+      case DataHandlerDataId.FOLDER_CONTENTS:
+        this.loadFolderContent(dataStatus);
+        break;
     }
   }
 
@@ -142,6 +148,17 @@ export class DataHandlerService {
           this.dataWasLoaded(dataStatus);
         },
         error => {
+          this.handleLoadError(error, dataStatus);
+        });
+  }
+
+  private loadFolderContent(dataStatus: DataHandlerDataStatus) {
+    this.folderContentService.getFolderContent(dataStatus.id)
+      .subscribe(folderContent => {
+          this.dataStore.setFolderContent(dataStatus.id, Object.assign(new FolderContent(), folderContent));
+          this.dataWasLoaded(dataStatus);
+        },
+        (error) => {
           this.handleLoadError(error, dataStatus);
         });
   }

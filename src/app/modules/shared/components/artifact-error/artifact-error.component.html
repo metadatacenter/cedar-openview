@@ -12,19 +12,19 @@
     </mat-card-header>
     <mat-card-content>
       <div *ngIf="status == 401 && !instanceTemplateError">
-        <div>The artifact that you are trying to view is not open.</div>
+        <div>The {{noun}} that you are trying to view is not open.</div>
         <button (click)="openInCedar()" mat-icon-button class="help-text-button" matTooltip="Login to CEDAR">
-          Login to CEDAR to view this artifact!
+          Login to CEDAR to view this {{noun}}!
         </button>
       </div>
       <div *ngIf="status == 401 && instanceTemplateError">
         <div>The metadata that you are trying to view is open for viewing, but the corresponding template is not.</div>
         <button (click)="openInCedar()" mat-icon-button class="help-text-button" matTooltip="Login to CEDAR">
-          Login to CEDAR to view this artifact!
+          Login to CEDAR to view this {{noun}}!
         </button>
       </div>
       <div *ngIf="status == 404">
-        <div>The artifact that you are trying to view does not exist in CEDAR.</div>
+        <div>The {{noun}} that you are trying to view does not exist in CEDAR.</div>
       </div>
     </mat-card-content>
     <mat-card-actions>

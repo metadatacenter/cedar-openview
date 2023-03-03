@@ -19,6 +19,7 @@ export class ArtifactErrorComponent extends CedarBase implements OnInit {
   @Input() status: number;
   @Input() instanceTemplateError: boolean;
   @Input() cedarLink: string;
+  @Input() noun = 'artifact';
 
   params: Object;
 
@@ -41,6 +42,10 @@ export class ArtifactErrorComponent extends CedarBase implements OnInit {
   }
 
   openInCedar() {
-    this.uiService.openInCedar();
+    if (this.noun === 'artifact') {
+      this.uiService.openInCedar();
+    } else {
+      this.uiService.openUrlInBlank(this.cedarLink);
+    }
   }
 }

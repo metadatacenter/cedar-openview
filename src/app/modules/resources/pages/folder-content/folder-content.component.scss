@@ -1,0 +1,58 @@
+@import '../styles.scss';
+
+.wrapperCard {
+  background-color: #f5f5f5;
+
+  .header {
+    font-size: 1.2em;
+    margin: 0px 5px 10px 5px;
+  }
+
+  .footer {
+    font-size: 1em;
+    margin: 0px 5px 0px 5px;
+  }
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  flex-wrap: wrap;
+}
+
+.flex-container > .flex-item {
+  margin: 5px;
+  width: 160px;
+  height: 80px;
+
+  .name {
+    position: absolute;
+    left: 15px;
+    top: 50px;
+  }
+}
+
+a {
+  color: #000000;
+}
+
+.warning-card {
+  max-width: 400px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
+}
+
+.overlay {
+  min-height:200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow:hidden;
+}
+
+.avatar-image {
+  font-size:2em;
+}

@@ -1,0 +1,69 @@
+<mat-card class="wrapperCard" *ngIf="folderContents">
+  <mat-card class="header">
+    <span *ngFor="let folder of folderContents['pathInfo']; let i = index">
+      <span *ngIf="i > 1">&nbsp;/&nbsp;</span>
+      <span *ngIf="i == 1">&nbsp;</span>
+      {{folder['schema:name']}}
+    </span>
+  </mat-card>
+
+  <ng-container *ngIf="folderContents['resources'].length > 0">
+    <mat-card-content class="flex-container">
+
+      <ng-container *ngFor="let folder of folderContents['resources']; let i = index">
+        <ng-container *ngIf="folder['resourceType'] == 'folder'">
+          <mat-card class="flex-item">
+            <mat-icon aria-hidden="false" aria-label="Folder" fontIcon="folder"></mat-icon>
+            <a class="name" (click)="openFolder(folder['@id'])" href="javascript://">{{folder['schema:name']}}</a>
+          </mat-card>
+        </ng-container>
+      </ng-container>
+
+    </mat-card-content>
+
+    <mat-card-content class="flex-container">
+
+      <ng-container *ngFor="let artifact of folderContents['resources']; let i = index">
+        <ng-container *ngIf="artifact['resourceType'] != 'folder'">
+          <mat-card class="flex-item">
+            <mat-icon *ngIf="artifact['resourceType'] == 'template'" aria-hidden="false" aria-label="Template"
+                      fontIcon="description"></mat-icon>
+            <mat-icon *ngIf="artifact['resourceType'] == 'field'" aria-hidden="false" aria-label="Template"
+                      fontIcon="featured_play_list"></mat-icon>
+            <mat-icon *ngIf="artifact['resourceType'] == 'element'" aria-hidden="false" aria-label="Element"
+                      fontIcon="grid_view"></mat-icon>
+            <mat-icon *ngIf="artifact['resourceType'] == 'instance'" aria-hidden="false" aria-label="Element"
+                      fontIcon="sd_storage"></mat-icon>
+            <a class="name" (click)="openArtifact(artifact['resourceType'], artifact['@id'])"
+               href="javascript://">{{artifact['schema:name']}}</a>
+          </mat-card>
+        </ng-container>
+      </ng-container>
+
+    </mat-card-content>
+  </ng-container>
+
+  <ng-container *ngIf="folderContents['resources'].length == 0">
+    <div class="overlay">
+      <mat-card class="warning-card">
+        <mat-card-header>
+          <div mat-card-avatar>
+            <mat-icon class="avatar-image" color="error">folder</mat-icon>
+          </div>
+          <mat-card-title>
+            The folder is empty
+          </mat-card-title>
+          <mat-card-subtitle>The folder is accessible, but does not contain any artifacts or folders</mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </ng-container>
+
+    <mat-card class="footer">
+    Total count: {{folderContents['totalCount']}}
+  </mat-card>
+</mat-card>
+
+<div *ngIf="folderStatus">
+  <app-artifact-error [status]="folderStatus" [cedarLink]="cedarLink" [noun]="'folder'"></app-artifact-error>
+</div>
