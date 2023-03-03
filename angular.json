@@ -47,7 +47,7 @@
                   "with": "src/environments/environment.production.ts"
                 }
               ],
-              "outputHashing": "all",
+              "outputHashing": "none",
               "sourceMap": false,
               "namedChunks": false,
               "aot": true,
