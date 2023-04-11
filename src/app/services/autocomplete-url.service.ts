@@ -1,4 +1,5 @@
 import {AppConfigService} from './app-config.service';
+import {environment} from '../../environments/environment';
 
 
 export class AutocompleteUrlService {
@@ -9,8 +10,8 @@ export class AutocompleteUrlService {
 
   init(configService: AppConfigService) {
     this.configService = configService;
-    this.terminologyService = this.configService.appConfig.terminologyUrl;
-    this.controlledService = this.configService.appConfig.terminologyUrl + 'bioportal';
+    this.terminologyService = environment.terminologyUrl;
+    this.controlledService = environment.terminologyUrl + 'bioportal';
   }
 
   paging(page, size, defaultPage, defaultSize, pageString, sizeString) {

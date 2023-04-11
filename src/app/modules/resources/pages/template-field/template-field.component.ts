@@ -16,6 +16,7 @@ import {UiService} from '../../../../services/ui.service';
 import {TemplateService} from '../../../../services/template.service';
 import * as jsonld from 'jsonld';
 import {AppConfigService} from '../../../../services/app-config.service';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-template-field',
@@ -55,7 +56,7 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
     this.initDataHandler();
 
     this.templateFieldId = this.route.snapshot.paramMap.get('templateFieldId');
-    this.cedarLink = this.configService.appConfig.cedarUrl + 'fields/edit/' + this.templateFieldId;
+    this.cedarLink = environment.cedarUrl + 'fields/edit/' + this.templateFieldId;
     this.dataHandler
       .requireId(DataHandlerDataId.TEMPLATE_FIELD, this.templateFieldId)
       .load(() => this.dataLoadedCallback(), (error, dataStatus) => this.dataErrorCallback(error, dataStatus));

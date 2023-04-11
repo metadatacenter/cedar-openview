@@ -4,6 +4,9 @@
 
 export const environment = {
   production: false,
+  'apiUrl': '',
+  'cedarUrl': '',
+  'terminologyUrl': '',
   defaultLanguage: 'en',
   fallbackLanguage: 'en'
 };
