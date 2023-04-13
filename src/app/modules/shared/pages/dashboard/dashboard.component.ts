@@ -7,6 +7,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {AppConfigService} from '../../../../services/app-config.service';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -29,7 +30,7 @@ export class DashboardComponent extends CedarPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    window.location.href = this.configService.appConfig.cedarUrl;
+    window.location.href = environment.cedarUrl;
   }
 
 }

@@ -16,6 +16,7 @@ import {UiService} from '../../../../services/ui.service';
 import {TemplateService} from '../../../../services/template.service';
 import * as jsonld from 'jsonld';
 import {AppConfigService} from '../../../../services/app-config.service';
+import {environment} from '../../../../../environments/environment';
 
 
 @Component({
@@ -58,7 +59,7 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
     this.initDataHandler();
 
     this.templateInstanceId = this.route.snapshot.paramMap.get('templateInstanceId');
-    this.cedarLink = this.configService.appConfig.cedarUrl + 'instances/edit/' + this.templateInstanceId;
+    this.cedarLink = environment.cedarUrl + 'instances/edit/' + this.templateInstanceId;
     this.dataHandler
       .requireId(DataHandlerDataId.TEMPLATE_INSTANCE, this.templateInstanceId)
       .load(() => this.instanceLoadedCallback(this.templateInstanceId),

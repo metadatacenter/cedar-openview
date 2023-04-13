@@ -12,6 +12,7 @@ import {HttpClient} from '@angular/common/http';
 import {UiService} from '../../../../services/ui.service';
 import {AppConfigService} from '../../../../services/app-config.service';
 import {FolderContent} from '../../../../shared/model/folder-content.model';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-folder-content',
@@ -45,7 +46,7 @@ export class FolderContentComponent extends CedarPageComponent implements OnInit
   ngOnInit() {
     this.initDataHandler();
     this.folderId = this.route.snapshot.paramMap.get('folderId');
-    this.cedarLink = this.configService.appConfig.cedarUrl + 'dashboard?folderId=' + encodeURIComponent(this.folderId);
+    this.cedarLink = environment.cedarUrl + 'dashboard?folderId=' + encodeURIComponent(this.folderId);
     console.log(this.folderId);
     console.log(this.cedarLink);
     this.dataHandler

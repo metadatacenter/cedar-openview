@@ -16,6 +16,7 @@ import {UiService} from '../../../../services/ui.service';
 import {TemplateService} from '../../../../services/template.service';
 import * as jsonld from 'jsonld';
 import {AppConfigService} from '../../../../services/app-config.service';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-template',
@@ -54,7 +55,7 @@ export class TemplateComponent  extends CedarPageComponent implements OnInit {
     this.allPosts = [];
     this.initDataHandler();
     this.templateId = this.route.snapshot.paramMap.get('templateId');
-    this.cedarLink = this.configService.appConfig.cedarUrl + 'templates/edit/' + this.templateId;
+    this.cedarLink = environment.cedarUrl + 'templates/edit/' + this.templateId;
     this.dataHandler
       .requireId(DataHandlerDataId.TEMPLATE, this.templateId)
       .load(() => this.dataLoadedCallback(), (error, dataStatus) => this.dataErrorCallback(error, dataStatus));

@@ -16,6 +16,7 @@ import {UiService} from '../../../../services/ui.service';
 import {TemplateService} from '../../../../services/template.service';
 import * as jsonld from 'jsonld';
 import {AppConfigService} from '../../../../services/app-config.service';
+import {environment} from '../../../../../environments/environment';
 
 
 @Component({
@@ -55,7 +56,7 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
     this.initDataHandler();
 
     this.templateElementId = this.route.snapshot.paramMap.get('templateElementId');
-    this.cedarLink = this.configService.appConfig.cedarUrl + 'elements/edit/' + this.templateElementId;
+    this.cedarLink = environment.cedarUrl + 'elements/edit/' + this.templateElementId;
     this.dataHandler
       .requireId(DataHandlerDataId.TEMPLATE_ELEMENT, this.templateElementId)
       .load(() => this.dataLoadedCallback(), (error, dataStatus) => this.dataErrorCallback(error, dataStatus));
