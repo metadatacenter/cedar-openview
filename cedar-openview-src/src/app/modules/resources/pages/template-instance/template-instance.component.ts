@@ -16,7 +16,6 @@ import {UiService} from '../../../../services/ui.service';
 import {TemplateService} from '../../../../services/template.service';
 import * as jsonld from 'jsonld';
 import {globalAppConfig} from "../../../../../environments/global-app-config";
-import {JsonLdProcessor} from "jsonld";
 
 
 @Component({
@@ -116,13 +115,11 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
     if (event && event.detail) {
       this.uiService.setTitleAndDescription(event.detail.title, event.detail.description, 'TemplateInstance');
       this.uiService.setValidity(event.detail.validity);
-      setTimeout(() => {
-        const that = this;
+      setTimeout(async () => {
         if (this.instance) {
           const instanceJson = JSON.parse(JSON.stringify(this.instance));
-          jsonld.toRDF(instanceJson, {format: 'application/n-quads'}, function (err: any, nquads: any) {
-            that.rdf = err ? err : nquads;
-          });
+          const nquads = await jsonld.toRDF(instanceJson, {format: 'application/n-quads'});
+          this.rdf = nquads;
         }
       }, 0);
     }
