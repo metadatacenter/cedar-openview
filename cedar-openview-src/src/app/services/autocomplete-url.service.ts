@@ -1,20 +1,20 @@
 import {AppConfigService} from './app-config.service';
-import {environment} from '../../environments/environment';
+import {globalAppConfig} from "../../environments/global-app-config";
 
 
 export class AutocompleteUrlService {
 
-  private configService: AppConfigService = null;
-  private terminologyService = null;
-  private controlledService = null;
+  private configService: AppConfigService | null = null;
+  private terminologyService: string = '';
+  private controlledService: string = '';
 
   init(configService: AppConfigService) {
     this.configService = configService;
-    this.terminologyService = environment.terminologyUrl;
-    this.controlledService = environment.terminologyUrl + 'bioportal';
+    this.terminologyService = globalAppConfig.terminologyUrl;
+    this.controlledService = globalAppConfig.terminologyUrl + 'bioportal';
   }
 
-  paging(page, size, defaultPage, defaultSize, pageString, sizeString) {
+  paging(page: number, size: number, defaultPage: number, defaultSize: number, pageString?: string, sizeString?: string): string {
     const p = page > 0 ? page : defaultPage;
     const s = size > 0 ? size : defaultSize;
     return pageString + '=' + p + '&' + sizeString + '=' + s;
@@ -28,13 +28,13 @@ export class AutocompleteUrlService {
     return this.controlledService;
   }
 
-  getValuesInValueSet(vsCollection, vsId, page?: string, size?: string) {
+  getValuesInValueSet(vsCollection: string, vsId: string, page: number, size: number): string {
     return this.controlledTerm() + '/vs-collections/' + vsCollection + '/value-sets/' + encodeURIComponent(vsId)
       + '/values?' + this.paging(page, size, 1, 50, 'page', 'pageSize');
   }
 
-  autocompleteOntology(query: string, acronym: string, page?: number, size?: number) {
-    let url = this.controlledTerm();
+  autocompleteOntology(query: string, acronym: string, page: number, size: number): string {
+    let url: string = this.controlledTerm();
     if (query === '*') {
       url += '/ontologies/' + acronym + '/classes?' + this.paging(page, size, 1, 500, 'page', 'page_size');
     } else {
@@ -44,7 +44,7 @@ export class AutocompleteUrlService {
     return url;
   }
 
-  autocompleteOntologySubtree(query, acronym, subtree_root_id, max_depth?: number, page?: number, size?: number) {
+  autocompleteOntologySubtree(query: string, acronym: string, subtree_root_id: string, max_depth: number, page: number, size: number) {
     let url = this.controlledTerm();
 
     if (query === '*') {

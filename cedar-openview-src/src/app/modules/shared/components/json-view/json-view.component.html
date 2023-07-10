@@ -1,6 +1,6 @@
 <div class="card mb-2">
 
-  <div class="card-header header-box">
+  <div class="card-header header-box" *ngIf="artifact">
     <div class="row align-items-center">
       <div class="col mb-2 mb-md-0 text-center text-md-left">
         <span *ngIf="artifact['@type']">{{'Generic.jsonSchema' | translate}}</span>

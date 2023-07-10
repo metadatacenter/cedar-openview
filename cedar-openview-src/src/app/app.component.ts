@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   faSquare = faSquare;
   faBars = faBars;
   faUnlock = faUnlock;
-  loadAPI: Promise<any>;
+  loadAPI: Promise<any> | null = null;
 
   languages = {
     selected: 'en',
@@ -75,7 +75,7 @@ export class AppComponent implements OnInit {
     return this.translateService.currentLang;
   }
 
-  switchLanguage($event, language: string) {
+  switchLanguage($event: any, language: string) {
     $event.preventDefault();
     this.translateService.use(language);
     this.localSettings.setLanguage(language);

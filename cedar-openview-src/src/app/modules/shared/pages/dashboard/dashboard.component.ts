@@ -6,8 +6,7 @@ import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
-import {AppConfigService} from '../../../../services/app-config.service';
-import {environment} from '../../../../../environments/environment';
+import {globalAppConfig} from "../../../../../environments/global-app-config";
 
 @Component({
   selector: 'app-dashboard',
@@ -17,20 +16,19 @@ import {environment} from '../../../../../environments/environment';
 export class DashboardComponent extends CedarPageComponent implements OnInit {
 
   constructor(
-    protected localSettings: LocalSettingsService,
-    protected translateService: TranslateService,
-    protected notify: SnotifyService,
-    protected router: Router,
-    protected route: ActivatedRoute,
-    protected dataStore: DataStoreService,
-    protected dataHandler: DataHandlerService,
-    private configService: AppConfigService
+    localSettings: LocalSettingsService,
+    translateService: TranslateService,
+    notify: SnotifyService,
+    router: Router,
+    route: ActivatedRoute,
+    dataStore: DataStoreService,
+    dataHandler: DataHandlerService,
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
   }
 
   ngOnInit() {
-    window.location.href = environment.cedarUrl;
+    window.location.href = globalAppConfig.cedarUrl;
   }
 
 }

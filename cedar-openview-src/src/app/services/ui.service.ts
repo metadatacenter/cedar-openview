@@ -9,13 +9,13 @@ import {ArtifactHeaderComponent} from '../modules/shared/components/artifact-hea
 })
 export class UiService {
 
-  public valid: boolean;
-  public title: string;
-  public type: string;
-  public description: string;
+  public valid?: boolean;
+  public title?: string;
+  public type?: string;
+  public description?: string;
   public hasTitle: BehaviorSubject<string> = new BehaviorSubject('');
   public hasDescription: BehaviorSubject<string> = new BehaviorSubject('');
-  private artifactHeaderComponent: ArtifactHeaderComponent;
+  private artifactHeaderComponent?: ArtifactHeaderComponent;
 
   constructor(private translateService: TranslateService) {
   }
@@ -49,7 +49,7 @@ export class UiService {
     this.openUrlInBlank(destination);
   }
 
-  openUrlInBlank(destination) {
+  openUrlInBlank(destination: string) {
     window.open(destination, '_blank');
   }
 
@@ -64,10 +64,12 @@ export class UiService {
   // copy stuff in tabs to browser's clipboard
   copyToClipboard(elementId: string, buttonId: string) {
 
-    function copyToClip(str) {
-      function listener(e) {
-        e.clipboardData.setData('text/html', str);
-        e.clipboardData.setData('text/plain', str);
+    function copyToClip(str: string) {
+      function listener(e: ClipboardEvent) {
+        if (e.clipboardData !== null) {
+          e.clipboardData.setData('text/html', str);
+          e.clipboardData.setData('text/plain', str);
+        }
         e.preventDefault();
       }
 
@@ -104,11 +106,11 @@ export class UiService {
 
 
   openArtifactHeader() {
-    this.artifactHeaderComponent.doOpen();
+    this.artifactHeaderComponent?.doOpen();
   }
 
   closeArtifactHeader() {
-    this.artifactHeaderComponent.doClose();
+    this.artifactHeaderComponent?.doClose();
   }
 
   registerArtifactHeaderComponent(c: ArtifactHeaderComponent) {

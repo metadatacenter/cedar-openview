@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {catchError, tap} from 'rxjs/operators';
-import {Observable, of} from 'rxjs/index';
+import {Observable, of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {RestApiUrlService} from '../rest-api-url.service';
 import {Router} from '@angular/router';
@@ -13,20 +13,22 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class GenericSingleLoaderService<T> extends AbstractDataLoaderService {
 
+  protected data: T | null;
+  protected observable: Observable<T | null> | null;
+
   protected constructor(
-    protected http: HttpClient,
-    protected restApiUrl: RestApiUrlService,
-    protected router: Router,
-    protected notify: SnotifyService,
-    protected translateService: TranslateService
+    http: HttpClient,
+    restApiUrl: RestApiUrlService,
+    router: Router,
+    notify: SnotifyService,
+    translateService: TranslateService
   ) {
     super(http, restApiUrl, router, notify, translateService);
+    this.data = null;
+    this.observable = null;
   }
 
-  protected data: T;
-  protected observable: Observable<T>;
-
-  getData(url: string, errorCallback: Function): Observable<T> {
+  getData(url: string, errorCallback?: Function): Observable<T | null> {
     if (this.data) {
       return of(this.data);
     } else if (this.observable) {

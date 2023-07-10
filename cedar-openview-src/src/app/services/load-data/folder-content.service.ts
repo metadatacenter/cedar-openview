@@ -14,16 +14,16 @@ import {FolderContent} from '../../shared/model/folder-content.model';
 export class FolderContentService extends GenericMultiLoaderService<FolderContent> {
 
   protected constructor(
-    protected http: HttpClient,
-    protected restApiUrl: RestApiUrlService,
-    protected router: Router,
-    protected notify: SnotifyService,
-    protected translateService: TranslateService
+    http: HttpClient,
+    restApiUrl: RestApiUrlService,
+    router: Router,
+    notify: SnotifyService,
+    translateService: TranslateService
   ) {
     super(http, restApiUrl, router, notify, translateService);
   }
 
-  getFolderContent(folderId: string): Observable<FolderContent> {
+  getFolderContent(folderId: string): Observable<FolderContent | null> | null {
     return this.getData(folderId, this.restApiUrl.folderContent(folderId));
   }
 }
