@@ -16,21 +16,21 @@ import {CedarBase} from '../base/cedar-base.component';
 })
 export class ArtifactErrorComponent extends CedarBase implements OnInit {
 
-  @Input() status: number;
-  @Input() instanceTemplateError: boolean;
-  @Input() cedarLink: string;
+  @Input() status: number = 0;
+  @Input() instanceTemplateError?: boolean;
+  @Input() cedarLink?: string;
   @Input() noun = 'artifact';
 
-  params: Object;
+  params: any;
 
   constructor(
-    protected localSettings: LocalSettingsService,
-    protected translateService: TranslateService,
-    protected notify: SnotifyService,
-    protected router: Router,
-    protected route: ActivatedRoute,
-    protected dataStore: DataStoreService,
-    protected dataHandler: DataHandlerService,
+    localSettings: LocalSettingsService,
+    translateService: TranslateService,
+    notify: SnotifyService,
+    router: Router,
+    route: ActivatedRoute,
+    dataStore: DataStoreService,
+    dataHandler: DataHandlerService,
     private uiService: UiService
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
@@ -45,7 +45,7 @@ export class ArtifactErrorComponent extends CedarBase implements OnInit {
     if (this.noun === 'artifact') {
       this.uiService.openInCedar();
     } else {
-      this.uiService.openUrlInBlank(this.cedarLink);
+      this.uiService.openUrlInBlank(this.cedarLink ?? '');
     }
   }
 }

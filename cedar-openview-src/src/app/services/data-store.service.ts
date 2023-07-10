@@ -34,42 +34,42 @@ export class DataStoreService {
   }
 
   setTemplateField(templateFieldId: string, templateField: TemplateField) {
-    this.templateFieldMap[templateFieldId] = templateField;
+    this.templateFieldMap.set(templateFieldId, templateField);
   }
 
-  getTemplateField(templateFieldId: string): TemplateField {
-    return this.templateFieldMap[templateFieldId];
+  getTemplateField(templateFieldId: string): TemplateField | undefined {
+    return this.templateFieldMap.get(templateFieldId);
   }
 
   setTemplateElement(templateElementId: string, templateElement: TemplateElement) {
-    this.templateElementMap[templateElementId] = templateElement;
+    this.templateElementMap.set(templateElementId, templateElement);
   }
 
-  getTemplateElement(templateElementId: string): TemplateElement {
-    return this.templateElementMap[templateElementId];
+  getTemplateElement(templateElementId: string): TemplateElement | undefined {
+    return this.templateElementMap.get(templateElementId);
   }
 
   setTemplate(templateId: string, template: Template) {
-    this.templateMap[templateId] = template;
+    this.templateMap.set(templateId, template);
   }
 
-  getTemplate(templateId: string): Template {
-    return this.templateMap[templateId];
+  getTemplate(templateId: string): Template | undefined {
+    return this.templateMap.get(templateId);
   }
 
   setTemplateInstance(templateInstanceId: string, templateInstance: TemplateInstance) {
-    this.templateInstanceMap[templateInstanceId] = templateInstance;
+    this.templateInstanceMap.set(templateInstanceId, templateInstance);
   }
 
-  getTemplateInstance(templateInstanceId: string): TemplateInstance {
-    return this.templateInstanceMap[templateInstanceId];
+  getTemplateInstance(templateInstanceId: string): TemplateInstance | undefined {
+    return this.templateInstanceMap.get(templateInstanceId);
   }
 
   setFolderContent(folderId: string, folderContent: FolderContent) {
-    this.folderContentMap[folderId] = folderContent;
+    this.folderContentMap.set(folderId, folderContent);
   }
 
   getFolderContent(folderId: string) {
-    return this.folderContentMap[folderId];
+    return this.folderContentMap.get(folderId);
   }
 }

@@ -16,21 +16,21 @@ import {UiService} from '../../../../services/ui.service';
 })
 export class ArtifactHeaderComponent extends CedarBase implements OnInit {
 
-  @Input() artifact: CedarArtifact;
-  @Input() cedarLink: string;
+  @Input() artifact?: CedarArtifact;
+  @Input() cedarLink?: string;
   isHidden: boolean;
 
-  params: Object;
+  params: any;
 
   constructor(
-    protected localSettings: LocalSettingsService,
-    protected translateService: TranslateService,
-    protected notify: SnotifyService,
-    protected router: Router,
-    protected route: ActivatedRoute,
-    protected dataStore: DataStoreService,
-    protected dataHandler: DataHandlerService,
-    protected uiService: UiService
+    localSettings: LocalSettingsService,
+    translateService: TranslateService,
+    notify: SnotifyService,
+    router: Router,
+    route: ActivatedRoute,
+    dataStore: DataStoreService,
+    dataHandler: DataHandlerService,
+    private uiService: UiService
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
     this.isHidden = true;
@@ -55,6 +55,7 @@ export class ArtifactHeaderComponent extends CedarBase implements OnInit {
   }
 
   artifactIsTemplate() {
+    // @ts-ignore
     return this.artifact['@type'] === 'https://schema.metadatacenter.org/core/Template';
   }
 

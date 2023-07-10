@@ -15,8 +15,7 @@ import {forkJoin} from 'rxjs';
 import {UiService} from '../../../../services/ui.service';
 import {TemplateService} from '../../../../services/template.service';
 import * as jsonld from 'jsonld';
-import {AppConfigService} from '../../../../services/app-config.service';
-import {environment} from '../../../../../environments/environment';
+import {globalAppConfig} from "../../../../../environments/global-app-config";
 
 @Component({
   selector: 'app-template-field',
@@ -25,28 +24,27 @@ import {environment} from '../../../../../environments/environment';
 })
 export class TemplateFieldComponent extends CedarPageComponent implements OnInit {
 
-  templateFieldId: string = null;
-  template: TemplateField = null;
-  artifactStatus: number = null;
-  cedarLink: string = null;
+  templateFieldId: string | null = null;
+  template?: TemplateField;
+  artifactStatus: number = 0;
+  cedarLink?: string;
 
   instance: any = null;
-  mode = 'view';
-  allPosts;
+  mode: string = 'view';
+  allPosts: any;
   rdf: any;
 
   constructor(
-    protected localSettings: LocalSettingsService,
-    public translateService: TranslateService,
-    public notify: SnotifyService,
-    protected router: Router,
-    protected route: ActivatedRoute,
-    protected dataStore: DataStoreService,
-    protected dataHandler: DataHandlerService,
+    localSettings: LocalSettingsService,
+    translateService: TranslateService,
+    notify: SnotifyService,
+    router: Router,
+    route: ActivatedRoute,
+    dataStore: DataStoreService,
+    dataHandler: DataHandlerService,
     private http: HttpClient,
     private autocompleteService: AutocompleteService,
     private uiService: UiService,
-    private configService: AppConfigService
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
   }
@@ -56,14 +54,14 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
     this.initDataHandler();
 
     this.templateFieldId = this.route.snapshot.paramMap.get('templateFieldId');
-    this.cedarLink = environment.cedarUrl + 'fields/edit/' + this.templateFieldId;
+    this.cedarLink = globalAppConfig.cedarUrl + 'fields/edit/' + this.templateFieldId;
     this.dataHandler
-      .requireId(DataHandlerDataId.TEMPLATE_FIELD, this.templateFieldId)
-      .load(() => this.dataLoadedCallback(), (error, dataStatus) => this.dataErrorCallback(error, dataStatus));
+      .requireId(DataHandlerDataId.TEMPLATE_FIELD, this.templateFieldId ?? '')
+      .load(() => this.dataLoadedCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.dataErrorCallback(error, dataStatus));
   }
 
   private dataLoadedCallback() {
-    this.template = this.dataStore.getTemplateField(this.templateFieldId);
+    this.template = this.dataStore.getTemplateField(this.templateFieldId ?? '');
     this.instance = TemplateService.initInstance(this.template);
   }
 
@@ -71,7 +69,7 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
     this.artifactStatus = error.status;
   }
 
-  protected onAutocomplete(event) {
+  protected onAutocomplete(event: any) {
     if (event['search']) {
       forkJoin(this.autocompleteService.getPosts(event['search'], event.constraints)).subscribe(posts => {
         this.allPosts = [];
@@ -88,15 +86,17 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
   }
 
   // form changed, update tab contents and submit button status
-  onFormChange(event, field) {
+  onFormChange(event: any, field: any) {
     if (event && event.detail) {
       this.uiService.setTitleAndDescription(event.detail.title, event.detail.description, field['@type']);
       this.uiService.setValidity(event.detail.validity);
       setTimeout(() => {
         const that = this;
-        jsonld.toRDF(this.instance, {format: 'application/nquads'}, function (err, nquads) {
-          that.rdf = err ? err : nquads;
-        });
+        if (this.instance) {
+          jsonld.toRDF(this.instance, {format: 'application/n-quads'}, function (err, nquads) {
+            that.rdf = err ? err : nquads;
+          });
+        }
       }, 0);
     }
   }

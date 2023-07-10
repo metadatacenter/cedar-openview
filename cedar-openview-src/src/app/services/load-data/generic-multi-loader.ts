@@ -14,11 +14,11 @@ import {TranslateService} from '@ngx-translate/core';
 export class GenericMultiLoaderService<T> extends AbstractDataLoaderService {
 
   protected constructor(
-    protected http: HttpClient,
-    protected restApiUrl: RestApiUrlService,
-    protected router: Router,
-    protected notify: SnotifyService,
-    protected translateService: TranslateService
+    http: HttpClient,
+    restApiUrl: RestApiUrlService,
+    router: Router,
+    notify: SnotifyService,
+    translateService: TranslateService
   ) {
     super(http, restApiUrl, router, notify, translateService);
   }
@@ -26,20 +26,20 @@ export class GenericMultiLoaderService<T> extends AbstractDataLoaderService {
   protected data: Map<string, T> = new Map<string, T>();
   protected observable: Map<string, Observable<T>> = new Map<string, Observable<T>>();
 
-  getData(id: string, url: string): Observable<T> {
-    if (this.data[id]) {
-      return of(this.data[id]);
-    } else if (this.observable[id]) {
-      return this.observable[id];
+  getData(id: string, url: string): Observable<T | null> | null {
+    if (this.data.get(id)) {
+      return of(this.data.get(id) ?? null);
+    } else if (this.observable.get(id)) {
+      return this.observable.get(id) ?? null;
     } else {
-      this.observable[id] = this.http.get<T>(url)
+      this.observable.set(id, this.http.get<T>(url)
         .pipe(
           tap(data => {
-            this.data[id] = data;
+            this.data.set(id, data);
             return this.log('fetched data');
           })
-        );
-      return this.observable[id];
+        ));
+      return this.observable.get(id) ?? null;
     }
   }
 

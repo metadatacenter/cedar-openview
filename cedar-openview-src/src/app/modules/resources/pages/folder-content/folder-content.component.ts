@@ -12,7 +12,7 @@ import {HttpClient} from '@angular/common/http';
 import {UiService} from '../../../../services/ui.service';
 import {AppConfigService} from '../../../../services/app-config.service';
 import {FolderContent} from '../../../../shared/model/folder-content.model';
-import {environment} from '../../../../../environments/environment';
+import {globalAppConfig} from "../../../../../environments/global-app-config";
 
 @Component({
   selector: 'app-folder-content',
@@ -21,21 +21,21 @@ import {environment} from '../../../../../environments/environment';
 })
 export class FolderContentComponent extends CedarPageComponent implements OnInit {
 
-  folderId: string = null;
-  folderContents: FolderContent = null;
-  folderStatus: number = null;
-  cedarLink: string = null;
+  folderId: string | null = null;
+  folderContents?: FolderContent;
+  folderStatus: number = 0;
+  cedarLink?: string;
 
   mode = 'view';
 
   constructor(
-    protected localSettings: LocalSettingsService,
-    public translateService: TranslateService,
-    public notify: SnotifyService,
-    protected router: Router,
-    protected route: ActivatedRoute,
-    protected dataStore: DataStoreService,
-    protected dataHandler: DataHandlerService,
+    localSettings: LocalSettingsService,
+    translateService: TranslateService,
+    notify: SnotifyService,
+    router: Router,
+    route: ActivatedRoute,
+    dataStore: DataStoreService,
+    dataHandler: DataHandlerService,
     private http: HttpClient,
     private uiService: UiService,
     private configService: AppConfigService
@@ -46,16 +46,16 @@ export class FolderContentComponent extends CedarPageComponent implements OnInit
   ngOnInit() {
     this.initDataHandler();
     this.folderId = this.route.snapshot.paramMap.get('folderId');
-    this.cedarLink = environment.cedarUrl + 'dashboard?folderId=' + encodeURIComponent(this.folderId);
+    this.cedarLink = globalAppConfig.cedarUrl + 'dashboard?folderId=' + encodeURIComponent(this.folderId ?? '');
     console.log(this.folderId);
     console.log(this.cedarLink);
     this.dataHandler
-      .requireId(DataHandlerDataId.FOLDER_CONTENTS, this.folderId)
-      .load(() => this.dataLoadedCallback(), (error, dataStatus) => this.dataErrorCallback(error, dataStatus));
+      .requireId(DataHandlerDataId.FOLDER_CONTENTS, this.folderId ?? '')
+      .load(() => this.dataLoadedCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.dataErrorCallback(error, dataStatus));
   }
 
   private dataLoadedCallback() {
-    this.folderContents = this.dataStore.getFolderContent(this.folderId);
+    this.folderContents = this.dataStore.getFolderContent(this.folderId ?? '');
   }
 
   private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {

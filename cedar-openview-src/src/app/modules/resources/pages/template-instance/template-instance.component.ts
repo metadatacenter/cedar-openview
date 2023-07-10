@@ -15,8 +15,7 @@ import {forkJoin} from 'rxjs';
 import {UiService} from '../../../../services/ui.service';
 import {TemplateService} from '../../../../services/template.service';
 import * as jsonld from 'jsonld';
-import {AppConfigService} from '../../../../services/app-config.service';
-import {environment} from '../../../../../environments/environment';
+import {globalAppConfig} from "../../../../../environments/global-app-config";
 
 
 @Component({
@@ -26,30 +25,29 @@ import {environment} from '../../../../../environments/environment';
 })
 export class TemplateInstanceComponent extends CedarPageComponent implements OnInit {
 
-  templateInstanceId: string = null;
-  instance: TemplateInstance = null;
-  artifactStatus: number = null;
-  templateStatus: number = null;
-  cedarLink: string = null;
+  templateInstanceId: string | null = null;
+  instance?: TemplateInstance;
+  artifactStatus: number = 0;
+  templateStatus: number = 0;
+  cedarLink?: string;
 
   template: any = null;
-  templateId: string = null;
-  mode = 'view';
-  allPosts;
+  templateId: string | null = null;
+  mode: string = 'view';
+  allPosts: any;
   rdf: any;
 
   constructor(
-    protected localSettings: LocalSettingsService,
-    public translateService: TranslateService,
-    public notify: SnotifyService,
-    protected router: Router,
-    protected route: ActivatedRoute,
-    protected dataStore: DataStoreService,
-    protected dataHandler: DataHandlerService,
+    localSettings: LocalSettingsService,
+    translateService: TranslateService,
+    notify: SnotifyService,
+    router: Router,
+    route: ActivatedRoute,
+    dataStore: DataStoreService,
+    dataHandler: DataHandlerService,
     private http: HttpClient,
     private autocompleteService: AutocompleteService,
     private uiService: UiService,
-    private configService: AppConfigService
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
   }
@@ -59,24 +57,24 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
     this.initDataHandler();
 
     this.templateInstanceId = this.route.snapshot.paramMap.get('templateInstanceId');
-    this.cedarLink = environment.cedarUrl + 'instances/edit/' + this.templateInstanceId;
+    this.cedarLink = globalAppConfig.cedarUrl + 'instances/edit/' + this.templateInstanceId;
     this.dataHandler
-      .requireId(DataHandlerDataId.TEMPLATE_INSTANCE, this.templateInstanceId)
-      .load(() => this.instanceLoadedCallback(this.templateInstanceId),
-        (error, dataStatus) => this.instanceErrorCallback(error, dataStatus));
+      .requireId(DataHandlerDataId.TEMPLATE_INSTANCE, this.templateInstanceId ?? '')
+      .load(() => this.instanceLoadedCallback(this.templateInstanceId ?? ''),
+        (error: any, dataStatus: DataHandlerDataStatus) => this.instanceErrorCallback(error, dataStatus));
   }
 
-  private instanceLoadedCallback(instanceId) {
-    this.instance = this.dataStore.getTemplateInstance(this.templateInstanceId);
+  private instanceLoadedCallback(instanceId: string) {
+    this.instance = this.dataStore.getTemplateInstance(this.templateInstanceId ?? '');
     this.templateId = TemplateService.isBasedOn(this.instance);
 
     // load the template it is based on
     this.dataHandler
-      .requireId(DataHandlerDataId.TEMPLATE, this.templateId)
-      .load(() => this.templateLoadedCallback(this.templateId), (error, dataStatus) => this.templateErrorCallback(error, dataStatus));
+      .requireId(DataHandlerDataId.TEMPLATE, this.templateId ?? '')
+      .load(() => this.templateLoadedCallback(this.templateId ?? ''), (error: any, dataStatus: DataHandlerDataStatus) => this.templateErrorCallback(error, dataStatus));
   }
 
-  private templateLoadedCallback(templateId) {
+  private templateLoadedCallback(templateId: string) {
     this.template = this.dataStore.getTemplate(templateId);
 
     // if this is a default instance, save the template info
@@ -96,7 +94,7 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
     this.templateStatus = error.status;
   }
 
-  protected onAutocomplete(event) {
+  protected onAutocomplete(event: any) {
     if (event['search']) {
       forkJoin(this.autocompleteService.getPosts(event['search'], event.constraints)).subscribe(posts => {
         this.allPosts = [];
@@ -113,15 +111,16 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
   }
 
   // form changed, update tab contents and submit button status
-  onFormChange(event) {
+  onFormChange(event: any) {
     if (event && event.detail) {
       this.uiService.setTitleAndDescription(event.detail.title, event.detail.description, 'TemplateInstance');
       this.uiService.setValidity(event.detail.validity);
-      setTimeout(() => {
-        const that = this;
-        jsonld.toRDF(this.instance, {format: 'application/nquads'}, function (err, nquads) {
-          that.rdf = err ? err : nquads;
-        });
+      setTimeout(async () => {
+        if (this.instance) {
+          const instanceJson = JSON.parse(JSON.stringify(this.instance));
+          const nquads = await jsonld.toRDF(instanceJson, {format: 'application/n-quads'});
+          this.rdf = nquads;
+        }
       }, 0);
     }
   }

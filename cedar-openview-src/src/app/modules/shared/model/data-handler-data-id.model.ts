@@ -1,4 +1,5 @@
 export enum DataHandlerDataId {
+  NONE = 'none',
   TEMPLATE_FIELD = 'template-field',
   TEMPLATE_ELEMENT = 'template-element',
   TEMPLATE = 'template',
