@@ -22,9 +22,9 @@ export class DataHandlerService {
 
   private dataIdMap: Map<string, DataHandlerDataStatus>;
   private dataAvailable: boolean;
-  private successCallback: Function;
-  private errorCallback: Function;
-  private preCallback: Function;
+  private successCallback?: Function;
+  private errorCallback?: Function;
+  private preCallback: Function | null;
 
   constructor(
     public dataStore: DataStoreService,
@@ -38,8 +38,8 @@ export class DataHandlerService {
   ) {
     this.dataIdMap = new Map<string, DataHandlerDataStatus>();
     this.dataAvailable = false;
-    this.successCallback = null;
-    this.errorCallback = null;
+    this.successCallback = undefined;
+    this.errorCallback = undefined;
     this.preCallback = null;
   }
 
@@ -47,20 +47,21 @@ export class DataHandlerService {
     this.spinner.hide();
     this.dataIdMap.clear();
     this.dataAvailable = false;
-    this.successCallback = null;
-    this.errorCallback = null;
+    this.successCallback = undefined;
+    this.errorCallback = undefined;
+    this.preCallback = null
     return this;
   }
 
   require(dataId: DataHandlerDataId): DataHandlerService {
     const status: DataHandlerDataStatus = DataHandlerDataStatus.forDataId(dataId);
-    this.dataIdMap.set(status.getKey(), status);
+    this.dataIdMap.set(status.getKey() ?? '', status);
     return this;
   }
 
   requireId(dataId: DataHandlerDataId, id: string): DataHandlerService {
     const status: DataHandlerDataStatus = DataHandlerDataStatus.forDataIdAndId(dataId, id);
-    this.dataIdMap.set(status.getKey(), status);
+    this.dataIdMap.set(status.getKey() ?? '', status);
     return this;
   }
 
@@ -110,7 +111,7 @@ export class DataHandlerService {
 
   private loadTemplateField(dataStatus: DataHandlerDataStatus) {
     this.templateFieldService.getTemplateField(dataStatus.id)
-      .subscribe(templateField => {
+      ?.subscribe(templateField => {
           this.dataStore.setTemplateField(dataStatus.id, Object.assign(new TemplateField(), templateField));
           this.dataWasLoaded(dataStatus);
         },
@@ -121,7 +122,7 @@ export class DataHandlerService {
 
   private loadTemplateElement(dataStatus: DataHandlerDataStatus) {
     this.templateElementService.getTemplateElement(dataStatus.id)
-      .subscribe(templateElement => {
+      ?.subscribe(templateElement => {
           this.dataStore.setTemplateElement(dataStatus.id, Object.assign(new TemplateElement(), templateElement));
           this.dataWasLoaded(dataStatus);
         },
@@ -132,7 +133,7 @@ export class DataHandlerService {
 
   private loadTemplate(dataStatus: DataHandlerDataStatus) {
     this.templateService.getTemplate(dataStatus.id)
-      .subscribe(template => {
+      ?.subscribe(template => {
           this.dataStore.setTemplate(dataStatus.id, Object.assign(new Template(), template));
           this.dataWasLoaded(dataStatus);
         },
@@ -143,7 +144,7 @@ export class DataHandlerService {
 
   private loadTemplateInstance(dataStatus: DataHandlerDataStatus) {
     this.templateInstanceService.getTemplateInstance(dataStatus.id)
-      .subscribe(templateInstance => {
+      ?.subscribe(templateInstance => {
           this.dataStore.setTemplateInstance(dataStatus.id, Object.assign(new TemplateInstance(), templateInstance));
           this.dataWasLoaded(dataStatus);
         },
@@ -154,7 +155,7 @@ export class DataHandlerService {
 
   private loadFolderContent(dataStatus: DataHandlerDataStatus) {
     this.folderContentService.getFolderContent(dataStatus.id)
-      .subscribe(folderContent => {
+      ?.subscribe(folderContent => {
           this.dataStore.setFolderContent(dataStatus.id, Object.assign(new FolderContent(), folderContent));
           this.dataWasLoaded(dataStatus);
         },

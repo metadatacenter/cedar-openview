@@ -3,9 +3,10 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class TemplateService {
 
-  constructor() {}
+  constructor() {
+  }
 
-  static schemaOf(node): any {
+  static schemaOf(node: any): any {
     return (node && node.type === 'array' && node.items) ? node.items : node;
   }
 
@@ -64,7 +65,7 @@ export class TemplateService {
         }
       },
       'schema:isBasedOn': TemplateService.getId(schema),
-      'schema:name':  TemplateService.getName(schema),
+      'schema:name': TemplateService.getName(schema),
       'schema:description': TemplateService.getHelp(schema),
       'pav:createdOn': '',
       'pav:createdBy': '',

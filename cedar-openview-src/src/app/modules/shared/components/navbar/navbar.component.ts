@@ -16,14 +16,14 @@ import {UiService} from '../../../../services/ui.service';
 export class NavbarComponent extends CedarBase implements OnInit {
 
   constructor(
-    protected localSettings: LocalSettingsService,
-    protected translateService: TranslateService,
-    protected notify: SnotifyService,
-    protected router: Router,
-    protected route: ActivatedRoute,
-    protected dataStore: DataStoreService,
-    protected dataHandler: DataHandlerService,
-    public uiService: UiService,
+    localSettings: LocalSettingsService,
+    translateService: TranslateService,
+    notify: SnotifyService,
+    router: Router,
+    route: ActivatedRoute,
+    dataStore: DataStoreService,
+    dataHandler: DataHandlerService,
+    protected uiService: UiService,
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
   }
@@ -35,7 +35,7 @@ export class NavbarComponent extends CedarBase implements OnInit {
     return this.translateService.currentLang;
   }
 
-  switchLanguage($event, language: string) {
+  switchLanguage($event: any, language: string) {
     $event.preventDefault();
     this.translateService.use(language);
     this.localSettings.setLanguage(language);

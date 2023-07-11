@@ -9,13 +9,13 @@ import {DataHandlerService} from '../../../../services/data-handler.service';
 export abstract class CedarPageComponent extends CedarBase {
 
   protected constructor(
-    protected localSettings: LocalSettingsService,
-    protected translateService: TranslateService,
-    protected notify: SnotifyService,
-    protected router: Router,
-    protected route: ActivatedRoute,
-    protected dataStore: DataStoreService,
-    protected dataHandler: DataHandlerService
+    localSettings: LocalSettingsService,
+    translateService: TranslateService,
+    notify: SnotifyService,
+    router: Router,
+    route: ActivatedRoute,
+    dataStore: DataStoreService,
+    dataHandler: DataHandlerService
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
   }

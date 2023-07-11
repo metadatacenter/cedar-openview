@@ -1,5 +1,3 @@
-
-
 export interface AutocompleteResponse {
   page: number;
   pageCount: number;

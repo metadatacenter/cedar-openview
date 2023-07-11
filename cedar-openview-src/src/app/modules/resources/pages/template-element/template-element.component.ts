@@ -14,10 +14,8 @@ import {AutocompleteService} from '../../../../services/autocomplete.service';
 import {forkJoin} from 'rxjs';
 import {UiService} from '../../../../services/ui.service';
 import {TemplateService} from '../../../../services/template.service';
+import {globalAppConfig} from "../../../../../environments/global-app-config";
 import * as jsonld from 'jsonld';
-import {AppConfigService} from '../../../../services/app-config.service';
-import {environment} from '../../../../../environments/environment';
-
 
 @Component({
   selector: 'app-template-element',
@@ -26,27 +24,27 @@ import {environment} from '../../../../../environments/environment';
 })
 export class TemplateElementComponent extends CedarPageComponent implements OnInit {
 
-  templateElementId: string = null;
-  template: TemplateElement = null;
-  artifactStatus: number = null;
-  cedarLink: string = null;
+  templateElementId: string | null = null;
+  template?: TemplateElement;
+  artifactStatus: number = 0;
+  cedarLink?: string;
+
   instance: any = null;
-  mode = 'view';
-  allPosts;
+  mode: string = 'view';
+  allPosts: any;
   rdf: any;
 
   constructor(
-    protected localSettings: LocalSettingsService,
-    protected translateService: TranslateService,
-    protected notify: SnotifyService,
-    protected router: Router,
-    protected route: ActivatedRoute,
-    protected dataStore: DataStoreService,
-    protected dataHandler: DataHandlerService,
+    localSettings: LocalSettingsService,
+    translateService: TranslateService,
+    notify: SnotifyService,
+    router: Router,
+    route: ActivatedRoute,
+    dataStore: DataStoreService,
+    dataHandler: DataHandlerService,
     private http: HttpClient,
     private autocompleteService: AutocompleteService,
     private uiService: UiService,
-    private configService: AppConfigService
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
   }
@@ -56,14 +54,14 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
     this.initDataHandler();
 
     this.templateElementId = this.route.snapshot.paramMap.get('templateElementId');
-    this.cedarLink = environment.cedarUrl + 'elements/edit/' + this.templateElementId;
+    this.cedarLink = globalAppConfig.cedarUrl + 'elements/edit/' + this.templateElementId;
     this.dataHandler
-      .requireId(DataHandlerDataId.TEMPLATE_ELEMENT, this.templateElementId)
-      .load(() => this.dataLoadedCallback(), (error, dataStatus) => this.dataErrorCallback(error, dataStatus));
+      .requireId(DataHandlerDataId.TEMPLATE_ELEMENT, this.templateElementId ?? '')
+      .load(() => this.dataLoadedCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.dataErrorCallback(error, dataStatus));
   }
 
   private dataLoadedCallback() {
-    this.template = this.dataStore.getTemplateElement(this.templateElementId);
+    this.template = this.dataStore.getTemplateElement(this.templateElementId ?? '');
     this.instance = TemplateService.initInstance(this.template);
   }
 
@@ -71,7 +69,7 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
     this.artifactStatus = error.status;
   }
 
-  protected onAutocomplete(event) {
+  protected onAutocomplete(event: any) {
     if (event['search']) {
       forkJoin(this.autocompleteService.getPosts(event['search'], event.constraints)).subscribe(posts => {
         this.allPosts = [];
@@ -88,13 +86,13 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
   }
 
   // form changed, update tab contents and submit button status
-  onFormChange(event, element) {
+  onFormChange(event: any, element: any) {
     if (event && event.detail) {
       this.uiService.setTitleAndDescription(event.detail.title, event.detail.description, element['@type']);
       this.uiService.setValidity(event.detail.validity);
       setTimeout(() => {
         const that = this;
-        jsonld.toRDF(this.instance, {format: 'application/nquads'}, function (err, nquads) {
+        jsonld.toRDF(this.instance, {format: 'application/n-quads'}, function (err: any, nquads: any) {
           that.rdf = err ? err : nquads;
         });
       }, 0);

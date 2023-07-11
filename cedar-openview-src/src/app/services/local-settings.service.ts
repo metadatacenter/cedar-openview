@@ -16,6 +16,6 @@ export class LocalSettingsService {
   }
 
   public getLanguage(): string {
-    return localStorage.getItem(LocalSettingsService.LANGUAGE);
+    return localStorage.getItem(LocalSettingsService.LANGUAGE) ?? 'en';
   }
 }

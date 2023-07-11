@@ -14,16 +14,16 @@ import {TranslateService} from '@ngx-translate/core';
 export class TemplateElementService extends GenericMultiLoaderService<TemplateElement> {
 
   protected constructor(
-    protected http: HttpClient,
-    protected restApiUrl: RestApiUrlService,
-    protected router: Router,
-    protected notify: SnotifyService,
-    protected translateService: TranslateService
+    http: HttpClient,
+    restApiUrl: RestApiUrlService,
+    router: Router,
+    notify: SnotifyService,
+    translateService: TranslateService
   ) {
     super(http, restApiUrl, router, notify, translateService);
   }
 
-  getTemplateElement(templateElementId: string): Observable<TemplateElement> {
+  getTemplateElement(templateElementId: string): Observable<TemplateElement | null> | null {
     return this.getData(templateElementId, this.restApiUrl.templateElement(templateElementId));
   }
 }

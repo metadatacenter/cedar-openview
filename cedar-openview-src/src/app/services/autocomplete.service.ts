@@ -52,20 +52,20 @@ export class AutocompleteService {
       for (let i = 0; i < valueConstraints.valueSets.length; i++) {
         const valueSet = valueConstraints.valueSets[i];
         const acronym = valueSet.vsCollection.substr(valueSet.vsCollection.lastIndexOf('/') + 1);
-        result.push(this.autocompleteUrlService.getValuesInValueSet(acronym, valueSet.uri));
+        result.push(this.autocompleteUrlService.getValuesInValueSet(acronym, valueSet.uri, 1, 50));
       }
     }
     if (valueConstraints.ontologies && valueConstraints.ontologies.length > 0) {
       for (let i = 0; i < valueConstraints['ontologies'].length; i++) {
         const ontology = valueConstraints['ontologies'][i];
-        result.push(this.autocompleteUrlService.autocompleteOntology(searchOption, ontology['acronym']));
+        result.push(this.autocompleteUrlService.autocompleteOntology(searchOption, ontology['acronym'], 1, 500));
       }
     }
     if (valueConstraints.branches && valueConstraints.branches.length > 0) {
       for (let i = 0; i < valueConstraints['branches'].length; i++) {
         const branch = valueConstraints['branches'][i];
         const maxDepth = 10;
-        result.push(this.autocompleteUrlService.autocompleteOntologySubtree(searchOption, branch['acronym'], branch['uri'], maxDepth));
+        result.push(this.autocompleteUrlService.autocompleteOntologySubtree(searchOption, branch['acronym'], branch['uri'], maxDepth, 1, 500));
       }
     }
     return result;

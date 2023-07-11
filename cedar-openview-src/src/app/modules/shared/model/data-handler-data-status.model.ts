@@ -3,13 +3,14 @@ import {DataHandlerDataId} from './data-handler-data-id.model';
 
 export class DataHandlerDataStatus {
 
-  dataType: DataHandlerDataType;
-  dataId: DataHandlerDataId;
+  dataType: DataHandlerDataType = DataHandlerDataType.NONE;
+  dataId: DataHandlerDataId = DataHandlerDataId.NONE;
   //
-  id: string;
+  id: string = '';
   //
   loaded: boolean = false;
   canceled: boolean = false;
+  errored: boolean = false;
 
   private constructor() {
   }
@@ -28,12 +29,13 @@ export class DataHandlerDataStatus {
     return r;
   }
 
-  getKey(): string {
+  getKey(): string | null {
     if (this.dataType === DataHandlerDataType.DATA_ID) {
       return this.dataId;
     } else if (this.dataType === DataHandlerDataType.DATA_ID_WITH_ID) {
       return this.dataId + ':' + this.id;
     }
+    return null;
   }
 
 }
