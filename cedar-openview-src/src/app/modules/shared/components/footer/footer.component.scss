@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+@include mat.core();
 @import 'src/theme.scss';
 
 .main__footer {
@@ -33,7 +35,7 @@
 }
 
 .footer-title {
-  color: mat-color($my-app-logo);
+  color: mat.get-color-from-palette($my-app-logo);
   font-weight: lighter;
   font-family: CrimsonText, serif;
   font-size: 34px;
@@ -105,7 +107,7 @@ img.bmir-logo {
 }
 
 a {
-  color: mat-color($my-app-logo);
+  color: mat.get-color-from-palette($my-app-logo);
   text-decoration: none;
   &:hover {
     text-decoration: underline;

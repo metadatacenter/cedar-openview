@@ -1,7 +1,9 @@
+@use '@angular/material' as mat;
+@include mat.core();
 @import 'src/theme.scss';
 
 .results-background {
-  background: mat-color($my-app-secondary);
+  background: mat.get-color-from-palette($my-app-secondary);
 }
 
 .expansion-container {
@@ -75,7 +77,7 @@
 .mode-toggle__circle {
   height: 1.30rem;
   width: 1.30rem;
-  background-color: mat-color($my-app-primary);
+  background-color: mat.get-color-from-palette($my-app-primary);
   position: absolute;
   top: -0.2rem;
   border-radius: 50%;
@@ -85,7 +87,7 @@
 }
 
 .mode-toggle__circle-checked {
-  background-color: mat-color($my-app-accent);
+  background-color: mat.get-color-from-palette($my-app-accent);
   left: 1.75rem;
 }
 
@@ -129,7 +131,7 @@ pre {
 }
 
 .advanced-title {
-  color: mat-color($my-app-light-title);
+  color: mat.get-color-from-palette($my-app-light-title);
   font-weight: lighter;
   font-family: CrimsonText, serif;
   font-size: 34px;

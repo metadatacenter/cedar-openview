@@ -13,8 +13,9 @@
 
 <div *ngIf="instance && template">
 
+  <app-legend *ngIf="instance && !artifactStatus"></app-legend>
+
   <div class="instance__container ">
-    <app-view-header></app-view-header>
     <cedar-form
       [instance]="instance"
       [template]="template"
@@ -23,8 +24,6 @@
       (formChange)="onFormChange($event)"
       [autocompleteResults]="allPosts"></cedar-form>
   </div>
-
-  <app-legend *ngIf="instance && !artifactStatus"></app-legend>
 
   <app-form-results [instance]="instance" [template]="template" [rdf]="rdf"></app-form-results>
 

@@ -10,7 +10,6 @@ import {MaterialModule} from '../material-module';
 import {FolderContentComponent} from './pages/folder-content/folder-content.component';
 
 
-
 @NgModule({
   declarations: [
     TemplateFieldComponent,
@@ -19,7 +18,7 @@ import {FolderContentComponent} from './pages/folder-content/folder-content.comp
     TemplateInstanceComponent,
     FolderContentComponent
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     ReactiveFormsModule,
     SharedModule,
@@ -28,7 +27,6 @@ import {FolderContentComponent} from './pages/folder-content/folder-content.comp
   ],
   exports: [],
   providers: [],
-  entryComponents: []
 })
 export class ResourcesModule {
 }

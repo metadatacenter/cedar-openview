@@ -2,8 +2,9 @@
   <app-artifact-header [artifact]="template"></app-artifact-header>
 </div>
 
+<app-legend *ngIf="template && !artifactStatus"></app-legend>
+
 <div *ngIf="template && !artifactStatus" class="instance__container ">
-  <app-view-header></app-view-header>
   <cedar-form
     [instance]="instance"
     [template]="template"
@@ -12,8 +13,6 @@
     (formChange)=" onFormChange($event, template)"
     [autocompleteResults]="allPosts"></cedar-form>
 </div>
-
-<app-legend *ngIf="template && !artifactStatus"></app-legend>
 
 <app-form-results *ngIf="template && !artifactStatus" [instance]="instance" [template]="template"
                   [rdf]="rdf"></app-form-results>
