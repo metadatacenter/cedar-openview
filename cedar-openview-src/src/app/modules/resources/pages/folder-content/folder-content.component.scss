@@ -5,12 +5,13 @@
 
   .header {
     font-size: 1.2em;
-    margin: 0px 5px 10px 5px;
+    margin: 5px 5px 10px 5px;
   }
 
   .footer {
     font-size: 1em;
-    margin: 0px 5px 0px 5px;
+    margin: 5px 5px 10px 5px;
+    padding: 5px 5px 5px 5px;
   }
 }
 
@@ -24,12 +25,21 @@
 .flex-container > .flex-item {
   margin: 5px;
   width: 160px;
-  height: 80px;
+  height: 90px;
+  padding: 10px;
+  overflow: hidden;
 
   .name {
     position: absolute;
-    left: 15px;
-    top: 50px;
+    left: 10px;
+    top: 40px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    width: 140px;
+    height: 44px;
+    border: 0px solid red;
   }
 }
 

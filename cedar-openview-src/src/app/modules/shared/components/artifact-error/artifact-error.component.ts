@@ -12,7 +12,7 @@ import {CedarBase} from '../base/cedar-base.component';
 @Component({
   selector: 'app-artifact-error',
   templateUrl: './artifact-error.component.html',
-  styleUrls: ['./artifact-error.component.less']
+  styleUrls: ['./artifact-error.component.scss']
 })
 export class ArtifactErrorComponent extends CedarBase implements OnInit {
 

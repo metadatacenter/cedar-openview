@@ -1,10 +1,12 @@
 <mat-card class="wrapperCard" *ngIf="folderContents">
   <mat-card class="header">
+    <mat-card-content>
     <span *ngFor="let folder of folderContents['pathInfo']; let i = index">
       <span *ngIf="i > 1">&nbsp;/&nbsp;</span>
       <span *ngIf="i == 1">&nbsp;</span>
       {{folder['schema:name']}}
     </span>
+    </mat-card-content>
   </mat-card>
 
   <ng-container *ngIf="folderContents['resources'].length > 0">
@@ -12,7 +14,7 @@
 
       <ng-container *ngFor="let folder of folderContents['resources']; let i = index">
         <ng-container *ngIf="folder['resourceType'] == 'folder'">
-          <mat-card class="flex-item">
+          <mat-card class="flex-item resourceCard">
             <mat-icon aria-hidden="false" aria-label="Folder" fontIcon="folder"></mat-icon>
             <a class="name" (click)="openFolder(folder['@id'])" href="javascript://">{{folder['schema:name']}}</a>
           </mat-card>
@@ -25,7 +27,7 @@
 
       <ng-container *ngFor="let artifact of folderContents['resources']; let i = index">
         <ng-container *ngIf="artifact['resourceType'] != 'folder'">
-          <mat-card class="flex-item">
+          <mat-card class="flex-item resourceCard">
             <mat-icon *ngIf="artifact['resourceType'] == 'template'" aria-hidden="false" aria-label="Template"
                       fontIcon="description"></mat-icon>
             <mat-icon *ngIf="artifact['resourceType'] == 'field'" aria-hidden="false" aria-label="Template"
@@ -59,7 +61,7 @@
     </div>
   </ng-container>
 
-    <mat-card class="footer">
+  <mat-card class="footer">
     Total count: {{folderContents['totalCount']}}
   </mat-card>
 </mat-card>
