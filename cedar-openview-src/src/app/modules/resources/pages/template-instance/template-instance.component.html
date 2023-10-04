@@ -16,13 +16,13 @@
   <app-legend *ngIf="instance && !artifactStatus"></app-legend>
 
   <div class="instance__container ">
-    <cedar-form
+    <cedar-artifact-viewer
       [instance]="instance"
       [template]="template"
       [mode]="mode"
       (autocomplete)="onAutocomplete($event)"
       (formChange)="onFormChange($event)"
-      [autocompleteResults]="allPosts"></cedar-form>
+      [autocompleteResults]="allPosts"></cedar-artifact-viewer>
   </div>
 
   <app-form-results [instance]="instance" [template]="template" [rdf]="rdf"></app-form-results>
