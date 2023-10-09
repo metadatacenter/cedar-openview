@@ -1,3 +1,6 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
 @import 'src/theme.scss';
 
 .legend__container {
@@ -36,10 +39,8 @@
   box-sizing: content-box;
   display: flex;
   justify-content: space-between;
-  margin: 10px 0 40px 0;
+  margin: 10px 0 10px 0;
   border-radius: 4px;
-
-  display: flex;
   flex-wrap: wrap;
   background: #fff;
 
@@ -56,21 +57,21 @@
     }
 
     .asterisk {
-      color: mat-color($my-app-warn);
+      color: mat.get-color-from-palette($my-app-warn);
     }
   }
 }
 
 .legend-title {
-  color: mat-color($my-app-logo);
+  color: mat.get-color-from-palette($my-app-logo);
   font-weight: lighter;
   font-family: CrimsonText, serif;
-  font-size: 34px;
+  font-size: 20px;
   width: 100%;
   white-space: nowrap;
-  margin-bottom: 0px
+  margin-bottom: 0;
 }
 
-.wide-container{
-  background:#f8f8f8;
+.wide-container {
+  background: #f8f8f8;
 }

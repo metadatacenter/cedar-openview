@@ -5,7 +5,6 @@ import {
   faCheckSquare,
   faDotCircle,
   faEnvelope,
-  faExternalLinkAlt,
   faFont,
   faHashtag,
   faLink,
@@ -15,6 +14,10 @@ import {
   faPlusSquare
 } from '@fortawesome/free-solid-svg-icons';
 
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {faJsonLD} from 'src/app/modules/shared/costom-icons';
+
+library.add(faJsonLD as any);
 
 @Component({
   selector: 'app-legend',
@@ -23,7 +26,7 @@ import {
   providers: []
 })
 
-export class LegendComponent  {
+export class LegendComponent {
 
   faAsterisk = faAsterisk;
   faEnvelope = faEnvelope;
@@ -37,7 +40,7 @@ export class LegendComponent  {
   faList = faList;
   faDotCircle = faDotCircle;
   faPlusSquare = faPlusSquare;
-  faExternalLinkAlt = faExternalLinkAlt;
+  faJsonLD = faJsonLD as any;
 
   constructor() {
   }

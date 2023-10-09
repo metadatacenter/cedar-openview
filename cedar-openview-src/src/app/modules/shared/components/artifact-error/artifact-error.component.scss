@@ -4,6 +4,10 @@
   -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
   box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
+
+  mat-icon {
+    font-size:24px;
+  }
 }
 
 .overlay {
@@ -16,4 +20,8 @@
 
 .avatar-image {
   font-size:3.5em;
+}
+
+.help-text-button {
+  margin-top:20px;
 }

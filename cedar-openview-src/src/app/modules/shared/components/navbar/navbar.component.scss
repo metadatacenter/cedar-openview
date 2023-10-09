@@ -1,3 +1,6 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
 @import 'src/theme.scss';
 
 .main__header {
@@ -29,7 +32,7 @@
   }
 
   .cedar__logo {
-    border: 0px solid red;
+    border: 0 solid red;
 
     img {
       width: 250px;
@@ -38,17 +41,23 @@
   }
 
   .artifact-title {
-    border: 0px solid red;
+    border: 0 solid red;
     height: 40px;
-    margin:auto;
+    margin: auto;
     font-size: 16px;
+
     .artifact-title-paragraph {
-      margin:auto;
+      margin: auto;
     }
   }
 
+  .mat-expansion-panel-header {
+    padding: 0 12px;
+    height: 40px;
+  }
+
   .button-container {
-    border: 0px solid #ff0000;
+    border: 0 solid #ff0000;
     width: 300px;
     height: 40px;
   }
@@ -68,15 +77,11 @@
 }
 
 .app-title {
-  color: mat-color($my-app-logo);
+  color: mat.get-color-from-palette($my-app-logo);
   font-weight: lighter;
   font-family: CrimsonText, serif;
   font-size: 2em;
   width: 100%;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-.mat-expansion-panel-header.mat-expanded {
-  height: 48px!important;
 }

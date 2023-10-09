@@ -4,11 +4,12 @@
       <img src="assets/img/logo/cedar-open-view-logo.png">
     </div>
     <div class="artifact-title column">
-      <mat-expansion-panel class="expansion-container" (opened)="expansionOpened()" (closed)="expansionClosed()"  *ngIf="uiService.type">
+      <mat-expansion-panel class="expansion-container" (opened)="expansionOpened()" (closed)="expansionClosed()"
+                           *ngIf="uiService.type">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <p class="artifact-title-paragraph">
-            {{uiService.title}} - {{'type.' + uiService.type | translate}}
+              {{uiService.title}} - {{'type.' + uiService.type | translate}}
             </p>
           </mat-panel-title>
         </mat-expansion-panel-header>
