@@ -37,6 +37,13 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
   allPosts: any;
   rdf: any;
 
+  cavConfig = {
+    showTemplateData: false,
+    showInstanceData: false,
+    defaultLanguage: 'en',
+    fallbackLanguage: 'en',
+  };
+
   constructor(
     localSettings: LocalSettingsService,
     translateService: TranslateService,
@@ -84,6 +91,17 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
       TemplateService.setName(this.instance, TemplateService.getName(schema));
       TemplateService.setHelp(this.instance, TemplateService.getHelp(schema));
     }
+    this.regenerateRDF();
+  }
+
+  private regenerateRDF() {
+    setTimeout(async () => {
+      if (this.instance) {
+        const instanceJson = JSON.parse(JSON.stringify(this.instance));
+        const nquads = await jsonld.toRDF(instanceJson, {format: 'application/n-quads'});
+        this.rdf = nquads;
+      }
+    }, 0);
   }
 
   private instanceErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
@@ -115,13 +133,7 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
     if (event && event.detail) {
       this.uiService.setTitleAndDescription(event.detail.title, event.detail.description, 'TemplateInstance');
       this.uiService.setValidity(event.detail.validity);
-      setTimeout(async () => {
-        if (this.instance) {
-          const instanceJson = JSON.parse(JSON.stringify(this.instance));
-          const nquads = await jsonld.toRDF(instanceJson, {format: 'application/n-quads'});
-          this.rdf = nquads;
-        }
-      }, 0);
+      this.regenerateRDF();
     }
   }
 

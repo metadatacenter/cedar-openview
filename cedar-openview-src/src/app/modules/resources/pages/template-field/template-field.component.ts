@@ -34,6 +34,13 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
   allPosts: any;
   rdf: any;
 
+  cavConfig = {
+    showTemplateData: false,
+    showInstanceData: false,
+    defaultLanguage: 'en',
+    fallbackLanguage: 'en',
+  };
+
   constructor(
     localSettings: LocalSettingsService,
     translateService: TranslateService,

@@ -35,12 +35,11 @@ export class TemplateComponent extends CedarPageComponent implements OnInit {
   rdf: any;
 
   cavConfig = {
-    showHeader: true,
-    showFooter: true,
+    showTemplateData: false,
+    showInstanceData: false,
     defaultLanguage: 'en',
     fallbackLanguage: 'en',
   };
-
 
   constructor(
     localSettings: LocalSettingsService,
