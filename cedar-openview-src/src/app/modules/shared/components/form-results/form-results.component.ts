@@ -20,7 +20,12 @@ export class FormResultsComponent {
 
   // copy content to browser's clipboard
   copyToClipboard(elementId: string, buttonId: string) {
-    this.uiService.copyToClipboard(elementId, buttonId);
+    if (buttonId === 'RDFCopy') {
+      this.uiService.copyToClip(this.rdf);
+      this.uiService.flipButton(buttonId);
+    } else {
+      this.uiService.copyToClipboard(elementId, buttonId);
+    }
   }
 
   isTemplateField(field: any) {

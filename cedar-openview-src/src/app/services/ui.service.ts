@@ -61,22 +61,33 @@ export class UiService {
     window.open(destination, '_blank');
   }
 
+  copyToClip(str: string) {
+    function listener(e: ClipboardEvent) {
+      if (e.clipboardData !== null) {
+        e.clipboardData.setData('text/html', str);
+        e.clipboardData.setData('text/plain', str);
+      }
+      e.preventDefault();
+    }
+
+    document.addEventListener('copy', listener);
+    document.execCommand('copy');
+    document.removeEventListener('copy', listener);
+  }
+
+  flipButton(buttonId: string) {
+    const btn = document.getElementById(buttonId);
+    if (btn) {
+      btn.innerHTML = this.translateService.instant('App.Copied');
+      setTimeout(() => {
+        btn.innerHTML = this.translateService.instant('App.Copy');
+      }, 10000);
+    }
+  }
+
   // copy stuff in tabs to browser's clipboard
   copyToClipboard(elementId: string, buttonId: string) {
 
-    function copyToClip(str: string) {
-      function listener(e: ClipboardEvent) {
-        if (e.clipboardData !== null) {
-          e.clipboardData.setData('text/html', str);
-          e.clipboardData.setData('text/plain', str);
-        }
-        e.preventDefault();
-      }
-
-      document.addEventListener('copy', listener);
-      document.execCommand('copy');
-      document.removeEventListener('copy', listener);
-    }
 
     const elm = document.getElementById(elementId);
     const data = elm ? elm.innerHTML : null;
@@ -91,16 +102,9 @@ export class UiService {
       document.body.appendChild(selBox);
       selBox.focus();
       selBox.select();
-      copyToClip(data);
+      this.copyToClip(data);
       document.body.removeChild(selBox);
-
-      const btn = document.getElementById(buttonId);
-      if (btn) {
-        btn.innerHTML = this.translateService.instant('App.Copied');
-        setTimeout(() => {
-          btn.innerHTML = this.translateService.instant('App.Copy');
-        }, 10000);
-      }
+      this.flipButton(buttonId);
     }
   }
 

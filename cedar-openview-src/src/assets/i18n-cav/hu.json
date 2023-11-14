@@ -1,0 +1,25 @@
+{
+  "App": {
+    "Title": "CEDAR Dokumentum Megjelenítő",
+    "Maintained": "A CEDAR-t a Stanford Biomedikai Informatikai Kutatási Központ működteti.",
+    "Contact": "Kapcsolat"
+  },
+  "Generic": {
+    "Copy": "Másolás"
+  },
+  "Extra": {
+    "SampleTemplate": {
+      "Title": "Mintasablonok",
+      "Select": "Válassz sablont",
+      "Find": "Sablon keresése...",
+      "FindNoMatch": "Nincs egyező sablon"
+    },
+    "JsonLD": {
+      "Instance": "JSON-LD - Példány"
+    },
+    "JsonSchemaTemplate": "JSON Séma - Sablon"
+  },
+  "Process": {
+    "Initializing": "A CEDAR Dokumentum Megjelenítő inicializálása..."
+  }
+}

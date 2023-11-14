@@ -17,12 +17,10 @@
 
   <div class="instance__container ">
     <cedar-artifact-viewer
-      [instance]="instance"
-      [template]="template"
-      [mode]="mode"
-      (autocomplete)="onAutocomplete($event)"
-      (formChange)="onFormChange($event)"
-      [autocompleteResults]="allPosts"></cedar-artifact-viewer>
+      [config]="cavConfig"
+      [templateObject]="template"
+      [instanceObject]="instance"
+    ></cedar-artifact-viewer>
   </div>
 
   <app-form-results [instance]="instance" [template]="template" [rdf]="rdf"></app-form-results>
