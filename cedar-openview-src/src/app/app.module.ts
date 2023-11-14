@@ -18,6 +18,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AppConfigService} from './services/app-config.service';
 import {AutocompleteUrlService} from './services/autocomplete-url.service';
+import "cedar-artifact-viewer/cedar-artifact-viewer.js";
 
 
 // AoT requires an exported function for factories
