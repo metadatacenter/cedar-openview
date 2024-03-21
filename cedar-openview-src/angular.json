@@ -92,7 +92,8 @@
           "options": {
             "browserTarget": "cedar-openview:build",
             "port": 4220,
-            "disableHostCheck": true
+            "disableHostCheck": true,
+            "host": "0.0.0.0"
           },
           "configurations": {
             "production": {
