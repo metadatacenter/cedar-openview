@@ -1,7 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
-
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
@@ -19,6 +17,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {AppConfigService} from './services/app-config.service';
 import {AutocompleteUrlService} from './services/autocomplete-url.service';
 import "cedar-artifact-viewer/cedar-artifact-viewer.js";
+import "cedar-embeddable-editor/cedar-embeddable-editor.js";
 
 
 // AoT requires an exported function for factories

@@ -5,10 +5,10 @@
 <app-legend *ngIf="template && !artifactStatus"></app-legend>
 
 <div *ngIf="template && !artifactStatus" class="instance__container ">
-  <cedar-artifact-viewer
+  <cedar-embeddable-editor
     [config]="cavConfig"
     [templateObject]="template"
-  ></cedar-artifact-viewer>
+  ></cedar-embeddable-editor>
 </div>
 
 <app-form-results *ngIf="template && !artifactStatus" [instance]="instance" [template]="template"

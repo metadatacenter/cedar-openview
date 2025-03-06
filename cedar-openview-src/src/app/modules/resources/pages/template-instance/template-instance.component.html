@@ -16,11 +16,11 @@
   <app-legend *ngIf="instance && !artifactStatus"></app-legend>
 
   <div class="instance__container ">
-    <cedar-artifact-viewer
+    <cedar-embeddable-editor
       [config]="cavConfig"
       [templateObject]="template"
       [instanceObject]="instance"
-    ></cedar-artifact-viewer>
+    ></cedar-embeddable-editor>
   </div>
 
   <app-form-results [instance]="instance" [template]="template" [rdf]="rdf"></app-form-results>
