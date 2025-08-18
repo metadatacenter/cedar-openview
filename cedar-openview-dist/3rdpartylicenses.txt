@@ -887,12 +887,6 @@ Apache-2.0
    limitations under the License.
 
 
-cedar-artifact-viewer
-ISC
-
-cedar-embeddable-editor
-ISC
-
 hammerjs
 MIT
 The MIT License (MIT)
