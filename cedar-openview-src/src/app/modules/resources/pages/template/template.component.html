@@ -2,11 +2,11 @@
   <app-artifact-header [artifact]="template"></app-artifact-header>
 </div>
 
-<app-legend *ngIf="template && !artifactStatus"></app-legend>
+<!--<app-legend *ngIf="template && !artifactStatus"></app-legend>-->
 
 <div *ngIf="template && !artifactStatus" class="instance__container ">
   <cedar-embeddable-editor
-    [config]="cavConfig"
+    [config]="cfg"
     [templateObject]="template"
   ></cedar-embeddable-editor>
 </div>

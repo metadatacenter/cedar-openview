@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -16,13 +16,15 @@ import {UiService} from '../../../../services/ui.service';
 import {TemplateService} from '../../../../services/template.service';
 import * as jsonld from 'jsonld';
 import {globalAppConfig} from "../../../../../environments/global-app-config";
+import {CedarEmbeddableEditorLoaderService} from '../../../../services/cedar-embeddable-editor-loader.service';
+import {CeeConfigService} from '../../../../services/cee-config.service';
 
 @Component({
   selector: 'app-template',
   templateUrl: './template.component.html',
   styleUrls: ['./template.component.scss']
 })
-export class TemplateComponent extends CedarPageComponent implements OnInit {
+export class TemplateComponent extends CedarPageComponent implements OnInit, AfterViewInit {
 
   templateId: string | null = null;
   template?: Template;
@@ -33,6 +35,7 @@ export class TemplateComponent extends CedarPageComponent implements OnInit {
   mode: string = 'view';
   allPosts: any;
   rdf: any;
+  cfg = this.ceeConfig.value;
 
   cavConfig = {
     showTemplateData: false,
@@ -52,11 +55,14 @@ export class TemplateComponent extends CedarPageComponent implements OnInit {
     private http: HttpClient,
     private autocompleteService: AutocompleteService,
     private uiService: UiService,
+    private loader: CedarEmbeddableEditorLoaderService,
+    private ceeConfig: CeeConfigService
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
   }
 
   ngOnInit() {
+    console.log('Template Component');
     this.allPosts = [];
     this.initDataHandler();
     this.templateId = this.route.snapshot.paramMap.get('templateId');
@@ -64,6 +70,10 @@ export class TemplateComponent extends CedarPageComponent implements OnInit {
     this.dataHandler
       .requireId(DataHandlerDataId.TEMPLATE, this.templateId ?? '')
       .load(() => this.dataLoadedCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.dataErrorCallback(error, dataStatus));
+  }
+
+  async ngAfterViewInit() {
+    await this.loader.load();
   }
 
   private dataLoadedCallback() {

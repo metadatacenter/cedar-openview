@@ -16,8 +16,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AppConfigService} from './services/app-config.service';
 import {AutocompleteUrlService} from './services/autocomplete-url.service';
-import "cedar-artifact-viewer/cedar-artifact-viewer.js";
-import "cedar-embeddable-editor/cedar-embeddable-editor.js";
+import {CeeConfigService} from './services/cee-config.service';
 
 
 // AoT requires an exported function for factories
@@ -30,6 +29,10 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     return appConfig.loadAppConfig();
   };
 };
+
+export function loadCeeConfig(cfg: CeeConfigService) {
+  return () => cfg.load();
+}
 
 @NgModule({
   declarations: [
@@ -71,7 +74,8 @@ const appInitializerFn = (appConfig: AppConfigService) => {
       multi: true,
       deps: [AppConfigService]
     },
-    AutocompleteUrlService
+    AutocompleteUrlService,
+    { provide: APP_INITIALIZER, useFactory: loadCeeConfig, deps: [CeeConfigService], multi: true }
   ],
   bootstrap: [AppComponent]
 })

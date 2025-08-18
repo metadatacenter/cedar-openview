@@ -69,7 +69,6 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
 
   private dataLoadedCallback() {
     this.template = this.dataStore.getTemplateField(this.templateFieldId ?? '');
-    console.log("Template is: ", JSON.stringify(this.template));
     this.instance = TemplateService.initInstance(this.template);
   }
 

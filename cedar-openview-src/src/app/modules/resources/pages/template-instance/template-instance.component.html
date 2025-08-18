@@ -13,11 +13,11 @@
 
 <div *ngIf="instance && template">
 
-  <app-legend *ngIf="instance && !artifactStatus"></app-legend>
+<!--  <app-legend *ngIf="instance && !artifactStatus"></app-legend>-->
 
   <div class="instance__container ">
     <cedar-embeddable-editor
-      [config]="cavConfig"
+      [config]="cfg"
       [templateObject]="template"
       [instanceObject]="instance"
     ></cedar-embeddable-editor>
