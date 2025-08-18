@@ -28,7 +28,7 @@
   "pfasIntegratedDetailsUrl": "comp-tox",
   "collapseStaticComponents": true,
   "showStaticText": true,
-  "readOnlyMode": false,
+  "readOnlyMode": true,
   "hideEmptyFields": false,
   "showTemplateSourceData": false,
   "showInstanceDataFull": false,
