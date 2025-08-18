@@ -62,7 +62,6 @@ export class TemplateComponent extends CedarPageComponent implements OnInit, Aft
   }
 
   ngOnInit() {
-    console.log('Template Component');
     this.allPosts = [];
     this.initDataHandler();
     this.templateId = this.route.snapshot.paramMap.get('templateId');

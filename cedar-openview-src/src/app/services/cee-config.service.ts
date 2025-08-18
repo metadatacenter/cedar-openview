@@ -51,7 +51,7 @@ export class CeeConfigService {
       .then(cfg => { this._config = cfg!; })
       .catch(err => {
         console.error('Failed to load cee-config.json', err);
-        this._config = {} as any; // fallback to empty if you want
+        this._config = {} as any;
       });
   }
 }
