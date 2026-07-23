@@ -37,6 +37,7 @@
               "src/theme.scss"
             ],
             "scripts": [
+              "node_modules/cedar-embeddable-editor/cedar-embeddable-editor.js"
             ],
             "indexTransform": "./index-html-transform.ts"
           },
@@ -122,7 +123,8 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/hammerjs/hammer.min.js"
+              "node_modules/hammerjs/hammer.min.js",
+              "node_modules/cedar-embeddable-editor/cedar-embeddable-editor.js"
             ],
             "assets": [
               "src/favicon.ico",
