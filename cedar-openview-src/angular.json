@@ -37,6 +37,7 @@
               "src/theme.scss"
             ],
             "scripts": [
+              "node_modules/cedar-embeddable-editor/cedar-embeddable-editor.js"
             ],
             "indexTransform": "./index-html-transform.ts"
           },
@@ -58,8 +59,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "5mb",
-                  "maximumError": "6mb"
+                  "maximumWarning": "7mb",
+                  "maximumError": "7mb"
                 }
               ]
             },
@@ -79,8 +80,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "7mb",
+                  "maximumError": "7mb"
                 }
               ]
             }
@@ -122,7 +123,8 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/hammerjs/hammer.min.js"
+              "node_modules/hammerjs/hammer.min.js",
+              "node_modules/cedar-embeddable-editor/cedar-embeddable-editor.js"
             ],
             "assets": [
               "src/favicon.ico",

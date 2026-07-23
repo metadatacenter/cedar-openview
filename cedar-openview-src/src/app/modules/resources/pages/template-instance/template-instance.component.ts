@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -16,14 +16,15 @@ import {UiService} from '../../../../services/ui.service';
 import {TemplateService} from '../../../../services/template.service';
 import * as jsonld from 'jsonld';
 import {globalAppConfig} from "../../../../../environments/global-app-config";
-
+import {CedarEmbeddableEditorLoaderService} from '../../../../services/cedar-embeddable-editor-loader.service';
+import {CeeConfigService} from '../../../../services/cee-config.service';
 
 @Component({
   selector: 'app-template-instance',
   templateUrl: './template-instance.component.html',
   styleUrls: ['./template-instance.component.scss']
 })
-export class TemplateInstanceComponent extends CedarPageComponent implements OnInit {
+export class TemplateInstanceComponent extends CedarPageComponent implements OnInit, AfterViewInit {
 
   templateInstanceId: string | null = null;
   instance?: TemplateInstance;
@@ -36,13 +37,7 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
   mode: string = 'view';
   allPosts: any;
   rdf: any;
-
-  cavConfig = {
-    showTemplateData: false,
-    showInstanceData: false,
-    defaultLanguage: 'en',
-    fallbackLanguage: 'en',
-  };
+  cfg = this.ceeConfig.value;
 
   constructor(
     localSettings: LocalSettingsService,
@@ -55,6 +50,8 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
     private http: HttpClient,
     private autocompleteService: AutocompleteService,
     private uiService: UiService,
+    private loader: CedarEmbeddableEditorLoaderService,
+    private ceeConfig: CeeConfigService
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
   }
@@ -69,6 +66,10 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
       .requireId(DataHandlerDataId.TEMPLATE_INSTANCE, this.templateInstanceId ?? '')
       .load(() => this.instanceLoadedCallback(this.templateInstanceId ?? ''),
         (error: any, dataStatus: DataHandlerDataStatus) => this.instanceErrorCallback(error, dataStatus));
+  }
+
+  async ngAfterViewInit() {
+    await this.loader.load();
   }
 
   private instanceLoadedCallback(instanceId: string) {
