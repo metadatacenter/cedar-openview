@@ -1,7 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
-
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
@@ -18,7 +16,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AppConfigService} from './services/app-config.service';
 import {AutocompleteUrlService} from './services/autocomplete-url.service';
-import "cedar-artifact-viewer/cedar-artifact-viewer.js";
+import {CeeConfigService} from './services/cee-config.service';
 
 
 // AoT requires an exported function for factories
@@ -31,6 +29,10 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     return appConfig.loadAppConfig();
   };
 };
+
+export function loadCeeConfig(cfg: CeeConfigService) {
+  return () => cfg.load();
+}
 
 @NgModule({
   declarations: [
@@ -72,7 +74,8 @@ const appInitializerFn = (appConfig: AppConfigService) => {
       multi: true,
       deps: [AppConfigService]
     },
-    AutocompleteUrlService
+    AutocompleteUrlService,
+    { provide: APP_INITIALIZER, useFactory: loadCeeConfig, deps: [CeeConfigService], multi: true }
   ],
   bootstrap: [AppComponent]
 })
