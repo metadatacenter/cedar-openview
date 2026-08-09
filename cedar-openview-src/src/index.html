@@ -25,6 +25,15 @@
   <!-- load the webcomponents loader, which injects the necessary polyfill bundle -->
   <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
   <!-- load the component -->
+  <!--
+    Copied as an asset and loaded by tag, rather than listed in angular.json's
+    `scripts`. A `scripts` entry is re-minified by this build, and Terser drops
+    the `var X = class t extends Error { static F = new t(...) }` that CEE's
+    esbuild bundle contains — leaving the static initializers behind a binding it
+    deleted, so the custom element never registers. The file arrives minified;
+    nothing here needs to touch it.
+  -->
+  <script src="node_modules/cedar-embeddable-editor/cedar-embeddable-editor.js" type="text/javascript"></script>
 <!--  <script src="https://component.metadatacenter.org/cedar-artifact-viewer/cedar-artifact-viewer-2.9.2-SNAPSHOT.js" type="text/javascript"></script>-->
 </head>
 <body>
