@@ -33,13 +33,6 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
   mode: string = 'view';
   allPosts: any;
   rdf: any;
-
-  cavConfig = {
-    showTemplateData: false,
-    showInstanceData: false,
-    defaultLanguage: 'en',
-    fallbackLanguage: 'en',
-  };
   constructor(
     localSettings: LocalSettingsService,
     translateService: TranslateService,

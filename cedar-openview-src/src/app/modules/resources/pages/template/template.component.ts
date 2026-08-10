@@ -37,13 +37,6 @@ export class TemplateComponent extends CedarPageComponent implements OnInit, Aft
   rdf: any;
   cfg = this.ceeConfig.value;
 
-  cavConfig = {
-    showTemplateData: false,
-    showInstanceData: false,
-    defaultLanguage: 'en',
-    fallbackLanguage: 'en',
-  };
-
   constructor(
     localSettings: LocalSettingsService,
     translateService: TranslateService,
