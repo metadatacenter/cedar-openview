@@ -37,7 +37,7 @@
     "@popperjs/core": "^2.11.7",
     "@webcomponents/webcomponentsjs": "^2.8.0",
     "bootstrap": "^4.6.2",
-    "cedar-embeddable-editor": "npm:@org.metadatacenter/cedar-embeddable-editor@1.6.0-dev.20260812.b953153",
+    "cedar-embeddable-editor": "1.6.0",
     "core-js": "^3.25.2",
     "hammerjs": "^2.0.8",
     "jquery": "^3.3.1",
