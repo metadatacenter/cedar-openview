@@ -1,17 +1,6 @@
 {
-  "showTemplateRenderingRepresentation": false,
-  "showAllMultiInstanceValues": false,
-  "showDataQualityReport": false,
-  "showHeader": false,
-  "showFooter": false,
   "showTemplateDescription": false,
   "terminologyIntegratedSearchUrl": "https://terminology.metadatacenter.orgx/bioportal/integrated-search",
-  "expandedInstanceDataFull": false,
-  "showInstanceDataCore": false,
-  "expandedInstanceDataCore": false,
-  "showMultiInstanceInfo": false,
-  "expandedMultiInstanceInfo": false,
-  "expandedDataQualityReport": false,
   "languageMapPathPrefix": "/assets/i18n-cee/",
   "defaultLanguage": "en",
   "fallbackLanguage": "en",
@@ -30,11 +19,6 @@
   "pmidIntegratedDetailsUrl": "pmid",
   "rridIntegratedExtAuthUrl": "rrid/search-by-name",
   "rridIntegratedDetailsUrl": "rrid",
-  "collapseStaticComponents": true,
-  "showStaticText": true,
   "readOnlyMode": true,
-  "hideEmptyFields": false,
-  "showTemplateSourceData": false,
-  "showInstanceDataFull": false,
-  "showPreferencesMenu": false
+  "showDownloadMenu": true
 }
