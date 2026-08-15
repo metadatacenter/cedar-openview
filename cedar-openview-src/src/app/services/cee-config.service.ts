@@ -10,8 +10,6 @@ export interface CeeConfig {
   fallbackLanguage: string;
   iriPrefix: string;
   bioPortalPrefix: string;
-  orcidPrefix: string;
-  rorPrefix: string;
   extAuthBaseUrl: string;
   orcidIntegratedExtAuthUrl: string;
   orcidIntegratedDetailsUrl: string;
