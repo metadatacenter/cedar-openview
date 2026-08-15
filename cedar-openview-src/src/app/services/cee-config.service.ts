@@ -4,12 +4,12 @@ import { HttpClient } from '@angular/common/http';
 export interface CeeConfig {
   showTemplateDescription: boolean;
   showDownloadMenu: boolean;
-  terminologyIntegratedSearchUrl: string;
+  terminologyBaseUrl: string;
   languageMapPathPrefix: string;
   defaultLanguage: string;
   fallbackLanguage: string;
   iriPrefix: string;
-  extAuthBaseUrl: string;
+  bridgeBaseUrl: string;
   readOnlyMode: boolean;
 }
 
