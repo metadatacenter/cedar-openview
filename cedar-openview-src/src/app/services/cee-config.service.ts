@@ -10,9 +10,6 @@ export interface CeeConfig {
   fallbackLanguage: string;
   iriPrefix: string;
   extAuthBaseUrl: string;
-  orcidIntegratedExtAuthUrl: string;
-  rorIntegratedExtAuthUrl: string;
-  pfasIntegratedExtAuthUrl: string;
   readOnlyMode: boolean;
 }
 
