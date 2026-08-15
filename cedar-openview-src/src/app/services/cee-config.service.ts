@@ -11,11 +11,8 @@ export interface CeeConfig {
   iriPrefix: string;
   extAuthBaseUrl: string;
   orcidIntegratedExtAuthUrl: string;
-  orcidIntegratedDetailsUrl: string;
   rorIntegratedExtAuthUrl: string;
-  rorIntegratedDetailsUrl: string;
   pfasIntegratedExtAuthUrl: string;
-  pfasIntegratedDetailsUrl: string;
   readOnlyMode: boolean;
 }
 
