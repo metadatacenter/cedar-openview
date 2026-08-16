@@ -5,7 +5,6 @@
   "languageMapPathPrefix": "/assets/i18n-cee/",
   "defaultLanguage": "en",
   "fallbackLanguage": "en",
-  "iriPrefix": "https://repo.metadatacenter.orgx/",
   "readOnlyMode": true,
   "showDownloadMenu": true
 }

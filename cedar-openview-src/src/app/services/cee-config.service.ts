@@ -8,7 +8,6 @@ export interface CeeConfig {
   languageMapPathPrefix: string;
   defaultLanguage: string;
   fallbackLanguage: string;
-  iriPrefix: string;
   bridgeBaseUrl: string;
   readOnlyMode: boolean;
 }
