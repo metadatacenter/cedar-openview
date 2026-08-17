@@ -14,7 +14,7 @@
     "e2e": "ng e2e"
   },
   "author": "Metadatacenter.org",
-  "license": "GNU 2-clause",
+  "license": "BSD-2-Clause",
   "dependencies": {
     "@angular/animations": "~16.2.6",
     "@angular/cdk": "~16.2.5",
