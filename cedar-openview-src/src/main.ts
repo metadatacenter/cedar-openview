@@ -10,8 +10,5 @@ if (environment.production) {
 }
 
 
-// needed for jsonld js library
-(window as any).global = window;
-
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));

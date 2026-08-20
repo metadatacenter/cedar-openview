@@ -14,7 +14,6 @@ import {AutocompleteService} from '../../../../services/autocomplete.service';
 import {forkJoin} from 'rxjs';
 import {UiService} from '../../../../services/ui.service';
 import {TemplateService} from '../../../../services/template.service';
-import * as jsonld from 'jsonld';
 import {globalAppConfig} from "../../../../../environments/global-app-config";
 import {CedarEmbeddableEditorLoaderService} from '../../../../services/cedar-embeddable-editor-loader.service';
 import {CeeConfigService} from '../../../../services/cee-config.service';
@@ -36,7 +35,6 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
   templateId: string | null = null;
   mode: string = 'view';
   allPosts: any;
-  rdf: any;
   cfg = this.ceeConfig.value;
 
   constructor(
@@ -92,17 +90,6 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
       TemplateService.setName(this.instance, TemplateService.getName(schema));
       TemplateService.setHelp(this.instance, TemplateService.getHelp(schema));
     }
-    this.regenerateRDF();
-  }
-
-  private regenerateRDF() {
-    setTimeout(async () => {
-      if (this.instance) {
-        const instanceJson = JSON.parse(JSON.stringify(this.instance));
-        const nquads = await jsonld.toRDF(instanceJson, {format: 'application/n-quads'});
-        this.rdf = nquads;
-      }
-    }, 0);
   }
 
   private instanceErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
@@ -134,7 +121,6 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
     if (event && event.detail) {
       this.uiService.setTitleAndDescription(event.detail.title, event.detail.description, 'TemplateInstance');
       this.uiService.setValidity(event.detail.validity);
-      this.regenerateRDF();
     }
   }
 

@@ -14,7 +14,6 @@ import {AutocompleteService} from '../../../../services/autocomplete.service';
 import {forkJoin} from 'rxjs';
 import {UiService} from '../../../../services/ui.service';
 import {TemplateService} from '../../../../services/template.service';
-import * as jsonld from 'jsonld';
 import {globalAppConfig} from "../../../../../environments/global-app-config";
 
 @Component({
@@ -32,7 +31,6 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
   instance: any = null;
   mode: string = 'view';
   allPosts: any;
-  rdf: any;
 
   constructor(
     localSettings: LocalSettingsService,
@@ -90,14 +88,6 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
     if (event && event.detail) {
       this.uiService.setTitleAndDescription(event.detail.title, event.detail.description, field['@type']);
       this.uiService.setValidity(event.detail.validity);
-      setTimeout(() => {
-        const that = this;
-        if (this.instance) {
-          jsonld.toRDF(this.instance, {format: 'application/n-quads'}, function (err, nquads) {
-            that.rdf = err ? err : nquads;
-          });
-        }
-      }, 0);
     }
   }
 }
