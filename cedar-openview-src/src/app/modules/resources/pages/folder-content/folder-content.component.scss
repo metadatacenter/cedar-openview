@@ -8,6 +8,17 @@
     margin: 5px 5px 10px 5px;
   }
 
+  .folder-path {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .folder-path-separator {
+    color: rgba(0, 0, 0, 0.38);
+  }
+
   .footer {
     font-size: 1em;
     margin: 5px 5px 10px 5px;
