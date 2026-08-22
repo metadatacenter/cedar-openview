@@ -52,6 +52,35 @@
   line-height: 1.2em;
   font-weight: lighter;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-text {
+  /* Keeps the text a column rather than a squeezed word per line before the row wraps. */
+  flex: 1 1 20em;
+  min-width: 0;
+}
+
+/*
+ * The mark, capped to the height of the words beside it.
+ *
+ * Two attempts that do not work, worth recording: `width: 20%` of the container gave a 190px mark
+ * against 80px of text, and stretching this column to the row's height with `max-height: 100%` on
+ * the image is circular — the image is the tallest item, so it sets the height it would be measured
+ * against, and it rendered at its intrinsic 450×400. A definite cap is what constrains it.
+ *
+ * `5.5em` against this block's 1.2em is about 106px: the title's line plus the two below it. Stated
+ * in em so it follows the text if the footer's type scale changes.
+ */
+.footer-logo {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  max-height: 5.5em;
 }
 
 .form__section {
@@ -102,11 +131,11 @@
   background: #e8e8e8;
 }
 
-img.bmir-logo {
-  float: right;
-  width: 20%;
-  margin-top: 10px;
-  margin-bottom: 10px;
+img.computational-medicine-logo {
+  max-height: 5.5em;
+  width: auto;
+  object-fit: contain;
+  margin: 10px 0;
 }
 
 a {

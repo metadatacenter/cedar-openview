@@ -29,6 +29,11 @@
                 "glob": "{*loader.js,*adapter.js,bundles/*.js}",
                 "input": "node_modules/@webcomponents/webcomponentsjs/",
                 "output": "node_modules/@webcomponents/webcomponentsjs"
+              },
+              {
+                "glob": "cedar-embeddable-editor.js",
+                "input": "node_modules/cedar-embeddable-editor/",
+                "output": "node_modules/cedar-embeddable-editor"
               }
             ],
             "styles": [
@@ -36,9 +41,7 @@
               "src/styles.scss",
               "src/theme.scss"
             ],
-            "scripts": [
-              "node_modules/cedar-embeddable-editor/cedar-embeddable-editor.js"
-            ],
+            "scripts": [],
             "indexTransform": "./index-html-transform.ts"
           },
           "configurations": {

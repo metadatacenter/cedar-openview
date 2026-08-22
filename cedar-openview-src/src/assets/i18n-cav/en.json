@@ -1,8 +1,8 @@
 {
   "App": {
     "Title": "CEDAR Artifact Viewer",
-    "Maintained": "CEDAR is maintained by the Stanford Center for Biomedical Informatics Research.",
-    "Contact": "Contact CEDAR"
+    "Maintained": "CEDAR is maintained by the Stanford Division of Computational Medicine.",
+    "Contact": "Visit the CEDAR website"
   },
   "Generic": {
     "Copy": "Copy"

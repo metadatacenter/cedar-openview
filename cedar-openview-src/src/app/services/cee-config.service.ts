@@ -2,40 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 export interface CeeConfig {
-  showTemplateRenderingRepresentation: boolean;
-  showAllMultiInstanceValues: boolean;
-  showDataQualityReport: boolean;
-  showHeader: boolean;
-  showFooter: boolean;
   showTemplateDescription: boolean;
-  terminologyIntegratedSearchUrl: string;
-  expandedInstanceDataFull: boolean;
-  showInstanceDataCore: boolean;
-  expandedInstanceDataCore: boolean;
-  showMultiInstanceInfo: boolean;
-  expandedMultiInstanceInfo: boolean;
-  expandedDataQualityReport: boolean;
+  showDownloadMenu: boolean;
+  terminologyBaseUrl: string;
   languageMapPathPrefix: string;
   defaultLanguage: string;
   fallbackLanguage: string;
-  iriPrefix: string;
-  bioPortalPrefix: string;
-  orcidPrefix: string;
-  rorPrefix: string;
-  extAuthBaseUrl: string;
-  orcidIntegratedExtAuthUrl: string;
-  orcidIntegratedDetailsUrl: string;
-  rorIntegratedExtAuthUrl: string;
-  rorIntegratedDetailsUrl: string;
-  pfasIntegratedExtAuthUrl: string;
-  pfasIntegratedDetailsUrl: string;
-  collapseStaticComponents: boolean;
-  showStaticText: boolean;
+  bridgeBaseUrl: string;
   readOnlyMode: boolean;
-  hideEmptyFields: boolean;
-  showTemplateSourceData: boolean;
-  showInstanceDataFull: boolean;
-  showPreferencesMenu: boolean
 }
 
 @Injectable({ providedIn: 'root' })

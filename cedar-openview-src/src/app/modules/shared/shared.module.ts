@@ -11,7 +11,6 @@ import {JsonViewComponent} from './components/json-view/json-view.component';
 import {ArtifactErrorComponent} from './components/artifact-error/artifact-error.component';
 import {MaterialModule} from '../../modules/material-module';
 import {LegendComponent} from './components/legend/legend.component';
-import {FormResultsComponent} from './components/form-results/form-results.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FooterComponent} from './components/footer/footer.component';
 import {ViewHeaderComponent} from './components/view-header/view-header.component';
@@ -37,7 +36,6 @@ import {ViewHeaderComponent} from './components/view-header/view-header.componen
     FooterComponent,
     JsonViewComponent,
     LegendComponent,
-    FormResultsComponent
   ],
   exports: [
     CommonModule,
@@ -53,7 +51,6 @@ import {ViewHeaderComponent} from './components/view-header/view-header.componen
     FooterComponent,
     JsonViewComponent,
     LegendComponent,
-    FormResultsComponent
   ]
 })
 export class SharedModule {

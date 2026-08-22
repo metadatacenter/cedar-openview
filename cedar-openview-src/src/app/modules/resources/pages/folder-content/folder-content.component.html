@@ -1,10 +1,18 @@
 <mat-card class="wrapperCard" *ngIf="folderContents">
   <mat-card class="header">
     <mat-card-content>
-    <span *ngFor="let folder of folderContents['pathInfo']; let i = index">
-      <span *ngIf="i > 1">&nbsp;/&nbsp;</span>
-      <span *ngIf="i == 1">&nbsp;</span>
-      {{folder['schema:name']}}
+    <!--
+      The path, spaced once. Each separator was `&nbsp;/&nbsp;` and the name below it sat on its own
+      line, so the markup's own newline collapsed to a second space beside the hard one and every
+      slash ended up unevenly padded. A flex row with one gap spaces the whole path evenly, and the
+      slash is a separator rather than something to read aloud.
+    -->
+    <span class="folder-path">
+      <ng-container *ngFor="let folder of folderContents['pathInfo']; let i = index">
+        <!-- From the third crumb on: the root is itself named "/", so it supplies the first one. -->
+        <span class="folder-path-separator" *ngIf="i > 1" aria-hidden="true">/</span>
+        <span>{{ folder['schema:name'] }}</span>
+      </ng-container>
     </span>
     </mat-card-content>
   </mat-card>

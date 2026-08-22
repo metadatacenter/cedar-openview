@@ -14,7 +14,6 @@ import {HttpClient} from '@angular/common/http';
 import {AutocompleteService} from '../../../../services/autocomplete.service';
 import {UiService} from '../../../../services/ui.service';
 import {TemplateService} from '../../../../services/template.service';
-import * as jsonld from 'jsonld';
 import {globalAppConfig} from "../../../../../environments/global-app-config";
 import {CedarEmbeddableEditorLoaderService} from '../../../../services/cedar-embeddable-editor-loader.service';
 import {CeeConfigService} from '../../../../services/cee-config.service';
@@ -34,15 +33,7 @@ export class TemplateComponent extends CedarPageComponent implements OnInit, Aft
   instance: any = null;
   mode: string = 'view';
   allPosts: any;
-  rdf: any;
   cfg = this.ceeConfig.value;
-
-  cavConfig = {
-    showTemplateData: false,
-    showInstanceData: false,
-    defaultLanguage: 'en',
-    fallbackLanguage: 'en',
-  };
 
   constructor(
     localSettings: LocalSettingsService,
@@ -110,12 +101,6 @@ export class TemplateComponent extends CedarPageComponent implements OnInit, Aft
       //console.log(event.detail);
       this.uiService.setTitleAndDescription(event.detail.title, event.detail.description, template['@type']);
       this.uiService.setValidity(event.detail.validity);
-      setTimeout(() => {
-        const that = this;
-        jsonld.toRDF(this.instance, {format: 'application/n-quads'}, function (err: any, nquads: any) {
-          that.rdf = err ? err : nquads;
-        });
-      }, 0);
     }
   }
 }
