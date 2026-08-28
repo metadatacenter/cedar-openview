@@ -12,6 +12,16 @@ export interface CeeConfig {
   readOnlyMode: boolean;
 }
 
+const CEDAR_DOMAIN_PLACEHOLDER = '{{cedarDomain}}';
+
+export function resolveCedarDomain(config: CeeConfig, domain: string): CeeConfig {
+  return {
+    ...config,
+    terminologyBaseUrl: config.terminologyBaseUrl.replace(CEDAR_DOMAIN_PLACEHOLDER, domain),
+    bridgeBaseUrl: config.bridgeBaseUrl.replace(CEDAR_DOMAIN_PLACEHOLDER, domain)
+  };
+}
+
 @Injectable({ providedIn: 'root' })
 export class CeeConfigService {
   private _config!: CeeConfig;
@@ -22,7 +32,9 @@ export class CeeConfigService {
   load(): Promise<void> {
     return this.http.get<CeeConfig>('assets/config/cee-config.json')
       .toPromise()
-      .then(cfg => { this._config = cfg!; })
+      .then(cfg => {
+        this._config = resolveCedarDomain(cfg!, (window as any).cedarDomain);
+      })
       .catch(err => {
         console.error('Failed to load cee-config.json', err);
         this._config = {} as any;
