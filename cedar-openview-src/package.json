@@ -8,7 +8,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build && node scripts/normalize-production-dist.js && node scripts/check-production-dist.js dist/cedar-openview ../cedar-openview-dist",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
