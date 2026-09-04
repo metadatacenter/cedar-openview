@@ -15,12 +15,18 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
+          "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/cedar-openview",
+            "outputPath": {
+              "base": "dist/cedar-openview",
+              "browser": ""
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js",
+              "src/polyfills.ts"
+            ],
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -41,8 +47,12 @@
               "src/styles.scss",
               "src/theme.scss"
             ],
-            "scripts": [],
-            "indexTransform": "./index-html-transform.ts"
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "."
+              ]
+            },
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -54,11 +64,8 @@
               ],
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "aot": true,
+              "optimization": true,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -75,11 +82,8 @@
                 }
               ],
               "sourceMap": false,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
+              "optimization": false,
+              "extractLicenses": false,
               "budgets": [
                 {
                   "type": "initial",
@@ -92,12 +96,12 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-builders/custom-webpack:dev-server",
+          "builder": "@angular/build:dev-server",
           "options": {
             "buildTarget": "cedar-openview:build",
             "port": 4220,
-            "disableHostCheck": true,
-            "host": "0.0.0.0"
+            "host": "0.0.0.0",
+            "allowedHosts": true
           },
           "configurations": {
             "production": {
@@ -110,7 +114,7 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular/build:extract-i18n",
           "options": {
             "buildTarget": "cedar-openview:build"
           }
