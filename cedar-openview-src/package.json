@@ -1,6 +1,6 @@
 {
   "name": "cedar-openview",
-  "version": "2.9.6",
+  "version": "2.9.7",
   "publishConfig": {
     "registry": "https://nexus.bmir.stanford.edu/repository/npm-cedar/"
   },
@@ -15,6 +15,14 @@
   },
   "author": "Metadatacenter.org",
   "license": "BSD-2-Clause",
+  "allowScripts": {
+    "@parcel/watcher@2.5.0": true,
+    "@scarf/scarf@1.4.0": false,
+    "core-js@3.40.0": false,
+    "esbuild@0.18.17": true,
+    "fsevents@2.3.3": true,
+    "nice-napi@1.0.2": true
+  },
   "dependencies": {
     "@angular/animations": "~16.2.6",
     "@angular/cdk": "~16.2.5",
@@ -37,7 +45,7 @@
     "@popperjs/core": "^2.11.7",
     "@webcomponents/webcomponentsjs": "^2.8.0",
     "bootstrap": "^4.6.2",
-    "cedar-embeddable-editor": "2.0.4",
+    "cedar-embeddable-editor": "2.0.5",
     "core-js": "^3.25.2",
     "hammerjs": "^2.0.8",
     "jquery": "^3.3.1",
