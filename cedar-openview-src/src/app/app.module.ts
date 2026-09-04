@@ -13,7 +13,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './modules/material-module';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {ReactiveFormsModule} from '@angular/forms';
-import {FlexLayoutModule} from '@angular/flex-layout';
 import {AppConfigService} from './services/app-config.service';
 import {AutocompleteUrlService} from './services/autocomplete-url.service';
 import {CeeConfigService} from './services/cee-config.service';
@@ -51,7 +50,6 @@ export function loadCeeConfig(cfg: CeeConfigService) {
     AppRoutingModule,
     MaterialModule,
     HttpClientModule,
-    FlexLayoutModule,
     FontAwesomeModule,
     TranslateModule.forRoot({
       loader: {
