@@ -9,7 +9,6 @@ import {SharedModule} from './modules/shared';
 import {ResourcesModule} from './modules/resources/resources.module';
 import {provideTranslateHttpLoader} from '@ngx-translate/http-loader';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './modules/material-module';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -41,7 +40,6 @@ export function loadCeeConfig(cfg: CeeConfigService) {
     SnotifyModule,
     SharedModule,
     ResourcesModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,
     FontAwesomeModule,
