@@ -1,8 +1,6 @@
 @use '@angular/material' as mat;
 
-@include mat.elevation-classes();
-@include mat.app-background();
-@import 'src/theme.scss';
+@use 'src/theme-palettes' as palettes;
 
 .legend__container {
   margin: 0 auto;
@@ -58,13 +56,13 @@
     }
 
     .asterisk {
-      color: mat.m2-get-color-from-palette($my-app-warn);
+      color: mat.m2-get-color-from-palette(palettes.$my-app-warn);
     }
   }
 }
 
 .legend-title {
-  color: mat.m2-get-color-from-palette($my-app-logo);
+  color: mat.m2-get-color-from-palette(palettes.$my-app-logo);
   font-weight: lighter;
   font-family: CrimsonText, serif;
   font-size: 20px;

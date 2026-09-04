@@ -43,6 +43,7 @@
               }
             ],
             "styles": [
+              "@fortawesome/fontawesome-free/css/all.css",
               "node_modules/ng-alt-snotify/styles/material.scss",
               "src/styles.scss",
               "src/theme.scss"
@@ -52,7 +53,10 @@
                 "."
               ]
             },
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "hammerjs"
+            ]
           },
           "configurations": {
             "production": {
@@ -127,6 +131,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
+              "@fortawesome/fontawesome-free/css/all.css",
               "src/styles.scss"
             ],
             "scripts": [
