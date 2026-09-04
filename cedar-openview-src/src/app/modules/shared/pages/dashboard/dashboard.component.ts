@@ -1,5 +1,5 @@
 import {CedarPageComponent} from '../../components/base/cedar-page-component.component';
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
@@ -11,7 +11,9 @@ import {globalAppConfig} from "../../../../../environments/global-app-config";
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class DashboardComponent extends CedarPageComponent implements OnInit {
 

@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, ChangeDetectionStrategy} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -11,7 +11,9 @@ import {CedarBase} from '../base/cedar-base.component';
 @Component({
   selector: 'app-json-view',
   templateUrl: './json-view.component.html',
-  styleUrls: ['./json-view.component.css']
+  styleUrls: ['./json-view.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class JsonViewComponent extends CedarBase {
 

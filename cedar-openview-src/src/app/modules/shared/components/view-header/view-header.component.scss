@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
-@include mat.core();
+@include mat.elevation-classes();
+@include mat.app-background();
 @import 'src/theme.scss';
 
 .title__container {
@@ -30,7 +31,7 @@
 }
 
 .title {
-  color: mat.get-color-from-palette($my-app-logo);
+  color: mat.m2-get-color-from-palette($my-app-logo);
   font-weight: lighter;
   font-family: CrimsonText, serif;
   font-size: 34px;

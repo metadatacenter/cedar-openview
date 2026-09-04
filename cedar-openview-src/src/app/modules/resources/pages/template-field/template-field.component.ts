@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -19,7 +19,9 @@ import {globalAppConfig} from "../../../../../environments/global-app-config";
 @Component({
   selector: 'app-template-field',
   templateUrl: './template-field.component.html',
-  styleUrls: ['./template-field.component.scss']
+  styleUrls: ['./template-field.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class TemplateFieldComponent extends CedarPageComponent implements OnInit {
 

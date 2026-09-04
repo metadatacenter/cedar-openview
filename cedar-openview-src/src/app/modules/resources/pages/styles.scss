@@ -1,6 +1,7 @@
 @use '@angular/material' as mat;
 
-@include mat.core();
+@include mat.elevation-classes();
+@include mat.app-background();
 @import 'src/theme.scss';
 
 .instance__container {
@@ -69,7 +70,7 @@
 .mode-toggle__circle {
   height: 1.30rem;
   width: 1.30rem;
-  background-color: mat.get-color-from-palette($my-app-primary);
+  background-color: mat.m2-get-color-from-palette($my-app-primary);
   position: absolute;
   top: -0.2rem;
   border-radius: 50%;
@@ -79,7 +80,7 @@
 }
 
 .mode-toggle__circle-checked {
-  background-color: mat.get-color-from-palette($my-app-accent);
+  background-color: mat.m2-get-color-from-palette($my-app-accent);
   left: 1.75rem;
 }
 

@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
-@include mat.core();
+@include mat.elevation-classes();
+@include mat.app-background();
 
 $metadata-center-blue: (
   50 : #ecf4f8,
@@ -298,19 +299,19 @@ $cedar-red: (
   )
 );
 
-$my-app-primary: mat.define-palette($metadata-center-blue, 500, 900, A100);
-$my-app-secondary: mat.define-palette($metadata-center-dark-blue, 500, 900, A100);
-$my-app-tertiary: mat.define-palette($cedar-gold, 200, 900, A100);
-$my-app-logo: mat.define-palette($metadata-center-blue, 900, 900, A100);
-$my-app-accent: mat.define-palette($metadata-center-green, 500, 900, A100);
-$my-app-warn: mat.define-palette($cedar-red, 500, 900, A100);
+$my-app-primary: mat.m2-define-palette($metadata-center-blue, 500, 900, A100);
+$my-app-secondary: mat.m2-define-palette($metadata-center-dark-blue, 500, 900, A100);
+$my-app-tertiary: mat.m2-define-palette($cedar-gold, 200, 900, A100);
+$my-app-logo: mat.m2-define-palette($metadata-center-blue, 900, 900, A100);
+$my-app-accent: mat.m2-define-palette($metadata-center-green, 500, 900, A100);
+$my-app-warn: mat.m2-define-palette($cedar-red, 500, 900, A100);
 //$my-app-theme: mat.define-palette($my-app-primary, $my-app-accent, $my-app-warn);
-$my-app-light-title: mat.define-palette($metadata-center-blue, 50, 50, A100);
+$my-app-light-title: mat.m2-define-palette($metadata-center-blue, 50, 50, A100);
 
-$alternate-primary: mat.define-palette($cedar-blue, 500, 900, A100);
-$alternate-accent: mat.define-palette($cedar-orange, 200, 900, A100);
+$alternate-primary: mat.m2-define-palette($cedar-blue, 500, 900, A100);
+$alternate-accent: mat.m2-define-palette($cedar-orange, 200, 900, A100);
 
-$alternate-theme: mat.define-light-theme((
+$alternate-theme: mat.m2-define-light-theme((
   color: (
     primary: $alternate-primary,
     accent: $alternate-accent,

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
 import {
   faAsterisk,
   faCalendar,
@@ -15,7 +15,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
-import {faJsonLD} from 'src/app/modules/shared/costom-icons';
+import {faJsonLD} from '../../costom-icons';
 
 library.add(faJsonLD as any);
 
@@ -23,7 +23,9 @@ library.add(faJsonLD as any);
   selector: 'app-legend',
   templateUrl: './legend.component.html',
   styleUrls: ['./legend.component.scss'],
-  providers: []
+  providers: [],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 
 export class LegendComponent {

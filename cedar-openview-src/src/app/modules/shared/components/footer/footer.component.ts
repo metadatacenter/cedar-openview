@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {TranslateService} from '@ngx-translate/core';
 import {LocalSettingsService} from '../../../../services/local-settings.service';
@@ -11,7 +11,9 @@ import {UiService} from '../../../../services/ui.service';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  styleUrls: ['./footer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class FooterComponent extends CedarBase implements OnInit {
 

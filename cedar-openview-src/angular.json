@@ -94,17 +94,17 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "cedar-openview:build",
+            "buildTarget": "cedar-openview:build",
             "port": 4220,
             "disableHostCheck": true,
             "host": "0.0.0.0"
           },
           "configurations": {
             "production": {
-              "browserTarget": "cedar-openview:build:production"
+              "buildTarget": "cedar-openview:build:production"
             },
             "development": {
-              "browserTarget": "cedar-openview:build:development"
+              "buildTarget": "cedar-openview:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -112,7 +112,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cedar-openview:build"
+            "buildTarget": "cedar-openview:build"
           }
         },
         "test": {
@@ -145,5 +145,31 @@
   },
   "cli": {
     "analytics": false
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
+    }
   }
 }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -12,7 +12,9 @@ import {CedarBase} from '../base/cedar-base.component';
 @Component({
   selector: 'app-artifact-error',
   templateUrl: './artifact-error.component.html',
-  styleUrls: ['./artifact-error.component.scss']
+  styleUrls: ['./artifact-error.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class ArtifactErrorComponent extends CedarBase implements OnInit {
 
