@@ -18,8 +18,23 @@ function scan(directory) {
   }
 }
 
+const scanned = [];
 for (const distRoot of distRoots) {
+  // `cedarcli build frontends` builds each directory in an isolated checkout, so
+  // cedar-openview-src is built without its sibling cedar-openview-dist beside
+  // it. A root that is not there cannot hold a leaked hostname; CI checks out the
+  // whole repository and so checks both.
+  if (!fs.existsSync(distRoot)) {
+    console.log(`Production asset check skipped, not present: ${path.relative(process.cwd(), distRoot)}`);
+    continue;
+  }
   scan(distRoot);
+  scanned.push(distRoot);
+}
+
+if (scanned.length === 0) {
+  console.error('Production asset check found none of the requested roots.');
+  process.exit(1);
 }
 
 if (violations.length > 0) {
