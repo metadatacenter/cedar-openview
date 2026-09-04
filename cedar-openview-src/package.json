@@ -1,6 +1,6 @@
 {
   "name": "cedar-openview",
-  "version": "2.9.7-SNAPSHOT",
+  "version": "2.9.7",
   "publishConfig": {
     "registry": "https://nexus.bmir.stanford.edu/repository/npm-cedar/"
   },
@@ -45,7 +45,7 @@
     "@popperjs/core": "^2.11.7",
     "@webcomponents/webcomponentsjs": "^2.8.0",
     "bootstrap": "^4.6.2",
-    "cedar-embeddable-editor": "2.0.4",
+    "cedar-embeddable-editor": "2.0.5",
     "core-js": "^3.25.2",
     "hammerjs": "^2.0.8",
     "jquery": "^3.3.1",
