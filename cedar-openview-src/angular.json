@@ -51,7 +51,13 @@
             "stylePreprocessorOptions": {
               "includePaths": [
                 "."
-              ]
+              ],
+              "sass": {
+                "silenceDeprecations": [
+                  "import",
+                  "global-builtin"
+                ]
+              }
             },
             "scripts": [],
             "allowedCommonJsDependencies": [
