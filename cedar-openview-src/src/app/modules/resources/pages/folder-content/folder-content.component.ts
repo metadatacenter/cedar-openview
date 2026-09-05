@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -17,7 +17,9 @@ import {globalAppConfig} from "../../../../../environments/global-app-config";
 @Component({
   selector: 'app-folder-content',
   templateUrl: './folder-content.component.html',
-  styleUrls: ['./folder-content.component.scss']
+  styleUrls: ['./folder-content.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class FolderContentComponent extends CedarPageComponent implements OnInit {
 

@@ -15,12 +15,18 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
+          "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/cedar-openview",
+            "outputPath": {
+              "base": "dist/cedar-openview",
+              "browser": ""
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js",
+              "src/polyfills.ts"
+            ],
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -37,12 +43,26 @@
               }
             ],
             "styles": [
+              "@fortawesome/fontawesome-free/css/all.css",
               "node_modules/ng-alt-snotify/styles/material.scss",
               "src/styles.scss",
               "src/theme.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "."
+              ],
+              "sass": {
+                "silenceDeprecations": [
+                  "import",
+                  "global-builtin"
+                ]
+              }
+            },
             "scripts": [],
-            "indexTransform": "./index-html-transform.ts"
+            "allowedCommonJsDependencies": [
+              "hammerjs"
+            ]
           },
           "configurations": {
             "production": {
@@ -54,11 +74,8 @@
               ],
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
-              "aot": true,
+              "optimization": true,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -75,11 +92,8 @@
                 }
               ],
               "sourceMap": false,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
+              "optimization": false,
+              "extractLicenses": false,
               "budgets": [
                 {
                   "type": "initial",
@@ -92,39 +106,47 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-builders/custom-webpack:dev-server",
+          "builder": "@angular/build:dev-server",
           "options": {
-            "browserTarget": "cedar-openview:build",
+            "buildTarget": "cedar-openview:build",
             "port": 4220,
-            "disableHostCheck": true,
-            "host": "0.0.0.0"
+            "host": "0.0.0.0",
+            "allowedHosts": true
           },
           "configurations": {
             "production": {
-              "browserTarget": "cedar-openview:build:production"
+              "buildTarget": "cedar-openview:build:production"
             },
             "development": {
-              "browserTarget": "cedar-openview:build:development"
+              "buildTarget": "cedar-openview:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular/build:extract-i18n",
           "options": {
-            "browserTarget": "cedar-openview:build"
+            "buildTarget": "cedar-openview:build"
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing",
+              "src/polyfills.ts"
+            ],
             "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
             "styles": [
+              "@fortawesome/fontawesome-free/css/all.css",
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "."
+              ]
+            },
             "scripts": [
               "node_modules/hammerjs/hammer.min.js",
               "node_modules/cedar-embeddable-editor/cedar-embeddable-editor.js"
@@ -139,52 +161,37 @@
               }
             ]
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "cedar-openview-e2e": {
-      "root": "e2e/",
-      "projectType": "application",
-      "prefix": "",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "cedar-openview:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "cedar-openview:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     }
   },
-  "defaultProject": "cedar-openview",
   "cli": {
     "analytics": false
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
+    }
   }
 }

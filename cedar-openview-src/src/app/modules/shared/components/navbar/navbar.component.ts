@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {TranslateService} from '@ngx-translate/core';
 import {LocalSettingsService} from '../../../../services/local-settings.service';
@@ -11,7 +11,9 @@ import {UiService} from '../../../../services/ui.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class NavbarComponent extends CedarBase implements OnInit {
 

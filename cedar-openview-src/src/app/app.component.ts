@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {environment} from '../environments/environment';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {Title} from '@angular/platform-browser';
@@ -10,7 +10,9 @@ import {faBars, faSquare, faTag, faUnlock} from '@fortawesome/free-solid-svg-ico
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class AppComponent implements OnInit {
 

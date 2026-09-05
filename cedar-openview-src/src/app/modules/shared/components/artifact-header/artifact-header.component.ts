@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -12,7 +12,9 @@ import {UiService} from '../../../../services/ui.service';
 @Component({
   selector: 'app-artifact-header',
   templateUrl: './artifact-header.component.html',
-  styleUrls: ['./artifact-header.component.scss']
+  styleUrls: ['./artifact-header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class ArtifactHeaderComponent extends CedarBase implements OnInit {
 

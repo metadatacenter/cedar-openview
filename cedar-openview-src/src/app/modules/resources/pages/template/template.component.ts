@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -21,7 +21,9 @@ import {CeeConfigService} from '../../../../services/cee-config.service';
 @Component({
   selector: 'app-template',
   templateUrl: './template.component.html',
-  styleUrls: ['./template.component.scss']
+  styleUrls: ['./template.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class TemplateComponent extends CedarPageComponent implements OnInit, AfterViewInit {
 

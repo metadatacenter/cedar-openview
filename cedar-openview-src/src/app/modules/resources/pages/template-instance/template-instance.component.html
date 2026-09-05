@@ -1,28 +1,32 @@
-<div *ngIf="instance && !artifactStatus && !templateStatus">
-  <app-artifact-header [artifact]="instance"></app-artifact-header>
-</div>
-
-<div *ngIf="artifactStatus">
-  <app-artifact-error [status]="artifactStatus" [cedarLink]="cedarLink"></app-artifact-error>
-</div>
-
-<div *ngIf="templateStatus">
-  <app-artifact-error [status]="templateStatus" [instanceTemplateError]="true"
-                      [cedarLink]="cedarLink"></app-artifact-error>
-</div>
-
-<div *ngIf="instance && template">
-
-<!--  <app-legend *ngIf="instance && !artifactStatus"></app-legend>-->
-
-  <div class="instance__container ">
-    <cedar-embeddable-editor
-      [config]="cfg"
-      [templateObject]="template"
-      [instanceObject]="instance"
-    ></cedar-embeddable-editor>
+@if (instance && !artifactStatus && !templateStatus) {
+  <div>
+    <app-artifact-header [artifact]="instance"></app-artifact-header>
   </div>
+}
 
+@if (artifactStatus) {
+  <div>
+    <app-artifact-error [status]="artifactStatus" [cedarLink]="cedarLink"></app-artifact-error>
+  </div>
+}
 
-</div>
+@if (templateStatus) {
+  <div>
+    <app-artifact-error [status]="templateStatus" [instanceTemplateError]="true"
+    [cedarLink]="cedarLink"></app-artifact-error>
+  </div>
+}
+
+@if (instance && template) {
+  <div>
+    <!--  <app-legend *ngIf="instance && !artifactStatus"></app-legend>-->
+    <div class="instance__container ">
+      <cedar-embeddable-editor
+        [config]="cfg"
+        [templateObject]="template"
+        [instanceObject]="instance"
+      ></cedar-embeddable-editor>
+    </div>
+  </div>
+}
 
