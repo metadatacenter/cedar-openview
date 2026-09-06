@@ -33,6 +33,13 @@
   .cedar__logo {
     border: 0 solid red;
 
+    // The column is as wide as the header lets it be, and a stretched anchor would take clicks
+    // well clear of the wordmark. This holds the link to the image it wraps.
+    a {
+      display: flex;
+      width: fit-content;
+    }
+
     img {
       width: 250px;
       height: 40px;
