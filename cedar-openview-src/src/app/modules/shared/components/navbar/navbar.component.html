@@ -1,7 +1,15 @@
 <header class="main__header">
   <div class="row">
     <div class="cedar__logo column">
-      <img src="assets/img/logo/cedar-open-view-logo.png">
+      <!--
+        An anchor rather than a click handler, so the wordmark behaves like the link it looks
+        like: reachable by keyboard, and showing where it goes before it is followed. The image
+        carries the name, which is what names the link for a reader who cannot see it.
+      -->
+      <a href="https://metadatacenter.readthedocs.io/en/latest/user-guide/openview/"
+        target="_blank" rel="noopener" matTooltip="Read more about OpenView">
+        <img src="assets/img/logo/cedar-open-view-logo.png" alt="{{'App.NavTitle' | translate}}">
+      </a>
     </div>
     <div class="artifact-title column">
       @if (uiService.type) {
