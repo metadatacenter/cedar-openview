@@ -84,8 +84,8 @@
 
 .app-title {
   color: mat.m2-get-color-from-palette(palettes.$my-app-logo);
-  font-weight: lighter;
-  font-family: CrimsonText, serif;
+  font-weight: var(--cedar-font-weight-medium, 500);
+  font-family: inherit;
   font-size: 2em;
   width: 100%;
   white-space: nowrap;
