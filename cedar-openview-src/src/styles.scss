@@ -1,17 +1,17 @@
 @import '@org.metadatacenter/cedar-design-tokens/custom-properties.css';
 
 div.header-box {
-  background-color: #32494b !important;
-  color: #ffffff
+  background-color: var(--cedar-color-component-title) !important;
+  color: var(--cedar-color-on-primary)
 }
 
 div.content-box {
-  background-color: #fafafa !important;
+  background-color: var(--cedar-surface-canvas) !important;
 }
 
 
 body {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: var(--cedar-font-family);
   font-size: var(--cedar-font-size);
   margin: 0;
   padding: 0;
