@@ -110,7 +110,7 @@ button:focus {
 
 .greeting__text {
   grid-area: greeting;
-  font-size: 1.25rem;
+  font-size: var(--cedar-font-size-heading);
   letter-spacing: 0.15rem;
   text-transform: uppercase;
   margin-top: 1rem;
@@ -127,12 +127,12 @@ button:focus {
 }
 
 .name__text {
-  font-size: 1.15rem;
+  font-size: var(--cedar-font-size-lead);
   margin-bottom: 0.5rem;
 }
 
 .email__text {
-  font-size: 0.9rem;
+  font-size: var(--cedar-font-size);
   letter-spacing: 0.1rem;
 }
 
@@ -333,7 +333,7 @@ button:focus {
   line-height: 2.0em;
   padding-top: 0;
   margin-top: 0;
-  font-family: 'crimson text', 'HelveticaNeue', 'Helvetica Neue', 'Helvetica-Neue', Helvetica, Arial, sans-serif;
+  font-family: inherit;
   cursor: pointer;
 }
 
