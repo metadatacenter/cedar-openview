@@ -5,7 +5,6 @@ import {Title} from '@angular/platform-browser';
 import {LocalSettingsService} from './services/local-settings.service';
 import {UiService} from './services/ui.service';
 
-import {faBars, faSquare, faTag, faUnlock} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -19,10 +18,6 @@ export class AppComponent implements OnInit {
   showMenu = false;
   artifactTitle = 'artifactTitle';
   artifactDescription = 'artifactDescription';
-  faTag = faTag;
-  faSquare = faSquare;
-  faBars = faBars;
-  faUnlock = faUnlock;
   loadAPI: Promise<any> | null = null;
 
   languages = {

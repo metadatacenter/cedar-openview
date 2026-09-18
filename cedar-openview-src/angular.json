@@ -43,7 +43,6 @@
               }
             ],
             "styles": [
-              "@fortawesome/fontawesome-free/css/all.css",
               "node_modules/ng-alt-snotify/styles/material.scss",
               "src/styles.scss",
               "src/theme.scss"
@@ -139,7 +138,6 @@
             ],
             "tsConfig": "src/tsconfig.spec.json",
             "styles": [
-              "@fortawesome/fontawesome-free/css/all.css",
               "src/styles.scss"
             ],
             "stylePreprocessorOptions": {

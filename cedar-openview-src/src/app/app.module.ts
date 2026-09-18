@@ -10,7 +10,6 @@ import {ResourcesModule} from './modules/resources/resources.module';
 import {provideTranslateHttpLoader} from '@ngx-translate/http-loader';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MaterialModule} from './modules/material-module';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AppConfigService} from './services/app-config.service';
 import {AutocompleteUrlService} from './services/autocomplete-url.service';
@@ -42,7 +41,6 @@ export function loadCeeConfig(cfg: CeeConfigService) {
     ResourcesModule,
     AppRoutingModule,
     MaterialModule,
-    FontAwesomeModule,
     TranslateModule.forRoot(),
   ],
   providers: [
