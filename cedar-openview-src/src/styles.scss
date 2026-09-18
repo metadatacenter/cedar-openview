@@ -1,3 +1,4 @@
+@use '@org.metadatacenter/cedar-design-tokens/motion';
 @import '@org.metadatacenter/cedar-design-tokens/custom-properties.css';
 
 div.header-box {
@@ -60,3 +61,5 @@ mat-icon.cedar-icon {
   flex-shrink: 0;
 }
 mat-icon.cedar-icon > svg { display: block; }
+
+@include motion.reduced-motion;
