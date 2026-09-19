@@ -63,3 +63,9 @@ mat-icon.cedar-icon {
 mat-icon.cedar-icon > svg { display: block; }
 
 @include motion.reduced-motion;
+
+/* Manual field resizing is forbidden; automatic content sizing remains available. */
+textarea,
+textarea.mat-mdc-input-element {
+  resize: none;
+}
