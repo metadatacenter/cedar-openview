@@ -1,3 +1,4 @@
+import {CedarIconDirective} from './directives/cedar-icon.directive';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -11,20 +12,20 @@ import {JsonViewComponent} from './components/json-view/json-view.component';
 import {ArtifactErrorComponent} from './components/artifact-error/artifact-error.component';
 import {MaterialModule} from '../../modules/material-module';
 import {LegendComponent} from './components/legend/legend.component';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FooterComponent} from './components/footer/footer.component';
 import {ViewHeaderComponent} from './components/view-header/view-header.component';
 
 
 @NgModule({
   imports: [
+    CedarIconDirective,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
     TranslateModule,
     MaterialModule,
-    FontAwesomeModule
+
   ],
   declarations: [
     SpinnerComponent,
@@ -38,6 +39,7 @@ import {ViewHeaderComponent} from './components/view-header/view-header.componen
     LegendComponent,
   ],
   exports: [
+    CedarIconDirective,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

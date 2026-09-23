@@ -24,7 +24,7 @@
         @for (folder of folderContents['resources']; track folder; let i = $index) {
           @if (folder['resourceType'] == 'folder') {
             <mat-card class="flex-item resourceCard">
-              <mat-icon aria-hidden="false" aria-label="Folder" fontIcon="folder"></mat-icon>
+              <mat-icon aria-hidden="false" aria-label="Folder" cedarIcon="artifact-folder"></mat-icon>
               <a class="name" (click)="openFolder(folder['@id'])" href="javascript://">{{folder['schema:name']}}</a>
             </mat-card>
           }
@@ -36,19 +36,19 @@
             <mat-card class="flex-item resourceCard">
               @if (artifact['resourceType'] == 'template') {
                 <mat-icon aria-hidden="false" aria-label="Template"
-                fontIcon="description"></mat-icon>
+                cedarIcon="artifact-template"></mat-icon>
               }
               @if (artifact['resourceType'] == 'field') {
-                <mat-icon aria-hidden="false" aria-label="Template"
-                fontIcon="featured_play_list"></mat-icon>
+                <mat-icon aria-hidden="false" aria-label="Field"
+                cedarIcon="artifact-field"></mat-icon>
               }
               @if (artifact['resourceType'] == 'element') {
                 <mat-icon aria-hidden="false" aria-label="Element"
-                fontIcon="grid_view"></mat-icon>
+                cedarIcon="artifact-element"></mat-icon>
               }
               @if (artifact['resourceType'] == 'instance') {
-                <mat-icon aria-hidden="false" aria-label="Element"
-                fontIcon="sd_storage"></mat-icon>
+                <mat-icon aria-hidden="false" aria-label="Metadata"
+                cedarIcon="artifact-instance"></mat-icon>
               }
               <a class="name" (click)="openArtifact(artifact['resourceType'], artifact['@id'])"
               href="javascript://">{{artifact['schema:name']}}</a>
@@ -62,7 +62,7 @@
         <mat-card class="warning-card">
           <mat-card-header>
             <div mat-card-avatar>
-              <mat-icon class="avatar-image" color="error">folder</mat-icon>
+              <mat-icon class="avatar-image" color="error" cedarIcon="artifact-folder"></mat-icon>
             </div>
             <mat-card-title>
               The folder is empty

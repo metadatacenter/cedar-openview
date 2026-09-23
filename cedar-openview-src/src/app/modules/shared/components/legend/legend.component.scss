@@ -51,8 +51,8 @@
     line-height: 2em;
     font-size: 1em;
 
-    fa-icon {
-      padding: 5px 0;
+    mat-icon.cedar-icon {
+      margin: var(--cedar-space-1) 0;
     }
 
     .asterisk {

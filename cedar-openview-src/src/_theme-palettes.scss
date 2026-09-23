@@ -2,6 +2,7 @@
 // only: nothing here emits CSS, so a component stylesheet can reach for a
 // colour without also emitting Material's component theme into its scope.
 @use '@angular/material' as mat;
+@use '@org.metadatacenter/cedar-design-tokens/tokens' as tokens;
 
 $metadata-center-blue: (
   50 : #ecf4f8,
@@ -300,17 +301,17 @@ $cedar-red: (
   )
 );
 
-$my-app-primary: mat.m2-define-palette($metadata-center-blue, 500, 900, A100);
+$my-app-primary: mat.m2-define-palette(tokens.$brand-primary, 500, 900, A100);
 $my-app-secondary: mat.m2-define-palette($metadata-center-dark-blue, 500, 900, A100);
 $my-app-tertiary: mat.m2-define-palette($cedar-gold, 200, 900, A100);
-$my-app-logo: mat.m2-define-palette($metadata-center-blue, 900, 900, A100);
+$my-app-logo: mat.m2-define-palette(tokens.$brand-primary, 900, 900, A100);
 $my-app-accent: mat.m2-define-palette($metadata-center-green, 500, 900, A100);
 $my-app-warn: mat.m2-define-palette($cedar-red, 500, 900, A100);
 //$my-app-theme: mat.define-palette($my-app-primary, $my-app-accent, $my-app-warn);
 $my-app-light-title: mat.m2-define-palette($metadata-center-blue, 50, 50, A100);
 
-$alternate-primary: mat.m2-define-palette($cedar-blue, 500, 900, A100);
-$alternate-accent: mat.m2-define-palette($cedar-orange, 200, 900, A100);
+$alternate-primary: mat.m2-define-palette(tokens.$brand-primary, 500, 900, A100);
+$alternate-accent: mat.m2-define-palette(tokens.$brand-accent, 500, 900, A100);
 
 $alternate-theme: mat.m2-define-light-theme((
   color: (
