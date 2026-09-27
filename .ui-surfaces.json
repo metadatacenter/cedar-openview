@@ -1,0 +1,187 @@
+{
+  "schema": 1,
+  "repo": "cedar-openview",
+  "surfaces": [
+    {
+      "id": "openview.folder",
+      "name": "Folder",
+      "section": "OpenView",
+      "source": [
+        {
+          "file": "cedar-openview-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'folders/:folderId'"
+        },
+        {
+          "file": "cedar-openview-src/src/app/modules/resources/pages/folder-content/folder-content.component.ts",
+          "anchor": "export class FolderContentComponent"
+        }
+      ]
+    },
+    {
+      "id": "openview.template",
+      "name": "Template",
+      "section": "OpenView",
+      "source": [
+        {
+          "file": "cedar-openview-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'templates/:templateId'"
+        },
+        {
+          "file": "cedar-openview-src/src/app/modules/resources/pages/template/template.component.ts",
+          "anchor": "export class TemplateComponent"
+        }
+      ]
+    },
+    {
+      "id": "openview.element",
+      "name": "Element",
+      "section": "OpenView",
+      "source": [
+        {
+          "file": "cedar-openview-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'template-elements/:templateElementId'"
+        },
+        {
+          "file": "cedar-openview-src/src/app/modules/resources/pages/template-element/template-element.component.ts",
+          "anchor": "export class TemplateElementComponent"
+        }
+      ]
+    },
+    {
+      "id": "openview.field",
+      "name": "Field",
+      "section": "OpenView",
+      "source": [
+        {
+          "file": "cedar-openview-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'template-fields/:templateFieldId'"
+        },
+        {
+          "file": "cedar-openview-src/src/app/modules/resources/pages/template-field/template-field.component.ts",
+          "anchor": "export class TemplateFieldComponent"
+        }
+      ]
+    },
+    {
+      "id": "openview.metadata",
+      "name": "Metadata",
+      "section": "OpenView",
+      "source": [
+        {
+          "file": "cedar-openview-src/src/app/modules/resources/resources-routing.module.ts",
+          "anchor": "path: 'template-instances/:templateInstanceId'"
+        },
+        {
+          "file": "cedar-openview-src/src/app/modules/resources/pages/template-instance/template-instance.component.ts",
+          "anchor": "export class TemplateInstanceComponent"
+        }
+      ]
+    },
+    {
+      "id": "openview.metadata-panel",
+      "name": "Artifact Metadata Panel",
+      "section": "OpenView",
+      "source": [
+        {
+          "file": "cedar-openview-src/src/app/modules/shared/components/artifact-header/artifact-header.component.html",
+          "anchor": "class=\"metadata__container\""
+        }
+      ]
+    },
+    {
+      "id": "openview.legend",
+      "name": "Legend",
+      "section": "OpenView",
+      "source": [
+        {
+          "file": "cedar-openview-src/src/app/modules/shared/components/legend/legend.component.html",
+          "anchor": "class=\"legend__container\""
+        }
+      ]
+    },
+    {
+      "id": "openview.cee",
+      "name": "CEE",
+      "section": "OpenView",
+      "source": [
+        {
+          "file": "cedar-openview-src/src/app/modules/resources/pages/template/template.component.html",
+          "anchor": "<cedar-embeddable-editor"
+        },
+        {
+          "file": "cedar-openview-src/src/app/modules/resources/pages/template-instance/template-instance.component.html",
+          "anchor": "<cedar-embeddable-editor"
+        }
+      ]
+    },
+    {
+      "id": "openview.root-redirect",
+      "name": "Workspace Redirect",
+      "section": "OpenView",
+      "inventory": false,
+      "source": [
+        {
+          "file": "cedar-openview-src/src/app/app-routing.module.ts",
+          "anchor": "path: ''"
+        },
+        {
+          "file": "cedar-openview-src/src/app/modules/shared/pages/dashboard/dashboard.component.ts",
+          "anchor": "window.location.href = globalAppConfig.cedarUrl"
+        }
+      ]
+    },
+    {
+      "id": "openview.messages",
+      "name": "OpenView",
+      "section": "Confirmation / Warning / Error"
+    },
+    {
+      "id": "openview.unauthorized",
+      "name": "Artifact / Folder Not Open",
+      "section": "Confirmation / Warning / Error",
+      "parent": "openview.messages",
+      "source": [
+        {
+          "file": "cedar-openview-src/src/app/modules/shared/components/artifact-error/artifact-error.component.html",
+          "anchor": "status == 401 && !instanceTemplateError"
+        }
+      ]
+    },
+    {
+      "id": "openview.not-found",
+      "name": "Artifact / Folder Not Found",
+      "section": "Confirmation / Warning / Error",
+      "parent": "openview.messages",
+      "source": [
+        {
+          "file": "cedar-openview-src/src/app/modules/shared/components/artifact-error/artifact-error.component.html",
+          "anchor": "status == 404"
+        }
+      ]
+    },
+    {
+      "id": "openview.template-not-open",
+      "name": "Metadata Template Not Open",
+      "section": "Confirmation / Warning / Error",
+      "parent": "openview.messages",
+      "source": [
+        {
+          "file": "cedar-openview-src/src/app/modules/shared/components/artifact-error/artifact-error.component.html",
+          "anchor": "status == 401 && instanceTemplateError"
+        }
+      ]
+    },
+    {
+      "id": "openview.empty-folder",
+      "name": "Empty Folder",
+      "section": "Confirmation / Warning / Error",
+      "parent": "openview.messages",
+      "source": [
+        {
+          "file": "cedar-openview-src/src/app/modules/resources/pages/folder-content/folder-content.component.html",
+          "anchor": "class=\"warning-card\""
+        }
+      ]
+    }
+  ]
+}
