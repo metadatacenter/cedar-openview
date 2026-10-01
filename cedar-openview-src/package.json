@@ -36,7 +36,7 @@
     "@ngx-translate/http-loader": "^17.0.0",
     "@popperjs/core": "^2.11.7",
     "@webcomponents/webcomponentsjs": "^2.8.0",
-    "cedar-embeddable-editor": "npm:@org.metadatacenter/cedar-embeddable-editor@2.0.19-dev.20261001.8b4b89ff",
+    "cedar-embeddable-editor": "npm:@org.metadatacenter/cedar-embeddable-editor@2.0.19-dev.20261001.26f5cf2",
     "core-js": "^3.25.2",
     "hammerjs": "^2.0.8",
     "ng-alt-snotify": "^16.0.0-alpha.1",
