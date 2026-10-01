@@ -1,0 +1,51 @@
+import { readFileSync } from 'node:fs';
+import { test, expect } from '@playwright/test';
+import { surfaceCases, checkSurface } from './surface-contracts.generated.mjs';
+
+const registry = JSON.parse(readFileSync(new URL('../../.ui-surfaces.json', import.meta.url), 'utf8'));
+const fixture = (name) => JSON.parse(readFileSync(new URL(`../fixtures/${name}.json`, import.meta.url), 'utf8'));
+const folderId = 'https://repo.metadatacenter.org/folders/32fc3013-1b73-4a2a-86f7-189f73d3400c';
+const templateId = 'https://repo.metadatacenter.org/templates/a8f75474-ca14-4726-a071-acbfa9f8c466';
+
+// The suite never leaves the machine. The open API answers from fixtures, and every other
+// external request, the hosted fonts included, is refused.
+async function openApi(page, answers) {
+  await page.route((url) => url.host !== new URL(test.info().project.use.baseURL).host, (route) => route.abort());
+  await page.route('https://open.metadatacenter.org/**', (route) => {
+    const path = decodeURIComponent(new URL(route.request().url()).pathname);
+    const [, answer] = Object.entries(answers).find(([prefix]) => path.startsWith(prefix)) ?? [, 404];
+    return route.fulfill(typeof answer === 'number' ? { status: answer, json: {} } : { json: answer });
+  });
+}
+
+const scenarios = {
+  'folder-page': async (page) => {
+    await openApi(page, { [`/folders/${folderId}`]: fixture('folder') });
+    await page.goto(`/folders/${encodeURIComponent(folderId)}`);
+    await expect(page.locator('.resource').first()).toBeVisible();
+  },
+  'template-page': async (page) => {
+    await openApi(page, { [`/templates/${templateId}`]: fixture('template') });
+    await page.goto(`/templates/${encodeURIComponent(templateId)}`);
+    // The artifact header starts collapsed, so the form's own title says the page has drawn.
+    await expect(page.locator('cedar-embeddable-editor').getByRole('heading', { level: 1 })).toBeVisible();
+  },
+  'unauthorized-page': async (page) => {
+    await openApi(page, { [`/folders/${folderId}`]: 401 });
+    await page.goto(`/folders/${encodeURIComponent(folderId)}`);
+    await expect(page.locator('.error-card')).toBeVisible();
+  },
+  'not-found-page': async (page) => {
+    await openApi(page, { [`/folders/${folderId}`]: 404 });
+    await page.goto(`/folders/${encodeURIComponent(folderId)}`);
+    await expect(page.locator('.error-card')).toBeVisible();
+  },
+};
+
+for (const { surface, state, width, title } of surfaceCases(registry, scenarios))
+  test(title, async ({ page }, testInfo) => {
+    await page.setViewportSize({ width, height: 1000 });
+    await scenarios[surface.scenario](page);
+    await expect(page.locator('.main__footer')).toBeVisible();
+    await checkSurface(page, surface, state, expect, testInfo);
+  });

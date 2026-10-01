@@ -47,3 +47,8 @@ Thumbs.db
 *.iws
 
 .angular/
+
+# browser suite
+browser/node_modules/
+browser/test-results/
+browser/playwright-report/

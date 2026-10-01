@@ -1,0 +1,312 @@
+{
+ "request": {
+  "version": "all",
+  "publicationStatus": "all",
+  "limit": 100,
+  "offset": 0,
+  "sort": [
+   "name"
+  ],
+  "q": null,
+  "id": null,
+  "categoryId": null,
+  "mode": null,
+  "resource_types": [
+   "folder",
+   "field",
+   "element",
+   "template",
+   "instance"
+  ],
+  "is_based_on": null
+ },
+ "totalCount": 52,
+ "currentOffset": 0,
+ "paging": {
+  "last": "http://open.metadatacenter.org/folders/https%3A%2F%2Frepo.metadatacenter.org%2Ffolders%2F32fc3013-1b73-4a2a-86f7-189f73d3400c?resource_types=folder%2Cfield%2Celement%2Ctemplate%2Cinstance&version=all&publication_status=all&sort=name&offset=0&limit=100",
+  "first": "http://open.metadatacenter.org/folders/https%3A%2F%2Frepo.metadatacenter.org%2Ffolders%2F32fc3013-1b73-4a2a-86f7-189f73d3400c?resource_types=folder%2Cfield%2Celement%2Ctemplate%2Cinstance&version=all&publication_status=all&sort=name&offset=0&limit=100"
+ },
+ "resources": [
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/a8f75474-ca14-4726-a071-acbfa9f8c466",
+   "schema:name": "10X Multiome"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/257b3ba9-887f-4523-acf8-62d87a991b41",
+   "schema:name": "4i (Iterative Indirect Immunofluorescence Imaging)"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/2a608dc3-2401-460c-9bb2-eeeed40baa7f",
+   "schema:name": "ATACseq"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/6de3f0d3-b586-45a2-b4a7-46f6608dec6f",
+   "schema:name": "Auto-fluorescence"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/ecf1185d-b47d-4838-aaf0-14d976005628",
+   "schema:name": "Cell DIVE"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/cc596be2-9ec0-4f36-b704-603075587e87",
+   "schema:name": "CODEX"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/b93fc47c-85fa-4733-8c45-6e84fed49a0a",
+   "schema:name": "COMET"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/58372060-022f-47b2-94d3-8853e3fc87bd",
+   "schema:name": "Confocal"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/3c8e2814-8e48-4b5e-98bf-f55736f101f4",
+   "schema:name": "CosMx Proteomics"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/a1ae1614-514c-4dac-9131-5271cbe2cdb3",
+   "schema:name": "CosMx Transcriptomics"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/6efa1953-2281-4ac6-b7e0-0edf90836bba",
+   "schema:name": "CyCIF"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/5449c793-b653-4309-835b-5ed08d5328b5",
+   "schema:name": "CyTOF"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/979b9253-76c7-416c-b6d0-2b246d9bbe32",
+   "schema:name": "DBiT-seq"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/9e6dd499-6223-4fb4-b746-c2c61595e639",
+   "schema:name": "DESI"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/813294d7-a280-483e-8d67-40380b141658",
+   "schema:name": "DICOM-MRI"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/11cd545c-c879-4daa-9fdd-db85bf2f976b",
+   "schema:name": "DNA Methylation"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/0922eba1-8c33-4b54-a051-695756e7ec7a",
+   "schema:name": "Enhanced SRS"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/0c3fa58e-61f2-4912-9c0f-5bc552c98c29",
+   "schema:name": "FACS"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/2e0c1e03-73fb-44d8-9360-c95ae639c120",
+   "schema:name": "GeoMx (NGS)"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/4966599e-47b0-4879-a80c-74173b884173",
+   "schema:name": "HiFi-Slide"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/5fd858e6-f9fb-4798-bbf1-f7df1630bf30",
+   "schema:name": "Histology"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/6aa8b39c-f7bf-4dcd-886e-f5466c9e05ba",
+   "schema:name": "iCLAP"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/f90646b3-d76d-4278-b485-6526eab48e36",
+   "schema:name": "Illumina Spatial ver0"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/235d3861-ab0e-4e3b-b0fd-66416b0d7ecf",
+   "schema:name": "IMC 2D"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/915bd646-7dd7-40ed-9aac-21510576557d",
+   "schema:name": "LC-MS"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/84c62990-161d-463a-8db4-de890ffa4a27",
+   "schema:name": "Light Sheet"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/511899b6-650b-41c4-a8a7-0207321ba64d",
+   "schema:name": "MACSima"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/4b397a3e-44c0-4ede-a5cd-46849db03086",
+   "schema:name": "MALDI"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/581c1435-5db1-4871-a0b3-4139b9bf5510",
+   "schema:name": "MERFISH"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/e3f492c4-30dc-44b4-9223-0ed2267dc62c",
+   "schema:name": "MIBI"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/985615b6-58d4-4036-a9a1-31e5ef173cd8",
+   "schema:name": "MPLEx"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/d7bab03c-a364-469b-aab1-cb6cd218fe87",
+   "schema:name": "MUSIC"
+  },
+  {
+   "resourceType": "field",
+   "@id": "https://repo.metadatacenter.org/template-fields/b84bf480-f95c-45fa-a920-ba137f8b1dff",
+   "schema:name": "NIH Grant ID"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/fc3a4826-7d23-4add-b56a-9d4f401a246a",
+   "schema:name": "Olink"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/0a4f0bf5-9419-4c1d-b37a-d3c3c65cce4c",
+   "schema:name": "Paired-Tag"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/4267f991-8561-478a-9812-2a022e5735fc",
+   "schema:name": "PhenoCycler"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/f0cfeebb-ab36-4bab-96b4-bad2c01275a6",
+   "schema:name": "Pixel-seqV2"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/9239f134-a3b0-4062-a86f-c130d29c40cc",
+   "schema:name": "Raman Imaging"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/a373c5ab-ee26-4853-b0eb-ee0b791c10c6",
+   "schema:name": "RNAseq"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/ae541238-643b-4882-9fdc-01d259451556",
+   "schema:name": "RNAseq (with probes)"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/e46b3982-b018-4160-8498-6d60a15f4f31",
+   "schema:name": "Second Harmonic Generation"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/f945d486-07f4-4c21-8b9a-6116f3cffd98",
+   "schema:name": "Seq-Scope"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/de450a02-1d31-4bd5-a9c7-598fdeec68c3",
+   "schema:name": "SIMS"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/3f53b0db-d72b-4842-a252-4833ec99ec75",
+   "schema:name": "Singular Genomics G4X"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/2300e203-17c0-4285-ad2c-1eb1157f7226",
+   "schema:name": "SnareSeq2"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/6bc977b0-aef5-4f6e-8749-1caba65f9828",
+   "schema:name": "STARmap"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/9e431693-e6bd-4e35-b717-87509528a55d",
+   "schema:name": "Stereo-seq"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/4506cc15-009f-4bc9-ae66-6df5a398a1d9",
+   "schema:name": "Thick Section Multiphoton MxIF"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/6f969692-851e-4d17-9571-799148e1d4ca",
+   "schema:name": "Visium (no probes)"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/a6d6f65e-a852-4784-b952-810e84ba9869",
+   "schema:name": "Visium (with probes)"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/d8a74773-5c6b-4391-a71c-38e2e153b700",
+   "schema:name": "Visium HD"
+  },
+  {
+   "resourceType": "template",
+   "@id": "https://repo.metadatacenter.org/templates/2c153fd6-5144-4db1-94ab-1de322585060",
+   "schema:name": "Xenium"
+  }
+ ],
+ "pathInfo": [
+  {
+   "schema:name": "/"
+  },
+  {
+   "schema:name": "Users"
+  },
+  {
+   "schema:name": "Test User 1"
+  },
+  {
+   "schema:name": "HuBMAP"
+  }
+ ],
+ "nodeListQueryType": "folder-content",
+ "@context": {
+  "schema": "http://schema.org/",
+  "pav": "http://purl.org/pav/",
+  "bibo": "http://purl.org/ontology/bibo/",
+  "oslc": "http://open-services.net/ns/core#"
+ }
+}

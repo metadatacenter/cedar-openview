@@ -1,6 +1,7 @@
 {
   "schema": 1,
   "repo": "cedar-openview",
+  "browserHelper": "browser/tests/surface-contracts.generated.mjs",
   "surfaces": [
     {
       "id": "openview.folder",
@@ -15,7 +16,14 @@
           "file": "cedar-openview-src/src/app/modules/resources/pages/folder-content/folder-content.component.ts",
           "anchor": "export class FolderContentComponent"
         }
-      ]
+      ],
+      "contract": "page",
+      "scenario": "folder-page",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "openview.template",
@@ -30,7 +38,14 @@
           "file": "cedar-openview-src/src/app/modules/resources/pages/template/template.component.ts",
           "anchor": "export class TemplateComponent"
         }
-      ]
+      ],
+      "contract": "page",
+      "scenario": "template-page",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "openview.element",
@@ -145,7 +160,14 @@
           "file": "cedar-openview-src/src/app/modules/shared/components/artifact-error/artifact-error.component.html",
           "anchor": "status == 401 && !instanceTemplateError"
         }
-      ]
+      ],
+      "contract": "page",
+      "scenario": "unauthorized-page",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "openview.not-found",
@@ -157,7 +179,14 @@
           "file": "cedar-openview-src/src/app/modules/shared/components/artifact-error/artifact-error.component.html",
           "anchor": "status == 404"
         }
-      ]
+      ],
+      "contract": "page",
+      "scenario": "not-found-page",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "openview.template-not-open",
