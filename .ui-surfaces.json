@@ -179,7 +179,7 @@
       "source": [
         {
           "file": "cedar-openview-src/src/app/modules/resources/pages/folder-content/folder-content.component.html",
-          "anchor": "class=\"warning-card\""
+          "anchor": "<div class=\"empty\">"
         }
       ]
     }

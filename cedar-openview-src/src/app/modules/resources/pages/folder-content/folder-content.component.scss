@@ -1,79 +1,91 @@
-@use '../styles';
+@use '@org.metadatacenter/cedar-design-tokens/controls';
+@use '@org.metadatacenter/cedar-design-tokens/patterns';
 
-.wrapperCard {
-  background-color: #f5f5f5;
+// A folder reads like Workspace content: a location trail, then cards on the page surface. Only
+// opening a resource is offered; selection, menus and moves belong to Workspace.
+.folder {
+  padding: var(--cedar-space-4) var(--cedar-space-6) var(--cedar-space-6);
+  background: var(--cedar-color-on-primary);
+  color: var(--cedar-text-primary);
+}
 
-  .header {
-    font-size: 1.2em;
-    margin: 5px 5px 10px 5px;
-  }
+.folder-path {
+  @include patterns.breadcrumbs($size: heading);
+  padding-bottom: var(--cedar-space-3);
+  border-bottom: 1px solid var(--cedar-border-rule);
 
-  .folder-path {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 8px;
-  }
-
-  .folder-path-separator {
-    color: rgba(0, 0, 0, 0.38);
-  }
-
-  .footer {
-    font-size: 1em;
-    margin: 5px 5px 10px 5px;
-    padding: 5px 5px 5px 5px;
+  [aria-current] {
+    color: var(--cedar-color-primary);
   }
 }
 
-.flex-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  flex-wrap: wrap;
+.folder-path-separator {
+  @include patterns.breadcrumb-separator;
 }
 
-.flex-container > .flex-item {
-  margin: 5px;
-  width: 160px;
-  height: 90px;
-  padding: 10px;
-  overflow: hidden;
+.resources {
+  @include patterns.resource-grid;
+  margin: 0;
+  padding: var(--cedar-space-3) 0 0;
+  list-style: none;
+}
 
-  .name {
+.resource {
+  @include patterns.resource-card;
+
+  &:has(.resource-name:focus-visible) {
+    @include controls.focus-ring;
+  }
+}
+
+.resource-heading {
+  @include patterns.resource-card-heading;
+}
+
+.resource-icon {
+  @include patterns.resource-card-icon;
+}
+
+// The name is the card's one link, and it covers the whole card.
+.resource-name {
+  @include patterns.resource-card-name;
+  color: var(--cedar-text-primary);
+  text-decoration: none;
+
+  &::after {
+    content: '';
     position: absolute;
-    left: 10px;
-    top: 40px;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    width: 140px;
-    height: 44px;
-    border: 0px solid red;
+    inset: 0;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: none;
   }
 }
 
-a {
-  color: #000000;
+.resource-meta {
+  @include patterns.resource-card-meta;
 }
 
-.warning-card {
-  max-width: 400px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
+.empty {
+  @include patterns.empty-state;
+
+  p {
+    margin: 0;
+  }
 }
 
-.overlay {
-  min-height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+.empty-title {
+  color: var(--cedar-text-primary);
+  font-weight: var(--cedar-font-weight-medium);
 }
 
-.avatar-image {
-  font-size: 2em;
+.folder-count {
+  margin: var(--cedar-space-4) 0 0;
+  color: var(--cedar-text-muted);
+  text-align: center;
 }
