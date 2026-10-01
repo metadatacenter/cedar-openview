@@ -3,22 +3,19 @@
 @import '@org.metadatacenter/cedar-design-tokens/icon-contract.css';
 
 div.header-box {
-  background-color: var(--cedar-color-component-title) !important;
+  background-color: var(--cedar-text-title) !important;
   --cedar-icon-color: var(--cedar-color-on-primary)
 }
 
 div.content-box {
-  background-color: var(--cedar-surface-canvas) !important;  color: var(--cedar-color-on-primary)
-}
-
-div.content-box {
-  background-color: var(--cedar-surface-canvas) !important;
+  background-color: var(--cedar-surface-subtle) !important;
 }
 
 
 body {
   font-family: var(--cedar-font-family);
   font-size: var(--cedar-font-size);
+  color: var(--cedar-text-primary);
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -51,7 +48,7 @@ button.mat-icon-button.node-add, button.mat-icon-button.node-remove, button.mat-
     line-height: 1em;
     padding-top: .5em;
     vertical-align: top;
-    color: rgba(0, 0, 0, .54)
+    color: var(--cedar-text-muted);
   }
 }
 
