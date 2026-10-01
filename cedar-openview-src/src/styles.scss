@@ -1,9 +1,14 @@
 @use '@org.metadatacenter/cedar-design-tokens/motion';
 @import '@org.metadatacenter/cedar-design-tokens/custom-properties.css';
+@import '@org.metadatacenter/cedar-design-tokens/icon-contract.css';
 
 div.header-box {
   background-color: var(--cedar-color-component-title) !important;
-  color: var(--cedar-color-on-primary)
+  --cedar-icon-color: var(--cedar-color-on-primary)
+}
+
+div.content-box {
+  background-color: var(--cedar-surface-canvas) !important;  color: var(--cedar-color-on-primary)
 }
 
 div.content-box {
