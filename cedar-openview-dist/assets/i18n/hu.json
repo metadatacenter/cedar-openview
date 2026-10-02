@@ -42,5 +42,18 @@
   "loadError": {
     "401": "Sajnáljuk, de az adott adatot a tulajdonosa nem tette nyitottá!<br/><a href='{{link}}'>Nyisd meg CEDAR-ban</a> (Bejelentkezés szükséges)",
     "404": "Sajnáljuk, de az adott adatot nem található a rendszerünkben!"
+  },
+  "FolderContent": {
+    "Path": "Mappa elérési útja",
+    "Types": {
+      "folder": "Mappa",
+      "template": "Sablon",
+      "element": "Elem",
+      "field": "Mező",
+      "instance": "Példány"
+    },
+    "Empty": "A mappa üres",
+    "EmptyDetail": "A mappa elérhető, de nem tartalmaz sem erőforrást, sem mappát",
+    "Total": "Összesen: {{count}}"
   }
 }
