@@ -15,7 +15,6 @@ import {UiService} from './services/ui.service';
 })
 export class AppComponent implements OnInit {
 
-  showMenu = false;
   artifactTitle = 'artifactTitle';
   artifactDescription = 'artifactDescription';
   loadAPI: Promise<any> | null = null;

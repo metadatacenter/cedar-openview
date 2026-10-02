@@ -1,81 +1,35 @@
 @if (folderContents) {
-  <mat-card class="wrapperCard">
-    <mat-card class="header">
-      <mat-card-content>
-        <!--
-        The path, spaced once. Each separator was `&nbsp;/&nbsp;` and the name below it sat on its own
-        line, so the markup's own newline collapsed to a second space beside the hard one and every
-        slash ended up unevenly padded. A flex row with one gap spaces the whole path evenly, and the
-        slash is a separator rather than something to read aloud.
-        -->
-        <span class="folder-path">
-          @for (folder of folderContents['pathInfo']; track folder; let i = $index) {
-            <!-- From the third crumb on: the root is itself named "/", so it supplies the first one. -->
-            @if (i > 1) {
-              <span class="folder-path-separator" aria-hidden="true">/</span>
-            }
-            <span>{{ folder['schema:name'] }}</span>
-          }
-        </span>
-      </mat-card-content>
-    </mat-card>
+  <section class="folder">
+    <!-- From the third crumb on: the root is itself named "/", so it supplies the first separator. -->
+    <nav class="folder-path" [attr.aria-label]="'FolderContent.Path' | translate">
+      @for (folder of folderContents['pathInfo']; track folder; let i = $index; let last = $last) {
+        @if (i > 1) {
+          <span class="folder-path-separator" aria-hidden="true">/</span>
+        }
+        <span [attr.aria-current]="last ? 'page' : null">{{ folder['schema:name'] }}</span>
+      }
+    </nav>
     @if (folderContents['resources'].length > 0) {
-      <mat-card-content class="flex-container">
-        @for (folder of folderContents['resources']; track folder; let i = $index) {
-          @if (folder['resourceType'] == 'folder') {
-            <mat-card class="flex-item resourceCard">
-              <mat-icon aria-hidden="false" aria-label="Folder" cedarIcon="artifact-folder"></mat-icon>
-              <a class="name" (click)="openFolder(folder['@id'])" href="javascript://">{{folder['schema:name']}}</a>
-            </mat-card>
-          }
+      <!-- Folders first, then artifacts, in one grid as Workspace shows them. -->
+      <ul class="resources">
+        @for (resource of resources; track resource['@id']) {
+          <li class="resource">
+            <span class="resource-heading">
+              <mat-icon class="resource-icon" aria-hidden="true" [cedarIcon]="icon(resource)"></mat-icon>
+            </span>
+            <a class="resource-name" (click)="open(resource)" href="javascript://">{{ resource['schema:name'] }}</a>
+            <span class="resource-meta">{{ 'FolderContent.Types.' + resource['resourceType'] | translate }}</span>
+          </li>
         }
-      </mat-card-content>
-      <mat-card-content class="flex-container">
-        @for (artifact of folderContents['resources']; track artifact; let i = $index) {
-          @if (artifact['resourceType'] != 'folder') {
-            <mat-card class="flex-item resourceCard">
-              @if (artifact['resourceType'] == 'template') {
-                <mat-icon aria-hidden="false" aria-label="Template"
-                cedarIcon="artifact-template"></mat-icon>
-              }
-              @if (artifact['resourceType'] == 'field') {
-                <mat-icon aria-hidden="false" aria-label="Field"
-                cedarIcon="artifact-field"></mat-icon>
-              }
-              @if (artifact['resourceType'] == 'element') {
-                <mat-icon aria-hidden="false" aria-label="Element"
-                cedarIcon="artifact-element"></mat-icon>
-              }
-              @if (artifact['resourceType'] == 'instance') {
-                <mat-icon aria-hidden="false" aria-label="Metadata"
-                cedarIcon="artifact-instance"></mat-icon>
-              }
-              <a class="name" (click)="openArtifact(artifact['resourceType'], artifact['@id'])"
-              href="javascript://">{{artifact['schema:name']}}</a>
-            </mat-card>
-          }
-        }
-      </mat-card-content>
-    }
-    @if (folderContents['resources'].length == 0) {
-      <div class="overlay">
-        <mat-card class="warning-card">
-          <mat-card-header>
-            <div mat-card-avatar>
-              <mat-icon class="avatar-image" color="error" cedarIcon="artifact-folder"></mat-icon>
-            </div>
-            <mat-card-title>
-              The folder is empty
-            </mat-card-title>
-            <mat-card-subtitle>The folder is accessible, but does not contain any artifacts or folders</mat-card-subtitle>
-          </mat-card-header>
-        </mat-card>
+      </ul>
+    } @else {
+      <div class="empty">
+        <p class="empty-title">{{ 'FolderContent.Empty' | translate }}</p>
+        <p>{{ 'FolderContent.EmptyDetail' | translate }}</p>
       </div>
     }
-    <mat-card class="footer">
-      Total count: {{folderContents['totalCount']}}
-    </mat-card>
-  </mat-card>
+    <p class="folder-count">{{ 'FolderContent.Total' | translate: { count: folderContents['totalCount'] } }}</p>
+  </section>
 }
 
 @if (folderStatus) {

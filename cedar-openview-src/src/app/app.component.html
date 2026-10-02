@@ -1,21 +1,6 @@
 <ng-snotify></ng-snotify>
 <app-spinner></app-spinner>
 
-<!-- Slide Menu-->
-<aside class="side-menu__container" [ngClass]="{'side-menu__container-active': showMenu}">
-  <nav class="slide-menu" [ngClass]="{'slide-menu-active': showMenu}" (click)="$event.stopImmediatePropagation();">
-    <section class="menu-header">
-      <span></span>
-    </section>
-    <section class="menu-body">
-      <div class="menu__container">
-      </div>
-    </section>
-    <section class="menu-footer">
-    </section>
-  </nav>
-</aside>
-
 <div class="root__container">
   <app-navbar></app-navbar>
 

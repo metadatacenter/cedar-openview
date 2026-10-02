@@ -45,6 +45,13 @@ jobs:
       - name: Build and verify the production distribution
         run: npm run build
 
+      - name: Validate rendered page surfaces
+        working-directory: browser
+        run: |
+          npm ci
+          ./node_modules/.bin/playwright install --with-deps chromium
+          npm test
+
       - name: Test shared icons and application rendering
         run: npm test -- --watch=false --browsers=ChromeHeadless
 

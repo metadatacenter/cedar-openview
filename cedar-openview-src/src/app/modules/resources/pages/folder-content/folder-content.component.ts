@@ -64,6 +64,32 @@ export class FolderContentComponent extends CedarPageComponent implements OnInit
     this.folderStatus = error.status;
   }
 
+  private static readonly ICONS: Readonly<Record<string, string>> = {
+    folder: 'artifact-folder',
+    template: 'artifact-template',
+    element: 'artifact-element',
+    field: 'artifact-field',
+    instance: 'artifact-instance',
+  };
+
+  /** Folders first, then artifacts, each in the order the server returned them. */
+  get resources() {
+    const resources = this.folderContents?.['resources'] ?? [];
+    return [
+      ...resources.filter((r: any) => r['resourceType'] === 'folder'),
+      ...resources.filter((r: any) => r['resourceType'] !== 'folder'),
+    ];
+  }
+
+  icon(resource: any): string {
+    return FolderContentComponent.ICONS[resource['resourceType']] ?? 'artifact-field';
+  }
+
+  open(resource: any): void {
+    if (resource['resourceType'] === 'folder') this.openFolder(resource['@id']);
+    else this.openArtifact(resource['resourceType'], resource['@id']);
+  }
+
   public openFolder(folderId: string): void {
     const url = '/folders/' + encodeURIComponent(folderId);
     this.navigateByUrlThen(url).then(_ => {

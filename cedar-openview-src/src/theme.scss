@@ -7,3 +7,8 @@
 @include mat.elevation-classes();
 @include mat.app-background();
 @include mat.all-component-themes(palettes.$alternate-theme);
+
+// Material's M2 card subtitle is 54% black. The shared muted text role replaces it.
+html {
+  @include mat.card-overrides((subtitle-text-color: var(--cedar-text-muted)));
+}

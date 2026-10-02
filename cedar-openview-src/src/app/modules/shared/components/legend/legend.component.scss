@@ -1,6 +1,3 @@
-@use '@angular/material' as mat;
-
-@use 'src/theme-palettes' as palettes;
 
 .legend__container {
   margin: 0 auto;
@@ -9,7 +6,7 @@
 
   @media only screen and (max-width: 300px) {
     max-width: 100%;
-    padding: 0 10px;
+    padding: 0 var(--cedar-space-2);
   }
 
   @media only screen and (min-width: 301px) and (max-width: 600px) {
@@ -30,47 +27,44 @@
 }
 
 .legend {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.1);
-  padding: 5px;
+  border: 1px solid var(--cedar-border-rule);
+  padding: var(--cedar-space-1);
   box-sizing: content-box;
   display: flex;
   justify-content: space-between;
-  margin: 10px 0 10px 0;
-  border-radius: 4px;
+  margin: var(--cedar-space-2) 0;
+  border-radius: var(--cedar-radius);
   flex-wrap: wrap;
-  background: #fff;
+  background: var(--cedar-surface-raised);
 
 
   div {
     white-space: nowrap;
-    color: rgba(0, 0, 0, 0.38);
-    padding: 5px;
-    line-height: 2em;
-    font-size: 1em;
+    color: var(--cedar-text-muted);
+    padding: var(--cedar-space-1);
+    line-height: var(--cedar-control-line-height-default);
+    font-size: var(--cedar-font-size);
 
     mat-icon.cedar-icon {
       margin: var(--cedar-space-1) 0;
     }
 
     .asterisk {
-      color: mat.m2-get-color-from-palette(palettes.$my-app-warn);
+      color: inherit;
     }
   }
 }
 
 .legend-title {
-  color: mat.m2-get-color-from-palette(palettes.$my-app-logo);
+  color: var(--cedar-text-title);
   font-weight: var(--cedar-font-weight-medium, 500);
   font-family: inherit;
-  font-size: 20px;
+  font-size: var(--cedar-font-size-heading);
   width: 100%;
   white-space: nowrap;
   margin-bottom: 0;
 }
 
 .wide-container {
-  background: #f8f8f8;
+  background: var(--cedar-surface-subtle);
 }
