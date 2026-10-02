@@ -1,3 +1,4 @@
+@use "@org.metadatacenter/cedar-design-tokens/spacing";
 
 .main__footer {
   margin: 0px auto 0px auto;
@@ -81,7 +82,7 @@
 
 .form__section {
   position: relative;
-  padding: calc(2 * var(--cedar-space-6));
+  @include spacing.apply(padding, page-footer);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -102,7 +103,8 @@
     border-radius: var(--cedar-radius);
     vertical-align: middle;
 
-    input, input:active {
+    input,
+    input:active {
       width: 14em;
       border-width: 0;
       padding: var(--cedar-space-4);

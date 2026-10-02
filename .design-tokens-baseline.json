@@ -85,13 +85,6 @@
       "value": "24px",
       "count": 1
     },
-    "ba3c62803a95931c633b": {
-      "file": "cedar-openview-src/src/app/modules/shared/components/json-view/json-view.component.html",
-      "rule": "utility-style",
-      "property": "utility-style",
-      "value": "text-center",
-      "count": 1
-    },
     "c541be7bed6cd9483b9c": {
       "file": "cedar-openview-src/src/app/modules/resources/pages/styles.scss",
       "rule": "geometry",
