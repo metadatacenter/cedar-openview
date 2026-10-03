@@ -1,39 +1,11 @@
 {
   "schema": 1,
   "findings": {
-    "03cb95133464527e4ffe": {
-      "file": "cedar-openview-src/src/styles.scss",
-      "rule": "geometry",
-      "property": "height",
-      "value": "2em",
-      "count": 1
-    },
-    "0f1467d1e9ab0292617c": {
-      "file": "cedar-openview-src/src/app/modules/shared/components/artifact-header/artifact-header.component.scss",
-      "rule": "geometry",
-      "property": "min-height",
-      "value": "400px",
-      "count": 1
-    },
-    "115de02e9b6169d17af8": {
-      "file": "cedar-openview-src/src/app/modules/shared/components/json-view/json-view.component.html",
-      "rule": "utility-style",
-      "property": "utility-style",
-      "value": "mb-2",
-      "count": 2
-    },
     "1e739020856ab1a34b22": {
       "file": "cedar-openview-src/src/app/services/ui.service.ts",
       "rule": "dynamic-style",
       "property": "opacity",
       "value": "uninspectable-binding",
-      "count": 1
-    },
-    "1e96dcc52b44124bfbe0": {
-      "file": "cedar-openview-src/src/styles.scss",
-      "rule": "typography",
-      "property": "font-size",
-      "value": "1em",
       "count": 1
     },
     "36a60d20a49a4c19ce1c": {
@@ -43,27 +15,6 @@
       "value": "40px",
       "count": 5
     },
-    "4c9588de2af2ad1327d0": {
-      "file": "cedar-openview-src/src/app/modules/resources/pages/styles.scss",
-      "rule": "geometry",
-      "property": "min-height",
-      "value": "2em",
-      "count": 1
-    },
-    "6fd9ca4c1300d9b6d7aa": {
-      "file": "cedar-openview-src/src/styles.scss",
-      "rule": "spacing",
-      "property": "padding-top",
-      "value": ".5em",
-      "count": 1
-    },
-    "782c4d6619debe6fb3ba": {
-      "file": "cedar-openview-src/src/app/modules/shared/components/json-view/json-view.component.html",
-      "rule": "utility-style",
-      "property": "utility-style",
-      "value": "mb-md-0",
-      "count": 1
-    },
     "80d054c6a169701743f4": {
       "file": "cedar-openview-src/src/app/modules/shared/components/footer/footer.component.scss",
       "rule": "spacing",
@@ -71,39 +22,11 @@
       "value": "0px auto 0px auto",
       "count": 1
     },
-    "8d02fc4e3a4005247b5b": {
-      "file": "cedar-openview-src/src/app/modules/resources/pages/styles.scss",
-      "rule": "geometry",
-      "property": "height",
-      "value": "1rem",
-      "count": 1
-    },
-    "95715c10592d11612f62": {
-      "file": "cedar-openview-src/src/styles.scss",
-      "rule": "typography",
-      "property": "line-height",
-      "value": "1em",
-      "count": 1
-    },
     "a9ba10414aca6088184b": {
       "file": "cedar-openview-src/src/app/modules/shared/components/spinner/spinner.component.css",
       "rule": "geometry",
       "property": "height",
       "value": "24px",
-      "count": 1
-    },
-    "c541be7bed6cd9483b9c": {
-      "file": "cedar-openview-src/src/app/modules/resources/pages/styles.scss",
-      "rule": "geometry",
-      "property": "height",
-      "value": "1.30rem",
-      "count": 1
-    },
-    "ce3732b892e611deeed4": {
-      "file": "cedar-openview-src/src/app/modules/shared/components/json-view/json-view.component.html",
-      "rule": "utility-style",
-      "property": "utility-style",
-      "value": "text-md-left",
       "count": 1
     },
     "d52cb1d07026f9068a2c": {
@@ -132,13 +55,6 @@
       "rule": "typography",
       "property": "font-size",
       "value": "3.5em",
-      "count": 1
-    },
-    "ffa070d0099811b8d667": {
-      "file": "cedar-openview-src/src/styles.scss",
-      "rule": "geometry",
-      "property": "height",
-      "value": "1em",
       "count": 1
     }
   },
