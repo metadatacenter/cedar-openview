@@ -13,10 +13,6 @@
   @include patterns.breadcrumbs($size: heading);
   padding-bottom: var(--cedar-space-3);
   border-bottom: 1px solid var(--cedar-border-rule);
-
-  [aria-current] {
-    color: var(--cedar-color-primary);
-  }
 }
 
 .folder-path-separator {
