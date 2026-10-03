@@ -15,20 +15,6 @@
       "value": "40px",
       "count": 5
     },
-    "80d054c6a169701743f4": {
-      "file": "cedar-openview-src/src/app/modules/shared/components/footer/footer.component.scss",
-      "rule": "spacing",
-      "property": "margin",
-      "value": "0px auto 0px auto",
-      "count": 1
-    },
-    "a9ba10414aca6088184b": {
-      "file": "cedar-openview-src/src/app/modules/shared/components/spinner/spinner.component.css",
-      "rule": "geometry",
-      "property": "height",
-      "value": "24px",
-      "count": 1
-    },
     "d52cb1d07026f9068a2c": {
       "file": "cedar-openview-src/src/app/modules/shared/components/navbar/navbar.component.scss",
       "rule": "geometry",
