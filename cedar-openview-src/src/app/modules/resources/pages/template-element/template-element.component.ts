@@ -3,9 +3,6 @@ import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CedarPageComponent} from '../../../shared/components/base/cedar-page-component.component';
-import {TranslateService} from '@ngx-translate/core';
-import {SnotifyService} from 'ng-alt-snotify';
-import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.model';
 import {TemplateElement} from '../../../../shared/model/template-element.model';
 import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
@@ -25,15 +22,12 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
   cedarLink?: string;
 
   constructor(
-    localSettings: LocalSettingsService,
-    translateService: TranslateService,
-    notify: SnotifyService,
     router: Router,
     route: ActivatedRoute,
     dataStore: DataStoreService,
-    dataHandler: DataHandlerService,
+    dataHandler: DataHandlerService
   ) {
-    super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
+    super(router, route, dataStore, dataHandler);
   }
 
   ngOnInit() {

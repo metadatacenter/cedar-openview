@@ -1,10 +1,7 @@
 import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
-import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
-import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {UiService} from '../../../../services/ui.service';
 
 import {CedarBase} from '../base/cedar-base.component';
@@ -26,16 +23,13 @@ export class ArtifactErrorComponent extends CedarBase implements OnInit {
   params: any;
 
   constructor(
-    localSettings: LocalSettingsService,
-    translateService: TranslateService,
-    notify: SnotifyService,
     router: Router,
     route: ActivatedRoute,
     dataStore: DataStoreService,
     dataHandler: DataHandlerService,
     private uiService: UiService
   ) {
-    super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
+    super(router, route, dataStore, dataHandler);
   }
 
   ngOnInit() {
