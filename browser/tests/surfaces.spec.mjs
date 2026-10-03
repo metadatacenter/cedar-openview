@@ -6,6 +6,9 @@ const registry = JSON.parse(readFileSync(new URL('../../.ui-surfaces.json', impo
 const fixture = (name) => JSON.parse(readFileSync(new URL(`../fixtures/${name}.json`, import.meta.url), 'utf8'));
 const folderId = 'https://repo.metadatacenter.org/folders/32fc3013-1b73-4a2a-86f7-189f73d3400c';
 const templateId = 'https://repo.metadatacenter.org/templates/a8f75474-ca14-4726-a071-acbfa9f8c466';
+const elementId = 'https://repo.metadatacenter.org/template-elements/5d8c2f3e-7a41-4b9c-9e62-1f0a3b7c8d24';
+const fieldId = 'https://repo.metadatacenter.org/template-fields/bbc141a6-0e81-4cba-8651-8b61a623bd6c';
+const instanceId = 'https://repo.metadatacenter.org/template-instances/0b6e4d1a-93f2-4c57-8a1e-6d2f7c9b4e13';
 
 // The suite never leaves the machine. The open API answers from fixtures, and every other
 // external request, the hosted fonts included, is refused.
@@ -39,6 +42,34 @@ const scenarios = {
     await openApi(page, { [`/folders/${folderId}`]: 404 });
     await page.goto(`/folders/${encodeURIComponent(folderId)}`);
     await expect(page.locator('.error-card')).toBeVisible();
+  },
+  'empty-folder-page': async (page) => {
+    await openApi(page, { [`/folders/${folderId}`]: { ...fixture('folder'), resources: [], totalCount: 0 } });
+    await page.goto(`/folders/${encodeURIComponent(folderId)}`);
+    await expect(page.locator('.empty')).toBeVisible();
+  },
+  // An element or a field page shows the legend. Its artifact header stays collapsed.
+  'element-page': async (page) => {
+    await openApi(page, { [`/template-elements/${elementId}`]: fixture('element') });
+    await page.goto(`/template-elements/${encodeURIComponent(elementId)}`);
+    await expect(page.locator('.legend')).toBeVisible();
+  },
+  'field-page': async (page) => {
+    await openApi(page, { [`/template-fields/${fieldId}`]: fixture('field') });
+    await page.goto(`/template-fields/${encodeURIComponent(fieldId)}`);
+    await expect(page.locator('.legend')).toBeVisible();
+  },
+  // An open instance whose template is not open says so where the form would be.
+  'template-not-open-page': async (page) => {
+    await openApi(page, { [`/template-instances/${instanceId}`]: fixture('instance'), [`/templates/${templateId}`]: 401 });
+    await page.goto(`/template-instances/${encodeURIComponent(instanceId)}`);
+    await expect(page.locator('.error-card')).toBeVisible();
+  },
+  // An instance page loads the instance, then the template the instance names.
+  'instance-page': async (page) => {
+    await openApi(page, { [`/template-instances/${instanceId}`]: fixture('instance'), [`/templates/${templateId}`]: fixture('template') });
+    await page.goto(`/template-instances/${encodeURIComponent(instanceId)}`);
+    await expect(page.locator('cedar-embeddable-editor').getByRole('heading', { level: 1 })).toBeVisible();
   },
 };
 

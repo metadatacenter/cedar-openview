@@ -60,7 +60,14 @@
           "file": "cedar-openview-src/src/app/modules/resources/pages/template-element/template-element.component.ts",
           "anchor": "export class TemplateElementComponent"
         }
-      ]
+      ],
+      "contract": "page",
+      "scenario": "element-page",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "openview.field",
@@ -75,7 +82,14 @@
           "file": "cedar-openview-src/src/app/modules/resources/pages/template-field/template-field.component.ts",
           "anchor": "export class TemplateFieldComponent"
         }
-      ]
+      ],
+      "contract": "page",
+      "scenario": "field-page",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "openview.metadata",
@@ -90,7 +104,14 @@
           "file": "cedar-openview-src/src/app/modules/resources/pages/template-instance/template-instance.component.ts",
           "anchor": "export class TemplateInstanceComponent"
         }
-      ]
+      ],
+      "contract": "page",
+      "scenario": "instance-page",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "openview.metadata-panel",
@@ -112,7 +133,14 @@
           "file": "cedar-openview-src/src/app/modules/shared/components/legend/legend.component.html",
           "anchor": "class=\"legend__container\""
         }
-      ]
+      ],
+      "contract": "page",
+      "scenario": "element-page",
+      "selector": ".legend__container",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "openview.cee",
@@ -127,7 +155,14 @@
           "file": "cedar-openview-src/src/app/modules/resources/pages/template-instance/template-instance.component.html",
           "anchor": "<cedar-embeddable-editor"
         }
-      ]
+      ],
+      "contract": "page",
+      "scenario": "instance-page",
+      "selector": "cedar-embeddable-editor",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "openview.root-redirect",
@@ -215,6 +250,30 @@
           "file": "cedar-openview-src/src/app/modules/shared/components/artifact-error/artifact-error.component.html",
           "anchor": "status == 401 && instanceTemplateError"
         }
+      ],
+      "contract": "page",
+      "scenario": "template-not-open-page",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs",
+      "scaleDebt": [
+        {
+          "property": "background-color",
+          "value": "rgb(244, 67, 54)",
+          "reason": "Material's warn red on the Login to CEDAR button, found when the walk began reading backgrounds; the shared error role would replace it"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.14)",
+          "reason": "Material's raised-button elevation on the Login to CEDAR button, found when the walk began reading shadows"
+        },
+        {
+          "property": "box-shadow",
+          "value": "rgba(0, 0, 0, 0.12)",
+          "reason": "Material's raised-button elevation on the Login to CEDAR button, found when the walk began reading shadows"
+        }
       ]
     },
     {
@@ -227,7 +286,14 @@
           "file": "cedar-openview-src/src/app/modules/resources/pages/folder-content/folder-content.component.html",
           "anchor": "<div class=\"empty\">"
         }
-      ]
+      ],
+      "contract": "page",
+      "scenario": "empty-folder-page",
+      "selector": "app-root",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
     }
   ]
 }
