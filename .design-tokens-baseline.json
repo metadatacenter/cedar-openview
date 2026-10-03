@@ -22,6 +22,13 @@
       "value": "mb-2",
       "count": 2
     },
+    "1e739020856ab1a34b22": {
+      "file": "cedar-openview-src/src/app/services/ui.service.ts",
+      "rule": "dynamic-style",
+      "property": "opacity",
+      "value": "uninspectable-binding",
+      "count": 1
+    },
     "1e96dcc52b44124bfbe0": {
       "file": "cedar-openview-src/src/styles.scss",
       "rule": "typography",
@@ -113,6 +120,13 @@
       "value": "500px",
       "count": 1
     },
+    "f94743dd94171a0ad74a": {
+      "file": "cedar-openview-src/src/app/modules/shared/components/navbar/navbar.component.scss",
+      "rule": "motion",
+      "property": "animation",
+      "value": "fadein var(--cedar-motion-duration-normal) ease-in-out 0s 1",
+      "count": 1
+    },
     "fe7f8a4b03d2a9c37e2f": {
       "file": "cedar-openview-src/src/app/modules/shared/components/artifact-error/artifact-error.component.scss",
       "rule": "typography",
@@ -129,5 +143,5 @@
     }
   },
   "exceptions": {},
-  "policy": 2
+  "policy": 3
 }
