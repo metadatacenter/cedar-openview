@@ -6,7 +6,6 @@ import {RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
 import {SpinnerComponent} from './components/spinner/spinner.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
-import {ArtifactHeaderComponent} from './components/artifact-header/artifact-header.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {ArtifactErrorComponent} from './components/artifact-error/artifact-error.component';
 import {MaterialModule} from '../../modules/material-module';
@@ -29,7 +28,6 @@ import {ViewHeaderComponent} from './components/view-header/view-header.componen
   declarations: [
     SpinnerComponent,
     DashboardComponent,
-    ArtifactHeaderComponent,
     ArtifactErrorComponent,
     NavbarComponent,
     ViewHeaderComponent,
@@ -44,7 +42,6 @@ import {ViewHeaderComponent} from './components/view-header/view-header.componen
     RouterModule,
     TranslateModule,
     SpinnerComponent,
-    ArtifactHeaderComponent,
     ArtifactErrorComponent,
     NavbarComponent,
     ViewHeaderComponent,

@@ -13,7 +13,7 @@
       "rule": "geometry",
       "property": "height",
       "value": "40px",
-      "count": 5
+      "count": 3
     },
     "d52cb1d07026f9068a2c": {
       "file": "cedar-openview-src/src/app/modules/shared/components/navbar/navbar.component.scss",

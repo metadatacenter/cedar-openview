@@ -114,17 +114,6 @@
       "test": "browser/tests/surfaces.spec.mjs"
     },
     {
-      "id": "openview.metadata-panel",
-      "name": "Artifact Metadata Panel",
-      "section": "OpenView",
-      "source": [
-        {
-          "file": "cedar-openview-src/src/app/modules/shared/components/artifact-header/artifact-header.component.html",
-          "anchor": "class=\"metadata__container\""
-        }
-      ]
-    },
-    {
       "id": "openview.legend",
       "name": "Legend",
       "section": "OpenView",

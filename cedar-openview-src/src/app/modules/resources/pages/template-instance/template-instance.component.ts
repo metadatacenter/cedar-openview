@@ -117,13 +117,4 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
   copyToClipboard(elementId: string, buttonId: string) {
     this.uiService.copyToClipboard(elementId, buttonId);
   }
-
-  // form changed, update tab contents and submit button status
-  onFormChange(event: any) {
-    if (event && event.detail) {
-      this.uiService.setTitleAndDescription(event.detail.title, event.detail.description, 'TemplateInstance');
-      this.uiService.setValidity(event.detail.validity);
-    }
-  }
-
 }

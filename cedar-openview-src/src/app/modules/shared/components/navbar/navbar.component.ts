@@ -50,12 +50,4 @@ export class NavbarComponent extends CedarBase implements OnInit {
   openInNewWindow(url: string) {
     window.open(url, '_blank');
   }
-
-  expansionOpened() {
-    this.uiService.openArtifactHeader();
-  }
-
-  expansionClosed() {
-    this.uiService.closeArtifactHeader();
-  }
 }

@@ -1,9 +1,3 @@
-@if (instance && !artifactStatus && !templateStatus) {
-  <div>
-    <app-artifact-header [artifact]="instance"></app-artifact-header>
-  </div>
-}
-
 @if (artifactStatus) {
   <div>
     <app-artifact-error [status]="artifactStatus" [cedarLink]="cedarLink"></app-artifact-error>

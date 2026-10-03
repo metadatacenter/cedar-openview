@@ -3,7 +3,6 @@ import {environment} from '../environments/environment';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {Title} from '@angular/platform-browser';
 import {LocalSettingsService} from './services/local-settings.service';
-import {UiService} from './services/ui.service';
 
 
 @Component({
@@ -15,8 +14,6 @@ import {UiService} from './services/ui.service';
 })
 export class AppComponent implements OnInit {
 
-  artifactTitle = 'artifactTitle';
-  artifactDescription = 'artifactDescription';
   loadAPI: Promise<any> | null = null;
 
   languages = {
@@ -27,7 +24,6 @@ export class AppComponent implements OnInit {
   constructor(
     private localSettings: LocalSettingsService,
     private translateService: TranslateService,
-    private uiService: UiService,
     titleService: Title
   ) {
     // this language will be used as a fallback when a translation isn't found in the current language
@@ -45,23 +41,6 @@ export class AppComponent implements OnInit {
         titleService.setTitle(res);
       });
     });
-
-    uiService.hasTitle.subscribe(
-      value => {
-        setTimeout(() => {
-          this.artifactTitle = value;
-        }, 0);
-      }
-    );
-
-    uiService.hasDescription.subscribe(
-      value => {
-        setTimeout(() => {
-          this.artifactDescription = value;
-        }, 0);
-      }
-    );
-
   }
 
   ngOnInit(): void {

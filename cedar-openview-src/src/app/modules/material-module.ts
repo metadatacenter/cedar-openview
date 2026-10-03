@@ -15,7 +15,6 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatInputModule} from '@angular/material/input';
-import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatMenuModule} from '@angular/material/menu';
@@ -56,7 +55,6 @@ import {MatDividerModule} from '@angular/material/divider';
     MatDatepickerModule,
     MatDialogModule,
     MatDividerModule,
-    MatExpansionModule,
     MatGridListModule,
     MatIconModule,
     MatInputModule,

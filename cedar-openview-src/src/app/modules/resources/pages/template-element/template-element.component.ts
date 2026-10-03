@@ -83,12 +83,4 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
   copyToClipboard(elementId: string, buttonId: string) {
     this.uiService.copyToClipboard(elementId, buttonId);
   }
-
-  // form changed, update tab contents and submit button status
-  onFormChange(event: any, element: any) {
-    if (event && event.detail) {
-      this.uiService.setTitleAndDescription(event.detail.title, event.detail.description, element['@type']);
-      this.uiService.setValidity(event.detail.validity);
-    }
-  }
 }

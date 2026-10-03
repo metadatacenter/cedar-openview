@@ -1,7 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
 import {TranslateService} from '@ngx-translate/core';
-import {ArtifactHeaderComponent} from '../modules/shared/components/artifact-header/artifact-header.component';
 
 
 @Injectable({
@@ -9,31 +7,7 @@ import {ArtifactHeaderComponent} from '../modules/shared/components/artifact-hea
 })
 export class UiService {
 
-  public valid?: boolean;
-  public title?: string;
-  public type?: string;
-  public description?: string;
-  public hasTitle: BehaviorSubject<string> = new BehaviorSubject('');
-  public hasDescription: BehaviorSubject<string> = new BehaviorSubject('');
-  private artifactHeaderComponent?: ArtifactHeaderComponent;
-
   constructor(private translateService: TranslateService) {
-  }
-
-  public setTitleAndDescription(title: string, description: string, type: string) {
-    this.type = type;
-    if (title !== this.title) {
-      this.title = title;
-      this.hasTitle.next(this.title);
-    }
-    if (description !== this.description) {
-      this.description = description;
-      this.hasDescription.next(this.description);
-    }
-  }
-
-  public setValidity(valid: boolean) {
-    this.valid = valid;
   }
 
   openInCedar() {
@@ -50,14 +24,6 @@ export class UiService {
   }
 
   openUrlInBlank(destination: string) {
-    window.open(destination, '_blank');
-  }
-
-  populateInCedar() {
-    let destination = window.location.href;
-    destination = window.location.href.replace('openview', 'cedar');
-    destination = destination.replace('/templates/', '/instances/create/');
-    // console.log(destination);
     window.open(destination, '_blank');
   }
 
@@ -106,19 +72,6 @@ export class UiService {
       document.body.removeChild(selBox);
       this.flipButton(buttonId);
     }
-  }
-
-
-  openArtifactHeader() {
-    this.artifactHeaderComponent?.doOpen();
-  }
-
-  closeArtifactHeader() {
-    this.artifactHeaderComponent?.doClose();
-  }
-
-  registerArtifactHeaderComponent(c: ArtifactHeaderComponent) {
-    this.artifactHeaderComponent = c;
   }
 }
 

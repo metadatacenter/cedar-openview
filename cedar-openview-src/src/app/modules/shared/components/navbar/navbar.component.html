@@ -11,20 +11,6 @@
         <img src="assets/img/logo/cedar-open-view-logo.png" alt="{{'App.NavTitle' | translate}}">
       </a>
     </div>
-    <div class="artifact-title column">
-      @if (uiService.type) {
-        <mat-expansion-panel class="expansion-container" (opened)="expansionOpened()" (closed)="expansionClosed()"
-          >
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <p class="artifact-title-paragraph">
-                {{uiService.title}} - {{'type.' + uiService.type | translate}}
-              </p>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-        </mat-expansion-panel>
-      }
-    </div>
     <div class="button-container column">
       <button (click)="openInNewWindow('http://metadatacenter.org')" mat-button mat-button
         matTooltip="Read more about CEDAR">

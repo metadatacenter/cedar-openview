@@ -84,13 +84,5 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
   copyToClipboard(elementId: string, buttonId: string) {
     this.uiService.copyToClipboard(elementId, buttonId);
   }
-
-  // form changed, update tab contents and submit button status
-  onFormChange(event: any, field: any) {
-    if (event && event.detail) {
-      this.uiService.setTitleAndDescription(event.detail.title, event.detail.description, field['@type']);
-      this.uiService.setValidity(event.detail.validity);
-    }
-  }
 }
 

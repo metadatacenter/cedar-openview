@@ -30,7 +30,7 @@ const scenarios = {
   'template-page': async (page) => {
     await openApi(page, { [`/templates/${templateId}`]: fixture('template') });
     await page.goto(`/templates/${encodeURIComponent(templateId)}`);
-    // The artifact header starts collapsed, so the form's own title says the page has drawn.
+    // The form's own title says the page has drawn.
     await expect(page.locator('cedar-embeddable-editor').getByRole('heading', { level: 1 })).toBeVisible();
   },
   'unauthorized-page': async (page) => {
@@ -48,7 +48,7 @@ const scenarios = {
     await page.goto(`/folders/${encodeURIComponent(folderId)}`);
     await expect(page.locator('.empty')).toBeVisible();
   },
-  // An element or a field page shows the legend. Its artifact header stays collapsed.
+  // An element or a field page shows the legend.
   'element-page': async (page) => {
     await openApi(page, { [`/template-elements/${elementId}`]: fixture('element') });
     await page.goto(`/template-elements/${encodeURIComponent(elementId)}`);
