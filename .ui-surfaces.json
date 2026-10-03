@@ -202,24 +202,7 @@
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "background-color",
-          "value": "rgb(244, 67, 54)",
-          "reason": "Material's warn red on the Login to CEDAR button, found when the walk began reading backgrounds; the shared error role would replace it"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.14)",
-          "reason": "Material's raised-button elevation on the Login to CEDAR button, found when the walk began reading shadows"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "Material's raised-button elevation on the Login to CEDAR button, found when the walk began reading shadows"
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "openview.not-found",
@@ -257,24 +240,7 @@
       "states": [
         "open"
       ],
-      "test": "browser/tests/surfaces.spec.mjs",
-      "scaleDebt": [
-        {
-          "property": "background-color",
-          "value": "rgb(244, 67, 54)",
-          "reason": "Material's warn red on the Login to CEDAR button, found when the walk began reading backgrounds; the shared error role would replace it"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.14)",
-          "reason": "Material's raised-button elevation on the Login to CEDAR button, found when the walk began reading shadows"
-        },
-        {
-          "property": "box-shadow",
-          "value": "rgba(0, 0, 0, 0.12)",
-          "reason": "Material's raised-button elevation on the Login to CEDAR button, found when the walk began reading shadows"
-        }
-      ]
+      "test": "browser/tests/surfaces.spec.mjs"
     },
     {
       "id": "openview.empty-folder",
