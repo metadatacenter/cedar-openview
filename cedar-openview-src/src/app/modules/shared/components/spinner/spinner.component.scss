@@ -1,0 +1,12 @@
+@use '@org.metadatacenter/cedar-design-tokens/patterns';
+
+.loading-spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: var(--cedar-layer-overlay);
+}
+
+.loader {
+  @include patterns.spinner;
+}
