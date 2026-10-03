@@ -1,14 +1,10 @@
 import {Injectable} from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UiService {
-
-  constructor(private translateService: TranslateService) {
-  }
 
   openInCedar() {
     let destination = window.location.href;
@@ -26,53 +22,4 @@ export class UiService {
   openUrlInBlank(destination: string) {
     window.open(destination, '_blank');
   }
-
-  copyToClip(str: string) {
-    function listener(e: ClipboardEvent) {
-      if (e.clipboardData !== null) {
-        e.clipboardData.setData('text/html', str);
-        e.clipboardData.setData('text/plain', str);
-      }
-      e.preventDefault();
-    }
-
-    document.addEventListener('copy', listener);
-    document.execCommand('copy');
-    document.removeEventListener('copy', listener);
-  }
-
-  flipButton(buttonId: string) {
-    const btn = document.getElementById(buttonId);
-    if (btn) {
-      btn.innerHTML = this.translateService.instant('App.Copied');
-      setTimeout(() => {
-        btn.innerHTML = this.translateService.instant('App.Copy');
-      }, 10000);
-    }
-  }
-
-  // copy stuff in tabs to browser's clipboard
-  copyToClipboard(elementId: string, buttonId: string) {
-
-
-    const elm = document.getElementById(elementId);
-    const data = elm ? elm.innerHTML : null;
-    if (data) {
-
-      const selBox = document.createElement('textarea');
-      selBox.style.position = 'fixed';
-      selBox.style.left = '0';
-      selBox.style.top = '0';
-      selBox.style.opacity = '0';
-      selBox.value = data;
-      document.body.appendChild(selBox);
-      selBox.focus();
-      selBox.select();
-      this.copyToClip(data);
-      document.body.removeChild(selBox);
-      this.flipButton(buttonId);
-    }
-  }
 }
-
-

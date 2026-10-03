@@ -1,13 +1,6 @@
 {
   "schema": 1,
   "findings": {
-    "1e739020856ab1a34b22": {
-      "file": "cedar-openview-src/src/app/services/ui.service.ts",
-      "rule": "dynamic-style",
-      "property": "opacity",
-      "value": "uninspectable-binding",
-      "count": 1
-    },
     "36a60d20a49a4c19ce1c": {
       "file": "cedar-openview-src/src/app/modules/shared/components/navbar/navbar.component.scss",
       "rule": "geometry",
@@ -34,13 +27,6 @@
       "rule": "motion",
       "property": "animation",
       "value": "fadein var(--cedar-motion-duration-normal) ease-in-out 0s 1",
-      "count": 1
-    },
-    "fe7f8a4b03d2a9c37e2f": {
-      "file": "cedar-openview-src/src/app/modules/shared/components/artifact-error/artifact-error.component.scss",
-      "rule": "typography",
-      "property": "font-size",
-      "value": "3.5em",
       "count": 1
     }
   },

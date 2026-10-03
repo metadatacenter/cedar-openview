@@ -59,10 +59,7 @@
                 ]
               }
             },
-            "scripts": [],
-            "allowedCommonJsDependencies": [
-              "hammerjs"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {

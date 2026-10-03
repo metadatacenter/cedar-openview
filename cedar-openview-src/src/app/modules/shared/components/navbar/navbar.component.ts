@@ -6,7 +6,6 @@ import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {CedarBase} from '../base/cedar-base.component';
-import {UiService} from '../../../../services/ui.service';
 
 @Component({
   selector: 'app-navbar',
@@ -25,26 +24,11 @@ export class NavbarComponent extends CedarBase implements OnInit {
     route: ActivatedRoute,
     dataStore: DataStoreService,
     dataHandler: DataHandlerService,
-    protected uiService: UiService,
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
   }
 
   ngOnInit() {
-  }
-
-  getCurrentLanguageCode() {
-    return this.translateService.currentLang;
-  }
-
-  switchLanguage($event: any, language: string) {
-    $event.preventDefault();
-    this.translateService.use(language);
-    this.localSettings.setLanguage(language);
-  }
-
-  openInCedar() {
-    this.uiService.openInCedar();
   }
 
   openInNewWindow(url: string) {

@@ -1,34 +1,7 @@
 {
   "App": {
-    "Title": "CEDAR",
     "NavTitle": "CEDAR OpenView",
-    "WindowTitle": "CEDAR OpenView",
-    "SelectPage": "Select Page",
-    "Home": "Home",
-    "Language": "Language",
-    "View": "View",
-    "Edit": "Edit",
-    "Form": "Form",
-    "Copy": "Copy to Clipboard",
-    "Copied": "Copied",
-    "Save": "Save",
-    "Value": "Value",
-    "Validate": "Validate"
-  },
-  "Generic": {
-    "Loading": "Loading...",
-    "fieldJsonSchema": "Template Field JSON Schema",
-    "elementJsonSchema": "Template Element JSON Schema",
-    "templateJsonSchema": "Template JSON Schema",
-    "jsonLD": "Metadata JSON-LD",
-    "rdf": "Metadata RDF"
-  },
-  "error": {
-    "resourceNotPublic": "The requested resource is not publicly available"
-  },
-  "loadError": {
-    "401": "We are sorry, but this artifact has not been made public by its owner.<br/><a href='{{link}}'>Try to view artifact in CEDAR</a> (Login required)",
-    "404": "We are sorry, but we have no artifact with this id."
+    "WindowTitle": "CEDAR OpenView"
   },
   "FolderContent": {
     "Path": "Folder path",

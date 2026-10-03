@@ -1,5 +1,3 @@
-@use "@org.metadatacenter/cedar-design-tokens/spacing";
-
 .main__footer {
   margin: 0 auto;
   max-width: 80%;
@@ -78,47 +76,6 @@
   align-items: center;
   flex: 0 0 auto;
   max-height: 5.5em;
-}
-
-.form__section {
-  position: relative;
-  @include spacing.apply(padding, page-footer);
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  .disclaimer {
-    color: var(--cedar-text-muted);
-    padding: var(--cedar-space-2);
-    font-size: var(--cedar-font-size-small);
-  }
-
-  .subscribe {
-    display: flex;
-    justify-content: center;
-    width: 25em;
-    border: 1px solid var(--cedar-border-rule);
-    box-sizing: content-box;
-    border-radius: var(--cedar-radius);
-    vertical-align: middle;
-
-    input,
-    input:active {
-      width: 14em;
-      border-width: 0;
-      padding: var(--cedar-space-4);
-      margin: var(--cedar-space-1);
-    }
-
-    button {
-      margin: var(--cedar-space-1);
-    }
-  }
-}
-
-.copyright__text {
-  color: var(--cedar-color-on-primary);
 }
 
 .wide-container {

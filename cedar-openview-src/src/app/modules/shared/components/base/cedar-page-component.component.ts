@@ -22,10 +22,6 @@ export abstract class CedarPageComponent extends CedarBase {
 
   protected initDataHandler(): DataHandlerService {
     this.dataHandler.reset();
-    this.dataHandler.setPreCallback(() => this.preDataIsLoaded());
     return this.dataHandler;
-  }
-
-  private preDataIsLoaded() {
   }
 }

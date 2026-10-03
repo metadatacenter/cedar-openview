@@ -9,17 +9,11 @@ import {LocalSettingsService} from '../../../../services/local-settings.service'
 import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.model';
 import {TemplateElement} from '../../../../shared/model/template-element.model';
 import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
-import {HttpClient} from '@angular/common/http';
-import {AutocompleteService} from '../../../../services/autocomplete.service';
-import {forkJoin} from 'rxjs';
-import {UiService} from '../../../../services/ui.service';
-import {TemplateService} from '../../../../services/template.service';
 import {globalAppConfig} from "../../../../../environments/global-app-config";
 
 @Component({
   selector: 'app-template-element',
   templateUrl: './template-element.component.html',
-  styleUrls: ['./template-element.component.scss'],
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
@@ -30,9 +24,6 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
   artifactStatus: number = 0;
   cedarLink?: string;
 
-  instance: any = null;
-  mode: string = 'view';
-  allPosts: any;
   constructor(
     localSettings: LocalSettingsService,
     translateService: TranslateService,
@@ -41,15 +32,11 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
     route: ActivatedRoute,
     dataStore: DataStoreService,
     dataHandler: DataHandlerService,
-    private http: HttpClient,
-    private autocompleteService: AutocompleteService,
-    private uiService: UiService,
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
   }
 
   ngOnInit() {
-    this.allPosts = [];
     this.initDataHandler();
 
     this.templateElementId = this.route.snapshot.paramMap.get('templateElementId');
@@ -61,26 +48,9 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
 
   private dataLoadedCallback() {
     this.template = this.dataStore.getTemplateElement(this.templateElementId ?? '');
-    this.instance = TemplateService.initInstance(this.template);
   }
 
   private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
     this.artifactStatus = error.status;
-  }
-
-  protected onAutocomplete(event: any) {
-    if (event['search']) {
-      forkJoin(this.autocompleteService.getPosts(event['search'], event.constraints)).subscribe(posts => {
-        this.allPosts = [];
-        for (let i = 0; i < posts.length; i++) {
-          this.allPosts = this.allPosts.concat(posts[i]['collection']);
-        }
-      });
-    }
-  }
-
-  // copy content to browser's clipboard
-  copyToClipboard(elementId: string, buttonId: string) {
-    this.uiService.copyToClipboard(elementId, buttonId);
   }
 }

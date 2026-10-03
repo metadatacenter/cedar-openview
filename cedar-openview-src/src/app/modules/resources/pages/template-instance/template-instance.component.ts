@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -9,13 +9,8 @@ import {LocalSettingsService} from '../../../../services/local-settings.service'
 import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.model';
 import {TemplateInstance} from '../../../../shared/model/template-instance.model';
 import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
-import {HttpClient} from '@angular/common/http';
-import {AutocompleteService} from '../../../../services/autocomplete.service';
-import {forkJoin} from 'rxjs';
-import {UiService} from '../../../../services/ui.service';
 import {TemplateService} from '../../../../services/template.service';
 import {globalAppConfig} from "../../../../../environments/global-app-config";
-import {CedarEmbeddableEditorLoaderService} from '../../../../services/cedar-embeddable-editor-loader.service';
 import {CeeConfigService} from '../../../../services/cee-config.service';
 
 @Component({
@@ -25,7 +20,7 @@ import {CeeConfigService} from '../../../../services/cee-config.service';
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
-export class TemplateInstanceComponent extends CedarPageComponent implements OnInit, AfterViewInit {
+export class TemplateInstanceComponent extends CedarPageComponent implements OnInit {
 
   templateInstanceId: string | null = null;
   instance?: TemplateInstance;
@@ -35,8 +30,6 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
 
   template: any = null;
   templateId: string | null = null;
-  mode: string = 'view';
-  allPosts: any;
   cfg = this.ceeConfig.value;
 
   constructor(
@@ -47,17 +40,12 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
     route: ActivatedRoute,
     dataStore: DataStoreService,
     dataHandler: DataHandlerService,
-    private http: HttpClient,
-    private autocompleteService: AutocompleteService,
-    private uiService: UiService,
-    private loader: CedarEmbeddableEditorLoaderService,
     private ceeConfig: CeeConfigService
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
   }
 
   ngOnInit() {
-    this.allPosts = [];
     this.initDataHandler();
 
     this.templateInstanceId = this.route.snapshot.paramMap.get('templateInstanceId');
@@ -66,10 +54,6 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
       .requireId(DataHandlerDataId.TEMPLATE_INSTANCE, this.templateInstanceId ?? '')
       .load(() => this.instanceLoadedCallback(this.templateInstanceId ?? ''),
         (error: any, dataStatus: DataHandlerDataStatus) => this.instanceErrorCallback(error, dataStatus));
-  }
-
-  async ngAfterViewInit() {
-    await this.loader.load();
   }
 
   private instanceLoadedCallback(instanceId: string) {
@@ -100,21 +84,5 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
 
   private templateErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
     this.templateStatus = error.status;
-  }
-
-  protected onAutocomplete(event: any) {
-    if (event['search']) {
-      forkJoin(this.autocompleteService.getPosts(event['search'], event.constraints)).subscribe(posts => {
-        this.allPosts = [];
-        for (let i = 0; i < posts.length; i++) {
-          this.allPosts = this.allPosts.concat(posts[i]['collection']);
-        }
-      });
-    }
-  }
-
-  // copy content to browser's clipboard
-  copyToClipboard(elementId: string, buttonId: string) {
-    this.uiService.copyToClipboard(elementId, buttonId);
   }
 }

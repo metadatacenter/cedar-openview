@@ -6,7 +6,6 @@ import {SnotifyService} from 'ng-alt-snotify';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {CedarBase} from '../base/cedar-base.component';
-import {UiService} from '../../../../services/ui.service';
 
 @Component({
   selector: 'app-footer',

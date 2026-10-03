@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {AppConfigService} from './app-config.service';
 import {globalAppConfig} from "../../environments/global-app-config";
 
 @Injectable({
@@ -8,11 +7,6 @@ import {globalAppConfig} from "../../environments/global-app-config";
 export class RestApiUrlService {
 
   API_URL: string = globalAppConfig.apiUrl;
-
-  constructor(
-    private configService: AppConfigService
-  ) {
-  }
 
   private base() {
     return `${this.API_URL}`;

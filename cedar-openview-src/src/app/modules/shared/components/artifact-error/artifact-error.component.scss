@@ -15,10 +15,6 @@
   overflow:hidden;
 }
 
-.avatar-image {
-  font-size:3.5em;
-}
-
 // The shared filled primary action, as Workspace and the Designer draw theirs.
 .login-button {
   @include controls.primary-action;

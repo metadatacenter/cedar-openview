@@ -8,9 +8,6 @@ import {SnotifyService} from 'ng-alt-snotify';
 import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.model';
 import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
-import {HttpClient} from '@angular/common/http';
-import {UiService} from '../../../../services/ui.service';
-import {AppConfigService} from '../../../../services/app-config.service';
 import {FolderContent} from '../../../../shared/model/folder-content.model';
 import {globalAppConfig} from "../../../../../environments/global-app-config";
 
@@ -28,8 +25,6 @@ export class FolderContentComponent extends CedarPageComponent implements OnInit
   folderStatus: number = 0;
   cedarLink?: string;
 
-  mode = 'view';
-
   constructor(
     localSettings: LocalSettingsService,
     translateService: TranslateService,
@@ -37,10 +32,7 @@ export class FolderContentComponent extends CedarPageComponent implements OnInit
     router: Router,
     route: ActivatedRoute,
     dataStore: DataStoreService,
-    dataHandler: DataHandlerService,
-    private http: HttpClient,
-    private uiService: UiService,
-    private configService: AppConfigService
+    dataHandler: DataHandlerService
   ) {
     super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
   }
