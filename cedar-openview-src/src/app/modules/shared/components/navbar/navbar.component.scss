@@ -15,8 +15,14 @@
 
   // The logo leads and the metadatacenter.org button trails. They sit at either end of one line when
   // the header is wide, and at its top and bottom when each takes a line of its own.
+  //
+  // Both stand the same distance in from their edge. The padding here falls about 8px short of that
+  // distance on each side, because the logo image carries that much clear space left of the tree and
+  // the button carries it as padding beside its text.
   .row {
     display: flex;
+    box-sizing: border-box;
+    padding-inline: var(--cedar-space-4);
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -47,7 +53,7 @@
   }
 
   .button-container {
-    width: 300px;
+    align-items: flex-end;
     height: 40px;
   }
 

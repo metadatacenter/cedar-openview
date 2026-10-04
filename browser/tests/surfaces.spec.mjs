@@ -80,3 +80,37 @@ for (const { surface, state, width, title } of surfaceCases(registry, scenarios)
     await expect(page.locator('.main__footer')).toBeVisible();
     await checkSurface(page, surface, state, expect, testInfo);
   });
+
+// The tree in the wordmark and the end of the metadatacenter.org link stand the same distance in
+// from their edges, whether the header holds them on one line or on two.
+for (const width of [1280, 600])
+  test(`the header insets the wordmark and the link equally at ${width}`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 1000 });
+    await scenarios['folder-page'](page);
+    const insets = await page.evaluate(() => {
+      // The image carries clear space left of the tree, so the tree's first column is found in its pixels.
+      const image = document.querySelector('.cedar__logo img');
+      const canvas = Object.assign(document.createElement('canvas'), {
+        width: image.naturalWidth,
+        height: image.naturalHeight,
+      });
+      const context = canvas.getContext('2d');
+      context.drawImage(image, 0, 0);
+      const { data } = context.getImageData(0, 0, canvas.width, canvas.height);
+      const inked = (column) =>
+        Array.from({ length: canvas.height }, (_, row) => (row * canvas.width + column) * 4).some(
+          (index) => data[index + 3] > 16 && data[index] < 240,
+        );
+      let column = 0;
+      while (!inked(column)) column++;
+      const box = image.getBoundingClientRect();
+      const label = document.createRange();
+      label.selectNodeContents(document.querySelector('.button-container .mdc-button__label'));
+      return {
+        tree: box.left + (column * box.width) / canvas.width,
+        link: innerWidth - label.getBoundingClientRect().right,
+      };
+    });
+    expect(Math.abs(insets.tree - insets.link)).toBeLessThanOrEqual(1);
+    expect(insets.link).toBeCloseTo(24, 0);
+  });
