@@ -1,3 +1,4 @@
+import { resourcePathId } from "../resource-address";
 import {Injectable} from '@angular/core';
 import {globalAppConfig} from "../../environments/global-app-config";
 
@@ -33,23 +34,23 @@ export class RestApiUrlService {
   }
 
   templateField(id: string) {
-    return `${this.templateFields()}/${encodeURIComponent(id)}`;
+    return `${this.templateFields()}/${encodeURIComponent(resourcePathId(id))}`;
   }
 
   templateElement(id: string) {
-    return `${this.templateElements()}/${encodeURIComponent(id)}`;
+    return `${this.templateElements()}/${encodeURIComponent(resourcePathId(id))}`;
   }
 
   template(id: string) {
-    return `${this.templates()}/${encodeURIComponent(id)}`;
+    return `${this.templates()}/${encodeURIComponent(resourcePathId(id))}`;
   }
 
   templateInstance(id: string) {
-    return `${this.templateInstances()}/${encodeURIComponent(id)}`;
+    return `${this.templateInstances()}/${encodeURIComponent(resourcePathId(id))}`;
   }
 
   folderContent(id: string) {
-    return `${this.folderContents()}/${encodeURIComponent(id)}`;
+    return `${this.folderContents()}/${encodeURIComponent(resourcePathId(id))}`;
   }
 
 }

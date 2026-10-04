@@ -1,3 +1,4 @@
+import { resourceSelector, resourcePathId } from "../../../../resource-address";
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
@@ -34,7 +35,7 @@ export class FolderContentComponent extends CedarPageComponent implements OnInit
   ngOnInit() {
     this.initDataHandler();
     this.folderId = this.route.snapshot.paramMap.get('folderId');
-    this.cedarLink = globalAppConfig.cedarUrl + 'dashboard?folderId=' + encodeURIComponent(this.folderId ?? '');
+    this.cedarLink = globalAppConfig.cedarUrl + 'dashboard?folderId=' + encodeURIComponent(resourceSelector(this.folderId?.includes('/') ? this.folderId : 'folders/' + (this.folderId ?? '')));
     console.log(this.folderId);
     console.log(this.cedarLink);
     this.dataHandler
@@ -77,7 +78,7 @@ export class FolderContentComponent extends CedarPageComponent implements OnInit
   }
 
   public openFolder(folderId: string): void {
-    const url = '/folders/' + encodeURIComponent(folderId);
+    const url = '/folders/' + encodeURIComponent(resourcePathId(folderId));
     this.navigateByUrlThen(url).then(_ => {
       this.ngOnInit();
     });
@@ -99,7 +100,7 @@ export class FolderContentComponent extends CedarPageComponent implements OnInit
         url = '/template-instances/';
         break;
     }
-    url += encodeURIComponent(artifactId);
+    url += encodeURIComponent(resourcePathId(artifactId));
     this.navigateByUrlThen(url).then(_ => {
       this.ngOnInit();
     });
