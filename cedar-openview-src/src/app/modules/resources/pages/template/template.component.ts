@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, ElementRef, ViewChild} from '@angular/core';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -8,6 +8,7 @@ import {Template} from '../../../../shared/model/template.model';
 import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
 import {globalAppConfig} from "../../../../../environments/global-app-config";
 import {CeeConfigService} from '../../../../services/cee-config.service';
+import {whenCeeRefuses} from '../../../shared/util/cee-refusal';
 
 @Component({
   selector: 'app-template',
@@ -23,6 +24,12 @@ export class TemplateComponent extends CedarPageComponent implements OnInit {
   /** The HTTP status of a failed load, 0 when no answer arrived; null while nothing has failed. */
   artifactStatus: number | null = null;
   cedarLink?: string;
+  /** Whether the editor refused the artifact, which it does when it cannot read it. */
+  unreadable = false;
+
+  @ViewChild('editor') set editor(editor: ElementRef<HTMLElement> | undefined) {
+    if (editor) whenCeeRefuses(editor.nativeElement, () => (this.unreadable = true));
+  }
 
   cfg = this.ceeConfig.value;
 
@@ -38,6 +45,7 @@ export class TemplateComponent extends CedarPageComponent implements OnInit {
 
   ngOnInit() {
     this.initDataHandler();
+    this.unreadable = false;
     this.templateId = this.route.snapshot.paramMap.get('templateId');
     this.cedarLink = globalAppConfig.cedarUrl + 'templates/edit/' + this.templateId;
     this.dataHandler

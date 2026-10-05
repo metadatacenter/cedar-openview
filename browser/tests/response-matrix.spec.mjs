@@ -142,3 +142,41 @@ for (const { kind, answer } of arrivals)
     await page.goForward();
     await arrive();
   });
+
+// A stored artifact the editor cannot read, such as a template whose child is stored under a reserved
+// key, arrives with a 200 and still cannot be shown. The page says so rather than showing nothing.
+function withChildKey(template, to) {
+  const doc = structuredClone(template);
+  const from = doc._ui.order[0];
+  // Defined rather than assigned, since assigning to __proto__ would set the prototype instead.
+  Object.defineProperty(doc.properties, to, { value: doc.properties[from], enumerable: true, writable: true, configurable: true });
+  delete doc.properties[from];
+  doc._ui.order = doc._ui.order.map((key) => (key === from ? to : key));
+  return doc;
+}
+const UNREADABLE = 'cannot be displayed, because CEDAR cannot read it.';
+
+for (const key of ['@foo', '__proto__'])
+  test(`template page whose child is stored under ${key}`, async ({ page }) => {
+    await openApi(page, { [`/templates/${PAGES.template.uuid}`]: withChildKey(fixture('template'), key) });
+    await page.goto(`/templates/${PAGES.template.uuid}`);
+    await expectFailure(page, ['Error', `The artifact that you are trying to view ${UNREADABLE}`]);
+    await expect(heading(page)).toHaveCount(0);
+  });
+
+test('instance page whose template has a child stored under a reserved key', async ({ page }) => {
+  await openApi(page, {
+    [`/template-instances/${PAGES.instance.uuid}`]: fixture('instance'),
+    [TEMPLATE_PATH]: withChildKey(fixture('template'), '@foo'),
+  });
+  await page.goto(`/template-instances/${PAGES.instance.uuid}`);
+  await expectFailure(page, ['Error', `The artifact that you are trying to view ${UNREADABLE}`]);
+});
+
+test('a readable template page shows no refusal', async ({ page }) => {
+  await openApi(page, { [`/templates/${PAGES.template.uuid}`]: withChildKey(fixture('template'), 'Renamed child') });
+  await page.goto(`/templates/${PAGES.template.uuid}`);
+  await expect(heading(page)).toBeVisible();
+  await page.waitForTimeout(500);
+  await expect(page.locator('.error-card')).toHaveCount(0);
+});

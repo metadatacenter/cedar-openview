@@ -46,13 +46,18 @@
           <div>The metadata that you are trying to view is open for viewing, but the corresponding template does not exist in CEDAR.</div>
         </div>
       }
+      @if (unreadable) {
+        <div>
+          <div>The {{noun}} that you are trying to view cannot be displayed, because CEDAR cannot read it.</div>
+        </div>
+      }
       <!-- Any other status, or no answer at all, is a failure the viewer can only wait out. -->
-      @if (status != 401 && status != 404 && !instanceTemplateError) {
+      @if (!unreadable && status != 401 && status != 404 && !instanceTemplateError) {
         <div>
           <div>CEDAR could not load the {{noun}} that you are trying to view. Please try again later.</div>
         </div>
       }
-      @if (status != 401 && status != 404 && instanceTemplateError) {
+      @if (!unreadable && status != 401 && status != 404 && instanceTemplateError) {
         <div>
           <div>CEDAR could not load the template of the metadata that you are trying to view. Please try again later.</div>
         </div>

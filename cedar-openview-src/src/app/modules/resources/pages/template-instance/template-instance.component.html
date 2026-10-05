@@ -12,14 +12,21 @@
 }
 
 @if (instance && template) {
-  <div>
+  <div [hidden]="unreadable">
     <div class="instance__container ">
+      <!-- Both at once, so a refusal of either leaves the editor holding nothing, which is what says it refused. -->
       <cedar-embeddable-editor
+        #editor
         [config]="cfg"
-        [templateObject]="template"
-        [instanceObject]="instance"
+        [templateAndInstanceObject]="{ templateObject: template, instanceObject: instance }"
       ></cedar-embeddable-editor>
     </div>
+  </div>
+}
+
+@if (unreadable) {
+  <div>
+    <app-artifact-error [status]="0" [unreadable]="true" [cedarLink]="cedarLink"></app-artifact-error>
   </div>
 }
 

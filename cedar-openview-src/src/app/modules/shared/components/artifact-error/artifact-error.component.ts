@@ -19,6 +19,8 @@ export class ArtifactErrorComponent extends CedarBase implements OnInit {
   @Input() instanceTemplateError?: boolean;
   @Input() cedarLink?: string;
   @Input() noun = 'artifact';
+  /** The artifact arrived, but CEDAR cannot read it, so it cannot be displayed. */
+  @Input() unreadable = false;
 
   params: any;
 

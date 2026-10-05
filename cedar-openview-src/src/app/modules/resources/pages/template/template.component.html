@@ -1,9 +1,16 @@
 @if (template && artifactStatus === null) {
-  <div class="instance__container ">
+  <div class="instance__container " [hidden]="unreadable">
     <cedar-embeddable-editor
+      #editor
       [config]="cfg"
       [templateObject]="template"
     ></cedar-embeddable-editor>
+  </div>
+}
+
+@if (unreadable) {
+  <div>
+    <app-artifact-error [status]="0" [unreadable]="true" [cedarLink]="cedarLink"></app-artifact-error>
   </div>
 }
 
