@@ -9,6 +9,8 @@ const templateId = 'https://repo.metadatacenter.org/templates/a8f75474-ca14-4726
 const elementId = 'https://repo.metadatacenter.org/template-elements/5d8c2f3e-7a41-4b9c-9e62-1f0a3b7c8d24';
 const fieldId = 'https://repo.metadatacenter.org/template-fields/bbc141a6-0e81-4cba-8651-8b61a623bd6c';
 const instanceId = 'https://repo.metadatacenter.org/template-instances/0b6e4d1a-93f2-4c57-8a1e-6d2f7c9b4e13';
+// OpenView asks the open API for an identity on its own deployment by the collection and uuid alone.
+const api = (id) => id.replace('https://repo.metadatacenter.org', '');
 
 // The suite never leaves the machine. The open API answers from fixtures, and every other
 // external request, the hosted fonts included, is refused.
@@ -23,51 +25,51 @@ async function openApi(page, answers) {
 
 const scenarios = {
   'folder-page': async (page) => {
-    await openApi(page, { [`/folders/${folderId}`]: fixture('folder') });
+    await openApi(page, { [api(folderId)]: fixture('folder') });
     await page.goto(`/folders/${encodeURIComponent(folderId)}`);
     await expect(page.locator('.resource').first()).toBeVisible();
   },
   'template-page': async (page) => {
-    await openApi(page, { [`/templates/${templateId}`]: fixture('template') });
+    await openApi(page, { [api(templateId)]: fixture('template') });
     await page.goto(`/templates/${encodeURIComponent(templateId)}`);
     // The form's own title says the page has drawn.
     await expect(page.locator('cedar-embeddable-editor').getByRole('heading', { level: 1 })).toBeVisible();
   },
   'unauthorized-page': async (page) => {
-    await openApi(page, { [`/folders/${folderId}`]: 401 });
+    await openApi(page, { [api(folderId)]: 401 });
     await page.goto(`/folders/${encodeURIComponent(folderId)}`);
     await expect(page.locator('.error-card')).toBeVisible();
   },
   'not-found-page': async (page) => {
-    await openApi(page, { [`/folders/${folderId}`]: 404 });
+    await openApi(page, { [api(folderId)]: 404 });
     await page.goto(`/folders/${encodeURIComponent(folderId)}`);
     await expect(page.locator('.error-card')).toBeVisible();
   },
   'empty-folder-page': async (page) => {
-    await openApi(page, { [`/folders/${folderId}`]: { ...fixture('folder'), resources: [], totalCount: 0 } });
+    await openApi(page, { [api(folderId)]: { ...fixture('folder'), resources: [], totalCount: 0 } });
     await page.goto(`/folders/${encodeURIComponent(folderId)}`);
     await expect(page.locator('.empty')).toBeVisible();
   },
   // An element or a field page shows the legend.
   'element-page': async (page) => {
-    await openApi(page, { [`/template-elements/${elementId}`]: fixture('element') });
+    await openApi(page, { [api(elementId)]: fixture('element') });
     await page.goto(`/template-elements/${encodeURIComponent(elementId)}`);
     await expect(page.locator('.legend')).toBeVisible();
   },
   'field-page': async (page) => {
-    await openApi(page, { [`/template-fields/${fieldId}`]: fixture('field') });
+    await openApi(page, { [api(fieldId)]: fixture('field') });
     await page.goto(`/template-fields/${encodeURIComponent(fieldId)}`);
     await expect(page.locator('.legend')).toBeVisible();
   },
   // An open instance whose template is not open says so where the form would be.
   'template-not-open-page': async (page) => {
-    await openApi(page, { [`/template-instances/${instanceId}`]: fixture('instance'), [`/templates/${templateId}`]: 401 });
+    await openApi(page, { [api(instanceId)]: fixture('instance'), [api(templateId)]: 401 });
     await page.goto(`/template-instances/${encodeURIComponent(instanceId)}`);
     await expect(page.locator('.error-card')).toBeVisible();
   },
   // An instance page loads the instance, then the template the instance names.
   'instance-page': async (page) => {
-    await openApi(page, { [`/template-instances/${instanceId}`]: fixture('instance'), [`/templates/${templateId}`]: fixture('template') });
+    await openApi(page, { [api(instanceId)]: fixture('instance'), [api(templateId)]: fixture('template') });
     await page.goto(`/template-instances/${encodeURIComponent(instanceId)}`);
     await expect(page.locator('cedar-embeddable-editor').getByRole('heading', { level: 1 })).toBeVisible();
   },

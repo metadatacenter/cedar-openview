@@ -1,9 +1,9 @@
-@if (template && !artifactStatus) {
+@if (template && artifactStatus === null) {
   <app-legend></app-legend>
 }
 
 
-@if (artifactStatus) {
+@if (artifactStatus !== null) {
   <div>
     <app-artifact-error [status]="artifactStatus" [cedarLink]="cedarLink"></app-artifact-error>
   </div>

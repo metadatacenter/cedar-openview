@@ -20,7 +20,8 @@ export class TemplateComponent extends CedarPageComponent implements OnInit {
 
   templateId: string | null = null;
   template?: Template;
-  artifactStatus: number = 0;
+  /** The HTTP status of a failed load, 0 when no answer arrived; null while nothing has failed. */
+  artifactStatus: number | null = null;
   cedarLink?: string;
 
   cfg = this.ceeConfig.value;

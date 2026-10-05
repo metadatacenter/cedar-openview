@@ -18,7 +18,8 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
 
   templateFieldId: string | null = null;
   template?: TemplateField;
-  artifactStatus: number = 0;
+  /** The HTTP status of a failed load, 0 when no answer arrived; null while nothing has failed. */
+  artifactStatus: number | null = null;
   cedarLink?: string;
 
 

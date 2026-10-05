@@ -20,7 +20,8 @@ export class FolderContentComponent extends CedarPageComponent implements OnInit
 
   folderId: string | null = null;
   folderContents?: FolderContent;
-  folderStatus: number = 0;
+  /** The HTTP status of a failed load, 0 when no answer arrived; null while nothing has failed. */
+  folderStatus: number | null = null;
   cedarLink?: string;
 
   constructor(
@@ -33,11 +34,16 @@ export class FolderContentComponent extends CedarPageComponent implements OnInit
   }
 
   ngOnInit() {
+    // Moving from one folder to another reuses this page, Back and Forward included, so it follows the route.
+    this.route.paramMap.subscribe((params) => this.show(params.get('folderId')));
+  }
+
+  private show(folderId: string | null) {
     this.initDataHandler();
-    this.folderId = this.route.snapshot.paramMap.get('folderId');
+    this.folderId = folderId;
+    this.folderContents = undefined;
+    this.folderStatus = null;
     this.cedarLink = globalAppConfig.cedarUrl + 'dashboard?folderId=' + encodeURIComponent(resourceSelector(this.folderId?.includes('/') ? this.folderId : 'folders/' + (this.folderId ?? '')));
-    console.log(this.folderId);
-    console.log(this.cedarLink);
     this.dataHandler
       .requireId(DataHandlerDataId.FOLDER_CONTENTS, this.folderId ?? '')
       .load(() => this.dataLoadedCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.dataErrorCallback(error, dataStatus));
@@ -78,10 +84,7 @@ export class FolderContentComponent extends CedarPageComponent implements OnInit
   }
 
   public openFolder(folderId: string): void {
-    const url = '/folders/' + encodeURIComponent(resourcePathId(folderId));
-    this.navigateByUrlThen(url).then(_ => {
-      this.ngOnInit();
-    });
+    this.navigateByUrlThen('/folders/' + encodeURIComponent(resourcePathId(folderId)));
   }
 
   public openArtifact(artifactType: string, artifactId: string): void {
@@ -101,9 +104,7 @@ export class FolderContentComponent extends CedarPageComponent implements OnInit
         break;
     }
     url += encodeURIComponent(resourcePathId(artifactId));
-    this.navigateByUrlThen(url).then(_ => {
-      this.ngOnInit();
-    });
+    this.navigateByUrlThen(url);
   }
 
 }

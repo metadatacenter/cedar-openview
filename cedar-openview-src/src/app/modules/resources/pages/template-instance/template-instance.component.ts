@@ -21,8 +21,9 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
 
   templateInstanceId: string | null = null;
   instance?: TemplateInstance;
-  artifactStatus: number = 0;
-  templateStatus: number = 0;
+  /** The HTTP status of a failed load, 0 when no answer arrived; null while nothing has failed. */
+  artifactStatus: number | null = null;
+  templateStatus: number | null = null;
   cedarLink?: string;
 
   template: any = null;

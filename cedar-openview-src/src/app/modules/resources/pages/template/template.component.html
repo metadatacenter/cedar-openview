@@ -1,4 +1,4 @@
-@if (template && !artifactStatus) {
+@if (template && artifactStatus === null) {
   <div class="instance__container ">
     <cedar-embeddable-editor
       [config]="cfg"
@@ -8,7 +8,7 @@
 }
 
 
-@if (artifactStatus) {
+@if (artifactStatus !== null) {
   <div>
     <app-artifact-error [status]="artifactStatus" [cedarLink]="cedarLink"></app-artifact-error>
   </div>

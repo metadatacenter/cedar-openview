@@ -32,7 +32,7 @@
   </section>
 }
 
-@if (folderStatus) {
+@if (folderStatus !== null) {
   <div>
     <app-artifact-error [status]="folderStatus" [cedarLink]="cedarLink" [noun]="'folder'"></app-artifact-error>
   </div>

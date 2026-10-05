@@ -18,7 +18,8 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
 
   templateElementId: string | null = null;
   template?: TemplateElement;
-  artifactStatus: number = 0;
+  /** The HTTP status of a failed load, 0 when no answer arrived; null while nothing has failed. */
+  artifactStatus: number | null = null;
   cedarLink?: string;
 
   constructor(
