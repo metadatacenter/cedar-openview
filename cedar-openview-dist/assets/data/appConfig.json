@@ -1,5 +1,4 @@
 {
   "apiUrl": "https://open.{{cedarDomain}}/",
-  "cedarUrl": "https://cedar.{{cedarDomain}}/",
-  "terminologyUrl": "https://terminology.{{cedarDomain}}/"
+  "cedarUrl": "https://cedar.{{cedarDomain}}/"
 }
