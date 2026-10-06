@@ -9,8 +9,6 @@ export class DataHandlerDataStatus {
   id: string = '';
   //
   loaded: boolean = false;
-  canceled: boolean = false;
-  errored: boolean = false;
 
   private constructor() {
   }

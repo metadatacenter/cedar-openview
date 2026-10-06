@@ -2,7 +2,9 @@
   width: 100vw;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 50px auto;
+  // The header row is 50px where the header takes one line, and grows to the header where it takes
+  // three on a narrow screen, so the page starts below it.
+  grid-template-rows: minmax(50px, auto) auto;
   position: relative;
   overflow: scroll;
 }

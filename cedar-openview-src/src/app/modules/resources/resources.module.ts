@@ -1,5 +1,4 @@
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
-import {ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../shared';
 import {ResourcesRoutingModule} from './resources-routing.module';
 import {TemplateComponent} from './pages/template/template.component';
@@ -20,7 +19,6 @@ import {FolderContentComponent} from './pages/folder-content/folder-content.comp
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
-    ReactiveFormsModule,
     SharedModule,
     ResourcesRoutingModule,
     MaterialModule

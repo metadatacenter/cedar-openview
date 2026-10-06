@@ -48,10 +48,6 @@
     mat-icon.cedar-icon {
       margin: var(--cedar-space-1) 0;
     }
-
-    .asterisk {
-      color: inherit;
-    }
   }
 }
 
@@ -59,7 +55,7 @@
   color: var(--cedar-text-title);
   font-weight: var(--cedar-font-weight-medium, 500);
   font-family: inherit;
-  font-size: var(--cedar-font-size-heading);
+  font-size: var(--cedar-font-size-large);
   width: 100%;
   white-space: nowrap;
   margin-bottom: 0;

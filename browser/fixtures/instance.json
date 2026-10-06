@@ -1,0 +1,101 @@
+{
+ "@context": {
+  "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+  "xsd": "http://www.w3.org/2001/XMLSchema#",
+  "pav": "http://purl.org/pav/",
+  "schema": "http://schema.org/",
+  "oslc": "http://open-services.net/ns/core#",
+  "skos": "http://www.w3.org/2004/02/skos/core#",
+  "rdfs:label": {
+   "@type": "xsd:string"
+  },
+  "schema:isBasedOn": {
+   "@type": "@id"
+  },
+  "schema:name": {
+   "@type": "xsd:string"
+  },
+  "schema:description": {
+   "@type": "xsd:string"
+  },
+  "pav:derivedFrom": {
+   "@type": "@id"
+  },
+  "pav:createdOn": {
+   "@type": "xsd:dateTime"
+  },
+  "pav:createdBy": {
+   "@type": "@id"
+  },
+  "pav:lastUpdatedOn": {
+   "@type": "xsd:dateTime"
+  },
+  "oslc:modifiedBy": {
+   "@type": "@id"
+  },
+  "skos:notation": {
+   "@type": "xsd:string"
+  },
+  "parent_sample_id": "https://schema.metadatacenter.org/properties/b06fa24f-a461-4ec6-b02d-0c3bece2042c",
+  "lab_id": "https://schema.metadatacenter.org/properties/99eb5190-7ae6-4add-b8b4-f96f1499679a",
+  "preparation_protocol_doi": "https://schema.metadatacenter.org/properties/85559b03-241e-4661-92d3-0c21332e3506",
+  "dataset_type": "https://schema.metadatacenter.org/properties/604daae3-78b2-4976-a6dd-d8ab8ed329d1",
+  "contributors_path": "https://schema.metadatacenter.org/properties/3363081e-5ae7-417c-87ab-f18c5f3ab0e7",
+  "data_path": "https://schema.metadatacenter.org/properties/4ce0a225-f300-42ca-9fdc-5800ce0367bf",
+  "capture_batch_id": "https://schema.metadatacenter.org/properties/0509664e-69ab-4ccb-82c1-e14a840873fa",
+  "preparation_instrument_vendor": "https://schema.metadatacenter.org/properties/3584d359-301a-487a-8f9d-f81b7bd4bc88",
+  "preparation_instrument_model": "https://schema.metadatacenter.org/properties/44b71458-b75e-433e-9317-ee4045bd35a6",
+  "preparation_instrument_kit": "https://schema.metadatacenter.org/properties/71d06b17-d38a-48c9-900a-7d25c6293573",
+  "number_of_pre_amplification_pcr_cycles": "https://schema.metadatacenter.org/properties/8d15c9f4-c8ec-4ba5-8a03-00840164f087",
+  "metadata_schema_id": "https://schema.metadatacenter.org/properties/e6a0ae92-5a86-44ae-9825-0a79a791180a"
+ },
+ "parent_sample_id": {
+  "@value": "HBM386.ZGKG.235"
+ },
+ "lab_id": {
+  "@value": "LAB-0042"
+ },
+ "preparation_protocol_doi": {
+  "@id": "https://dx.doi.org/10.17504/protocols.io.eq2lyno9qvx9/v1"
+ },
+ "dataset_type": {
+  "@id": "https://purl.humanatlas.io/vocab/hravs#HRAVS_0000215",
+  "rdfs:label": "10X Multiome"
+ },
+ "contributors_path": {
+  "@value": "./contributors.tsv"
+ },
+ "data_path": {
+  "@value": "./TEST001-RK"
+ },
+ "capture_batch_id": {
+  "@value": "Broad_Batch1234"
+ },
+ "preparation_instrument_vendor": {
+  "@id": "https://purl.humanatlas.io/vocab/hravs#HRAVS_0000301",
+  "rdfs:label": "10X Genomics"
+ },
+ "preparation_instrument_model": {
+  "@id": "https://purl.humanatlas.io/vocab/hravs#HRAVS_0000302",
+  "rdfs:label": "Chromium X"
+ },
+ "preparation_instrument_kit": {
+  "@id": "https://purl.humanatlas.io/vocab/hravs#HRAVS_0000303",
+  "rdfs:label": "Chromium Next GEM Chip G Single Cell Kit"
+ },
+ "number_of_pre_amplification_pcr_cycles": {
+  "@value": "7",
+  "@type": "xsd:int"
+ },
+ "metadata_schema_id": {
+  "@value": "63c06fb2-4638-4979-aa97-5aff2a840156"
+ },
+ "schema:isBasedOn": "https://repo.metadatacenter.org/templates/a8f75474-ca14-4726-a071-acbfa9f8c466",
+ "schema:name": "10X Multiome metadata",
+ "schema:description": "",
+ "pav:createdOn": "2026-08-19T14:34:13-07:00",
+ "pav:createdBy": "https://metadatacenter.org/users/00000000-0000-4000-8000-000000000000",
+ "pav:lastUpdatedOn": "2026-08-19T14:34:13-07:00",
+ "oslc:modifiedBy": "https://metadatacenter.org/users/00000000-0000-4000-8000-000000000000",
+ "@id": "https://repo.metadatacenter.org/template-instances/0b6e4d1a-93f2-4c57-8a1e-6d2f7c9b4e13"
+}

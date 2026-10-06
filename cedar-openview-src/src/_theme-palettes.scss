@@ -1,7 +1,8 @@
 // OpenView's Material M2 theme. Components take their colours from the shared CEDAR roles as
 // custom properties; this file only adapts CEDAR's one theme colour to Material's theme API, so the
 // Material controls OpenView draws are teal like everything else. Warn is Material's own red, which
-// OpenView never shows.
+// OpenView never draws. The one control that asks for it, the error card's icon, takes the shared
+// error role from the icon contract instead.
 @use '@angular/material' as mat;
 @use '@org.metadatacenter/cedar-design-tokens/tokens' as tokens;
 

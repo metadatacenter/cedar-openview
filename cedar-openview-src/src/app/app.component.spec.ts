@@ -1,4 +1,4 @@
-import {TestBed, waitForAsync} from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {AppComponent} from './app.component';
 import {SnotifyModule, SnotifyService, ToastDefaults} from 'ng-alt-snotify';
@@ -12,8 +12,8 @@ import {provideTranslateHttpLoader} from '@ngx-translate/http-loader';
 import {AppConfigService} from './services/app-config.service';
 
 describe('AppComponent', () => {
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
         SnotifyModule,
@@ -37,7 +37,7 @@ describe('AppComponent', () => {
         }
       ]
     }).compileComponents();
-  }));
+  });
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);

@@ -1,22 +1,14 @@
-import {AfterViewInit, Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, ElementRef, ViewChild} from '@angular/core';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CedarPageComponent} from '../../../shared/components/base/cedar-page-component.component';
-import {TranslateService} from '@ngx-translate/core';
-import {SnotifyService} from 'ng-alt-snotify';
-import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.model';
 import {Template} from '../../../../shared/model/template.model';
 import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
-import {forkJoin} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
-import {AutocompleteService} from '../../../../services/autocomplete.service';
-import {UiService} from '../../../../services/ui.service';
-import {TemplateService} from '../../../../services/template.service';
 import {globalAppConfig} from "../../../../../environments/global-app-config";
-import {CedarEmbeddableEditorLoaderService} from '../../../../services/cedar-embeddable-editor-loader.service';
 import {CeeConfigService} from '../../../../services/cee-config.service';
+import {whenCeeRefuses} from '../../../shared/util/cee-refusal';
 
 @Component({
   selector: 'app-template',
@@ -25,38 +17,35 @@ import {CeeConfigService} from '../../../../services/cee-config.service';
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
-export class TemplateComponent extends CedarPageComponent implements OnInit, AfterViewInit {
+export class TemplateComponent extends CedarPageComponent implements OnInit {
 
   templateId: string | null = null;
   template?: Template;
-  artifactStatus: number = 0;
+  /** The HTTP status of a failed load, 0 when no answer arrived; null while nothing has failed. */
+  artifactStatus: number | null = null;
   cedarLink?: string;
+  /** Whether the editor refused the artifact, which it does when it cannot read it. */
+  unreadable = false;
 
-  instance: any = null;
-  mode: string = 'view';
-  allPosts: any;
+  @ViewChild('editor') set editor(editor: ElementRef<HTMLElement> | undefined) {
+    if (editor) whenCeeRefuses(editor.nativeElement, () => (this.unreadable = true));
+  }
+
   cfg = this.ceeConfig.value;
 
   constructor(
-    localSettings: LocalSettingsService,
-    translateService: TranslateService,
-    notify: SnotifyService,
     router: Router,
     route: ActivatedRoute,
     dataStore: DataStoreService,
     dataHandler: DataHandlerService,
-    private http: HttpClient,
-    private autocompleteService: AutocompleteService,
-    private uiService: UiService,
-    private loader: CedarEmbeddableEditorLoaderService,
     private ceeConfig: CeeConfigService
   ) {
-    super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
+    super(router, route, dataStore, dataHandler);
   }
 
   ngOnInit() {
-    this.allPosts = [];
     this.initDataHandler();
+    this.unreadable = false;
     this.templateId = this.route.snapshot.paramMap.get('templateId');
     this.cedarLink = globalAppConfig.cedarUrl + 'templates/edit/' + this.templateId;
     this.dataHandler
@@ -64,46 +53,12 @@ export class TemplateComponent extends CedarPageComponent implements OnInit, Aft
       .load(() => this.dataLoadedCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.dataErrorCallback(error, dataStatus));
   }
 
-  async ngAfterViewInit() {
-    await this.loader.load();
-  }
-
   private dataLoadedCallback() {
     this.template = this.dataStore.getTemplate(this.templateId ?? '');
-    this.instance = TemplateService.initInstance(this.template);
-    // const schema = TemplateService.schemaOf(this.template);
-    // TemplateService.setBasedOn(this.instance, TemplateService.getId(schema));
-    // TemplateService.setName(this.instance, TemplateService.getName(schema));
-    // TemplateService.setHelp(this.instance, TemplateService.getHelp(schema));
   }
 
   private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
     this.artifactStatus = error.status;
-  }
-
-  onAutocomplete(event: any) {
-    if (event.detail && event.detail.search) {
-      forkJoin(this.autocompleteService.getPosts(event.detail.search, event.detail.constraints)).subscribe(posts => {
-        this.allPosts = [];
-        for (let i = 0; i < posts.length; i++) {
-          this.allPosts = this.allPosts.concat(posts[i]['collection']);
-        }
-      });
-    }
-  }
-
-  // copy content to browser's clipboard
-  copyToClipboard(elementId: string, buttonId: string) {
-    this.uiService.copyToClipboard(elementId, buttonId);
-  }
-
-  // form changed, update tab contents and submit button status
-  onFormChange(event: any, template: any) {
-    if (event && event.detail) {
-      //console.log(event.detail);
-      this.uiService.setTitleAndDescription(event.detail.title, event.detail.description, template['@type']);
-      this.uiService.setValidity(event.detail.validity);
-    }
   }
 }
 

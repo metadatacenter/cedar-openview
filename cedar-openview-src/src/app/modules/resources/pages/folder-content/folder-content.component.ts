@@ -1,16 +1,11 @@
+import { resourceSelector, resourcePathId } from "../../../../resource-address";
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CedarPageComponent} from '../../../shared/components/base/cedar-page-component.component';
-import {TranslateService} from '@ngx-translate/core';
-import {SnotifyService} from 'ng-alt-snotify';
-import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.model';
 import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
-import {HttpClient} from '@angular/common/http';
-import {UiService} from '../../../../services/ui.service';
-import {AppConfigService} from '../../../../services/app-config.service';
 import {FolderContent} from '../../../../shared/model/folder-content.model';
 import {globalAppConfig} from "../../../../../environments/global-app-config";
 
@@ -25,32 +20,30 @@ export class FolderContentComponent extends CedarPageComponent implements OnInit
 
   folderId: string | null = null;
   folderContents?: FolderContent;
-  folderStatus: number = 0;
+  /** The HTTP status of a failed load, 0 when no answer arrived; null while nothing has failed. */
+  folderStatus: number | null = null;
   cedarLink?: string;
 
-  mode = 'view';
-
   constructor(
-    localSettings: LocalSettingsService,
-    translateService: TranslateService,
-    notify: SnotifyService,
     router: Router,
     route: ActivatedRoute,
     dataStore: DataStoreService,
-    dataHandler: DataHandlerService,
-    private http: HttpClient,
-    private uiService: UiService,
-    private configService: AppConfigService
+    dataHandler: DataHandlerService
   ) {
-    super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
+    super(router, route, dataStore, dataHandler);
   }
 
   ngOnInit() {
+    // Moving from one folder to another reuses this page, Back and Forward included, so it follows the route.
+    this.route.paramMap.subscribe((params) => this.show(params.get('folderId')));
+  }
+
+  private show(folderId: string | null) {
     this.initDataHandler();
-    this.folderId = this.route.snapshot.paramMap.get('folderId');
-    this.cedarLink = globalAppConfig.cedarUrl + 'dashboard?folderId=' + encodeURIComponent(this.folderId ?? '');
-    console.log(this.folderId);
-    console.log(this.cedarLink);
+    this.folderId = folderId;
+    this.folderContents = undefined;
+    this.folderStatus = null;
+    this.cedarLink = globalAppConfig.cedarUrl + 'dashboard?folderId=' + encodeURIComponent(resourceSelector(this.folderId?.includes('/') ? this.folderId : 'folders/' + (this.folderId ?? '')));
     this.dataHandler
       .requireId(DataHandlerDataId.FOLDER_CONTENTS, this.folderId ?? '')
       .load(() => this.dataLoadedCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.dataErrorCallback(error, dataStatus));
@@ -91,10 +84,7 @@ export class FolderContentComponent extends CedarPageComponent implements OnInit
   }
 
   public openFolder(folderId: string): void {
-    const url = '/folders/' + encodeURIComponent(folderId);
-    this.navigateByUrlThen(url).then(_ => {
-      this.ngOnInit();
-    });
+    this.navigateByUrlThen('/folders/' + encodeURIComponent(resourcePathId(folderId)));
   }
 
   public openArtifact(artifactType: string, artifactId: string): void {
@@ -113,10 +103,8 @@ export class FolderContentComponent extends CedarPageComponent implements OnInit
         url = '/template-instances/';
         break;
     }
-    url += encodeURIComponent(artifactId);
-    this.navigateByUrlThen(url).then(_ => {
-      this.ngOnInit();
-    });
+    url += encodeURIComponent(resourcePathId(artifactId));
+    this.navigateByUrlThen(url);
   }
 
 }

@@ -11,10 +11,6 @@ export class LocalSettingsService {
   constructor() {
   }
 
-  public setLanguage(language: string) {
-    localStorage.setItem(LocalSettingsService.LANGUAGE, language);
-  }
-
   public getLanguage(): string {
     return localStorage.getItem(LocalSettingsService.LANGUAGE) ?? 'en';
   }

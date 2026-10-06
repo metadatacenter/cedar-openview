@@ -1,22 +1,15 @@
-import {AfterViewInit, Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, ElementRef, ViewChild} from '@angular/core';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CedarPageComponent} from '../../../shared/components/base/cedar-page-component.component';
-import {TranslateService} from '@ngx-translate/core';
-import {SnotifyService} from 'ng-alt-snotify';
-import {LocalSettingsService} from '../../../../services/local-settings.service';
 import {DataHandlerDataId} from '../../../shared/model/data-handler-data-id.model';
 import {TemplateInstance} from '../../../../shared/model/template-instance.model';
 import {DataHandlerDataStatus} from '../../../shared/model/data-handler-data-status.model';
-import {HttpClient} from '@angular/common/http';
-import {AutocompleteService} from '../../../../services/autocomplete.service';
-import {forkJoin} from 'rxjs';
-import {UiService} from '../../../../services/ui.service';
 import {TemplateService} from '../../../../services/template.service';
 import {globalAppConfig} from "../../../../../environments/global-app-config";
-import {CedarEmbeddableEditorLoaderService} from '../../../../services/cedar-embeddable-editor-loader.service';
 import {CeeConfigService} from '../../../../services/cee-config.service';
+import {whenCeeRefuses} from '../../../shared/util/cee-refusal';
 
 @Component({
   selector: 'app-template-instance',
@@ -25,40 +18,38 @@ import {CeeConfigService} from '../../../../services/cee-config.service';
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
-export class TemplateInstanceComponent extends CedarPageComponent implements OnInit, AfterViewInit {
+export class TemplateInstanceComponent extends CedarPageComponent implements OnInit {
 
   templateInstanceId: string | null = null;
   instance?: TemplateInstance;
-  artifactStatus: number = 0;
-  templateStatus: number = 0;
+  /** The HTTP status of a failed load, 0 when no answer arrived; null while nothing has failed. */
+  artifactStatus: number | null = null;
+  templateStatus: number | null = null;
   cedarLink?: string;
+  /** Whether the editor refused the artifact, which it does when it cannot read it. */
+  unreadable = false;
+
+  @ViewChild('editor') set editor(editor: ElementRef<HTMLElement> | undefined) {
+    if (editor) whenCeeRefuses(editor.nativeElement, () => (this.unreadable = true));
+  }
 
   template: any = null;
   templateId: string | null = null;
-  mode: string = 'view';
-  allPosts: any;
   cfg = this.ceeConfig.value;
 
   constructor(
-    localSettings: LocalSettingsService,
-    translateService: TranslateService,
-    notify: SnotifyService,
     router: Router,
     route: ActivatedRoute,
     dataStore: DataStoreService,
     dataHandler: DataHandlerService,
-    private http: HttpClient,
-    private autocompleteService: AutocompleteService,
-    private uiService: UiService,
-    private loader: CedarEmbeddableEditorLoaderService,
     private ceeConfig: CeeConfigService
   ) {
-    super(localSettings, translateService, notify, router, route, dataStore, dataHandler);
+    super(router, route, dataStore, dataHandler);
   }
 
   ngOnInit() {
-    this.allPosts = [];
     this.initDataHandler();
+    this.unreadable = false;
 
     this.templateInstanceId = this.route.snapshot.paramMap.get('templateInstanceId');
     this.cedarLink = globalAppConfig.cedarUrl + 'instances/edit/' + this.templateInstanceId;
@@ -66,10 +57,6 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
       .requireId(DataHandlerDataId.TEMPLATE_INSTANCE, this.templateInstanceId ?? '')
       .load(() => this.instanceLoadedCallback(this.templateInstanceId ?? ''),
         (error: any, dataStatus: DataHandlerDataStatus) => this.instanceErrorCallback(error, dataStatus));
-  }
-
-  async ngAfterViewInit() {
-    await this.loader.load();
   }
 
   private instanceLoadedCallback(instanceId: string) {
@@ -101,29 +88,4 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
   private templateErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
     this.templateStatus = error.status;
   }
-
-  protected onAutocomplete(event: any) {
-    if (event['search']) {
-      forkJoin(this.autocompleteService.getPosts(event['search'], event.constraints)).subscribe(posts => {
-        this.allPosts = [];
-        for (let i = 0; i < posts.length; i++) {
-          this.allPosts = this.allPosts.concat(posts[i]['collection']);
-        }
-      });
-    }
-  }
-
-  // copy content to browser's clipboard
-  copyToClipboard(elementId: string, buttonId: string) {
-    this.uiService.copyToClipboard(elementId, buttonId);
-  }
-
-  // form changed, update tab contents and submit button status
-  onFormChange(event: any) {
-    if (event && event.detail) {
-      this.uiService.setTitleAndDescription(event.detail.title, event.detail.description, 'TemplateInstance');
-      this.uiService.setValidity(event.detail.validity);
-    }
-  }
-
 }

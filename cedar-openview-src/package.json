@@ -1,6 +1,6 @@
 {
   "name": "cedar-openview",
-  "version": "2.9.20",
+  "version": "2.9.21",
   "publishConfig": {
     "registry": "https://nexus.bmir.stanford.edu/repository/npm-cedar/"
   },
@@ -31,14 +31,11 @@
     "@angular/material": "~22.2.0",
     "@angular/platform-browser": "~22.2.0",
     "@angular/router": "~22.2.0",
-    "@ng-bootstrap/ng-bootstrap": "^21.0.0",
     "@ngx-translate/core": "^17.0.0",
     "@ngx-translate/http-loader": "^17.0.0",
-    "@popperjs/core": "^2.11.7",
     "@webcomponents/webcomponentsjs": "^2.8.0",
-    "cedar-embeddable-editor": "2.0.19",
+    "cedar-embeddable-editor": "2.0.20",
     "core-js": "^3.25.2",
-    "hammerjs": "^2.0.8",
     "ng-alt-snotify": "^16.0.0-alpha.1",
     "rxjs": "~7.8.1",
     "tslib": "^2.6.2",
@@ -49,18 +46,14 @@
     "@angular/cli": "~22.2.0",
     "@angular/compiler-cli": "~22.2.0",
     "@angular/language-service": "~22.2.0",
-    "@org.metadatacenter/cedar-design-tokens": "0.1.0-dev.20261002.g79e6a12d9c08.t1818",
-    "@types/jasmine": "^5.1.0",
+    "@org.metadatacenter/cedar-design-tokens": "0.1.0-dev.20261006.g1889ea6002f0.t0556",
     "@types/node": "^24.3.0",
+    "@vitest/browser-playwright": "^4.1.11",
     "istanbul-lib-instrument": "^6.0.3",
-    "jasmine-core": "^5.5.0",
-    "karma": "~6.4.4",
-    "karma-chrome-launcher": "^3.2.0",
-    "karma-coverage": "^2.2.1",
-    "karma-jasmine": "^5.1.0",
-    "karma-jasmine-html-reporter": "^2.3.0",
+    "playwright": "^1.63.0",
     "sass": "^1.83.1",
-    "typescript": "~6.0.3"
+    "typescript": "~6.0.3",
+    "vitest": "^4.1.11"
   },
   "overrides": {
     "ng-alt-snotify": {

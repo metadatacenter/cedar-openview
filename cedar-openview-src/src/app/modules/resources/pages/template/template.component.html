@@ -1,22 +1,21 @@
-@if (template && !artifactStatus) {
-  <div>
-    <app-artifact-header [artifact]="template"></app-artifact-header>
-  </div>
-}
-
-<!--<app-legend *ngIf="template && !artifactStatus"></app-legend>-->
-
-@if (template && !artifactStatus) {
-  <div class="instance__container ">
+@if (template && artifactStatus === null) {
+  <div class="instance__container " [hidden]="unreadable">
     <cedar-embeddable-editor
+      #editor
       [config]="cfg"
       [templateObject]="template"
     ></cedar-embeddable-editor>
   </div>
 }
 
+@if (unreadable) {
+  <div>
+    <app-artifact-error [status]="0" [unreadable]="true" [cedarLink]="cedarLink"></app-artifact-error>
+  </div>
+}
 
-@if (artifactStatus) {
+
+@if (artifactStatus !== null) {
   <div>
     <app-artifact-error [status]="artifactStatus" [cedarLink]="cedarLink"></app-artifact-error>
   </div>

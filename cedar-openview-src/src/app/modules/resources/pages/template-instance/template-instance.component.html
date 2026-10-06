@@ -1,16 +1,10 @@
-@if (instance && !artifactStatus && !templateStatus) {
-  <div>
-    <app-artifact-header [artifact]="instance"></app-artifact-header>
-  </div>
-}
-
-@if (artifactStatus) {
+@if (artifactStatus !== null) {
   <div>
     <app-artifact-error [status]="artifactStatus" [cedarLink]="cedarLink"></app-artifact-error>
   </div>
 }
 
-@if (templateStatus) {
+@if (templateStatus !== null) {
   <div>
     <app-artifact-error [status]="templateStatus" [instanceTemplateError]="true"
     [cedarLink]="cedarLink"></app-artifact-error>
@@ -18,15 +12,21 @@
 }
 
 @if (instance && template) {
-  <div>
-    <!--  <app-legend *ngIf="instance && !artifactStatus"></app-legend>-->
+  <div [hidden]="unreadable">
     <div class="instance__container ">
+      <!-- Both at once, so a refusal of either leaves the editor holding nothing, which is what says it refused. -->
       <cedar-embeddable-editor
+        #editor
         [config]="cfg"
-        [templateObject]="template"
-        [instanceObject]="instance"
+        [templateAndInstanceObject]="{ templateObject: template, instanceObject: instance }"
       ></cedar-embeddable-editor>
     </div>
+  </div>
+}
+
+@if (unreadable) {
+  <div>
+    <app-artifact-error [status]="0" [unreadable]="true" [cedarLink]="cedarLink"></app-artifact-error>
   </div>
 }
 
