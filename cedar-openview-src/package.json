@@ -34,7 +34,7 @@
     "@ngx-translate/core": "^17.0.0",
     "@ngx-translate/http-loader": "^17.0.0",
     "@webcomponents/webcomponentsjs": "^2.8.0",
-    "cedar-embeddable-editor": "npm:@org.metadatacenter/cedar-embeddable-editor@2.0.20-dev.20261005.cc9d7c2",
+    "cedar-embeddable-editor": "npm:@org.metadatacenter/cedar-embeddable-editor@2.0.20-dev.20261005.8967f3e",
     "core-js": "^3.25.2",
     "ng-alt-snotify": "^16.0.0-alpha.1",
     "rxjs": "~7.8.1",
