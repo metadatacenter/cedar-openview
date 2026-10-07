@@ -50,16 +50,19 @@ const scenarios = {
     await page.goto(`/folders/${encodeURIComponent(folderId)}`);
     await expect(page.locator('.empty')).toBeVisible();
   },
-  // An element or a field page shows the legend.
+  // An element page titles the element and draws it as a form.
   'element-page': async (page) => {
     await openApi(page, { [api(elementId)]: fixture('element') });
     await page.goto(`/template-elements/${encodeURIComponent(elementId)}`);
-    await expect(page.locator('.legend')).toBeVisible();
+    await expect(page.locator('app-artifact-heading h1')).toHaveText(fixture('element')['schema:name']);
+    await expect(page.locator('cedar-embeddable-editor').getByRole('paragraph').filter({ hasText: 'The company that manufactures the instrument' })).toBeVisible();
   },
+  // A field page titles the field by its label and draws the field.
   'field-page': async (page) => {
     await openApi(page, { [api(fieldId)]: fixture('field') });
     await page.goto(`/template-fields/${encodeURIComponent(fieldId)}`);
-    await expect(page.locator('.legend')).toBeVisible();
+    await expect(page.locator('app-artifact-heading h1')).toHaveText(fixture('field')['skos:prefLabel']);
+    await expect(page.locator('cedar-embeddable-field').getByText(fixture('field')['schema:description'])).toBeVisible();
   },
   // An open instance whose template is not open says so where the form would be.
   'template-not-open-page': async (page) => {
