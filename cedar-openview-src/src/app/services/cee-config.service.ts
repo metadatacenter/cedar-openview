@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import ceeConfig from '../config/cee-config.json';
 
 export interface CeeConfig {
   showTemplateDescription: boolean;
@@ -21,22 +21,9 @@ export function resolveCedarDomain(config: CeeConfig, domain: string): CeeConfig
   };
 }
 
+// The configuration is compiled into the application bundle, whose name changes with its content, so
+// no browser can pair a cached copy of it with a different build.
 @Injectable({ providedIn: 'root' })
 export class CeeConfigService {
-  private _config!: CeeConfig;
-  get value(): CeeConfig { return this._config; }
-
-  constructor(private http: HttpClient) {}
-
-  load(): Promise<void> {
-    return this.http.get<CeeConfig>('assets/config/cee-config.json')
-      .toPromise()
-      .then(cfg => {
-        this._config = resolveCedarDomain(cfg!, (window as any).cedarDomain);
-      })
-      .catch(err => {
-        console.error('Failed to load cee-config.json', err);
-        this._config = {} as any;
-      });
-  }
+  readonly value: CeeConfig = resolveCedarDomain(ceeConfig, (window as any).cedarDomain);
 }

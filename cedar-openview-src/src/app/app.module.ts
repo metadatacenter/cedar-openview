@@ -10,18 +10,13 @@ import {ResourcesModule} from './modules/resources/resources.module';
 import {BundledTranslateLoader} from './i18n/bundled-translate-loader';
 import {MaterialModule} from './modules/material-module';
 import {AppConfigService} from './services/app-config.service';
-import {CeeConfigService} from './services/cee-config.service';
 
 
 const appInitializerFn = (appConfig: AppConfigService) => {
   return () => {
-    return appConfig.loadAppConfig();
+    appConfig.init();
   };
 };
-
-export function loadCeeConfig(cfg: CeeConfigService) {
-  return () => cfg.load();
-}
 
 @NgModule({
   declarations: [
@@ -49,8 +44,7 @@ export function loadCeeConfig(cfg: CeeConfigService) {
       useFactory: appInitializerFn,
       multi: true,
       deps: [AppConfigService]
-    },
-    { provide: APP_INITIALIZER, useFactory: loadCeeConfig, deps: [CeeConfigService], multi: true }
+    }
   ],
   bootstrap: [AppComponent]
 })

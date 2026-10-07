@@ -1,22 +1,15 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {globalAppConfig} from "../../environments/global-app-config";
 import {AppConfig} from "../shared/model/app-config.model";
-import {tap} from "rxjs/operators";
+import appConfig from '../config/appConfig.json';
 
+// The configuration is compiled into the application bundle, whose name changes with its content, so
+// no browser can pair a cached copy of it with a different build.
 @Injectable()
 export class AppConfigService {
 
-  constructor(private http: HttpClient) {
-  }
-
-  loadAppConfig() {
-    return this.http.get('/assets/data/appConfig.json')
-      .pipe(
-        tap(data => {
-            globalAppConfig.init(Object.assign(new AppConfig(), data))
-          }
-        ));
+  init() {
+    globalAppConfig.init(Object.assign(new AppConfig(), appConfig));
   }
 
 }
