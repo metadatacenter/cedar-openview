@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 import ceeConfig from '../config/cee-config.json';
 
 export interface CeeConfig {
@@ -25,5 +26,5 @@ export function resolveCedarDomain(config: CeeConfig, domain: string): CeeConfig
 // no browser can pair a cached copy of it with a different build.
 @Injectable({ providedIn: 'root' })
 export class CeeConfigService {
-  readonly value: CeeConfig = resolveCedarDomain(ceeConfig, (window as any).cedarDomain);
+  readonly value: CeeConfig = resolveCedarDomain(ceeConfig, environment.cedarDomain);
 }
