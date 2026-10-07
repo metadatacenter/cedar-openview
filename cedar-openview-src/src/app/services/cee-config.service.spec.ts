@@ -6,7 +6,6 @@ describe('resolveCedarDomain', () => {
       showTemplateDescription: false,
       showDownloadMenu: true,
       terminologyBaseUrl: 'https://terminology.{{cedarDomain}}/',
-      languageMapPathPrefix: '/assets/i18n-cee/',
       defaultLanguage: 'en',
       fallbackLanguage: 'en',
       bridgeBaseUrl: 'https://bridge.{{cedarDomain}}/',

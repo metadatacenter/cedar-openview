@@ -5,7 +5,6 @@ export interface CeeConfig {
   showTemplateDescription: boolean;
   showDownloadMenu: boolean;
   terminologyBaseUrl: string;
-  languageMapPathPrefix: string;
   defaultLanguage: string;
   fallbackLanguage: string;
   bridgeBaseUrl: string;

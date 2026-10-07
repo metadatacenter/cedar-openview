@@ -31,8 +31,8 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
   // states the field's title, so the element's own header is hidden and the element states the field's
   // type instead. An empty field is what a visitor sees here, so a required one is not reported as
   // missing a value.
-  cfg = (({terminologyBaseUrl, bridgeBaseUrl, languageMapPathPrefix, defaultLanguage, fallbackLanguage}) => ({
-    terminologyBaseUrl, bridgeBaseUrl, languageMapPathPrefix, defaultLanguage, fallbackLanguage,
+  cfg = (({terminologyBaseUrl, bridgeBaseUrl, defaultLanguage, fallbackLanguage}) => ({
+    terminologyBaseUrl, bridgeBaseUrl, defaultLanguage, fallbackLanguage,
     readOnlyMode: true,
     previewMode: true,
     showFieldType: true,
