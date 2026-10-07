@@ -6,9 +6,9 @@ import {SpinnerComponent} from './modules/shared/components/spinner/spinner.comp
 import {NavbarComponent} from './modules/shared/components/navbar/navbar.component';
 import {FooterComponent} from './modules/shared/components/footer/footer.component';
 import {MaterialModule} from './modules/material-module';
-import {TranslateModule} from '@ngx-translate/core';
+import {provideTranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {provideHttpClient, withInterceptorsFromDi, withXhr} from '@angular/common/http';
-import {provideTranslateHttpLoader} from '@ngx-translate/http-loader';
+import {BundledTranslateLoader} from './i18n/bundled-translate-loader';
 import {AppConfigService} from './services/app-config.service';
 
 describe('AppComponent', () => {
@@ -18,7 +18,7 @@ describe('AppComponent', () => {
         RouterTestingModule,
         SnotifyModule,
         MaterialModule,
-        TranslateModule.forRoot()
+        TranslateModule.forRoot({loader: provideTranslateLoader(BundledTranslateLoader)})
       ],
       declarations: [
         AppComponent,
@@ -29,7 +29,6 @@ describe('AppComponent', () => {
       providers: [
         provideHttpClient(withXhr(), withInterceptorsFromDi()),
         AppConfigService,
-        provideTranslateHttpLoader(),
         SnotifyService,
         {
           provide: 'SnotifyToastConfig',

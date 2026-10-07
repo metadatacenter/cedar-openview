@@ -32,7 +32,6 @@
     "@angular/platform-browser": "~22.2.0",
     "@angular/router": "~22.2.0",
     "@ngx-translate/core": "^17.0.0",
-    "@ngx-translate/http-loader": "^17.0.0",
     "@webcomponents/webcomponentsjs": "^2.8.0",
     "cedar-embeddable-editor": "2.0.21",
     "core-js": "^3.25.2",

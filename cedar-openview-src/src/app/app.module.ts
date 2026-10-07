@@ -3,11 +3,11 @@ import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {provideHttpClient, withInterceptorsFromDi, withXhr} from '@angular/common/http';
-import {TranslateModule} from '@ngx-translate/core';
+import {provideTranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {SnotifyModule, SnotifyService, ToastDefaults} from 'ng-alt-snotify';
 import {SharedModule} from './modules/shared';
 import {ResourcesModule} from './modules/resources/resources.module';
-import {provideTranslateHttpLoader} from '@ngx-translate/http-loader';
+import {BundledTranslateLoader} from './i18n/bundled-translate-loader';
 import {MaterialModule} from './modules/material-module';
 import {AppConfigService} from './services/app-config.service';
 import {CeeConfigService} from './services/cee-config.service';
@@ -34,11 +34,10 @@ export function loadCeeConfig(cfg: CeeConfigService) {
     SharedModule,
     ResourcesModule,
     MaterialModule,
-    TranslateModule.forRoot(),
+    TranslateModule.forRoot({loader: provideTranslateLoader(BundledTranslateLoader)}),
   ],
   providers: [
     provideHttpClient(withXhr(), withInterceptorsFromDi()),
-    provideTranslateHttpLoader(),
     SnotifyService,
     {
       provide: 'SnotifyToastConfig',
