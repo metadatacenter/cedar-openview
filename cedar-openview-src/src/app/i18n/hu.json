@@ -14,6 +14,22 @@
     },
     "Empty": "A mappa üres",
     "EmptyDetail": "A mappa elérhető, de nem tartalmaz sem erőforrást, sem mappát",
-    "Total": "Összesen: {{count}}"
+    "Total": "Összesen: {{count}}",
+    "Unversioned": "Verzió nélkül",
+    "Statuses": {
+      "draft": "Vázlat",
+      "published": "Közzétett"
+    }
+  },
+  "Preview": {
+    "Label": "Előnézet",
+    "For": "Előnézet: {{name}}",
+    "Close": "Előnézet bezárása",
+    "Loading": "Betöltés…",
+    "TryOut": "Kipróbálás",
+    "Back": "Vissza az előnézethez",
+    "Unsaved": "Próbálja ki — semmit sem mentünk. A mód elhagyásakor a beírt adatok elvesznek.",
+    "Unavailable": "Az előnézet nem tölthető be. Zárja be, és próbálja újra.",
+    "TemplateClosed": "Ez a metaadat megtekinthető, de a sablonja nem nyilvános, ezért nem jeleníthető meg."
   }
 }

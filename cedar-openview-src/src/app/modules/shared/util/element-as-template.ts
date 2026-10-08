@@ -1,5 +1,3 @@
-import {TemplateElement} from '../../../shared/model/template-element.model';
-
 /**
  * The element's contents as a transient template, which is what the CEDAR Embeddable Editor renders.
  *
@@ -8,7 +6,7 @@ import {TemplateElement} from '../../../shared/model/template-element.model';
  * template is not the stored element and must not claim the element's. The stored element is left
  * untouched.
  */
-export function elementAsTemplate(element: TemplateElement): object {
+export function elementAsTemplate<T extends object>(element: T): T & {'@id': string; '@type': string} {
   return {
     ...element,
     '@id': 'urn:cedar:openview:element',

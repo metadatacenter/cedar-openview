@@ -1,0 +1,53 @@
+<dialog
+  #dialog
+  class="artifact-preview"
+  [class.is-preparing]="loading()"
+  [attr.aria-label]="name"
+  (cancel)="$event.preventDefault(); close()"
+>
+  @if (loading()) {
+    <div class="dialog-preparing-status">
+      <span role="status">{{ 'Preview.Loading' | translate }}</span>
+      <button class="dialog-close" type="button" autofocus [attr.aria-label]="'Preview.Close' | translate" (click)="close()">
+        <mat-icon cedarIcon="close"></mat-icon>
+      </button>
+    </div>
+  }
+  <header class="dialog-heading" [inert]="loading()">
+    <h2>
+      <span
+        class="preview-kind"
+        aria-hidden="true"
+        [matTooltip]="'FolderContent.Types.' + resource.resourceType | translate"
+      ><mat-icon [cedarIcon]="resource.resourceType"></mat-icon></span>{{ name }}
+    </h2>
+    @if (!loading() && !error()) {
+      <button class="try-out" type="button" (click)="toggleTryOut()">
+        {{ (trying() ? 'Preview.Back' : 'Preview.TryOut') | translate }}
+      </button>
+    }
+    <button
+      class="dialog-close"
+      type="button"
+      [attr.aria-label]="'Preview.Close' | translate"
+      [matTooltip]="'Preview.Close' | translate"
+      (click)="close()"
+    >
+      <mat-icon cedarIcon="close"></mat-icon>
+    </button>
+  </header>
+  <section
+    [inert]="loading()"
+    tabindex="0"
+    [attr.aria-label]="'Preview.Label' | translate"
+    [attr.aria-busy]="loading()"
+  >
+    @if (error(); as message) {
+      <p role="alert">{{ message | translate }}</p>
+    }
+    @if (trying() && !error()) {
+      <p class="try-out-notice" role="status">{{ 'Preview.Unsaved' | translate }}</p>
+    }
+    <div #mount [hidden]="error() !== null"></div>
+  </section>
+</dialog>

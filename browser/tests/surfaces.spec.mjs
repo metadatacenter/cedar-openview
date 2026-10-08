@@ -29,6 +29,13 @@ const scenarios = {
     await page.goto(`/folders/${encodeURIComponent(folderId)}`);
     await expect(page.locator('.resource').first()).toBeVisible();
   },
+  // The preview a card opens, once the editor has drawn the artifact in it.
+  'artifact-preview': async (page) => {
+    await openApi(page, { [api(folderId)]: fixture('folder'), [api(templateId)]: fixture('template') });
+    await page.goto(`/folders/${encodeURIComponent(folderId)}`);
+    await page.getByRole('button', { name: `Preview ${fixture('template')['schema:name']}`, exact: true }).click();
+    await expect(page.locator('dialog.artifact-preview')).not.toHaveClass(/is-preparing/);
+  },
   'template-page': async (page) => {
     await openApi(page, { [api(templateId)]: fixture('template') });
     await page.goto(`/templates/${encodeURIComponent(templateId)}`);

@@ -1,0 +1,138 @@
+@use '@org.metadatacenter/cedar-design-tokens/controls';
+@use '@org.metadatacenter/cedar-design-tokens/patterns';
+@use '@org.metadatacenter/cedar-design-tokens/spacing';
+
+// Workspace's artifact preview: a title row with the type, the name and the dialog's actions above
+// the artifact as the embeddable editor draws it.
+.artifact-preview {
+  @include patterns.dialog-surface;
+  width: 60vw;
+  height: fit-content;
+  max-width: none;
+  max-height: calc(100dvh - 2 * var(--cedar-space-6));
+  padding: 0;
+  overflow: hidden;
+}
+
+.artifact-preview[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+// Keep the modal and its backdrop while the artifact loads, and reveal the finished dialog once.
+.artifact-preview.is-preparing {
+  visibility: hidden;
+
+  &::backdrop {
+    visibility: visible;
+  }
+
+  > :not(.dialog-preparing-status) {
+    // The editor may restore visibility inside its shadow root; opacity keeps it unpainted.
+    opacity: 0;
+  }
+}
+
+.dialog-preparing-status {
+  visibility: visible;
+  display: flex;
+  align-items: center;
+  gap: var(--cedar-space-3);
+  position: fixed;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: var(--cedar-space-2) var(--cedar-space-3);
+  color: var(--cedar-text-primary);
+  background: var(--cedar-surface-raised);
+}
+
+button {
+  min-height: var(--cedar-control-height-default);
+  border: 0;
+  border-radius: var(--cedar-radius);
+  padding: var(--cedar-space-2) var(--cedar-space-3);
+  background: transparent;
+  color: var(--cedar-color-primary);
+  font: inherit;
+  cursor: pointer;
+  @include controls.action-states;
+}
+
+.dialog-heading {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--cedar-space-3);
+  padding: var(--cedar-space-1) var(--cedar-space-3);
+  border-bottom: 1px solid var(--cedar-border-rule);
+
+  h2 {
+    @include patterns.artifact-title;
+    display: flex;
+    flex: 1;
+    align-items: flex-start;
+    gap: var(--cedar-space-2);
+    min-width: 0;
+    margin: 0 auto 0 0;
+    overflow-wrap: anywhere;
+  }
+
+  > .dialog-close {
+    // Align the icon with the content edge while keeping a full square target in the padding.
+    @include spacing.apply(margin-inline-end, dialog-close-alignment);
+  }
+}
+
+// A long title wraps, so the icon is centred on its first line rather than on the whole heading.
+.preview-kind {
+  display: flex;
+  flex: none;
+  align-items: center;
+  height: 1lh;
+  color: var(--cedar-color-primary);
+}
+
+.dialog-close {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--cedar-control-height-default);
+  height: var(--cedar-control-height-default);
+  padding: 0;
+}
+
+.try-out {
+  flex-shrink: 0;
+}
+
+section {
+  flex: 0 1 auto;
+  min-height: 0;
+  overflow: auto;
+  padding: var(--cedar-space-2) var(--cedar-space-3);
+
+  > p {
+    margin: 0;
+  }
+}
+
+.try-out-notice {
+  margin: 0 0 var(--cedar-space-3);
+  color: var(--cedar-text-muted);
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .artifact-preview {
+    width: calc(100vw - 2 * var(--cedar-space-2));
+    max-height: calc(100dvh - 2 * var(--cedar-space-2));
+  }
+
+  .dialog-heading,
+  section {
+    padding: var(--cedar-space-3);
+  }
+}

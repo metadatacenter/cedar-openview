@@ -13,12 +13,30 @@
       <!-- Folders first, then artifacts, in one grid as Workspace shows them. -->
       <ul class="resources">
         @for (resource of resources; track resource['@id']) {
-          <li class="resource">
+          <li class="resource" [class.resource-versioned]="versioned(resource)">
             <span class="resource-heading">
-              <mat-icon class="resource-icon" aria-hidden="true" [cedarIcon]="icon(resource)"></mat-icon>
+              <span class="resource-icon" aria-hidden="true"><mat-icon [cedarIcon]="icon(resource)"></mat-icon></span>
+              @if (resource['pav:version'] || resource['bibo:status']) {
+                <span class="resource-release"
+                  >{{ resource['pav:version'] || ('FolderContent.Unversioned' | translate) }}<span aria-hidden="true"> · </span
+                  >{{ (status(resource) | translate) || '—' }}</span
+                >
+              }
             </span>
             <a class="resource-name" (click)="open(resource)" href="javascript://">{{ resource['schema:name'] }}</a>
             <span class="resource-meta">{{ 'FolderContent.Types.' + resource['resourceType'] | translate }}</span>
+            @if (resource['resourceType'] !== 'folder') {
+              <button
+                class="resource-preview"
+                type="button"
+                [matTooltip]="'Preview.Label' | translate"
+                [attr.aria-label]="'Preview.For' | translate: { name: resource['schema:name'] }"
+                [attr.data-preview-id]="resource['@id']"
+                (click)="preview = resource"
+              >
+                <mat-icon cedarIcon="preview"></mat-icon>
+              </button>
+            }
           </li>
         }
       </ul>
@@ -30,6 +48,10 @@
     }
     <p class="folder-count">{{ 'FolderContent.Total' | translate: { count: folderContents['totalCount'] } }}</p>
   </section>
+}
+
+@if (preview; as resource) {
+  <app-artifact-preview [resource]="resource" (closed)="preview = null"></app-artifact-preview>
 }
 
 @if (folderStatus !== null) {
