@@ -2,6 +2,22 @@
   <app-legend></app-legend>
 }
 
+@if (template && form && artifactStatus === null) {
+  <div class="instance__container " [hidden]="unreadable">
+    <app-artifact-heading [artifact]="template" kind="Element"></app-artifact-heading>
+    <cedar-embeddable-editor
+      #editor
+      [config]="cfg"
+      [templateObject]="form"
+    ></cedar-embeddable-editor>
+  </div>
+}
+
+@if (unreadable) {
+  <div>
+    <app-artifact-error [status]="0" [unreadable]="true" [cedarLink]="cedarLink"></app-artifact-error>
+  </div>
+}
 
 @if (artifactStatus !== null) {
   <div>

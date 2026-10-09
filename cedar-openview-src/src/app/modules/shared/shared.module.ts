@@ -9,6 +9,8 @@ import {ArtifactErrorComponent} from './components/artifact-error/artifact-error
 import {MaterialModule} from '../../modules/material-module';
 import {LegendComponent} from './components/legend/legend.component';
 import {FooterComponent} from './components/footer/footer.component';
+import {ArtifactHeadingComponent} from './components/artifact-heading/artifact-heading.component';
+import {ArtifactPreviewComponent} from './components/artifact-preview/artifact-preview.component';
 
 
 @NgModule({
@@ -26,6 +28,8 @@ import {FooterComponent} from './components/footer/footer.component';
     NavbarComponent,
     FooterComponent,
     LegendComponent,
+    ArtifactHeadingComponent,
+    ArtifactPreviewComponent,
   ],
   exports: [
     CedarIconDirective,
@@ -36,6 +40,8 @@ import {FooterComponent} from './components/footer/footer.component';
     NavbarComponent,
     FooterComponent,
     LegendComponent,
+    ArtifactHeadingComponent,
+    ArtifactPreviewComponent,
   ]
 })
 export class SharedModule {

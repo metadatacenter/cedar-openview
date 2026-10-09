@@ -19,16 +19,18 @@ export class AppComponent {
     translateService: TranslateService,
     titleService: Title
   ) {
-    // this language will be used as a fallback when a translation isn't found in the current language
-    translateService.setDefaultLang(environment.fallbackLanguage);
-
-    // the lang to use, if the lang isn't available, it will use the current loader to get them
-    translateService.use(localSettings.getLanguage());
-
+    // Subscribe before choosing a language. The translations are in the bundle, so use() switches
+    // language before it returns, and a later subscription would miss the change.
     translateService.onLangChange.subscribe((event: LangChangeEvent) => {
       translateService.get('App.WindowTitle').subscribe((res: string) => {
         titleService.setTitle(res);
       });
     });
+
+    // this language will be used as a fallback when a translation isn't found in the current language
+    translateService.setDefaultLang(environment.fallbackLanguage);
+
+    // the lang to use, if the lang isn't available, it will use the current loader to get them
+    translateService.use(localSettings.getLanguage());
   }
 }

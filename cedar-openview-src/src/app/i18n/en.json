@@ -1,0 +1,35 @@
+{
+  "App": {
+    "NavTitle": "CEDAR OpenView",
+    "WindowTitle": "CEDAR OpenView"
+  },
+  "FolderContent": {
+    "Path": "Folder path",
+    "Types": {
+      "folder": "Folder",
+      "template": "Template",
+      "element": "Element",
+      "field": "Field",
+      "instance": "Instance"
+    },
+    "Empty": "The folder is empty",
+    "EmptyDetail": "The folder is accessible, but does not contain any artifacts or folders",
+    "Total": "Total count: {{count}}",
+    "Unversioned": "Unversioned",
+    "Statuses": {
+      "draft": "Draft",
+      "published": "Published"
+    }
+  },
+  "Preview": {
+    "Label": "Preview",
+    "For": "Preview {{name}}",
+    "Close": "Close preview",
+    "Loading": "Loading…",
+    "TryOut": "Try out",
+    "Back": "Back to preview",
+    "Unsaved": "Try it out — nothing is saved. Leaving this mode discards your entries.",
+    "Unavailable": "This preview could not be loaded. Close it and try again.",
+    "TemplateClosed": "This metadata is open for viewing, but its template is not, so it cannot be shown."
+  }
+}

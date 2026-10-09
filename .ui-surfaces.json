@@ -26,6 +26,25 @@
       "test": "browser/tests/surfaces.spec.mjs"
     },
     {
+      "id": "openview.artifact-preview",
+      "name": "Artifact Preview",
+      "section": "OpenView",
+      "parent": "openview.folder",
+      "source": [
+        {
+          "file": "cedar-openview-src/src/app/modules/shared/components/artifact-preview/artifact-preview.component.html",
+          "anchor": "class=\"artifact-preview\""
+        }
+      ],
+      "contract": "dialog",
+      "scenario": "artifact-preview",
+      "selector": "dialog.artifact-preview",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
       "id": "openview.template",
       "name": "Template",
       "section": "OpenView",

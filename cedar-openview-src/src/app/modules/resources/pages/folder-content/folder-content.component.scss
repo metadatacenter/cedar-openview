@@ -1,12 +1,35 @@
 @use '@org.metadatacenter/cedar-design-tokens/controls';
 @use '@org.metadatacenter/cedar-design-tokens/patterns';
+@use '@org.metadatacenter/cedar-design-tokens/spacing';
 
 // A folder reads like Workspace content: a location trail, then cards on the page surface. Only
-// opening a resource is offered; selection, menus and moves belong to Workspace.
+// opening and previewing a resource are offered; selection, menus and moves belong to Workspace.
+:host {
+  display: block;
+  container-type: inline-size;
+}
+
+// The page is a grid of card columns. Its contents leave the first and last column empty, so the
+// listing sits between margins one card wide, as Workspace's sits between its navigation and its
+// details panel.
 .folder {
+  @include patterns.resource-grid;
+  row-gap: 0;
   padding: var(--cedar-space-4) var(--cedar-space-6) var(--cedar-space-6);
   background: var(--cedar-surface-raised);
   color: var(--cedar-text-primary);
+
+  > * {
+    grid-column: 1 / -1;
+  }
+}
+
+// The margins appear once the page holds five columns: five 190px tracks, four 10px gaps and the
+// 24px padding on either side. Below that, they would leave fewer than three columns of cards.
+@container (min-width: 1038px) {
+  .folder > * {
+    grid-column: 2 / -2;
+  }
 }
 
 .folder-path {
@@ -19,8 +42,10 @@
   @include patterns.breadcrumb-separator;
 }
 
+// The cards take the page's own columns.
 .resources {
   @include patterns.resource-grid;
+  grid-template-columns: subgrid;
   margin: 0;
   padding: var(--cedar-space-3) 0 0;
   list-style: none;
@@ -28,9 +53,30 @@
 
 .resource {
   @include patterns.resource-card;
+  box-sizing: border-box;
+
+  &:hover {
+    background: var(--cedar-surface-subtle);
+  }
 
   &:has(.resource-name:focus-visible) {
     @include controls.focus-ring;
+  }
+}
+
+// A versioned card has its version on the icon's line, so its rows sit closer, as in Workspace.
+.resource-versioned {
+  @include spacing.apply(padding-block, resource-card-inset);
+  @include spacing.apply(gap, compact);
+
+  .resource-name {
+    line-height: var(--cedar-control-line-height-authoring);
+    max-height: calc(2 * var(--cedar-control-line-height-authoring));
+  }
+
+  .resource-meta {
+    line-height: spacing.$card-meta-line-height;
+    flex-shrink: 0;
   }
 }
 
@@ -42,7 +88,17 @@
   @include patterns.resource-card-icon;
 }
 
-// The name is the card's one link, and it covers the whole card.
+.resource-release {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--cedar-text-primary);
+  font-size: var(--cedar-font-size-small);
+  line-height: spacing.$card-meta-line-height;
+  text-overflow: ellipsis;
+}
+
+// The name is the card's link, and it covers the whole card but the preview button.
 .resource-name {
   @include patterns.resource-card-name;
   color: var(--cedar-text-primary);
@@ -65,6 +121,24 @@
 
 .resource-meta {
   @include patterns.resource-card-meta;
+}
+
+// Keep the type clear of the preview button.
+.resource:has(.resource-preview) .resource-meta {
+  @include spacing.apply(padding-right, control-reserve);
+}
+
+.resource-preview {
+  @include patterns.icon-button;
+  @include controls.action-states;
+  position: absolute;
+  right: var(--cedar-space-1);
+  bottom: var(--cedar-space-1);
+  border: 0;
+  border-radius: var(--cedar-radius);
+  background: transparent;
+  color: var(--cedar-color-primary);
+  cursor: pointer;
 }
 
 .empty {
