@@ -33,7 +33,7 @@
     "@angular/router": "~22.2.0",
     "@ngx-translate/core": "^17.0.0",
     "@webcomponents/webcomponentsjs": "^2.8.0",
-    "cedar-embeddable-editor": "2.0.22",
+    "cedar-embeddable-editor": "2.0.23",
     "core-js": "^3.25.2",
     "ng-alt-snotify": "^16.0.0-alpha.1",
     "rxjs": "~7.8.1",
