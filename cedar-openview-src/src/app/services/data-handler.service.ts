@@ -4,13 +4,9 @@ import {DataStoreService} from './data-store.service';
 import {DataHandlerDataId} from '../modules/shared/model/data-handler-data-id.model';
 import {SpinnerService} from './spinner.service';
 import {TemplateService} from './load-data/template.service';
-import {Template} from '../shared/model/template.model';
-import {TemplateElement} from '../shared/model/template-element.model';
 import {TemplateFieldService} from './load-data/template-field.service';
 import {TemplateElementService} from './load-data/template-element.service';
-import {TemplateInstance} from '../shared/model/template-instance.model';
 import {TemplateInstanceService} from './load-data/template-instance.service';
-import {TemplateField} from '../shared/model/template-field.model';
 import {FolderContent} from '../shared/model/folder-content.model';
 import {FolderContentService} from './load-data/folder-content.service';
 
@@ -87,10 +83,12 @@ export class DataHandlerService {
     this.spinner.hide();
   }
 
+  // Transport artifacts remain plain JSON. Adding a class prototype makes CEE ownership checks
+  // reject otherwise readable data; exact numeric atoms are preserved as scalar values.
   private loadTemplateField(dataStatus: DataHandlerDataStatus) {
     this.templateFieldService.getTemplateField(dataStatus.id)
       ?.subscribe(templateField => {
-          this.dataStore.setTemplateField(dataStatus.id, Object.assign(new TemplateField(), templateField));
+          this.dataStore.setTemplateField(dataStatus.id, Object.assign({}, templateField));
           this.dataWasLoaded(dataStatus);
         },
         (error) => {
@@ -101,7 +99,7 @@ export class DataHandlerService {
   private loadTemplateElement(dataStatus: DataHandlerDataStatus) {
     this.templateElementService.getTemplateElement(dataStatus.id)
       ?.subscribe(templateElement => {
-          this.dataStore.setTemplateElement(dataStatus.id, Object.assign(new TemplateElement(), templateElement));
+          this.dataStore.setTemplateElement(dataStatus.id, Object.assign({}, templateElement));
           this.dataWasLoaded(dataStatus);
         },
         (error) => {
@@ -112,7 +110,7 @@ export class DataHandlerService {
   private loadTemplate(dataStatus: DataHandlerDataStatus) {
     this.templateService.getTemplate(dataStatus.id)
       ?.subscribe(template => {
-          this.dataStore.setTemplate(dataStatus.id, Object.assign(new Template(), template));
+          this.dataStore.setTemplate(dataStatus.id, Object.assign({}, template));
           this.dataWasLoaded(dataStatus);
         },
         (error) => {
@@ -123,7 +121,7 @@ export class DataHandlerService {
   private loadTemplateInstance(dataStatus: DataHandlerDataStatus) {
     this.templateInstanceService.getTemplateInstance(dataStatus.id)
       ?.subscribe(templateInstance => {
-          this.dataStore.setTemplateInstance(dataStatus.id, Object.assign(new TemplateInstance(), templateInstance));
+          this.dataStore.setTemplateInstance(dataStatus.id, Object.assign({}, templateInstance));
           this.dataWasLoaded(dataStatus);
         },
         error => {
