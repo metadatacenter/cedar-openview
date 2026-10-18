@@ -5,6 +5,8 @@
 @use '@org.metadatacenter/cedar-design-tokens/fonts/medium';
 @import '@org.metadatacenter/cedar-design-tokens/custom-properties.css';
 @import '@org.metadatacenter/cedar-design-tokens/icon-contract.css';
+// The shared focus ring for everything focusable that does not draw its own.
+@import '@org.metadatacenter/cedar-design-tokens/focus.css';
 
 body {
   font-family: var(--cedar-font-family);
