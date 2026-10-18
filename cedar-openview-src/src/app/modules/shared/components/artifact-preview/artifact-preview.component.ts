@@ -1,3 +1,4 @@
+import {JsonSourcePolicy} from 'cedar-model-typescript-library/policy';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -166,7 +167,7 @@ export class ArtifactPreviewComponent implements AfterViewInit, OnDestroy {
       }),
     };
     // Each mode starts from a copy of its own, so trial entries never alter the artifact that was read.
-    const {artifact, template} = structuredClone(source);
+    const {artifact, template} = JsonSourcePolicy.clone(source);
     const {terminologyBaseUrl, bridgeBaseUrl, defaultLanguage, fallbackLanguage} = this.ceeConfig.value;
     const shared = {
       terminologyBaseUrl, bridgeBaseUrl, defaultLanguage, fallbackLanguage,
