@@ -1,8 +1,9 @@
+import {exactJsonInterceptor} from './exact-json.interceptor';
 import {BrowserModule} from '@angular/platform-browser';
 import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {provideHttpClient, withInterceptorsFromDi, withXhr} from '@angular/common/http';
+import {provideHttpClient, withInterceptors, withInterceptorsFromDi, withXhr} from '@angular/common/http';
 import {provideTranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {SnotifyModule, SnotifyService, ToastDefaults} from 'ng-alt-snotify';
 import {SharedModule} from './modules/shared';
@@ -32,7 +33,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     TranslateModule.forRoot({loader: provideTranslateLoader(BundledTranslateLoader)}),
   ],
   providers: [
-    provideHttpClient(withXhr(), withInterceptorsFromDi()),
+    provideHttpClient(withXhr(), withInterceptors([exactJsonInterceptor]), withInterceptorsFromDi()),
     SnotifyService,
     {
       provide: 'SnotifyToastConfig',
