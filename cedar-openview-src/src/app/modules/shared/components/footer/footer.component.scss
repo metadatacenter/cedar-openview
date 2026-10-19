@@ -32,7 +32,7 @@
 
 .footer-title {
   color: var(--cedar-text-title);
-  font-weight: var(--cedar-font-weight-medium, 500);
+  font-weight: var(--cedar-font-weight-medium);
   font-family: inherit;
   font-size: var(--cedar-font-size-large);
   width: 100%;
@@ -45,7 +45,7 @@
   padding: 0;
   font-size: var(--cedar-font-size-large);
   line-height: var(--cedar-line-height-heading);
-  font-weight: var(--cedar-font-weight-medium, 500);
+  font-weight: var(--cedar-font-weight-medium);
   width: 100%;
   display: flex;
   align-items: center;
