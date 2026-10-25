@@ -22,13 +22,13 @@
     "msgpackr-extract@3.0.4": true
   },
   "dependencies": {
-    "@angular/cdk": "~22.2.0",
+    "@angular/cdk": "22.2.4",
     "@angular/common": "~22.2.0",
     "@angular/compiler": "~22.2.0",
     "@angular/core": "~22.2.0",
     "@angular/forms": "~22.2.0",
     "@angular/localize": "22.2.3",
-    "@angular/material": "~22.2.0",
+    "@angular/material": "22.2.4",
     "@angular/platform-browser": "~22.2.0",
     "@angular/router": "~22.2.0",
     "@ngx-translate/core": "^17.0.0",
@@ -42,8 +42,8 @@
     "zone.js": "^0.16.3"
   },
   "devDependencies": {
-    "@angular/build": "^22.2.0",
-    "@angular/cli": "~22.2.0",
+    "@angular/build": "22.2.4",
+    "@angular/cli": "22.2.4",
     "@angular/compiler-cli": "~22.2.0",
     "@angular/language-service": "~22.2.0",
     "@org.metadatacenter/cedar-design-tokens": "0.1.0-dev.20261023.3a17e143",
@@ -59,6 +59,7 @@
     "ng-alt-snotify": {
       "@angular/core": "$@angular/core",
       "@angular/common": "$@angular/common"
-    }
+    },
+    "vite": "8.3.4"
   }
 }
