@@ -1,6 +1,6 @@
 {
   "name": "cedar-openview",
-  "version": "2.9.28",
+  "version": "2.9.29",
   "publishConfig": {
     "registry": "https://nexus.bmir.stanford.edu/repository/npm-cedar/"
   },
@@ -22,19 +22,19 @@
     "msgpackr-extract@3.0.4": true
   },
   "dependencies": {
-    "@angular/cdk": "~22.2.0",
+    "@angular/cdk": "22.2.4",
     "@angular/common": "~22.2.0",
     "@angular/compiler": "~22.2.0",
     "@angular/core": "~22.2.0",
     "@angular/forms": "~22.2.0",
     "@angular/localize": "22.2.3",
-    "@angular/material": "~22.2.0",
+    "@angular/material": "22.2.4",
     "@angular/platform-browser": "~22.2.0",
     "@angular/router": "~22.2.0",
     "@ngx-translate/core": "^17.0.0",
     "@webcomponents/webcomponentsjs": "^2.8.0",
-    "cedar-embeddable-editor": "2.0.28",
-    "cedar-model-typescript-library": "npm:@org.metadatacenter/cedar-model-typescript-library@1.0.23-dev.20261022.g47b1968f5072.t0102",
+    "cedar-embeddable-editor": "2.0.29",
+    "cedar-model-typescript-library": "npm:@org.metadatacenter/cedar-model-typescript-library@1.0.25-dev.20261026.g534951e9d798.t1144",
     "core-js": "^3.25.2",
     "ng-alt-snotify": "^16.0.0-alpha.1",
     "rxjs": "~7.8.1",
@@ -42,11 +42,11 @@
     "zone.js": "^0.16.3"
   },
   "devDependencies": {
-    "@angular/build": "^22.2.0",
-    "@angular/cli": "~22.2.0",
+    "@angular/build": "22.2.4",
+    "@angular/cli": "22.2.4",
     "@angular/compiler-cli": "~22.2.0",
     "@angular/language-service": "~22.2.0",
-    "@org.metadatacenter/cedar-design-tokens": "0.1.0-dev.20261022.g2230ee9f0e8a.t0102",
+    "@org.metadatacenter/cedar-design-tokens": "0.1.0-dev.20261026.g1c8bebdaffed.t1144",
     "@types/node": "^24.3.0",
     "@vitest/browser-playwright": "^4.1.11",
     "istanbul-lib-instrument": "^6.0.3",
@@ -59,6 +59,7 @@
     "ng-alt-snotify": {
       "@angular/core": "$@angular/core",
       "@angular/common": "$@angular/common"
-    }
+    },
+    "vite": "8.3.4"
   }
 }
