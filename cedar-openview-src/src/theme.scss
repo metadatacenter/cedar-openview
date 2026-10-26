@@ -6,7 +6,13 @@
 
 @include mat.elevation-classes();
 @include mat.app-background();
-@include mat.all-component-themes(palettes.$alternate-theme);
+// The components OpenView's templates use, and no others. A component added to a template needs
+// its theme here.
+@include mat.core-theme(palettes.$alternate-theme);
+@include mat.button-theme(palettes.$alternate-theme);
+@include mat.card-theme(palettes.$alternate-theme);
+@include mat.icon-theme(palettes.$alternate-theme);
+@include mat.tooltip-theme(palettes.$alternate-theme);
 
 // Material's M2 card subtitle is 54% black. The shared muted text role replaces it.
 html {
