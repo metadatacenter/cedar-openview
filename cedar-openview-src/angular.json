@@ -37,7 +37,6 @@
               }
             ],
             "styles": [
-              "node_modules/ng-alt-snotify/styles/material.scss",
               "src/styles.scss",
               "src/theme.scss"
             ],

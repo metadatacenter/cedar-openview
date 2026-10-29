@@ -28,7 +28,7 @@ export class AppComponent {
     });
 
     // this language will be used as a fallback when a translation isn't found in the current language
-    translateService.setDefaultLang(environment.fallbackLanguage);
+    translateService.setFallbackLang(environment.fallbackLanguage);
 
     // the lang to use, if the lang isn't available, it will use the current loader to get them
     translateService.use(localSettings.getLanguage());

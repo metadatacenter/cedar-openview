@@ -21,13 +21,6 @@
       "property": "min-height",
       "value": "500px",
       "count": 1
-    },
-    "f94743dd94171a0ad74a": {
-      "file": "cedar-openview-src/src/app/modules/shared/components/navbar/navbar.component.scss",
-      "rule": "motion",
-      "property": "animation",
-      "value": "fadein var(--cedar-motion-duration-normal) ease-in-out 0s 1",
-      "count": 1
     }
   },
   "exceptions": {},

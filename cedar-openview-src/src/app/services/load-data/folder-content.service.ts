@@ -4,7 +4,6 @@ import {HttpClient} from '@angular/common/http';
 import {RestApiUrlService} from '../rest-api-url.service';
 import {Router} from '@angular/router';
 import {GenericMultiLoaderService} from './generic-multi-loader';
-import {SnotifyService} from 'ng-alt-snotify';
 import {TranslateService} from '@ngx-translate/core';
 import {FolderContent} from '../../shared/model/folder-content.model';
 
@@ -17,10 +16,9 @@ export class FolderContentService extends GenericMultiLoaderService<FolderConten
     http: HttpClient,
     restApiUrl: RestApiUrlService,
     router: Router,
-    notify: SnotifyService,
     translateService: TranslateService
   ) {
-    super(http, restApiUrl, router, notify, translateService);
+    super(http, restApiUrl, router, translateService);
   }
 
   getFolderContent(folderId: string): Observable<FolderContent | null> | null {
