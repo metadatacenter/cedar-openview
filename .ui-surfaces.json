@@ -268,6 +268,44 @@
         "open"
       ],
       "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
+      "id": "openview.resource-name",
+      "name": "Resource Name",
+      "section": "OpenView",
+      "parent": "openview.folder",
+      "source": [
+        {
+          "file": "cedar-openview-src/src/app/modules/resources/pages/folder-content/folder-content.component.html",
+          "anchor": "class=\"resource-name\""
+        }
+      ],
+      "contract": "body-text",
+      "scenario": "folder-label",
+      "selector": ".resource:not(.resource-versioned):first-child .resource-name",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
+    },
+    {
+      "id": "openview.header-motion",
+      "name": "Header Motion",
+      "section": "OpenView",
+      "parent": "openview.folder",
+      "source": [
+        {
+          "file": "cedar-openview-src/src/app/modules/shared/components/navbar/navbar.component.scss",
+          "anchor": ".main__header {"
+        }
+      ],
+      "contract": "motion",
+      "scenario": "folder-page",
+      "selector": ".main__header",
+      "states": [
+        "open"
+      ],
+      "test": "browser/tests/surfaces.spec.mjs"
     }
   ]
 }

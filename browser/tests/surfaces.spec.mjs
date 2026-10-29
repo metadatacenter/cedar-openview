@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import assert from 'node:assert/strict';
 import { test, expect } from '@playwright/test';
 import { surfaceCases, checkSurface } from './surface-contracts.generated.mjs';
 
@@ -24,6 +25,14 @@ async function openApi(page, answers) {
 }
 
 const scenarios = {
+  'folder-label': async (page) => {
+    await openApi(page, { [api(folderId)]: {
+      ...fixture('folder'), totalCount: 1,
+      resources: [{ resourceType: 'folder', '@id': folderId, 'schema:name': 'Shared folder' }],
+    } });
+    await page.goto(`/folders/${encodeURIComponent(folderId)}`);
+    await expect(page.locator('.resource-name')).toHaveText('Shared folder');
+  },
   'folder-page': async (page) => {
     await openApi(page, { [api(folderId)]: fixture('folder') });
     await page.goto(`/folders/${encodeURIComponent(folderId)}`);
@@ -91,7 +100,31 @@ for (const { surface, state, width, title } of surfaceCases(registry, scenarios)
     await scenarios[surface.scenario](page);
     await expect(page.locator('.main__footer')).toBeVisible();
     await checkSurface(page, surface, state, expect, testInfo);
+    if (surface.id === 'openview.folder')
+      await testInfo.attach('folder appearance', { body: await page.screenshot(), contentType: 'image/png' });
   });
+
+test('body text contract detects local line-height drift', async ({ page }, testInfo) => {
+  await scenarios['folder-label'](page);
+  const surface = registry.surfaces.find((entry) => entry.id === 'openview.resource-name');
+  await checkSurface(page, surface, 'open', expect, testInfo);
+  await page.locator(surface.selector).evaluate((element) => { element.style.lineHeight = '22px'; });
+  await assert.rejects(() => checkSurface(page, surface, 'open', expect, testInfo), /line-height must use/);
+});
+
+test('header motion follows the shared curve and reduced-motion preference', async ({ page }, testInfo) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await scenarios['folder-page'](page);
+  const surface = registry.surfaces.find((entry) => entry.id === 'openview.header-motion');
+  await checkSurface(page, surface, 'open', expect, testInfo);
+  const header = page.locator(surface.selector);
+  await header.evaluate((element) => { element.style.animationTimingFunction = 'ease-in-out'; });
+  await assert.rejects(() => checkSurface(page, surface, 'open', expect, testInfo), /animation-timing-function must use/);
+  await header.evaluate((element) => { element.style.removeProperty('animation-timing-function'); });
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect.poll(() => header.evaluate((element) => parseFloat(getComputedStyle(element).animationDuration))).toBeLessThanOrEqual(0.001);
+  await expect.poll(() => header.evaluate((element) => parseFloat(getComputedStyle(element).transitionDuration))).toBeLessThanOrEqual(0.001);
+});
 
 // The tree in the wordmark and the end of the metadatacenter.org link stand the same distance in
 // from their edges, whether the header holds them on one line or on two.
