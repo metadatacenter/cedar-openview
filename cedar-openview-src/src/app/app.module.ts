@@ -4,7 +4,7 @@ import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {provideHttpClient, withInterceptors, withInterceptorsFromDi, withXhr} from '@angular/common/http';
-import {provideTranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {provideTranslateLoader, provideTranslateService} from '@ngx-translate/core';
 import {SnotifyModule, SnotifyService, ToastDefaults} from 'ng-alt-snotify';
 import {SharedModule} from './modules/shared';
 import {ResourcesModule} from './modules/resources/resources.module';
@@ -30,10 +30,10 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     SharedModule,
     ResourcesModule,
     MaterialModule,
-    TranslateModule.forRoot({loader: provideTranslateLoader(BundledTranslateLoader)}),
   ],
   providers: [
     provideHttpClient(withXhr(), withInterceptors([exactJsonInterceptor]), withInterceptorsFromDi()),
+    provideTranslateService({loader: provideTranslateLoader(BundledTranslateLoader)}),
     SnotifyService,
     {
       provide: 'SnotifyToastConfig',

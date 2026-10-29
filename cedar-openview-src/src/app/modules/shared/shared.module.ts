@@ -1,7 +1,7 @@
 import {CedarIconDirective} from './directives/cedar-icon.directive';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {TranslateModule} from '@ngx-translate/core';
+import {TranslatePipe} from '@ngx-translate/core';
 import {SpinnerComponent} from './components/spinner/spinner.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
@@ -17,7 +17,7 @@ import {ArtifactPreviewComponent} from './components/artifact-preview/artifact-p
   imports: [
     CedarIconDirective,
     CommonModule,
-    TranslateModule,
+    TranslatePipe,
     MaterialModule,
 
   ],
@@ -34,7 +34,7 @@ import {ArtifactPreviewComponent} from './components/artifact-preview/artifact-p
   exports: [
     CedarIconDirective,
     CommonModule,
-    TranslateModule,
+    TranslatePipe,
     SpinnerComponent,
     ArtifactErrorComponent,
     NavbarComponent,
