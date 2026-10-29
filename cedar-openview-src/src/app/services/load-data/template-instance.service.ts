@@ -5,7 +5,6 @@ import {RestApiUrlService} from '../rest-api-url.service';
 import {Router} from '@angular/router';
 import {GenericMultiLoaderService} from './generic-multi-loader';
 import {TemplateInstance} from '../../shared/model/template-instance.model';
-import {SnotifyService} from 'ng-alt-snotify';
 import {TranslateService} from '@ngx-translate/core';
 
 @Injectable({
@@ -17,10 +16,9 @@ export class TemplateInstanceService extends GenericMultiLoaderService<TemplateI
     http: HttpClient,
     restApiUrl: RestApiUrlService,
     router: Router,
-    notify: SnotifyService,
     translateService: TranslateService
   ) {
-    super(http, restApiUrl, router, notify, translateService);
+    super(http, restApiUrl, router, translateService);
   }
 
   getTemplateInstance(templateInstanceId: string): Observable<TemplateInstance | null> | null {

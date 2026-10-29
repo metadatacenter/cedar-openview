@@ -1,7 +1,6 @@
 import {TestBed} from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {AppComponent} from './app.component';
-import {SnotifyModule, SnotifyService, ToastDefaults} from 'ng-alt-snotify';
 import {SpinnerComponent} from './modules/shared/components/spinner/spinner.component';
 import {NavbarComponent} from './modules/shared/components/navbar/navbar.component';
 import {FooterComponent} from './modules/shared/components/footer/footer.component';
@@ -16,7 +15,6 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        SnotifyModule,
         MaterialModule,
         TranslatePipe
       ],
@@ -29,21 +27,13 @@ describe('AppComponent', () => {
       providers: [
         provideHttpClient(withXhr(), withInterceptorsFromDi()),
         provideTranslateService({loader: provideTranslateLoader(BundledTranslateLoader)}),
-        AppConfigService,
-        SnotifyService,
-        {
-          provide: 'SnotifyToastConfig',
-          useValue: ToastDefaults
-        }
+        AppConfigService
       ]
     }).compileComponents();
   });
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    // The shell has to render: ng-alt-snotify's own component subscribes in
-    // ngOnInit and unsubscribes unguarded in ngOnDestroy, so a fixture that is
-    // never rendered throws when the TestBed tears it down.
     fixture.detectChanges();
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
