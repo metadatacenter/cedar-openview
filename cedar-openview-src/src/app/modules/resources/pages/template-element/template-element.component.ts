@@ -1,4 +1,5 @@
-import {Component, OnInit, ChangeDetectionStrategy, ElementRef, ViewChild} from '@angular/core';
+import { CeeLoader } from '../../../../services/cee-loader.service';
+import {inject, Component, OnInit, ChangeDetectionStrategy, ElementRef, ViewChild} from '@angular/core';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -19,6 +20,7 @@ import {elementAsTemplate} from '../../../shared/util/element-as-template';
   standalone: false
 })
 export class TemplateElementComponent extends CedarPageComponent implements OnInit {
+  private readonly ceeLoader = inject(CeeLoader);
 
   templateElementId: string | null = null;
   template?: TemplateElement;
@@ -58,7 +60,8 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
       .load(() => this.dataLoadedCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.dataErrorCallback(error, dataStatus));
   }
 
-  private dataLoadedCallback() {
+  private async dataLoadedCallback() {
+    try { await this.ceeLoader.load(); } catch { this.unreadable = true; return; }
     this.template = this.dataStore.getTemplateElement(this.templateElementId ?? '');
     this.form = this.template && elementAsTemplate(this.template);
   }

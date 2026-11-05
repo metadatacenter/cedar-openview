@@ -1,4 +1,5 @@
-import {Component, OnInit, ChangeDetectionStrategy, NgZone} from '@angular/core';
+import { CeeLoader } from '../../../../services/cee-loader.service';
+import {inject, Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, DestroyRef, NgZone} from '@angular/core';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -17,6 +18,9 @@ import {CeeConfigService} from '../../../../services/cee-config.service';
   standalone: false
 })
 export class TemplateFieldComponent extends CedarPageComponent implements OnInit {
+  private readonly ceeLoader = inject(CeeLoader);
+  private readonly changeDetector = inject(ChangeDetectorRef);
+  private readonly destroyRef = inject(DestroyRef);
 
   templateFieldId: string | null = null;
   template?: TemplateField;
@@ -43,12 +47,26 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
   // That channel can also carry a problem that leaves the field standing, so a later `ready` undoes
   // the refusal. The callbacks arrive from the element's own zone.
   handler = {
-    error: () => this.zone.run(() => (this.unreadable = !this.rendered)),
-    ready: () => this.zone.run(() => {
+    error: () => this.afterFieldRender(() => {
+      this.unreadable = !this.rendered;
+    }),
+    ready: () => this.afterFieldRender(() => {
       this.rendered = true;
       this.unreadable = false;
     })
   };
+
+  private afterFieldRender(update: () => void) {
+    // A defined custom element can refuse its input during this view's own render.
+    // Notify Angular afterwards so that render cannot clear the new dirty state.
+    queueMicrotask(() => {
+      if (this.destroyRef.destroyed) return;
+      this.zone.run(() => {
+        update();
+        this.changeDetector.markForCheck();
+      });
+    });
+  }
 
   constructor(
     router: Router,
@@ -72,7 +90,8 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
       .load(() => this.dataLoadedCallback(), (error: any, dataStatus: DataHandlerDataStatus) => this.dataErrorCallback(error, dataStatus));
   }
 
-  private dataLoadedCallback() {
+  private async dataLoadedCallback() {
+    try { await this.ceeLoader.load(); } catch { this.unreadable = true; return; }
     this.template = this.dataStore.getTemplateField(this.templateFieldId ?? '');
   }
 

@@ -55,6 +55,41 @@ async function openApi(page, answered) {
 const card = (page, kind) => page.locator('.resource').filter({ has: page.getByRole('link', { name: name(kind), exact: true }) });
 const preview = (page) => page.locator('dialog.artifact-preview');
 
+test('folder browsing defers the editor and repeated previews reuse one download', async ({ page }) => {
+  const downloads = [];
+  page.on('request', request => {
+    if (/cedar-embeddable-editor.*\.js/.test(request.url())) downloads.push(request.url());
+  });
+  await openApi(page, answers());
+  await page.goto(`/folders/${FOLDER}`);
+  const trigger = page.getByRole('button', { name: `Preview ${name('template')}`, exact: true });
+  await expect(trigger).toBeVisible();
+  expect(downloads).toEqual([]);
+  for (let attempt = 0; attempt < 2; attempt++) {
+    await trigger.click();
+    await expect(preview(page)).not.toHaveClass(/is-preparing/);
+    await expect(preview(page).getByRole('alert')).toHaveCount(0);
+    await preview(page).getByRole('button', { name: 'Close preview' }).click();
+  }
+  expect(downloads).toHaveLength(1);
+  expect(downloads[0]).toContain('cedar-embeddable-editor.host-fonts.js');
+});
+
+test('a failed editor download uses the preview error and a later preview can retry', async ({ page }) => {
+  await openApi(page, answers());
+  const bundle = '**/cedar-embeddable-editor.host-fonts.js';
+  await page.route(bundle, route => route.abort());
+  await page.goto(`/folders/${FOLDER}`);
+  const trigger = page.getByRole('button', { name: `Preview ${name('template')}`, exact: true });
+  await trigger.click();
+  await expect(preview(page).getByRole('alert')).toBeVisible();
+  await preview(page).getByRole('button', { name: 'Close preview' }).click();
+  await page.unroute(bundle);
+  await trigger.click();
+  await expect(preview(page)).not.toHaveClass(/is-preparing/);
+  await expect(preview(page).getByRole('alert')).toHaveCount(0);
+});
+
 test('a versioned card states its version and status beside its icon', async ({ page }) => {
   await openApi(page, answers());
   await page.goto(`/folders/${FOLDER}`);
