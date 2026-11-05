@@ -31,7 +31,7 @@
               "src/favicon.ico",
               "src/assets",
               {
-                "glob": "cedar-embeddable-editor.js",
+                "glob": "cedar-embeddable-editor.host-fonts.js",
                 "input": "node_modules/cedar-embeddable-editor/",
                 "output": "node_modules/cedar-embeddable-editor"
               }
