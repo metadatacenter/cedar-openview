@@ -1,8 +1,5 @@
 @use '@org.metadatacenter/cedar-design-tokens/motion';
-// The shared CEDAR Roboto faces at the two weights the vocabulary uses. Font faces register only in
-// the document, never in a shadow root.
-@use '@org.metadatacenter/cedar-design-tokens/fonts/regular';
-@use '@org.metadatacenter/cedar-design-tokens/fonts/medium';
+// angular.json loads the hosted CEDAR Roboto faces in the document for this page and its editors.
 @import '@org.metadatacenter/cedar-design-tokens/custom-properties.css';
 @import '@org.metadatacenter/cedar-design-tokens/icon-contract.css';
 // The shared focus ring for everything focusable that does not draw its own.
