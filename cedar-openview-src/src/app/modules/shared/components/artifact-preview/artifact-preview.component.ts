@@ -1,3 +1,4 @@
+import { CeeLoader } from '../../../../services/cee-loader.service';
 import {JsonSourcePolicy} from 'cedar-model-typescript-library/policy';
 import {
   AfterViewInit,
@@ -51,6 +52,7 @@ export class ArtifactPreviewComponent implements AfterViewInit, OnDestroy {
   @ViewChild('dialog', {static: true}) dialog!: ElementRef<HTMLDialogElement>;
   @ViewChild('mount', {static: true}) mount!: ElementRef<HTMLDivElement>;
 
+  private readonly ceeLoader = inject(CeeLoader);
   private readonly http = inject(HttpClient);
   private readonly urls = inject(RestApiUrlService);
   private readonly ceeConfig = inject(CeeConfigService);
@@ -92,6 +94,7 @@ export class ArtifactPreviewComponent implements AfterViewInit, OnDestroy {
       } else if (this.resource.resourceType === 'element') {
         template = elementAsTemplate(artifact);
       }
+      await this.ceeLoader.load();
       if (!this.alive || this.error()) return;
       this.source = {artifact, template};
       this.mountViewer(this.source);

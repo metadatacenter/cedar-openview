@@ -1,4 +1,5 @@
-import {Component, OnInit, ChangeDetectionStrategy, ElementRef, ViewChild} from '@angular/core';
+import { CeeLoader } from '../../../../services/cee-loader.service';
+import {inject, Component, OnInit, ChangeDetectionStrategy, ElementRef, ViewChild} from '@angular/core';
 import {DataStoreService} from '../../../../services/data-store.service';
 import {DataHandlerService} from '../../../../services/data-handler.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -19,6 +20,7 @@ import {whenCeeRefuses} from '../../../shared/util/cee-refusal';
   standalone: false
 })
 export class TemplateInstanceComponent extends CedarPageComponent implements OnInit {
+  private readonly ceeLoader = inject(CeeLoader);
 
   templateInstanceId: string | null = null;
   instance?: TemplateInstance;
@@ -69,7 +71,8 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
       .load(() => this.templateLoadedCallback(this.templateId ?? ''), (error: any, dataStatus: DataHandlerDataStatus) => this.templateErrorCallback(error, dataStatus));
   }
 
-  private templateLoadedCallback(templateId: string) {
+  private async templateLoadedCallback(templateId: string) {
+    try { await this.ceeLoader.load(); } catch { this.unreadable = true; return; }
     this.template = this.dataStore.getTemplate(templateId);
 
     // if this is a default instance, save the template info
