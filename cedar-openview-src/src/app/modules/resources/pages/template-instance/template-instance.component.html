@@ -17,6 +17,7 @@
       <!-- Both at once, so a refusal of either leaves the editor holding nothing, which is what says it refused. -->
       <cedar-embeddable-editor
         #editor
+      [eventHandler]="editorHandler"
         [config]="cfg"
         [templateAndInstanceObject]="{ templateObject: template, instanceObject: instance }"
       ></cedar-embeddable-editor>

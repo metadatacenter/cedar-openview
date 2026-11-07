@@ -30,7 +30,7 @@ export class TemplateComponent extends CedarPageComponent implements OnInit {
   unreadable = false;
 
   @ViewChild('editor') set editor(editor: ElementRef<HTMLElement> | undefined) {
-    if (editor) whenCeeRefuses(editor.nativeElement, () => (this.unreadable = true));
+    if (editor) whenCeeRefuses(editor.nativeElement, () => { this.unreadable = true; this.contentRendered(); });
   }
 
   cfg = this.ceeConfig.value;
@@ -56,12 +56,13 @@ export class TemplateComponent extends CedarPageComponent implements OnInit {
   }
 
   private async dataLoadedCallback() {
-    try { await this.ceeLoader.load(); } catch { this.unreadable = true; return; }
+    try { await this.ceeLoader.load(); } catch { this.unreadable = true; this.contentRendered(); return; }
     this.template = this.dataStore.getTemplate(this.templateId ?? '');
   }
 
   private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
     this.artifactStatus = error.status;
+    this.contentRendered();
   }
 }
 

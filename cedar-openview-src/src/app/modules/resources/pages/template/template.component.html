@@ -2,6 +2,7 @@
   <div class="instance__container " [hidden]="unreadable">
     <cedar-embeddable-editor
       #editor
+      [eventHandler]="editorHandler"
       [config]="cfg"
       [templateObject]="template"
     ></cedar-embeddable-editor>
