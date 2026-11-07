@@ -32,7 +32,7 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
   unreadable = false;
 
   @ViewChild('editor') set editor(editor: ElementRef<HTMLElement> | undefined) {
-    if (editor) whenCeeRefuses(editor.nativeElement, () => (this.unreadable = true));
+    if (editor) whenCeeRefuses(editor.nativeElement, () => { this.unreadable = true; this.contentRendered(); });
   }
 
   template: any = null;
@@ -72,7 +72,7 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
   }
 
   private async templateLoadedCallback(templateId: string) {
-    try { await this.ceeLoader.load(); } catch { this.unreadable = true; return; }
+    try { await this.ceeLoader.load(); } catch { this.unreadable = true; this.contentRendered(); return; }
     this.template = this.dataStore.getTemplate(templateId);
 
     // if this is a default instance, save the template info
@@ -86,9 +86,11 @@ export class TemplateInstanceComponent extends CedarPageComponent implements OnI
 
   private instanceErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
     this.artifactStatus = error.status;
+    this.contentRendered();
   }
 
   private templateErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
     this.templateStatus = error.status;
+    this.contentRendered();
   }
 }

@@ -1,4 +1,4 @@
-import {Component, ChangeDetectionStrategy} from '@angular/core';
+import {Component, ChangeDetectionStrategy, Signal} from '@angular/core';
 import {environment} from '../environments/environment';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {Title} from '@angular/platform-browser';
@@ -13,6 +13,8 @@ import {LocalSettingsService} from './services/local-settings.service';
   standalone: false
 })
 export class AppComponent {
+
+  activePage: {contentReady?: Signal<boolean>} | null = null;
 
   constructor(
     localSettings: LocalSettingsService,

@@ -63,6 +63,7 @@ function failure(answer, noun, ofTemplate) {
 
 async function expectFailure(page, [title, message]) {
   const card = page.locator('.error-card');
+  await expect(page.locator('app-footer')).toBeVisible();
   await expect(card).toHaveCount(1);
   await expect(card.locator('mat-card-title')).toHaveText(title);
   await expect(card.locator('mat-card-content')).toContainText(message);

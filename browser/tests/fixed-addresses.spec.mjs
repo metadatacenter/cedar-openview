@@ -44,6 +44,30 @@ for (const [kind, { answers, shown }] of Object.entries(PAGES))
     });
     await page.goto(Object.keys(answers)[0]);
     await expect(shown(page)).toBeVisible();
+    await expect(page.locator('app-footer')).toBeVisible();
     await expect(page.locator('.error-card')).toHaveCount(0);
     expect(read).toEqual([]);
   });
+
+
+for (const status of [200, 404]) test(`footer waits for template content or its ${status} response`, async ({page}) => {
+  let release;
+  const held = new Promise(resolve => { release = resolve; });
+  let requested;
+  const requestArrived = new Promise(resolve => { requested = resolve; });
+  await page.route('https://open.metadatacenter.org/**', async route => {
+    requested();
+    await held;
+    await route.fulfill(status === 200 ? {json: fixture('template')} : {status, json: {}});
+  });
+  await page.goto(TEMPLATE, {waitUntil: 'domcontentloaded'});
+  await requestArrived;
+  await expect(page.locator('app-navbar')).toBeVisible();
+  await expect(page.locator('app-footer')).toBeHidden();
+  release();
+  await expect(status === 200 ? editorHeading(page) : page.locator('.error-card')).toBeVisible();
+  await expect(page.locator('app-footer')).toBeVisible();
+  const footer = await page.locator('app-footer').boundingBox();
+  const main = await page.locator('main').boundingBox();
+  expect(footer.y).toBeGreaterThanOrEqual(main.y + main.height - 1);
+});

@@ -49,9 +49,11 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
   handler = {
     error: () => this.afterFieldRender(() => {
       this.unreadable = !this.rendered;
+      this.contentRendered();
     }),
     ready: () => this.afterFieldRender(() => {
       this.rendered = true;
+      this.contentRendered();
       this.unreadable = false;
     })
   };
@@ -91,11 +93,12 @@ export class TemplateFieldComponent extends CedarPageComponent implements OnInit
   }
 
   private async dataLoadedCallback() {
-    try { await this.ceeLoader.load(); } catch { this.unreadable = true; return; }
+    try { await this.ceeLoader.load(); } catch { this.unreadable = true; this.contentRendered(); return; }
     this.template = this.dataStore.getTemplateField(this.templateFieldId ?? '');
   }
 
   private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
     this.artifactStatus = error.status;
+    this.contentRendered();
   }
 }

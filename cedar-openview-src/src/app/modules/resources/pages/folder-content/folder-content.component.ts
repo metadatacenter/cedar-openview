@@ -53,10 +53,12 @@ export class FolderContentComponent extends CedarPageComponent implements OnInit
   }
 
   private dataLoadedCallback() {
+    this.contentRendered();
     this.folderContents = this.dataStore.getFolderContent(this.folderId ?? '');
   }
 
   private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
+    this.contentRendered();
     this.folderStatus = error.status;
   }
 

@@ -33,7 +33,7 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
   unreadable = false;
 
   @ViewChild('editor') set editor(editor: ElementRef<HTMLElement> | undefined) {
-    if (editor) whenCeeRefuses(editor.nativeElement, () => (this.unreadable = true));
+    if (editor) whenCeeRefuses(editor.nativeElement, () => { this.unreadable = true; this.contentRendered(); });
   }
 
   // The page states the element's title, since the editor's header would call it a template. A
@@ -61,12 +61,13 @@ export class TemplateElementComponent extends CedarPageComponent implements OnIn
   }
 
   private async dataLoadedCallback() {
-    try { await this.ceeLoader.load(); } catch { this.unreadable = true; return; }
+    try { await this.ceeLoader.load(); } catch { this.unreadable = true; this.contentRendered(); return; }
     this.template = this.dataStore.getTemplateElement(this.templateElementId ?? '');
     this.form = this.template && elementAsTemplate(this.template);
   }
 
   private dataErrorCallback(error: any, dataStatus: DataHandlerDataStatus) {
     this.artifactStatus = error.status;
+    this.contentRendered();
   }
 }

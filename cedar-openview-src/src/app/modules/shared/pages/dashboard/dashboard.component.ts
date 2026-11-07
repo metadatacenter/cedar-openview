@@ -23,6 +23,7 @@ export class DashboardComponent extends CedarPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.contentRendered();
     window.location.href = globalAppConfig.cedarUrl;
   }
 
