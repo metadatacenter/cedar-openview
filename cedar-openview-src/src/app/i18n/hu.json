@@ -31,5 +31,32 @@
     "Unsaved": "Próbálja ki — semmit sem mentünk. A mód elhagyásakor a beírt adatok elvesznek.",
     "Unavailable": "Az előnézet nem tölthető be. Zárja be, és próbálja újra.",
     "TemplateClosed": "Ez a metaadat megtekinthető, de a sablonja nem nyilvános, ezért nem jeleníthető meg."
+  },
+  "Navbar": {
+    "ReadMoreOpenView": "További információ az OpenView-ról",
+    "ReadMoreCedar": "További információ a CEDAR-ról"
+  },
+  "LoginTooltip": "Bejelentkezés a CEDAR-ba",
+  "Legend": {
+    "Title": "Jelmagyarázat",
+    "Text": "Szöveg",
+    "Controlled": "Szabályozott",
+    "Number": "Szám",
+    "Date": "Dátum",
+    "Email": "E-mail",
+    "Telephone": "Telefon",
+    "Checkbox": "Jelölőnégyzet",
+    "List": "Lista",
+    "Radio": "Választógomb",
+    "Link": "Hivatkozás",
+    "Paragraph": "Bekezdés",
+    "Attribute": "Attribútum",
+    "Required": "Kötelező"
+  },
+  "Footer": {
+    "Title": "A CEDAR-ról",
+    "Maintainer": "A CEDAR-t a Stanford Egyetem Számítógépes Orvostudományi Tanszéke tartja fenn.",
+    "Visit": "Látogasson el a CEDAR weboldalára",
+    "LogoAlt": "Stanford Egyetem, Számítógépes Orvostudományi Tanszék"
   }
 }

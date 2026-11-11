@@ -89,26 +89,49 @@ for (const [language, text] of Object.entries(LANGUAGES)) {
   });
 }
 
-// Text OpenView has only in English stays marked English in a Hungarian interface, so a screen reader
-// reads it in English. Translated text takes the page's language.
+// The card and the artifact heading's kind and status have only English, so they stay marked English
+// in a Hungarian interface and a screen reader reads them in English. Translated text, the legend and
+// the footer included, takes the page's language.
 const ENGLISH_ONLY = {
-  'folder-page': ['.footer-title', '.footer-text p', '.footer-logo img'],
-  'element-page': ['.legend-title', '.legend > div', '.artifact-provenance span'],
+  'element-page': ['.artifact-provenance span'],
   'unauthorized-page': ['mat-card-title', 'mat-card-subtitle', 'mat-card-content div', '.login-button'],
 };
-const TRANSLATED = { 'folder-page': ['.folder-path', '.resource-meta', '.folder-count'] };
+const TRANSLATED = {
+  'folder-page': ['.folder-path', '.resource-meta', '.folder-count', '.footer-title', '.footer-text p', '.footer-logo img'],
+  'element-page': ['.legend-title', '.legend > div'],
+};
 const languageOf = (page, selector) =>
   page.locator(selector).evaluateAll((elements) => elements.map((element) => element.closest('[lang]').lang));
 
-for (const [scenario, selectors] of Object.entries(ENGLISH_ONLY))
+for (const scenario of Object.keys({ ...ENGLISH_ONLY, ...TRANSLATED }))
   test(`${scenario} marks its English-only text English in a Hungarian interface`, async ({ page }) => {
     await page.addInitScript(() => localStorage.setItem('language', 'hu'));
     await scenarios[scenario](page);
     await expect(page.locator('html')).toHaveAttribute('lang', 'hu');
-    for (const [expected, list] of [['en', selectors], ['hu', TRANSLATED[scenario] ?? []]])
+    for (const [expected, list] of [['en', ENGLISH_ONLY[scenario] ?? []], ['hu', TRANSLATED[scenario] ?? []]])
       for (const selector of list) {
         const languages = await languageOf(page, selector);
         expect(languages.length, selector).toBeGreaterThan(0);
         expect(languages, selector).toEqual(languages.map(() => expected));
       }
   });
+
+// Material gives a tooltip no language of its own, so each follows the interface language.
+const TOOLTIPS = {
+  en: { openview: 'Read more about OpenView', cedar: 'Read more about CEDAR', login: 'Login to CEDAR' },
+  hu: { openview: 'További információ az OpenView-ról', cedar: 'További információ a CEDAR-ról', login: 'Bejelentkezés a CEDAR-ba' },
+};
+const HOVERED = [
+  ['folder-page', 'openview', '.cedar__logo a'],
+  ['folder-page', 'cedar', '.button-container a'],
+  ['unauthorized-page', 'login', '.login-button'],
+];
+
+for (const language of Object.keys(TOOLTIPS))
+  for (const [scenario, name, selector] of HOVERED)
+    test(`${scenario} shows the ${name} tooltip in ${language}`, async ({ page }) => {
+      await page.addInitScript((choice) => localStorage.setItem('language', choice), language);
+      await scenarios[scenario](page);
+      await page.locator(selector).first().hover();
+      await expect(page.locator('.mat-mdc-tooltip')).toHaveText(TOOLTIPS[language][name]);
+    });

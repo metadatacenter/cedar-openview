@@ -7,14 +7,14 @@
         carries the name, which is what names the link for a reader who cannot see it.
       -->
       <a href="https://metadatacenter.readthedocs.io/en/latest/user-guide/openview/"
-        target="_blank" rel="noopener" matTooltip="Read more about OpenView">
+        target="_blank" rel="noopener" [matTooltip]="'Navbar.ReadMoreOpenView' | translate">
         <img src="assets/img/logo/cedar-open-view-logo.png" alt="{{'App.NavTitle' | translate}}">
       </a>
     </div>
     <div class="button-container column">
       <!-- A link rather than a button that opens a window, so it says where it goes. -->
       <a mat-button href="http://metadatacenter.org" target="_blank" rel="noopener"
-        matTooltip="Read more about CEDAR">
+        [matTooltip]="'Navbar.ReadMoreCedar' | translate">
         metadatacenter.org
       </a>
     </div>

@@ -7,20 +7,19 @@
         20% of the container it was about 190px tall against 80px of text, so the footer was more
         than twice the height of what it says.
       -->
-      <!-- The footer has no translations, so it is marked English whatever the interface language. -->
-      <div class="paragraph__section" lang="en">
+      <div class="paragraph__section">
         <div class="footer-text">
-          <h1 class="footer-title">About CEDAR</h1>
+          <h1 class="footer-title">{{ 'Footer.Title' | translate }}</h1>
           <p>
-            CEDAR is maintained by the Stanford Division of Computational Medicine.
+            {{ 'Footer.Maintainer' | translate }}
           </p>
           <p>
-            <a href="https://metadatacenter.org/" target="_blank" rel="noreferrer">Visit the CEDAR website</a>
+            <a href="https://metadatacenter.org/" target="_blank" rel="noreferrer">{{ 'Footer.Visit' | translate }}</a>
           </p>
         </div>
         <a class="footer-logo" href="https://computationalmedicine.stanford.edu/" target="_blank" rel="noreferrer">
           <img src="assets/img/computational-medicine-logo.png" class="computational-medicine-logo"
-               alt="Stanford Division of Computational Medicine">
+               alt="{{ 'Footer.LogoAlt' | translate }}">
         </a>
       </div>
     </div>
