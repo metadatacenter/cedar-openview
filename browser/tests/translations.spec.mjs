@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { test, expect } from '@playwright/test';
+import { scenarios } from './scenarios.mjs';
 
 // The folder page shows its text in each language OpenView has, never the translation keys, even in
 // a browser that still holds the translation files an earlier build served. Production served them
@@ -75,6 +76,7 @@ for (const [language, text] of Object.entries(LANGUAGES)) {
     await expect(page.locator('.folder-path')).toHaveAttribute('aria-label', text.path);
     await expect(page.locator('.folder-count')).toHaveText(text.total);
     await expect(page).toHaveTitle(text.title);
+    await expect(page.locator('html')).toHaveAttribute('lang', language);
     await expectNoKeys(page);
   });
 
@@ -82,6 +84,31 @@ for (const [language, text] of Object.entries(LANGUAGES)) {
     await open(page, language, EMPTY);
     await expect(page.locator('.empty p, .folder-count')).toHaveText(text.empty);
     await expect(page).toHaveTitle(text.title);
+    await expect(page.locator('html')).toHaveAttribute('lang', language);
     await expectNoKeys(page);
   });
 }
+
+// Text OpenView has only in English stays marked English in a Hungarian interface, so a screen reader
+// reads it in English. Translated text takes the page's language.
+const ENGLISH_ONLY = {
+  'folder-page': ['.footer-title', '.footer-text p', '.footer-logo img'],
+  'element-page': ['.legend-title', '.legend > div', '.artifact-provenance span'],
+  'unauthorized-page': ['mat-card-title', 'mat-card-subtitle', 'mat-card-content div', '.login-button'],
+};
+const TRANSLATED = { 'folder-page': ['.folder-path', '.resource-meta', '.folder-count'] };
+const languageOf = (page, selector) =>
+  page.locator(selector).evaluateAll((elements) => elements.map((element) => element.closest('[lang]').lang));
+
+for (const [scenario, selectors] of Object.entries(ENGLISH_ONLY))
+  test(`${scenario} marks its English-only text English in a Hungarian interface`, async ({ page }) => {
+    await page.addInitScript(() => localStorage.setItem('language', 'hu'));
+    await scenarios[scenario](page);
+    await expect(page.locator('html')).toHaveAttribute('lang', 'hu');
+    for (const [expected, list] of [['en', selectors], ['hu', TRANSLATED[scenario] ?? []]])
+      for (const selector of list) {
+        const languages = await languageOf(page, selector);
+        expect(languages.length, selector).toBeGreaterThan(0);
+        expect(languages, selector).toEqual(languages.map(() => expected));
+      }
+  });

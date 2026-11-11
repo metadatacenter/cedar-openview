@@ -12,10 +12,11 @@
       </a>
     </div>
     <div class="button-container column">
-      <button (click)="openInNewWindow('http://metadatacenter.org')" mat-button mat-button
+      <!-- A link rather than a button that opens a window, so it says where it goes. -->
+      <a mat-button href="http://metadatacenter.org" target="_blank" rel="noopener"
         matTooltip="Read more about CEDAR">
         metadatacenter.org
-      </button>
+      </a>
     </div>
   </div>
 </header>

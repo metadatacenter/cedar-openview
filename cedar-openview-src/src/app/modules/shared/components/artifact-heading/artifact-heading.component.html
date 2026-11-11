@@ -1,6 +1,7 @@
 <header class="artifact-heading">
   <h1 class="artifact-label">{{ label }}</h1>
-  <div class="artifact-provenance">
+  <!-- The kind and status are worded in English only. The label is the artifact's own. -->
+  <div class="artifact-provenance" lang="en">
     <span>{{ kindAndVersion }}</span>
     @if (status) {
       <span>{{ status }}</span>
