@@ -1,3 +1,10 @@
+/** Safari on macOS uses Option-Tab to include every control with its default keyboard settings. */
+function tabKey(page, key = 'Tab') {
+  return process.platform === 'darwin' && page.context().browser()?.browserType().name() === 'webkit'
+    ? `Alt+${key}`
+    : key;
+}
+
 import { readFileSync } from 'node:fs';
 import AxeBuilder from '@axe-core/playwright';
 import { test, expect } from '@playwright/test';
@@ -79,13 +86,19 @@ for (const [kind, [open, find]] of Object.entries(controls)) {
     await expect.poll(() => control.evaluate((element) => element.matches(':hover'))).toBe(true);
     await expectTooltip(page, control);
   };
-  // Focus leaves by Shift+Tab and returns by Tab, so it arrives as it does for someone using the keyboard.
+  // Establish keyboard modality before selecting the control, without crossing the browser toolbar.
   states[`focused ${kind}`] = async (page) => {
     await open(page);
     const control = find(page);
-    await control.focus();
-    await page.keyboard.press('Shift+Tab');
-    await page.keyboard.press('Tab');
+    if (kind === 'wordmark link') {
+      // The first control's previous stop is browser chrome, which Playwright cannot traverse reliably.
+      await page.keyboard.press(tabKey(page, 'Tab'));
+      await control.focus();
+    } else {
+      await control.focus();
+      await page.keyboard.press(tabKey(page, 'Shift+Tab'));
+      await page.keyboard.press(tabKey(page, 'Tab'));
+    }
     await expect(control).toBeFocused();
     expect(await control.evaluate((element) => element.matches(':focus-visible'))).toBe(true);
     await expectTooltip(page, control);
@@ -103,7 +116,12 @@ for (const [kind, [open, find]] of Object.entries(controls)) {
  * An entry gives its `rule` and `states`, a `target` selector that every element it settles matches,
  * what was `measured` on the day it was written, and why that `passes`.
  */
-const SETTLED = [];
+const SETTLED = [{
+  rule: 'color-contrast', browser: 'webkit',
+  states: ['element-page at 1440', 'element-page at 375', 'field-page at 1440', 'field-page at 375', 'unreadable field'],
+  target: '.legend-title', measured: '10.65:1',
+  passes: 'The opaque legend panel is #f4f6f6 beneath #173f3e text. WebKit leaves the legend undecided; the gate measures its painted contrast against the AA threshold on every scan.',
+}];
 
 /**
  * Findings that only a visible change can fix, whether axe reports them as violations or they are
@@ -272,7 +290,8 @@ const matching = (page, node, selectors) =>
  */
 async function expectAccessible(page, state) {
   const { violations, undecided } = await audit(page);
-  const settled = SETTLED.filter((entry) => entry.states.includes(state));
+  const settled = SETTLED.filter((entry) => entry.states.includes(state) &&
+    (!entry.browser || entry.browser === page.context().browser()?.browserType().name()));
   const excepted = EXCEPTIONS.filter((entry) => entry.states.includes(state));
   const used = new Set();
   const failures = [];
