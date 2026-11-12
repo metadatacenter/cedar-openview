@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { test, expect } from '@playwright/test';
+import { scenarios } from './scenarios.mjs';
 
 // The folder page shows its text in each language OpenView has, never the translation keys, even in
 // a browser that still holds the translation files an earlier build served. Production served them
@@ -75,6 +76,7 @@ for (const [language, text] of Object.entries(LANGUAGES)) {
     await expect(page.locator('.folder-path')).toHaveAttribute('aria-label', text.path);
     await expect(page.locator('.folder-count')).toHaveText(text.total);
     await expect(page).toHaveTitle(text.title);
+    await expect(page.locator('html')).toHaveAttribute('lang', language);
     await expectNoKeys(page);
   });
 
@@ -82,6 +84,54 @@ for (const [language, text] of Object.entries(LANGUAGES)) {
     await open(page, language, EMPTY);
     await expect(page.locator('.empty p, .folder-count')).toHaveText(text.empty);
     await expect(page).toHaveTitle(text.title);
+    await expect(page.locator('html')).toHaveAttribute('lang', language);
     await expectNoKeys(page);
   });
 }
+
+// The card and the artifact heading's kind and status have only English, so they stay marked English
+// in a Hungarian interface and a screen reader reads them in English. Translated text, the legend and
+// the footer included, takes the page's language.
+const ENGLISH_ONLY = {
+  'element-page': ['.artifact-provenance span'],
+  'unauthorized-page': ['mat-card-title', 'mat-card-subtitle', 'mat-card-content div', '.login-button'],
+};
+const TRANSLATED = {
+  'folder-page': ['.folder-path', '.resource-meta', '.folder-count', '.footer-title', '.footer-text p', '.footer-logo img'],
+  'element-page': ['.legend-title', '.legend > div'],
+};
+const languageOf = (page, selector) =>
+  page.locator(selector).evaluateAll((elements) => elements.map((element) => element.closest('[lang]').lang));
+
+for (const scenario of Object.keys({ ...ENGLISH_ONLY, ...TRANSLATED }))
+  test(`${scenario} marks its English-only text English in a Hungarian interface`, async ({ page }) => {
+    await page.addInitScript(() => localStorage.setItem('language', 'hu'));
+    await scenarios[scenario](page);
+    await expect(page.locator('html')).toHaveAttribute('lang', 'hu');
+    for (const [expected, list] of [['en', ENGLISH_ONLY[scenario] ?? []], ['hu', TRANSLATED[scenario] ?? []]])
+      for (const selector of list) {
+        const languages = await languageOf(page, selector);
+        expect(languages.length, selector).toBeGreaterThan(0);
+        expect(languages, selector).toEqual(languages.map(() => expected));
+      }
+  });
+
+// Material gives a tooltip no language of its own, so each follows the interface language.
+const TOOLTIPS = {
+  en: { openview: 'Read more about OpenView', cedar: 'Read more about CEDAR', login: 'Login to CEDAR' },
+  hu: { openview: 'További információ az OpenView-ról', cedar: 'További információ a CEDAR-ról', login: 'Bejelentkezés a CEDAR-ba' },
+};
+const HOVERED = [
+  ['folder-page', 'openview', '.cedar__logo a'],
+  ['folder-page', 'cedar', '.button-container a'],
+  ['unauthorized-page', 'login', '.login-button'],
+];
+
+for (const language of Object.keys(TOOLTIPS))
+  for (const [scenario, name, selector] of HOVERED)
+    test(`${scenario} shows the ${name} tooltip in ${language}`, async ({ page }) => {
+      await page.addInitScript((choice) => localStorage.setItem('language', choice), language);
+      await scenarios[scenario](page);
+      await page.locator(selector).first().hover();
+      await expect(page.locator('.mat-mdc-tooltip')).toHaveText(TOOLTIPS[language][name]);
+    });

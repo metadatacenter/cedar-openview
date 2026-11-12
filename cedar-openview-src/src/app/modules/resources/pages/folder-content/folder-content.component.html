@@ -23,7 +23,8 @@
                 >
               }
             </span>
-            <a class="resource-name" (click)="open(resource)" href="javascript://">{{ resource['schema:name'] }}</a>
+            <!-- Two lines show of a long name, so the title holds the whole of it. -->
+            <a class="resource-name" (click)="open(resource)" href="javascript://" [title]="resource['schema:name']">{{ resource['schema:name'] }}</a>
             <span class="resource-meta">{{ 'FolderContent.Types.' + resource['resourceType'] | translate }}</span>
             @if (resource['resourceType'] !== 'folder') {
               <button

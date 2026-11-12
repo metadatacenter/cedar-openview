@@ -7,6 +7,8 @@ dist/
 
 # dependencies
 cedar-openview-src/node_modules/
+# Root only: cedar-openview-dist tracks a bundle under a node_modules path of its own.
+/node_modules/
 
 # profiling files
 chrome-profiler-events.json

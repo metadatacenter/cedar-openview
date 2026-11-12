@@ -2,97 +2,9 @@ import { readFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
 import { test, expect } from '@playwright/test';
 import { surfaceCases, checkSurface } from './surface-contracts.generated.mjs';
+import { scenarios } from './scenarios.mjs';
 
 const registry = JSON.parse(readFileSync(new URL('../../.ui-surfaces.json', import.meta.url), 'utf8'));
-const fixture = (name) => JSON.parse(readFileSync(new URL(`../fixtures/${name}.json`, import.meta.url), 'utf8'));
-const folderId = 'https://repo.metadatacenter.org/folders/32fc3013-1b73-4a2a-86f7-189f73d3400c';
-const templateId = 'https://repo.metadatacenter.org/templates/a8f75474-ca14-4726-a071-acbfa9f8c466';
-const elementId = 'https://repo.metadatacenter.org/template-elements/5d8c2f3e-7a41-4b9c-9e62-1f0a3b7c8d24';
-const fieldId = 'https://repo.metadatacenter.org/template-fields/bbc141a6-0e81-4cba-8651-8b61a623bd6c';
-const instanceId = 'https://repo.metadatacenter.org/template-instances/0b6e4d1a-93f2-4c57-8a1e-6d2f7c9b4e13';
-// OpenView asks the open API for an identity on its own deployment by the collection and uuid alone.
-const api = (id) => id.replace('https://repo.metadatacenter.org', '');
-
-// The suite never leaves the machine. The open API answers from fixtures, and every other
-// external request, the hosted fonts included, is refused.
-async function openApi(page, answers) {
-  await page.route((url) => url.host !== new URL(test.info().project.use.baseURL).host, (route) => route.abort());
-  await page.route('https://open.metadatacenter.org/**', (route) => {
-    const path = decodeURIComponent(new URL(route.request().url()).pathname);
-    const [, answer] = Object.entries(answers).find(([prefix]) => path.startsWith(prefix)) ?? [, 404];
-    return route.fulfill(typeof answer === 'number' ? { status: answer, json: {} } : { json: answer });
-  });
-}
-
-const scenarios = {
-  'folder-label': async (page) => {
-    await openApi(page, { [api(folderId)]: {
-      ...fixture('folder'), totalCount: 1,
-      resources: [{ resourceType: 'folder', '@id': folderId, 'schema:name': 'Shared folder' }],
-    } });
-    await page.goto(`/folders/${encodeURIComponent(folderId)}`);
-    await expect(page.locator('.resource-name')).toHaveText('Shared folder');
-  },
-  'folder-page': async (page) => {
-    await openApi(page, { [api(folderId)]: fixture('folder') });
-    await page.goto(`/folders/${encodeURIComponent(folderId)}`);
-    await expect(page.locator('.resource').first()).toBeVisible();
-  },
-  // The preview a card opens, once the editor has drawn the artifact in it.
-  'artifact-preview': async (page) => {
-    await openApi(page, { [api(folderId)]: fixture('folder'), [api(templateId)]: fixture('template') });
-    await page.goto(`/folders/${encodeURIComponent(folderId)}`);
-    await page.getByRole('button', { name: `Preview ${fixture('template')['schema:name']}`, exact: true }).click();
-    await expect(page.locator('dialog.artifact-preview')).not.toHaveClass(/is-preparing/);
-  },
-  'template-page': async (page) => {
-    await openApi(page, { [api(templateId)]: fixture('template') });
-    await page.goto(`/templates/${encodeURIComponent(templateId)}`);
-    // The form's own title says the page has drawn.
-    await expect(page.locator('cedar-embeddable-editor').getByRole('heading', { level: 1 })).toBeVisible();
-  },
-  'unauthorized-page': async (page) => {
-    await openApi(page, { [api(folderId)]: 401 });
-    await page.goto(`/folders/${encodeURIComponent(folderId)}`);
-    await expect(page.locator('.error-card')).toBeVisible();
-  },
-  'not-found-page': async (page) => {
-    await openApi(page, { [api(folderId)]: 404 });
-    await page.goto(`/folders/${encodeURIComponent(folderId)}`);
-    await expect(page.locator('.error-card')).toBeVisible();
-  },
-  'empty-folder-page': async (page) => {
-    await openApi(page, { [api(folderId)]: { ...fixture('folder'), resources: [], totalCount: 0 } });
-    await page.goto(`/folders/${encodeURIComponent(folderId)}`);
-    await expect(page.locator('.empty')).toBeVisible();
-  },
-  // An element page titles the element and draws it as a form.
-  'element-page': async (page) => {
-    await openApi(page, { [api(elementId)]: fixture('element') });
-    await page.goto(`/template-elements/${encodeURIComponent(elementId)}`);
-    await expect(page.locator('app-artifact-heading h1')).toHaveText(fixture('element')['schema:name']);
-    await expect(page.locator('cedar-embeddable-editor').getByRole('paragraph').filter({ hasText: 'The company that manufactures the instrument' })).toBeVisible();
-  },
-  // A field page titles the field by its label and draws the field.
-  'field-page': async (page) => {
-    await openApi(page, { [api(fieldId)]: fixture('field') });
-    await page.goto(`/template-fields/${encodeURIComponent(fieldId)}`);
-    await expect(page.locator('app-artifact-heading h1')).toHaveText(fixture('field')['skos:prefLabel']);
-    await expect(page.locator('cedar-embeddable-field').getByText(fixture('field')['schema:description'])).toBeVisible();
-  },
-  // An open instance whose template is not open says so where the form would be.
-  'template-not-open-page': async (page) => {
-    await openApi(page, { [api(instanceId)]: fixture('instance'), [api(templateId)]: 401 });
-    await page.goto(`/template-instances/${encodeURIComponent(instanceId)}`);
-    await expect(page.locator('.error-card')).toBeVisible();
-  },
-  // An instance page loads the instance, then the template the instance names.
-  'instance-page': async (page) => {
-    await openApi(page, { [api(instanceId)]: fixture('instance'), [api(templateId)]: fixture('template') });
-    await page.goto(`/template-instances/${encodeURIComponent(instanceId)}`);
-    await expect(page.locator('cedar-embeddable-editor').getByRole('heading', { level: 1 })).toBeVisible();
-  },
-};
 
 for (const { surface, state, width, title } of surfaceCases(registry, scenarios))
   test(title, async ({ page }, testInfo) => {
@@ -124,6 +36,20 @@ test('header motion follows the shared curve and reduced-motion preference', asy
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect.poll(() => header.evaluate((element) => parseFloat(getComputedStyle(element).animationDuration))).toBeLessThanOrEqual(0.001);
   await expect.poll(() => header.evaluate((element) => parseFloat(getComputedStyle(element).transitionDuration))).toBeLessThanOrEqual(0.001);
+});
+
+// The metadatacenter.org control is a link, so it says where it goes. It opens in a new tab, as the
+// button it replaced did, and draws as that button did, with no underline.
+test('the header links to metadatacenter.org', async ({ page }) => {
+  await scenarios['folder-page'](page);
+  const link = page.locator('.button-container').getByRole('link', { name: 'metadatacenter.org', exact: true });
+  await expect(link).toHaveAttribute('href', 'http://metadatacenter.org');
+  await expect(link).toHaveAttribute('target', '_blank');
+  await expect(page.getByRole('button', { name: 'metadatacenter.org' })).toHaveCount(0);
+  for (const state of ['rest', 'hover']) {
+    if (state === 'hover') await link.hover();
+    expect(await link.evaluate((element) => getComputedStyle(element).textDecorationLine), state).toBe('none');
+  }
 });
 
 // The tree in the wordmark and the end of the metadatacenter.org link stand the same distance in

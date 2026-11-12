@@ -31,5 +31,32 @@
     "Unsaved": "Try it out — nothing is saved. Leaving this mode discards your entries.",
     "Unavailable": "This preview could not be loaded. Close it and try again.",
     "TemplateClosed": "This metadata is open for viewing, but its template is not, so it cannot be shown."
+  },
+  "Navbar": {
+    "ReadMoreOpenView": "Read more about OpenView",
+    "ReadMoreCedar": "Read more about CEDAR"
+  },
+  "LoginTooltip": "Login to CEDAR",
+  "Legend": {
+    "Title": "Legend",
+    "Text": "Text",
+    "Controlled": "Controlled",
+    "Number": "Number",
+    "Date": "Date",
+    "Email": "Email",
+    "Telephone": "Telephone",
+    "Checkbox": "Checkbox",
+    "List": "List",
+    "Radio": "Radio",
+    "Link": "Link",
+    "Paragraph": "Paragraph",
+    "Attribute": "Attribute",
+    "Required": "Required"
+  },
+  "Footer": {
+    "Title": "About CEDAR",
+    "Maintainer": "CEDAR is maintained by the Stanford Division of Computational Medicine.",
+    "Visit": "Visit the CEDAR website",
+    "LogoAlt": "Stanford Division of Computational Medicine"
   }
 }

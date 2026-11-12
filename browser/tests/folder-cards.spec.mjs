@@ -1,46 +1,10 @@
-import { readFileSync } from 'node:fs';
 import { test, expect } from '@playwright/test';
+import { ARTIFACTS, FOLDER, artifactAnswers as answers, fixture } from './scenarios.mjs';
 
 // An open folder's cards, measured and labelled as Workspace's grid draws them, and the preview each
 // artifact's card opens.
 
-const fixture = (name) => JSON.parse(readFileSync(new URL(`../fixtures/${name}.json`, import.meta.url), 'utf8'));
-const OWN = 'https://repo.metadatacenter.org/';
-const FOLDER = '32fc3013-1b73-4a2a-86f7-189f73d3400c';
-const ARTIFACTS = {
-  template: { collection: 'templates', uuid: 'a8f75474-ca14-4726-a071-acbfa9f8c466' },
-  element: { collection: 'template-elements', uuid: '5d8c2f3e-7a41-4b9c-9e62-1f0a3b7c8d24' },
-  field: { collection: 'template-fields', uuid: 'bbc141a6-0e81-4cba-8651-8b61a623bd6c' },
-  instance: { collection: 'template-instances', uuid: '0b6e4d1a-93f2-4c57-8a1e-6d2f7c9b4e13' },
-};
 const name = (kind) => fixture(kind)['schema:name'];
-
-// A folder holding one of each kind, as the server summarizes them: a field, element or template also
-// states its version and publication status.
-function folder() {
-  const artifacts = Object.entries(ARTIFACTS).map(([kind, { collection, uuid }]) => {
-    const { 'pav:version': version, 'bibo:status': status } = fixture(kind);
-    return {
-      resourceType: kind,
-      '@id': `${OWN}${collection}/${uuid}`,
-      'schema:name': name(kind),
-      ...(kind === 'instance' ? {} : { 'pav:version': version, 'bibo:status': status }),
-    };
-  });
-  return {
-    ...fixture('folder'),
-    totalCount: artifacts.length + 1,
-    resources: [{ resourceType: 'folder', '@id': `${OWN}folders/6f0c1e2a-4b3d-4e5f-8a9b-0c1d2e3f4a5b`, 'schema:name': 'Assays' }, ...artifacts],
-  };
-}
-
-function answers(overrides = {}) {
-  return {
-    [`/folders/${FOLDER}`]: folder(),
-    ...Object.fromEntries(Object.entries(ARTIFACTS).map(([kind, { collection, uuid }]) => [`/${collection}/${uuid}`, fixture(kind)])),
-    ...overrides,
-  };
-}
 
 // The open API answers each path it is given, and every other external request is refused.
 async function openApi(page, answered) {

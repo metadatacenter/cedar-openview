@@ -1,5 +1,6 @@
 <div class="overlay">
-  <mat-card class="error-card">
+  <!-- The card has no translations, so it is marked English whatever the interface language. -->
+  <mat-card class="error-card" lang="en">
     <mat-card-header>
       <div mat-card-avatar>
         <mat-icon color="warn" cedarIcon="error"></mat-icon>
@@ -23,7 +24,7 @@
       @if (status == 401 && !instanceTemplateError) {
         <div>
           <div>The {{noun}} that you are trying to view is not open.</div>
-          <button type="button" (click)="openInCedar()" class="login-button" matTooltip="Login to CEDAR">
+          <button type="button" (click)="openInCedar()" class="login-button" [matTooltip]="'LoginTooltip' | translate">
             Login to CEDAR to view this {{noun}}!
           </button>
         </div>
@@ -31,7 +32,7 @@
       @if (status == 401 && instanceTemplateError) {
         <div>
           <div>The metadata that you are trying to view is open for viewing, but the corresponding template is not.</div>
-          <button type="button" (click)="openInCedar()" class="login-button" matTooltip="Login to CEDAR">
+          <button type="button" (click)="openInCedar()" class="login-button" [matTooltip]="'LoginTooltip' | translate">
             Login to CEDAR to view this {{noun}}!
           </button>
         </div>

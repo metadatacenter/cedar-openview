@@ -24,8 +24,4 @@ export class NavbarComponent extends CedarBase implements OnInit {
 
   ngOnInit() {
   }
-
-  openInNewWindow(url: string) {
-    window.open(url, '_blank');
-  }
 }

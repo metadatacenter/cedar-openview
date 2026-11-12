@@ -108,10 +108,14 @@ button {
   flex-shrink: 0;
 }
 
+// A long unbroken word in the template, such as a DOI address, breaks rather than widening the
+// preview. The property is inherited into the embedded editor, so this holds for an editor
+// release that does not break such words itself.
 section {
   flex: 0 1 auto;
   min-height: 0;
   overflow: auto;
+  overflow-wrap: break-word;
   padding: var(--cedar-space-2) var(--cedar-space-3);
 
   > p {
