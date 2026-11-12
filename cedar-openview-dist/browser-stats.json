@@ -8504,7 +8504,7 @@
       "imports": []
     },
     "src/app/app.component.ts": {
-      "bytes": 3223,
+      "bytes": 3447,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -8696,11 +8696,11 @@
       "format": "esm"
     },
     "src/app/i18n/en.json": {
-      "bytes": 1052,
+      "bytes": 1812,
       "imports": []
     },
     "src/app/i18n/hu.json": {
-      "bytes": 1113,
+      "bytes": 1996,
       "imports": []
     },
     "src/app/modules/material-module.ts": {
@@ -8740,11 +8740,11 @@
       "format": "esm"
     },
     "src/app/modules/resources/pages/folder-content/folder-content.component.scss": {
-      "bytes": 4850,
+      "bytes": 4857,
       "imports": []
     },
     "src/app/modules/resources/pages/folder-content/folder-content.component.ts": {
-      "bytes": 19872,
+      "bytes": 19968,
       "imports": [
         {
           "path": "src/app/resource-address.ts",
@@ -9256,7 +9256,7 @@
       "imports": []
     },
     "src/app/modules/shared/components/artifact-error/artifact-error.component.ts": {
-      "bytes": 10574,
+      "bytes": 10892,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -9312,6 +9312,11 @@
           "path": "node_modules/@angular/material/fesm2022/tooltip.mjs",
           "kind": "import-statement",
           "original": "@angular/material/tooltip"
+        },
+        {
+          "path": "node_modules/@ngx-translate/core/fesm2022/ngx-translate-core.mjs",
+          "kind": "import-statement",
+          "original": "@ngx-translate/core"
         }
       ],
       "format": "esm"
@@ -9321,7 +9326,7 @@
       "imports": []
     },
     "src/app/modules/shared/components/artifact-heading/artifact-heading.component.ts": {
-      "bytes": 3880,
+      "bytes": 3894,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -9337,11 +9342,11 @@
       "format": "esm"
     },
     "src/app/modules/shared/components/artifact-preview/artifact-preview.component.scss": {
-      "bytes": 3372,
+      "bytes": 3401,
       "imports": []
     },
     "src/app/modules/shared/components/artifact-preview/artifact-preview.component.ts": {
-      "bytes": 19553,
+      "bytes": 19578,
       "imports": [
         {
           "path": "src/app/services/cee-loader.service.ts",
@@ -9473,7 +9478,7 @@
       "imports": []
     },
     "src/app/modules/shared/components/footer/footer.component.ts": {
-      "bytes": 4261,
+      "bytes": 4838,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -9504,6 +9509,11 @@
           "path": "src/app/services/data-handler.service.ts",
           "kind": "import-statement",
           "original": "../../../../services/data-handler.service"
+        },
+        {
+          "path": "node_modules/@ngx-translate/core/fesm2022/ngx-translate-core.mjs",
+          "kind": "import-statement",
+          "original": "@ngx-translate/core"
         }
       ],
       "format": "esm"
@@ -9513,7 +9523,7 @@
       "imports": []
     },
     "src/app/modules/shared/components/legend/legend.component.ts": {
-      "bytes": 5374,
+      "bytes": 7562,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -9534,16 +9544,21 @@
           "path": "node_modules/@angular/material/fesm2022/icon.mjs",
           "kind": "import-statement",
           "original": "@angular/material/icon"
+        },
+        {
+          "path": "node_modules/@ngx-translate/core/fesm2022/ngx-translate-core.mjs",
+          "kind": "import-statement",
+          "original": "@ngx-translate/core"
         }
       ],
       "format": "esm"
     },
     "src/app/modules/shared/components/navbar/navbar.component.scss": {
-      "bytes": 1187,
+      "bytes": 1320,
       "imports": []
     },
     "src/app/modules/shared/components/navbar/navbar.component.ts": {
-      "bytes": 4070,
+      "bytes": 4353,
       "imports": [
         {
           "path": "node_modules/@angular/core/fesm2022/core.mjs",
@@ -10459,24 +10474,24 @@
       "bytes": 734,
       "ng-component": true
     },
-    "artifact-preview.component-JP6KJGVZ.css": {
+    "artifact-preview.component-ADCQUDNX.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/shared/components/artifact-preview/artifact-preview.component.scss": {
-          "bytesInOutput": 2898
+          "bytesInOutput": 2923
         }
       },
-      "bytes": 2899,
+      "bytes": 2924,
       "ng-component": true
     },
-    "folder-content.component-QQAVL4TS.css": {
+    "folder-content.component-E4TTGORK.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/resources/pages/folder-content/folder-content.component.scss": {
-          "bytesInOutput": 4200
+          "bytesInOutput": 4207
         }
       },
-      "bytes": 4201,
+      "bytes": 4208,
       "ng-component": true
     },
     "footer.component-BDC77WUX.css": {
@@ -10499,7 +10514,7 @@
       "bytes": 1325,
       "ng-component": true
     },
-    "main-LUOE4KQ2.js": {
+    "main-6OUSSEVZ.js": {
       "imports": [],
       "exports": [],
       "entryPoint": "src/main.ts",
@@ -10592,7 +10607,7 @@
           "bytesInOutput": 3926
         },
         "node_modules/@angular/common/fesm2022/_module-chunk.mjs": {
-          "bytesInOutput": 22761
+          "bytesInOutput": 22763
         },
         "node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs": {
           "bytesInOutput": 1470
@@ -10607,7 +10622,7 @@
           "bytesInOutput": 0
         },
         "node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs": {
-          "bytesInOutput": 98575
+          "bytesInOutput": 98612
         },
         "node_modules/@angular/core/fesm2022/_effect-chunk.mjs": {
           "bytesInOutput": 4135
@@ -10616,7 +10631,7 @@
           "bytesInOutput": 170
         },
         "node_modules/@angular/core/fesm2022/_pending_tasks-chunk.mjs": {
-          "bytesInOutput": 23678
+          "bytesInOutput": 23681
         },
         "node_modules/@angular/core/fesm2022/_resource-chunk.mjs": {
           "bytesInOutput": 186
@@ -10625,7 +10640,7 @@
           "bytesInOutput": 58
         },
         "node_modules/@angular/core/fesm2022/core.mjs": {
-          "bytesInOutput": 6963
+          "bytesInOutput": 6964
         },
         "node_modules/@angular/core/fesm2022/primitives-di.mjs": {
           "bytesInOutput": 0
@@ -10682,10 +10697,10 @@
           "bytesInOutput": 1220
         },
         "node_modules/@angular/router/fesm2022/_router-chunk.mjs": {
-          "bytesInOutput": 72218
+          "bytesInOutput": 72236
         },
         "node_modules/@angular/router/fesm2022/_router_module-chunk.mjs": {
-          "bytesInOutput": 6423
+          "bytesInOutput": 6424
         },
         "node_modules/@angular/router/fesm2022/router.mjs": {
           "bytesInOutput": 0
@@ -10718,7 +10733,7 @@
           "bytesInOutput": 157
         },
         "node_modules/rxjs/dist/esm/internal/Observable.js": {
-          "bytesInOutput": 917
+          "bytesInOutput": 920
         },
         "node_modules/rxjs/dist/esm/internal/ReplaySubject.js": {
           "bytesInOutput": 897
@@ -10730,10 +10745,10 @@
           "bytesInOutput": 1959
         },
         "node_modules/rxjs/dist/esm/internal/Subscriber.js": {
-          "bytesInOutput": 1572
+          "bytesInOutput": 1573
         },
         "node_modules/rxjs/dist/esm/internal/Subscription.js": {
-          "bytesInOutput": 1294
+          "bytesInOutput": 1299
         },
         "node_modules/rxjs/dist/esm/internal/config.js": {
           "bytesInOutput": 142
@@ -10760,7 +10775,7 @@
           "bytesInOutput": 40
         },
         "node_modules/rxjs/dist/esm/internal/observable/innerFrom.js": {
-          "bytesInOutput": 1043
+          "bytesInOutput": 1044
         },
         "node_modules/rxjs/dist/esm/internal/observable/merge.js": {
           "bytesInOutput": 102
@@ -10769,7 +10784,7 @@
           "bytesInOutput": 44
         },
         "node_modules/rxjs/dist/esm/internal/observable/throwError.js": {
-          "bytesInOutput": 93
+          "bytesInOutput": 94
         },
         "node_modules/rxjs/dist/esm/internal/observable/timer.js": {
           "bytesInOutput": 220
@@ -10790,7 +10805,7 @@
           "bytesInOutput": 27
         },
         "node_modules/rxjs/dist/esm/internal/operators/concatMap.js": {
-          "bytesInOutput": 47
+          "bytesInOutput": 48
         },
         "node_modules/rxjs/dist/esm/internal/operators/debounceTime.js": {
           "bytesInOutput": 332
@@ -10820,7 +10835,7 @@
           "bytesInOutput": 383
         },
         "node_modules/rxjs/dist/esm/internal/operators/mergeMap.js": {
-          "bytesInOutput": 132
+          "bytesInOutput": 133
         },
         "node_modules/rxjs/dist/esm/internal/operators/observeOn.js": {
           "bytesInOutput": 144
@@ -10853,7 +10868,7 @@
           "bytesInOutput": 104
         },
         "node_modules/rxjs/dist/esm/internal/operators/tap.js": {
-          "bytesInOutput": 493
+          "bytesInOutput": 494
         },
         "node_modules/rxjs/dist/esm/internal/operators/throwIfEmpty.js": {
           "bytesInOutput": 146
@@ -10865,7 +10880,7 @@
           "bytesInOutput": 206
         },
         "node_modules/rxjs/dist/esm/internal/scheduled/scheduleIterable.js": {
-          "bytesInOutput": 213
+          "bytesInOutput": 214
         },
         "node_modules/rxjs/dist/esm/internal/scheduled/scheduleObservable.js": {
           "bytesInOutput": 48
@@ -10916,7 +10931,7 @@
           "bytesInOutput": 207
         },
         "node_modules/rxjs/dist/esm/internal/util/args.js": {
-          "bytesInOutput": 186
+          "bytesInOutput": 187
         },
         "node_modules/rxjs/dist/esm/internal/util/argsArgArrayOrObject.js": {
           "bytesInOutput": 286
@@ -10943,34 +10958,34 @@
           "bytesInOutput": 63
         },
         "node_modules/rxjs/dist/esm/internal/util/isAsyncIterable.js": {
-          "bytesInOutput": 73
+          "bytesInOutput": 74
         },
         "node_modules/rxjs/dist/esm/internal/util/isDate.js": {
           "bytesInOutput": 51
         },
         "node_modules/rxjs/dist/esm/internal/util/isFunction.js": {
-          "bytesInOutput": 42
+          "bytesInOutput": 43
         },
         "node_modules/rxjs/dist/esm/internal/util/isInteropObservable.js": {
-          "bytesInOutput": 31
+          "bytesInOutput": 32
         },
         "node_modules/rxjs/dist/esm/internal/util/isIterable.js": {
-          "bytesInOutput": 33
+          "bytesInOutput": 34
         },
         "node_modules/rxjs/dist/esm/internal/util/isObservable.js": {
-          "bytesInOutput": 70
+          "bytesInOutput": 72
         },
         "node_modules/rxjs/dist/esm/internal/util/isPromise.js": {
-          "bytesInOutput": 33
+          "bytesInOutput": 34
         },
         "node_modules/rxjs/dist/esm/internal/util/isReadableStreamLike.js": {
-          "bytesInOutput": 236
+          "bytesInOutput": 237
         },
         "node_modules/rxjs/dist/esm/internal/util/isScheduler.js": {
-          "bytesInOutput": 39
+          "bytesInOutput": 40
         },
         "node_modules/rxjs/dist/esm/internal/util/lift.js": {
-          "bytesInOutput": 204
+          "bytesInOutput": 205
         },
         "node_modules/rxjs/dist/esm/internal/util/mapOneOrManyArgs.js": {
           "bytesInOutput": 101
@@ -10997,7 +11012,7 @@
           "bytesInOutput": 221
         },
         "src/app/app.component.ts": {
-          "bytesInOutput": 998
+          "bytesInOutput": 1059
         },
         "src/app/app.module.ts": {
           "bytesInOutput": 313
@@ -11015,28 +11030,28 @@
           "bytesInOutput": 324
         },
         "src/app/i18n/en.json": {
-          "bytesInOutput": 813
+          "bytesInOutput": 1380
         },
         "src/app/i18n/hu.json": {
-          "bytesInOutput": 1004
+          "bytesInOutput": 1776
         },
         "src/app/modules/material-module.ts": {
           "bytesInOutput": 170
         },
         "src/app/modules/resources/pages/folder-content/folder-content.component.ts": {
-          "bytesInOutput": 10670
+          "bytesInOutput": 10697
         },
         "src/app/modules/resources/pages/template-element/template-element.component.ts": {
-          "bytesInOutput": 3239
+          "bytesInOutput": 3235
         },
         "src/app/modules/resources/pages/template-field/template-field.component.ts": {
-          "bytesInOutput": 3579
+          "bytesInOutput": 3575
         },
         "src/app/modules/resources/pages/template-instance/template-instance.component.ts": {
-          "bytesInOutput": 3964
+          "bytesInOutput": 3960
         },
         "src/app/modules/resources/pages/template/template.component.ts": {
-          "bytesInOutput": 2873
+          "bytesInOutput": 2870
         },
         "src/app/modules/resources/resources-routing.module.ts": {
           "bytesInOutput": 441
@@ -11045,13 +11060,13 @@
           "bytesInOutput": 167
         },
         "src/app/modules/shared/components/artifact-error/artifact-error.component.ts": {
-          "bytesInOutput": 4599
+          "bytesInOutput": 4716
         },
         "src/app/modules/shared/components/artifact-heading/artifact-heading.component.ts": {
-          "bytesInOutput": 1756
+          "bytesInOutput": 1768
         },
         "src/app/modules/shared/components/artifact-preview/artifact-preview.component.ts": {
-          "bytesInOutput": 9975
+          "bytesInOutput": 9977
         },
         "src/app/modules/shared/components/base/cedar-base.component.ts": {
           "bytesInOutput": 408
@@ -11060,13 +11075,13 @@
           "bytesInOutput": 343
         },
         "src/app/modules/shared/components/footer/footer.component.ts": {
-          "bytesInOutput": 2886
+          "bytesInOutput": 2976
         },
         "src/app/modules/shared/components/legend/legend.component.ts": {
-          "bytesInOutput": 3155
+          "bytesInOutput": 3843
         },
         "src/app/modules/shared/components/navbar/navbar.component.ts": {
-          "bytesInOutput": 2461
+          "bytesInOutput": 2657
         },
         "src/app/modules/shared/components/spinner/spinner.component.ts": {
           "bytesInOutput": 922
@@ -11168,7 +11183,7 @@
           "bytesInOutput": 104
         }
       },
-      "bytes": 543601
+      "bytes": 546207
     },
     "media/1df1ae79b14180fb1e9284310583ca4c17a861328a726b82068e0ab3ba586458-Z72STTMG.woff2": {
       "imports": [],
@@ -11310,14 +11325,14 @@
       },
       "bytes": 4796
     },
-    "navbar.component-YVEN27H3.css": {
+    "navbar.component-S3XV5BDE.css": {
       "imports": [],
       "inputs": {
         "src/app/modules/shared/components/navbar/navbar.component.scss": {
-          "bytesInOutput": 986
+          "bytesInOutput": 1107
         }
       },
-      "bytes": 987,
+      "bytes": 1108,
       "ng-component": true
     },
     "polyfills-LVNOU2XZ.js": {
