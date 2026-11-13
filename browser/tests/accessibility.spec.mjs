@@ -117,10 +117,10 @@ for (const [kind, [open, find]] of Object.entries(controls)) {
  * what was `measured` on the day it was written, and why that `passes`.
  */
 const SETTLED = [{
-  rule: 'color-contrast', browser: 'webkit',
+  rule: 'color-contrast', browser: 'webkit', platform: 'darwin',
   states: ['element-page at 1440', 'element-page at 375', 'field-page at 1440', 'field-page at 375', 'unreadable field'],
   target: '.legend-title', measured: '10.65:1',
-  passes: 'The opaque legend panel is #f4f6f6 beneath #173f3e text. WebKit leaves the legend undecided; the gate measures its painted contrast against the AA threshold on every scan.',
+  passes: 'The opaque legend panel is #f4f6f6 beneath #173f3e text. macOS WebKit leaves the legend undecided; the gate measures its painted contrast against the AA threshold on every scan.',
 }];
 
 /**
@@ -291,6 +291,7 @@ const matching = (page, node, selectors) =>
 async function expectAccessible(page, state) {
   const { violations, undecided } = await audit(page);
   const settled = SETTLED.filter((entry) => entry.states.includes(state) &&
+    (!entry.platform || entry.platform === process.platform) &&
     (!entry.browser || entry.browser === page.context().browser()?.browserType().name()));
   const excepted = EXCEPTIONS.filter((entry) => entry.states.includes(state));
   const used = new Set();
