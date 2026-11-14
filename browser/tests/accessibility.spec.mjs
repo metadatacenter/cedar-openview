@@ -78,6 +78,9 @@ async function expectTooltip(page, control) {
   await expect(page.locator('.mat-mdc-tooltip.mat-mdc-tooltip-show')).toBeVisible();
 }
 
+/** The states that scan a control with the pointer or the keyboard resting on it, its tooltip included. */
+const resting = new Set(Object.keys(controls).flatMap((kind) => [`hovered ${kind}`, `focused ${kind}`]));
+
 for (const [kind, [open, find]] of Object.entries(controls)) {
   states[`hovered ${kind}`] = async (page) => {
     await open(page);
@@ -326,5 +329,12 @@ async function expectAccessible(page, state) {
 for (const [state, open] of Object.entries(states))
   test(`accessible ${state}`, async ({ page }) => {
     await open(page);
+    // Reaching a state by a click leaves the pointer on the control clicked, and its tooltip then
+    // opens and closes around the scan. axe reported the tooltip in WebKit, and the test waited out
+    // its time limit for an element that had gone. A resting state keeps its pointer and tooltip.
+    if (!resting.has(state)) {
+      await page.mouse.move(0, 0);
+      await expect(page.locator('.mat-mdc-tooltip')).toHaveCount(0);
+    }
     await expectAccessible(page, state);
   });
