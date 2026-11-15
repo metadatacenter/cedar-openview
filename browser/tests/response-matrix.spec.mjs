@@ -210,11 +210,23 @@ test('instance page whose template has a child stored under a reserved key', asy
   await expectFailure(page, ['Error', `The artifact that you are trying to view ${UNREADABLE}`]);
 });
 
+/**
+ * Wait until the page has decided whether it can show what it was given, so that an absent refusal is a
+ * decision rather than one not yet made. The page reveals its footer once the content, or the refusal,
+ * has rendered. A field page decides by its field element's ready or error, either of which reveals the
+ * footer. An editor page also reads the editor's metadata a task after the editor is defined, which can
+ * follow the editor's ready; a task queued behind that read runs after it however slowly timers run.
+ */
+async function decided(page, editor = true) {
+  await expect(page.locator('app-footer')).toBeVisible();
+  if (editor) await page.evaluate(() => customElements.whenDefined('cedar-embeddable-editor').then(() => new Promise((resolve) => setTimeout(resolve))));
+}
+
 test('a readable element page shows no refusal', async ({ page }) => {
   await openApi(page, { [`/template-elements/${PAGES.element.uuid}`]: fixture('element') });
   await page.goto(`/template-elements/${PAGES.element.uuid}`);
   await expect(elementShown(page)).toBeVisible();
-  await page.waitForTimeout(500);
+  await decided(page);
   await expect(page.locator('.error-card')).toHaveCount(0);
 });
 
@@ -222,7 +234,7 @@ test('a readable field page shows no refusal', async ({ page }) => {
   await openApi(page, { [`/template-fields/${PAGES.field.uuid}`]: fixture('field') });
   await page.goto(`/template-fields/${PAGES.field.uuid}`);
   await expect(fieldShown(page)).toBeVisible();
-  await page.waitForTimeout(500);
+  await decided(page, false);
   await expect(page.locator('.error-card')).toHaveCount(0);
 });
 
@@ -230,6 +242,6 @@ test('a readable template page shows no refusal', async ({ page }) => {
   await openApi(page, { [`/templates/${PAGES.template.uuid}`]: withChildKey(fixture('template'), 'Renamed child') });
   await page.goto(`/templates/${PAGES.template.uuid}`);
   await expect(heading(page)).toBeVisible();
-  await page.waitForTimeout(500);
+  await decided(page);
   await expect(page.locator('.error-card')).toHaveCount(0);
 });
