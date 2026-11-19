@@ -42,6 +42,10 @@ const CHECKS = ['reflow', 'resize', 'spacing', 'placeholder', 'boundary', 'indic
 for (const [state, open] of Object.entries(states))
   for (const name of CHECKS)
     test(`${state}: ${name}`, async ({ page }) => {
+      // The indicators check focuses each control in turn and waits two frames for it, so its time
+      // follows the frame rate. It takes five seconds on a workstation and passed thirty on a loaded
+      // runner. No other check waits on frames in a loop.
+      if (name === 'indicators') test.slow();
       await page.setViewportSize(VIEWPORTS[name]);
       await open(page);
       await page.mouse.move(0, 0);
