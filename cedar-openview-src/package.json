@@ -30,7 +30,7 @@
     "@angular/platform-browser": "~22.3.0",
     "@angular/router": "~22.3.0",
     "@ngx-translate/core": "^18.1.0",
-    "cedar-embeddable-editor": "2.0.36",
+    "cedar-embeddable-editor": "npm:@org.metadatacenter/cedar-embeddable-editor@2.0.38-dev.20261125.7e33e0c",
     "cedar-model-typescript-library": "npm:@org.metadatacenter/cedar-model-typescript-library@1.0.30-dev.20261119.026a31c",
     "rxjs": "~7.8.1",
     "tslib": "^2.6.2",
