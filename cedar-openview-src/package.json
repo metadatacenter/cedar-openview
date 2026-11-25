@@ -43,11 +43,11 @@
     "@angular/language-service": "~22.3.0",
     "@org.metadatacenter/cedar-design-tokens": "0.1.0-dev.20261118.97a9f152",
     "@types/node": "^24.3.0",
-    "@vitest/browser-playwright": "^5.0.5",
+    "@vitest/browser-playwright": "^5.1.1",
     "istanbul-lib-instrument": "^6.0.3",
     "playwright": "^1.63.0",
-    "sass": "^1.83.1",
+    "sass": "^1.108.2",
     "typescript": "~6.0.3",
-    "vitest": "^5.0.5"
+    "vitest": "^5.1.1"
   }
 }
